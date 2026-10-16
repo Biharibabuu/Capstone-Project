@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IndiGo Profitability Intelligence</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand-mark" aria-hidden="true">i</div>
+    <div>
+      <p class="eyebrow">PGDM Business Analytics Capstone</p>
+      <h1>IndiGo Profitability Intelligence</h1>
+      <p class="subtitle">Market-sensitive forecasting of next-quarter PAT margin</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero card">
+      <p class="eyebrow">Forecast workspace</p>
+      <h2>One quarter ahead. Evidence first.</h2>
+      <p>The system will combine historical financial results with selected market, macroeconomic and operating indicators. The Python model will be exposed through an API and this page will be the user interface.</p>
+      <div class="status-row">
+        <span id="api-pill" class="pill pill-pending">Checking API…</span>
+        <span id="model-pill" class="pill pill-pending">Model not checked</span>
+      </div>
+      <p id="health-message" class="muted" role="status">Checking local API status.</p>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <p class="eyebrow">Primary target</p>
+        <h2>Next-quarter PAT margin</h2>
+        <p class="formula">PAT Margin (%) = PAT / Revenue from Operations × 100</p>
+        <p class="muted">Forecast value will appear only after a model has been trained, evaluated and registered.</p>
+      </article>
+      <article class="card">
+        <p class="eyebrow">Model status</p>
+        <h2 id="model-state">Not trained</h2>
+        <p id="model-detail" class="muted">Baseline and candidate-model evaluation are still required. No forecast is available yet.</p>
+      </article>
+      <article class="card">
+        <p class="eyebrow">Data health</p>
+        <h2>Validate before forecasting</h2>
+        <p class="muted">The pipeline must check source dates, fiscal-quarter alignment, units, missing values and freshness. It must not silently use stale or invalid inputs.</p>
+      </article>
+    </section>
+
+    <section class="card">
+      <p class="eyebrow">Planned features</p>
+      <h2>What this application will support</h2>
+      <div class="feature-list">
+        <span>Profitability forecast</span>
+        <span>Market inputs</span>
+        <span>Low / Base / High scenarios</span>
+        <span>Model drivers</span>
+        <span>Historical predictions vs actuals</span>
+        <span>Model version and evaluation</span>
+      </div>
+      <p class="note">Input controls and scenario forecasts will be activated after the data audit, EDA and baseline/model evaluation. A scenario is a sensitivity estimate, not a causal claim.</p>
+    </section>
+
+    <footer>
+      <p>Academic prototype using public and aggregate information. Not commissioned by or endorsed by IndiGo. Not a stock-price predictor and not a measure of unpublished current-quarter profit.</p>
+      <p><a href="../docs/Master_Project_Plan.md">Master project plan</a> · <a href="../docs/Project_Charter.md">D1 project charter</a></p>
+    </footer>
+  </main>
+  <script src="app.js" defer></script>
+</body>
+</html>
