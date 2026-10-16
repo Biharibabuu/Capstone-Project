@@ -55,7 +55,7 @@ The final feature list will be frozen only after the data-feasibility audit and 
 | Category | Candidate fields | Candidate source |
 |---|---|---|
 | Company financials | Revenue from operations, PAT, PAT margin, EBITDAR margin where consistently reported | [IndiGo quarterly results](https://www.goindigo.in/information/investor-relations/quarterly-financial-results.html) |
-| Fuel / market | ATF price or a verified fuel-price proxy | [PPAC](https://ppac.gov.in/) |
+| Fuel / market | ATF price or a verified fuel-price proxy | [IndianOil historical domestic ATF prices](https://www.iocl.com/atf-domestic-airlines); PPAC for broader cross-checks |
 | Currency | USD/INR level, changes or lags | [RBI DBIE](https://data.rbi.org.in/DBIE/) |
 | Macroeconomy | CPI inflation / quarterly summary | [MoSPI](https://www.mospi.gov.in/) |
 | Operations / demand | Passengers carried, passenger load factor when comparable | [IndiGo investor relations](https://www.goindigo.in/information/investor-relations.html), [DGCA](https://www.dgca.gov.in/) |
@@ -136,12 +136,14 @@ See the [D1 charter](docs/Project_Charter.md) and [full plan](docs/Master_Projec
 
 - [Data collection plan](docs/Phase1_Data_Collection_Plan.md) — source-by-source steps, release-date rules, quarter alignment, cleaning and small-sample policy.
 - [Master dataset schema](docs/Master_Dataset_Schema.md) — exact output columns, feature/label separation and timing rules.
-- [Source register template](data/templates/source_register.csv).
+- [Initial source register](data/source_register.csv) · [Blank source register template](data/templates/source_register.csv).
 - [Financials template](data/templates/financial_quarterly.csv).
 - [Operations template](data/templates/operational_monthly.csv).
 - [ATF template](data/templates/atf_monthly.csv).
 - [USD/INR template](data/templates/usd_inr_daily.csv).
 - [CPI template](data/templates/cpi_monthly.csv).
+- [Phase 1 collection plan](docs/Phase1_Data_Collection_Plan.md).
+- [Master dataset schema](docs/Master_Dataset_Schema.md).
 - [Dataset builder](src/build_master_dataset.py) and [point-in-time tests](tests/test_master_dataset_builder.py).
 
 ### How to build the dataset
