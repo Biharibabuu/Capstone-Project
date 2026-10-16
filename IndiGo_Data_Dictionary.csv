@@ -1,0 +1,15 @@
+field_name,role,definition,planned_unit_or_format,expected_grain,source_candidate,preparation_or_control
+fiscal_quarter,target_key,Quarter identifier aligned to IndiGo's fiscal reporting period,YYYY-Qn,Quarter,IndiGo quarterly results,Create one unique key per quarter and document fiscal period boundaries
+quarter_end,as_of_key,Last date of the reporting quarter,YYYY-MM-DD,Quarter,IndiGo quarterly results,Do not infer publication date from quarter end
+revenue_inr_mn,input_component,Quarterly revenue or consistently defined revenue measure,INR million (confirm source unit),Quarter,IndiGo quarterly results,Reconcile statement definition and unit conversions
+pat_inr_mn,target_component,Profit after tax for the quarter,INR million (confirm source unit),Quarter,IndiGo quarterly results,Keep negative values; check restatements and exceptional items
+pat_margin_pct,target,pat_inr_mn / revenue_inr_mn * 100,Percent / percentage points,Quarter,Derived from IndiGo statements,Forecast next quarter; calculate only after units/definitions align
+ebitdar_inr_mn,input,EBITDAR where reported consistently,INR million (confirm source unit),Quarter,IndiGo earnings presentation,Document definition and any changes; exclude if not comparable
+passengers_carried,input,Reported passengers carried,As reported; normalize only with documented rule,Quarter,IndiGo operational reporting / DGCA,Confirm definition and reporting period
+passenger_load_factor_pct,input,Passenger load factor,Percent,Quarter,IndiGo operational reporting / DGCA,Confirm same measurement basis across periods
+atf_price_inr,input,Selected aviation turbine fuel price proxy,INR per published unit,Monthly then quarterly,PPAC,Choose a consistent geography/series; document aggregation method
+usd_inr,input,USD/INR exchange-rate indicator,INR per USD,Daily/monthly then quarterly,RBI DBIE,Use a documented quarterly average or period-end rule
+cpi_index,input,Consumer Price Index series,Index points / documented base year,Monthly then quarterly,MoSPI,Keep series and base year consistent; document quarterly aggregation
+source_published_on,metadata,Date when a source value became publicly available,YYYY-MM-DD,Source field / release,Official publication page,Required for point-in-time / leakage checks
+source_url,metadata,URL of source document or data series,URL,Source field,Official publication page,Store full URL and retrieval date in source register
+retrieved_on,metadata,Date data were accessed/downloaded,YYYY-MM-DD,File/source,Project team,Use for reproducibility and source-version tracking
