@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual environments and local secrets
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+
+# Local data: do not commit source files by default
+data/raw/*
+!data/raw/README.md
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/README.md
+!data/processed/.gitkeep
+
+# Model binaries / local output
+models/*.joblib
+models/*.pkl
+models/*.pickle
+!models/README.md
+reports/generated/
+*.log
+.DS_Store
+Thumbs.db
