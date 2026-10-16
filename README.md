@@ -130,3 +130,28 @@ Every feature must pass the **forecast-date availability rule**. Latest-market r
 - models/, tests/, reports/ — model artifacts, tests and project outputs.
 
 See the [D1 charter](docs/Project_Charter.md) and [full plan](docs/Master_Project_Plan.md) before implementation.
+
+
+## Phase 1 — data collection and dataset build
+
+- [Data collection plan](docs/Phase1_Data_Collection_Plan.md) — source-by-source steps, release-date rules, quarter alignment, cleaning and small-sample policy.
+- [Master dataset schema](docs/Master_Dataset_Schema.md) — exact output columns, feature/label separation and timing rules.
+- [Source register template](data/templates/source_register.csv).
+- [Financials template](data/templates/financial_quarterly.csv).
+- [Operations template](data/templates/operational_monthly.csv).
+- [ATF template](data/templates/atf_monthly.csv).
+- [USD/INR template](data/templates/usd_inr_daily.csv).
+- [CPI template](data/templates/cpi_monthly.csv).
+- [Dataset builder](src/build_master_dataset.py) and [point-in-time tests](tests/test_master_dataset_builder.py).
+
+### How to build the dataset
+
+1. Copy the five CSV templates into `data/raw/` using the same filenames.
+2. Fill them with normalized source records and actual publication dates. Do not invent dates; record source URLs.
+3. Install dependencies with `pip install -r requirements.txt`.
+4. Run `python -m src.build_master_dataset --input-dir data/raw --output-dir data/processed`.
+5. Review `data/processed/data_quality_report.csv` and the missingness/leakage checks before starting EDA.
+
+The script creates one row per **target quarter**, with the forecast cutoff on the last day before that quarter begins. It selects only inputs whose observation period is before the target quarter and whose publication date is no later than the cutoff. The target quarter's own revenue, PAT and PAT margin are labels only.
+
+The source templates are headers only; the historical data have not been collected/populated yet. The builder and model have not been run on real project data.
