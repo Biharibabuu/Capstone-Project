@@ -15,7 +15,7 @@ Build an end-to-end forecasting product that combines historical IndiGo financia
 
 The repository now includes the project plan, D1 charter, data dictionary, initial data-validation/lag-feature utilities, a basic HTML/CSS/JavaScript interface, and a FastAPI scaffold. The API reports that the model is not trained and deliberately does not return a fabricated prediction. The feature list and forecasting code will be completed after D2 data audit and D3 EDA confirm comparable history, predictor coverage and publication timing.
 
-**Next recommended step:** complete D2's source register and historical data-feasibility audit before attempting model training or enabling the prediction endpoint.
+**Next recommended step:** verify and populate the initial source register, collect normalized historical records, and complete the D2 data-feasibility audit before attempting model training or enabling the prediction endpoint.
 
 ## Primary business question
 
