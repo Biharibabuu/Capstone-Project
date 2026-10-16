@@ -27,10 +27,12 @@ The target-quarter result is label information only. Never use target_revenue_in
 | latest_operational_published_on | Publication date for selected operational record | Metadata / leakage audit |
 | latest_passengers_carried | Passenger count from the selected comparable operational series | Candidate predictor |
 | latest_passenger_load_factor_pct | Reported or correctly recomputed load factor | Candidate predictor |
+| latest_operational_data_scope | Whether operational input is domestic-only or combined domestic/international | Metadata / scope audit |
 | latest_operational_source_url | Source URL for selected operational record | Provenance only |
 | latest_atf_month | Effective month of ATF price observation | Metadata |
 | latest_atf_published_on | Publication date/availability of selected ATF input | Metadata / leakage audit |
 | latest_atf_price_inr_per_kl | Chosen metro's domestic ATF price proxy | Candidate predictor |
+| latest_atf_proxy_definition | Description of selected ATF series/city basis | Metadata / provenance |
 | latest_atf_source_url | Source URL for ATF price | Provenance only |
 | latest_fx_observation_date | Date of selected USD/INR observation | Metadata |
 | latest_fx_published_on | Publication date/availability of USD/INR observation | Metadata / leakage audit |
@@ -40,6 +42,7 @@ The target-quarter result is label information only. Never use target_revenue_in
 | latest_cpi_published_on | CPI release date | Metadata / leakage audit |
 | latest_cpi_index | Index level for consistent All-India Combined General CPI series | Candidate predictor |
 | latest_cpi_inflation_yoy_pct | Published year-on-year CPI inflation, where available | Candidate predictor |
+| latest_cpi_series_base_year | CPI base-year metadata to prevent accidental series mixing | Metadata / quality control |
 | latest_cpi_source_url | Source URL for CPI | Provenance only |
 | target_revenue_inr_mn | Target quarter's revenue from operations | Label/supporting outcome only |
 | target_pat_inr_mn | Target quarter's PAT | Label/supporting outcome only |
