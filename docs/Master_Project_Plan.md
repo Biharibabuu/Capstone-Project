@@ -97,7 +97,7 @@ The final predictor list will be frozen only after the data-feasibility audit an
 | Financial | PAT | Target and historical lag | Core |
 | Financial | PAT margin | Target and lagged predictor | Core |
 | Financial | EBITDAR margin | Secondary operating indicator | Candidate |
-| Fuel / market | ATF price or verified fuel proxy | Level, change, lag or rolling summary | Core candidate |
+| Fuel / market | IndianOil domestic ATF price proxy (select and document one metro) | Level, change, lag or rolling summary | Core candidate |
 | Currency | USD/INR | Level, change or lag | Core candidate |
 | Macro | CPI inflation | Quarterly summary/change | Core candidate |
 | Demand | Passengers carried | Growth / lag | Candidate |
@@ -109,7 +109,7 @@ The final predictor list will be frozen only after the data-feasibility audit an
 
 - [IndiGo quarterly financial results](https://www.goindigo.in/information/investor-relations/quarterly-financial-results.html): revenue, PAT, EBITDAR and financial disclosures.
 - [IndiGo investor relations](https://www.goindigo.in/information/investor-relations.html): operational statistics and supporting disclosures.
-- [Petroleum Planning & Analysis Cell (PPAC)](https://ppac.gov.in/): suitable ATF/fuel-price proxy.
+- [IndianOil historical domestic ATF prices](https://www.iocl.com/atf-domestic-airlines): monthly metro-specific ATF price proxy; [PPAC](https://ppac.gov.in/) can support petroleum-sector cross-checks.
 - [RBI Database on Indian Economy](https://data.rbi.org.in/DBIE/): USD/INR series.
 - [Ministry of Statistics and Programme Implementation](https://www.mospi.gov.in/): CPI/inflation series.
 - [Directorate General of Civil Aviation](https://www.dgca.gov.in/): optional published aviation-statistics cross-check.
