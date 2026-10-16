@@ -1,68 +1,126 @@
-# IndiGo Airline Profitability Intelligence System
+# IndiGo Profitability Intelligence System
 
-**PGDM Business Analytics Capstone | D1 Project Charter | CO1 and CO6**
+**Integrated market-sensitive machine-learning model for forecasting IndiGo's business profitability**  
+**Capstone:** PGDM Business Analytics · **Modules:** M1–M7 · **Deliverables:** D1–D7
 
-## Overview
-This project proposes an end-to-end analytics system to forecast IndiGo's next-quarter Profit After Tax (PAT) margin using public financial, operating and macroeconomic indicators. The lifecycle covers data preparation, EDA, baseline comparison, model experiments, chronological evaluation, explainability, scenario analysis, deployment planning and monitoring.
+## Project vision
 
-This is an academic prototype based on public/aggregate information. It is not commissioned by or endorsed by IndiGo and is not an official company forecast.
+Build an end-to-end forecasting product that combines historical IndiGo financial performance with selected public market, macroeconomic and airline operating indicators. A Python data/ML backend will expose forecasts through an API; a single HTML/CSS/JavaScript application will let users inspect inputs, next-quarter PAT-margin forecasts, scenario results, model status and data health.
 
-## Business problem
-For a hypothetical airline finance-planning decision-maker, can a model using information available at the forecast date predict next-quarter PAT margin with at least 10% lower MAE than a last-quarter-persistence baseline on chronological holdout quarters?
+**The project predicts IndiGo business profitability, not its stock price.** Its primary target is next-quarter PAT margin. The model is the core technical deliverable; the HTML application is the user interface, not a substitute for ML experimentation and evaluation.
 
-**Target:** `pat_margin_pct = (PAT / Revenue) * 100`
+> This is an academic prototype using public and aggregate information. It is not commissioned by or endorsed by IndiGo and does not reveal unpublished actual results. Forecasts are estimates and must be presented with evaluation results and limitations.
 
-All predictors must be available at the forecast date to avoid look-ahead leakage.
+## Primary business question
 
-## Project files
-- [D1 Project Charter (Markdown)](docs/Project_Charter.md) — scope, stakeholder map, measurable acceptance criteria, data plan, risks, milestones, team roles, meeting log and responsibility matrix.
-- [Data dictionary (CSV)](IndiGo_Data_Dictionary.csv) — proposed field definitions, data sources and quality controls.
+Can historical IndiGo performance and public market, macroeconomic and operating indicators be combined to forecast next-quarter PAT margin, and does the selected model improve out-of-sample performance over a simple historical baseline?
 
-The formatted four-page PDF is prepared for course submission in the project workspace. Add the PDF to this repository using GitHub's web interface if a PDF copy is required in the repository itself.
+**Primary target:**  
+PAT margin (%) = PAT / Revenue from Operations × 100
 
-## Success criteria
-- Candidate model MAE at least 10% below the baseline on the same chronological holdout quarters.
-- Candidate model RMSE no worse than baseline RMSE.
-- At least 95% completeness in selected modelling fields after alignment and no duplicate fiscal-quarter keys.
-- All predictors pass availability-at-forecast-date checks.
-- A local demo lets a user select a scenario, request a prediction and view metrics and limitations.
+**Forecast horizon:** one quarter ahead. The pipeline may refresh the latest valid inputs, but it cannot know an unpublished current-quarter profit.
 
-These are proposed targets to confirm after the D2 data audit. If no candidate beats the baseline, report that result honestly.
+## Product capabilities planned
 
-## Candidate public data sources
-- [IndiGo quarterly financial results](https://www.goindigo.in/information/investor-relations/quarterly-financial-results.html): revenue, PAT, EBITDAR and financial disclosures.
-- [IndiGo investor relations](https://www.goindigo.in/information/investor-relations.html): operational statistics and supporting disclosures.
-- [PPAC](https://ppac.gov.in/): consistent aviation turbine fuel (ATF) price proxy.
-- [RBI DBIE](https://data.rbi.org.in/DBIE/): USD/INR exchange-rate series.
-- [MoSPI](https://www.mospi.gov.in/): CPI/inflation.
-- [DGCA](https://www.dgca.gov.in/): optional cross-check of published airline traffic indicators.
+- Import or refresh latest available financial, market and operating information.
+- Validate source dates, units, missing values, data freshness and feature availability at forecast time.
+- Produce a next-quarter PAT-margin forecast using the same preprocessing as model training.
+- Compare models using chronological validation and a simple baseline.
+- Show inputs used, key contributing factors and reliability/uncertainty information where supported by evaluation.
+- Run low-cost/favourable, base and high-cost/adverse scenarios where assumptions are defensible.
+- Store forecast metadata so predictions can be compared with actual results once published.
+- Monitor input quality, freshness, feature drift, prediction errors and model version.
 
-The expected size is a planning estimate of roughly 35–45 quarterly observations after alignment, plus monthly raw economic observations. Confirm usable size during the data audit and record URLs, retrieval/publication dates, units and reporting periods.
+## Planned technical architecture
 
-## Privacy and limitations
-Use aggregate public data only. Do not collect passenger-level records or personal information. Review publisher terms before redistributing data; where rights are unclear, link to the original source instead. Quarterly observations may be limited, so begin with a baseline and report uncertainty. Scenario outputs are conditional estimates, not causal claims or guaranteed outcomes.
+| Layer | Responsibility | Candidate technology |
+|---|---|---|
+| Data pipeline | Collect/import, clean, align, document and store observations | Python, pandas, CSV/Parquet/SQLite |
+| Feature engineering | Margins, lags, changes, rolling summaries, seasonality and justified interactions | pandas, NumPy |
+| ML engine | Baseline, candidate training, time-ordered validation and prediction | scikit-learn |
+| API | Validate requests and expose prediction/scenario functions | FastAPI or Flask |
+| Frontend | Forecast overview, market inputs, scenarios, historical performance and model/data status | HTML, CSS, JavaScript |
+| Monitoring | Data health, prediction log, model version, errors and retraining triggers | Python logs / stored metrics |
 
-## Milestones (no calendar dates)
-| Milestone | Planned output |
+## Candidate data
+
+The final feature list will be frozen only after the data-feasibility audit and EDA. Candidate variables are not guaranteed to be included.
+
+| Category | Candidate fields | Candidate source |
+|---|---|---|
+| Company financials | Revenue from operations, PAT, PAT margin, EBITDAR margin where consistently reported | [IndiGo quarterly results](https://www.goindigo.in/information/investor-relations/quarterly-financial-results.html) |
+| Fuel / market | ATF price or a verified fuel-price proxy | [PPAC](https://ppac.gov.in/) |
+| Currency | USD/INR level, changes or lags | [RBI DBIE](https://data.rbi.org.in/DBIE/) |
+| Macroeconomy | CPI inflation / quarterly summary | [MoSPI](https://www.mospi.gov.in/) |
+| Operations / demand | Passengers carried, passenger load factor when comparable | [IndiGo investor relations](https://www.goindigo.in/information/investor-relations.html), [DGCA](https://www.dgca.gov.in/) |
+| Time / events | Fiscal-quarter indicators; exceptional-event flags only if reliable | Documented derived fields |
+
+Expected historical coverage and usable row count are **to be confirmed during D2**. Record source URL, publication/retrieval date, period, units, definitions and revisions. Preserve raw data unchanged and keep raw and processed data separate. Do not publish source data unless redistribution terms allow it; link to the source if rights are unclear. No passenger-level personal data is required.
+
+## Modelling and evaluation
+
+1. Establish a simple historical baseline.
+2. Test Ridge / Elastic Net as transparent regularized candidates.
+3. Test Random Forest / Gradient Boosting only if sample size and feasibility justify them.
+4. Use chronological train/validation/test splits and rolling-origin backtesting where feasible; do not randomly shuffle quarters.
+5. Fit preprocessing only on data available within each training window.
+6. Compare MAE and RMSE; directional accuracy may be added if defined consistently.
+7. Select the most defensible model based on out-of-sample performance, stability, interpretability and business usefulness—not complexity.
+8. If ML does not beat the baseline, report that honestly and retain the baseline.
+
+Every feature must pass the **forecast-date availability rule**. Latest-market refresh applies to future use only; it must not leak future values into historical evaluation. Scenario analysis is sensitivity testing, not evidence of causal effects.
+
+## Academic deliverables (M1–M7 / D1–D7)
+
+| Module | Deliverable | Expected evidence |
+|---|---|---|
+| M1 | D1 — Project charter | Problem, decision-maker, analytics question, metrics, scope, data plan, risks, roles, meeting log, responsibility matrix |
+| M2 | D2 — Data audit | Source register, coverage, definitions, missingness, access/privacy notes, cleaned dataset, data dictionary |
+| M3 | D3 — EDA | Descriptive analysis, relationships, hypotheses, anomalies, seasonality and insights |
+| M4 | D4 — Modelling checkpoint | Baseline, candidate models, experiments, tuning decisions and experiment log |
+| M5 | D5 — Evaluation memo | Chronological validation, errors, leakage checks, uncertainty and limitations |
+| M6 | D6 — Deployment and monitoring | HTML/API prototype or demo, data refresh, data health, drift, retraining and maintenance |
+| M7 | D7 — Communication | Final report, model card, presentation and technical/business Q&A readiness |
+
+## 12-week roadmap
+
+| Week | Focus | Gate / output |
+|---|---|---|
+| 1 | Scope and feasibility audit | Confirm target, data coverage, source register, repository; decide whether comparable data are sufficient |
+| 2 | Historical data collection | Raw datasets and source register |
+| 3 | Cleaning and alignment | Master dataset, PAT margin and data dictionary |
+| 4 | EDA and hypotheses | EDA notebook, insights, unusual-period review and initial feature list |
+| 5 | Baseline | Baseline forecast, chronological evaluation setup, MAE/RMSE |
+| 6 | Candidate ML models | Model comparison and experiment log |
+| 7 | Evaluation | Unseen-quarter evaluation, leakage and error review |
+| 8 | Prediction engine | Selected/versioned model, preprocessing and scenarios |
+| 9 | HTML and API | Working local application |
+| 10 | Market-data refresh | Validated refresh and prediction workflow |
+| 11 | Deployment and monitoring | Input tests, monitoring plan and retraining triggers |
+| 12 | Final communication | Final report, model card, presentation and demo |
+
+## Main risks
+
+| Risk | Mitigation |
 |---|---|
-| D1 — Charter and setup | Problem, scope, stakeholders, metrics, risks, roles, repository and README |
-| D2 — Data feasibility | Source register, data dictionary, aligned dataset and quality checks |
-| D3 — EDA and baseline | EDA, baseline forecast, leakage review and modelling go/no-go |
-| Modelling checkpoint | Reproducible training pipeline and candidate-model results |
-| E1 — Evaluation memo | Chronological model comparison, metrics, explainability and scenario tests |
-| Deployment and monitoring plan | Prototype plan, monitoring checks and retraining triggers |
-| E2 — Draft report and dry run | Draft report, model card, demo and presentation rehearsal |
+| Small quarterly sample | Simple baseline, parsimonious models and time-based validation |
+| Inconsistent data definitions | Source register, dictionary, unit reconciliation and documented transforms |
+| Future-information leakage | Publication-date tracking and chronological evaluation |
+| API/source access limitations | Verified file-import fallback and documented refresh status |
+| Exceptional events or regime changes | Robustness checks, event flags only where reliable, clear limitations |
+| ML underperforms baseline | Keep baseline as formal comparator; simplify if necessary |
+| Integration delays | Freeze the evaluated model before UI integration; build in stages |
 
-## Team
-- Nikhil Raj
-- Krishan Sharma
-- K. Shreya
+## Repository map
 
-The charter's responsibility matrix assigns each member at least two lead deliverables. Fill the meeting log with actual meeting details only.
+- [Master project plan](docs/Master_Project_Plan.md) — integrated project vision and 12-week work plan.
+- [D1 project charter](docs/Project_Charter.md) — charter, milestones, role matrix and meeting log.
+- [Data dictionary](IndiGo_Data_Dictionary.csv) — candidate variables and preparation controls.
+- frontend/ — HTML/CSS/JS interface.
+- backend/ — API routes and request schemas.
+- src/ — data pipeline, features, training, prediction and scenarios.
+- notebooks/ — data audit, EDA, baseline, experiments and evaluation.
+- data/ — raw and processed data (respect source terms; do not commit sensitive or unlicensed data).
+- models/, tests/, reports/ — model artifacts, tests and project outputs.
 
-## D1 checklist
-- Confirm the team number and required PDF filename with the course instructions.
-- Confirm milestone labels against the course schedule.
-- Ensure every team member leads at least two deliverables.
-- Document source rights and privacy considerations.
-- Do not claim model performance before experiments are run and evaluated.
+See the [D1 charter](docs/Project_Charter.md) and [full plan](docs/Master_Project_Plan.md) before implementation.
