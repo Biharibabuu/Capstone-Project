@@ -140,3 +140,8 @@ Quarterly history is likely to be a small sample (actual usable rows to be measu
 ## Privacy and usage
 
 Only public, aggregate company/market data are planned. Do not collect passenger-level personal information, credentials or private internal records. Check source usage terms before publishing downloads. In the GitHub repository, commit templates, metadata and derived data only when redistribution is permitted.
+
+
+## Source-feasibility findings (checked 20 October 2026)
+
+The current official-source desk audit is documented in [Data Feasibility Audit](Data_Feasibility_Audit.md) and tracked in [data/collection_tracker.csv](../data/collection_tracker.csv). The results page lists historical financial reports beginning with Q3 FY2015-16; operational-statistics pages include historical fiscal-year selectors. The visible IndianOil domestic ATF history is much shorter than the financial history, so a long-history EIA jet-fuel proxy is being treated as a candidate only, not as equivalent to Indian ATF. RBI's reference-rate series transitions to FBIL from 10 July 2018. MoSPI CPI base-year changes must be handled explicitly. No model should be trained until the source records have been collected, date-aligned and audited.
