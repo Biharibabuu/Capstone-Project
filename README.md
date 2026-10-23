@@ -157,3 +157,17 @@ See the [D1 charter](docs/Project_Charter.md) and [full plan](docs/Master_Projec
 The script creates one row per **target quarter**, with the forecast cutoff on the last day before that quarter begins. It selects only inputs whose observation period is before the target quarter and whose publication date is no later than the cutoff. The target quarter's own revenue, PAT and PAT margin are labels only.
 
 The source templates are headers only; the historical data have not been collected/populated yet. The builder and model have not been run on real project data.
+
+## D2 — Data audit (data-v1.0)
+
+The D2 audit report and its three-page datasheet document the audit of the Bloomberg raw export and the supplied master workbook.
+
+- **Audit summary:** [D2 Data Audit Summary](docs/D2_Data_Audit_Summary.md)
+- **Required PDF filename:** `reports/ANCP_T##_D2_v1.pdf` (11 pages total: up to 8 audit-report pages plus 3 datasheet pages).
+- **Dataset coverage:** 38 quarterly observations from 2017-03-31 to 2026-06-30; 19 analytical fields. After required lag/target completeness checks, 33 rows are available for model training.
+- **Critical finding:** the supplied master workbook's `Financial source` sheet is shifted by two quarters relative to the raw Bloomberg `IS` sheet. The analytical financial outcomes must be rebuilt from raw `IS` values; do not use the misaligned financial source sheet for modelling.
+- **CPI correction:** the malformed September 2026 CPI date was reconciled against the raw Bloomberg export.
+- **Data governance:** Bloomberg source files are proprietary. Do not publish raw exports or derived data unless institutional licence terms permit it. Keep raw exports in authorised private storage.
+- **Feature timing:** use only information available at the forecast cutoff; the next-quarter PAT margin is a target, never a predictor.
+
+The cleaned CSV, XLSX, data dictionary, source log and SHA-256 file should be versioned together as described in the D2 report. Do not use an earlier generated master dataset that has not been rebuilt from the raw `IS` sheet.
