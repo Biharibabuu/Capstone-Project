@@ -52,16 +52,22 @@ The final feature list and any data-completeness thresholds will be decided duri
 
 ## 5. Data plan
 
-| Candidate source | Fields / purpose | Access and controls |
-|---|---|---|
-| [IndiGo quarterly results](https://www.goindigo.in/information/investor-relations/quarterly-financial-results.html) | Revenue from operations, PAT, EBITDAR and financial disclosures | Record publication date, fiscal period, definitions and units |
-| [IndiGo investor relations](https://www.goindigo.in/information/investor-relations.html) | Passengers carried, passenger load factor and operating disclosures where available | Verify comparability across periods |
-| [PPAC](https://ppac.gov.in/) | ATF price or verified fuel-price proxy | Document series, geography, units and aggregation |
-| [RBI DBIE](https://data.rbi.org.in/DBIE/) | USD/INR | Document source series and quarterly aggregation rule |
-| [MoSPI](https://www.mospi.gov.in/) | CPI / inflation | Keep series and base year consistent |
-| [DGCA](https://www.dgca.gov.in/) | Optional cross-check of published aviation statistics | Use only comparable published measures |
+The current working data were exported from Bloomberg Terminal. Official public pages below are validation references only unless explicitly collected as a separate source.
 
-Expected historical coverage, dataset size, access rights, privacy considerations and final variable inclusion will be recorded in D2. Record source URL, publication/retrieval dates, period, units and revisions. Keep raw data unchanged and separate raw from processed data. Do not commit source data publicly unless redistribution terms allow it; link to the source if rights are unclear. No passenger-level personal data is needed.
+| Dataset / category | Data currently available | Actual Bloomberg source and fields | Reference links / controls |
+|---|---|---|---|
+| Company financials | Quarterly Revenue, Net Income (GAAP), EBITDA; derived PAT and EBITDA margins | InterGlobe Aviation Ltd (`INDIGO IN`) — BBG GAAP; `SALES_REV_TURN`, `NET_INCOME`, `EBITDA` | [Bloomberg profile](<https://www.bloomberg.com/profile/company/INDIGO%3AIN>) and [Bloomberg Terminal](<https://professional.bloomberg.com/products/bloomberg-terminal/>); validate line-item definitions against [IndiGo quarterly results](<https://www.goindigo.in/information/investor-relations/quarterly-financial-results.html>). Exclude rows marked `Est`. |
+| Currency | Monthly USD/INR `PX_LAST` (raw export also contains `PX_BID`) | `USDINR REGN Curncy`, period `M` | [Bloomberg DATA](<https://data.bloomberg.com/>); [RBI reference-rate archive](<https://www.rbi.org.in/scripts/ReferenceRateArchive.aspx>) is an independent check, not the source of this export. Exclude 30 Oct 2026 in an as-of-28-Oct analysis. |
+| CPI inflation | Monthly indicator values | `INFUTOTY Index`, `PX_LAST` | [Bloomberg Terminal](<https://professional.bloomberg.com/products/bloomberg-terminal/>); confirm exact description; [MoSPI CPI catalogue](<https://esankhyiki.mospi.gov.in/catalogue-main/catalogue?product=CPI>) is for validation. |
+| WPI inflation | Monthly indicator values | `INBGWPIY Index`, `PX_LAST` | [Bloomberg Terminal](<https://professional.bloomberg.com/products/bloomberg-terminal/>); verify series/base version; [Office of the Economic Adviser WPI data](<https://eaindustry.nic.in/download_data_2223.asp>) is for validation. |
+| Oil-price indicator | Daily and monthly Dated Brent crude price series; not Indian ATF | `EUCRBRDT Index`, `PX_LAST` | [Bloomberg Terminal](<https://professional.bloomberg.com/products/bloomberg-terminal/>) / [Bloomberg DATA](<https://data.bloomberg.com/>). Document unit and proxy limitations. |
+| Operational indicators | Passenger counts, load factor and RPK/ASK | Not in the currently supplied data | Not collected yet. Potential sources if needed: [IndiGo investor relations](https://www.goindigo.in/information/investor-relations.html) and [DGCA](https://www.dgca.gov.in/). |
+| Derived quarterly panel | Quarterly means and margin fields in local workbook | Calculated locally from the above exports | Current quarter labels are calendar-based and financial margins require reconciliation against raw `IS`. Rebuild before training. |
+
+**Access and redistribution:** Bloomberg product links are not public download URLs for the licensed terminal series. Keep raw Bloomberg exports and output files in authorized private storage unless the applicable institutional licence permits redistribution. The public repository should contain source metadata, code, documentation and permitted artifacts only.
+
+The final predictor list, quarterly alignment and historical availability controls will be frozen only after the source rows are reconciled. No passenger-level personal data is needed.
+
 
 ## 6. Feasibility and key risks
 
