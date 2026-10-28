@@ -7,14 +7,14 @@
 
 ## 1. Problem statement
 
-Develop and evaluate a machine-learning model that uses historical IndiGo financial performance and publicly available market and operating indicators to forecast the company's next-quarter PAT margin, and determine whether the selected model improves predictive performance over a simple historical baseline on unseen quarters.
+Develop and evaluate a machine-learning model that uses historical IndiGo financial performance and Bloomberg-sourced currency, inflation and oil-benchmark indicators to forecast the company's next-quarter PAT margin, and determine whether the selected model improves predictive performance over a simple historical baseline on unseen quarters. Public operating indicators may be added only if collected and validated.
 
 **Business decision:** Use the forecast and scenario analysis to support quarterly financial planning and risk discussion.  
 **Decision-maker:** Business/finance decision-makers, analysts and project stakeholders.  
 **Target:** PAT Margin (%) = Profit After Tax / Revenue from Operations × 100.  
 **Forecast horizon:** One quarter ahead.
 
-This is an academic prototype using public and aggregate information. It is not commissioned by or endorsed by IndiGo and does not reveal unpublished actual results.
+This is an academic prototype using licensed Bloomberg extracts and aggregate financial/market data, with public disclosures used for cross-checking where appropriate. It is not commissioned by or endorsed by IndiGo and does not reveal unpublished actual results.
 
 ## 2. Stakeholder map
 
@@ -44,7 +44,7 @@ The final feature list and any data-completeness thresholds will be decided duri
 
 ## 4. Scope and assumptions
 
-**In scope:** public financial and operating data; selected ATF/fuel-price, USD/INR and CPI indicators; source register and data dictionary; data quality; EDA; baseline and candidate models; time-ordered evaluation; explainability; low-cost/favourable, base and high-cost/adverse scenarios; a local HTML web application with a Python API; data refresh where reliable; monitoring and final reporting.
+**In scope:** Bloomberg Terminal exports for quarterly company financials and USD/INR, CPI, WPI and Dated Brent indicators; source register and data dictionary; reconciliation and data-quality checks; EDA; baseline and candidate models; time-ordered evaluation; explainability; low-cost/favourable, base and high-cost/adverse scenarios; a local HTML web application with a Python API; data refresh where reliable; monitoring and final reporting. Passenger/load-factor data are not yet collected.
 
 **Out of scope:** passenger-level personal data; internal or paid company data; stock-price prediction; live airline operations; automated investment/trading recommendations; claims of causal impact; official forecasts for IndiGo; use of future information in historical evaluation.
 
