@@ -3,7 +3,7 @@
 **Project:** IndiGo Profitability Intelligence System  
 **Primary target:** Next-quarter PAT margin (%)  
 **Team:** Nikhil Raj, Krishan Sharma, K. Shreya  
-**Status:** Collection plan and templates; data have not yet been populated or modelled.
+**Status (28 October 2026):** Source workbooks have been collected locally and the D3 source notebook has been added to the repository. The workbooks are not committed publicly while Bloomberg redistribution permission remains unconfirmed. The current flat master is not model-ready: the legacy financial sheet is shifted by two quarters, estimates must be excluded from actual outcomes, fiscal-quarter labels need to follow the Indian fiscal calendar, and the CPI date anomaly needs source verification. No model has been trained.
 
 ## Phase 1 objectives
 
@@ -145,3 +145,14 @@ Only public, aggregate company/market data are planned. Do not collect passenger
 ## Source-feasibility findings (checked 20 October 2026)
 
 The current official-source desk audit is documented in [Data Feasibility Audit](Data_Feasibility_Audit.md) and tracked in [data/collection_tracker.csv](../data/collection_tracker.csv). The results page lists historical financial reports beginning with Q3 FY2015-16; operational-statistics pages include historical fiscal-year selectors. The visible IndianOil domestic ATF history is much shorter than the financial history, so a long-history EIA jet-fuel proxy is being treated as a candidate only, not as equivalent to Indian ATF. RBI's reference-rate series transitions to FBIL from 10 July 2018. MoSPI CPI base-year changes must be handled explicitly. No model should be trained until the source records have been collected, date-aligned and audited.
+
+
+## Follow-up from D3 review — 28 October 2026
+
+The source workbook review found that the `Financial source` sheet in `CP Master Data.xlsx` is shifted by two quarters relative to the raw Bloomberg `IS` sheet. The raw `IS` sheet must be the basis for the target financial series; recompute PAT margin as Net Income / Revenue × 100 and EBITDA margin as EBITDA / Revenue × 100, excluding rows marked `Est` from actual outcomes.
+
+The separate `EDA ANALYSIS` workbook should be regenerated: its first two quarters repeat margin values while the quarterly dataset indicates that these financial observations were unavailable. The project uses fiscal-quarter convention Q1 Apr–Jun, Q2 Jul–Sep, Q3 Oct–Dec, Q4 Jan–Mar; calendar-quarter labels must not be used for fiscal-seasonality claims.
+
+The supplied oil series is labelled an oil benchmark and is not yet verified as Indian ATF or the airline's realised fuel cost. The CPI observation date around August 2026 also requires comparison with the source. Keep missing values visible until source checks resolve them.
+
+See [the D3 status note](../reports/D3_eda/README.md) and [D3 notebook](../notebooks/03_eda.ipynb). Do not freeze the feature set or begin model training until the reconciled master, source dates, definitions and availability cutoffs have passed review.
