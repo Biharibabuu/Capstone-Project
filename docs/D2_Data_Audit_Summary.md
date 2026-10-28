@@ -7,8 +7,8 @@
 
 ## Dataset snapshot
 
-- **38 quarterly observations**, from **2017-03-31 to 2026-06-30**.
-- **19 analytical fields** in the cleaned analytical master.
+- **38 actual-quarter entries** were identified in the raw `IS` review, from **2017-03-31 to 2026-06-30**; this is a raw-source count, not a statement that all rows are aligned and eligible for forecasting.
+- **19 analytical fields** were reported in the earlier cleaned-master draft; the column set and data quality must be rechecked after the financial series is rebuilt.
 - **33 rows were previously reported as model-training rows, but this count is not approved for training** because the financial target sheet was found to be shifted by two quarters. Rebuild and rerun all row-count and missingness checks from raw actual financials.
 - Primary outcome: PAT margin (%).
 - Secondary outcome: EBITDA margin (%).
