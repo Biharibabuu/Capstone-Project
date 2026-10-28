@@ -22,7 +22,7 @@ The reviewed D3 source notebook is available at [`notebooks/03_eda.ipynb`](../no
 - The supplied flat EDA output repeats margins in two early quarters that are marked unavailable in the separate quarterly dataset; rebuild it from raw financial outcomes.
 - Historical rows marked as estimates must not be treated as actual labels.
 - The oil benchmark's definition must be verified before it is described as Indian ATF.
-- The CPI date irregularity needs reconciliation against the source record.
+- The latest raw `CP(3).xlsx` CPI series runs through 2026-09-30; the earlier malformed-date issue was not reproduced in that version. Compare derived dates with the raw observations.
 - The previously reported 33-row training count is provisional and must not be used until the master is rebuilt and the audit rerun.
 
 **Next gate:** rebuild and verify the target-quarter master from actual raw financial periods, reconcile CPI and publication timing, rerun D3 locally, then establish the D4 baseline and chronological evaluation. No forecasting model has been trained or validated yet.
