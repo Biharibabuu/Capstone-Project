@@ -104,34 +104,33 @@ PAT margin is the primary output. EBITDAR margin is a secondary operating-perfor
 8. Store prediction metadata for later comparison with actual results.
 9. Monitor performance and retraining conditions.
 
-## 6. Data architecture and candidate variables
+## 6. Data architecture and actual collected inputs
 
-The final predictor list will be frozen only after the data-feasibility audit and EDA. The items below are candidate variables, not guaranteed final features.
+The currently supplied working files contain Bloomberg Terminal exports; public official-source pages listed here are for validation/reference, not the source of the current data export. The final predictor list remains provisional pending financial reconciliation and point-in-time availability checks.
 
-| Category | Candidate variable | Potential use | Status |
+| Category | Data present now | Bloomberg security / fields | Frequency / coverage and control |
 |---|---|---|---|
-| Financial | Revenue from operations | Margin calculation / supporting output | Core |
-| Financial | PAT | Target and historical lag | Core |
-| Financial | PAT margin | Target and lagged predictor | Core |
-| Financial | EBITDAR margin | Secondary operating indicator | Candidate |
-| Fuel / market | IndianOil domestic ATF price proxy (select and document one metro) | Level, change, lag or rolling summary | Core candidate |
-| Currency | USD/INR | Level, change or lag | Core candidate |
-| Macro | CPI inflation | Quarterly summary/change | Core candidate |
-| Demand | Passengers carried | Growth / lag | Candidate |
-| Demand | Passenger load factor | Level / lag | Candidate |
-| Time | Fiscal quarter | Seasonality | Candidate |
-| External | Exceptional-event flags | Event indicator if reliable | Optional |
+| Company financials | Revenue, Net Income (GAAP), EBITDA; derived PAT and EBITDA margins | InterGlobe Aviation Ltd (`INDIGO IN`), BBG GAAP; `SALES_REV_TURN`, `NET_INCOME`, `EBITDA` | Quarterly actuals from 31 Mar 2017 to 30 Jun 2026. Later 30 Sep/31 Dec 2026 periods are estimates and must be excluded from actual labels. Confirm Revenue/PAT line-item equivalence. |
+| USD/INR | Monthly last price; bid also present in raw export | `USDINR REGN Curncy`; `PX_LAST`, `PX_BID` | Monthly, Jan 2015 onward. Exclude the 30 Oct 2026 record from an analysis dated 28 Oct 2026. |
+| CPI inflation | CPI inflation indicator | `INFUTOTY Index`; `PX_LAST` | Monthly, Jan 2015–Sep 2026. Confirm exact Terminal instrument description. |
+| WPI inflation | WPI inflation indicator | `INBGWPIY Index`; `PX_LAST` | Monthly, Oct 2006–Sep 2026. Verify exact definition/base-series history. |
+| Oil benchmark | Dated Brent crude proxy, not aviation fuel | `EUCRBRDT Index`; `PX_LAST`; raw daily and monthly sheets | Daily, 2 Jan 2015–19 Oct 2026; monthly, Jan 2015–Sep 2026. Do not label as Indian ATF or IndiGo's realised fuel cost. |
+| Quarterly derived fields | Quarterly means of FX, CPI, WPI, daily Brent and monthly Brent; margin calculations | Derived from current local workbooks and the Bloomberg fields above | Current output labels use calendar quarters and the first two financial margins are not reconciled to raw `IS`; rebuild before model training. |
+| Operations / demand | Passenger counts, load factor and RPK/ASK | Not present in current files | Not collected yet; may be added later if definitions and historical availability can be verified. |
 
-### Candidate source register
+**Source references:** [Bloomberg Terminal](<https://professional.bloomberg.com/products/bloomberg-terminal/>), [Bloomberg DATA](<https://data.bloomberg.com/>), [Bloomberg's InterGlobe Aviation profile](<https://www.bloomberg.com/profile/company/INDIGO%3AIN>). These vendor/product links are access and source references, not public downloads of the licensed series. Cross-check financial disclosures at [IndiGo IR](<https://www.goindigo.in/information/investor-relations/quarterly-financial-results.html>), FX definitions against [RBI](<https://www.rbi.org.in/scripts/ReferenceRateArchive.aspx>), CPI against [MoSPI](<https://esankhyiki.mospi.gov.in/catalogue-main/catalogue?product=CPI>), and WPI against [the Office of the Economic Adviser](<https://eaindustry.nic.in/download_data_2223.asp>).
 
-- [IndiGo quarterly financial results](https://www.goindigo.in/information/investor-relations/quarterly-financial-results.html): revenue, PAT, EBITDAR and financial disclosures.
-- [IndiGo investor relations](https://www.goindigo.in/information/investor-relations.html): operational statistics and supporting disclosures.
-- [IndianOil historical domestic ATF prices](https://www.iocl.com/atf-domestic-airlines): monthly metro-specific ATF price proxy; [PPAC](https://ppac.gov.in/) can support petroleum-sector cross-checks.
-- [RBI Database on Indian Economy](https://data.rbi.org.in/DBIE/): USD/INR series.
-- [Ministry of Statistics and Programme Implementation](https://www.mospi.gov.in/): CPI/inflation series.
-- [Directorate General of Civil Aviation](https://www.dgca.gov.in/): optional published aviation-statistics cross-check.
+### Data quality gate before feature selection
 
-Exact historical coverage, source-access rights, expected dataset size, privacy considerations and final feature inclusion decisions belong in D2. Record source, publication date, retrieval date, units, fiscal period and any revisions. Keep raw data unchanged and separate raw from processed data. Do not distribute source data in the public repository unless terms permit it; link to the original when redistribution rights are unclear. Passenger-level personal data is not required.
+- Rebuild Revenue, Net Income (GAAP) and EBITDA margins from the raw `IS` rows. The legacy `Financial source` sheet in the master workbook is shifted by two quarters.
+- Exclude rows marked `Est` from observed financial outcomes and historical evaluation.
+- Confirm the Bloomberg Revenue and Net Income field definitions against official statement line items; current `NET_INCOME` is only a provisional PAT component.
+- Treat `EUCRBRDT Index` as Dated Brent crude, not ATF.
+- The CPI observation series in the latest raw workbook runs through 30 Sep 2026; the earlier alleged malformed date was not reproduced in this latest raw sheet. Check the derived workbook's dates against the raw dated series instead of editing source dates manually.
+- Rebuild quarter labels to Indian fiscal quarters and redo the calculation audit. No model has been trained or validated on a reconciled master yet.
+
+[Data feasibility audit](Data_Feasibility_Audit.md) · [D2 audit summary](D2_Data_Audit_Summary.md) · [D3 EDA notebook](../notebooks/03_eda.ipynb) · [D3 review notes](../reports/D3_eda/README.md)
+
 
 ## 7. Machine-learning strategy
 
