@@ -89,10 +89,20 @@ This section records a later review of the actual supplied workbooks. It complem
 - The `Financial source` sheet in `CP Master Data.xlsx` is shifted by two quarters relative to the raw `IS` sheet. Rebuild the outcome series from the raw statement and recompute margins.
 - Rows labelled `Est` in the raw financial export are estimates, not actual outcomes. Exclude these rows from training targets and historical evaluation.
 - The earlier 33-row training count is provisional and not approved; recompute it after rebuilding the master.
-- The CPI series has a date irregularity around August 2026 that must be checked against the raw source. The oil series remains a proxy until its exact Bloomberg security/source identifier is documented.
+- In the latest `CP(3).xlsx`, CPI observations run to 2026-09-30 and the earlier malformed-date concern was not reproduced. Verify derived dates against raw observations. The oil series is identified as `EUCRBRDT Index` (Dated Brent crude); it remains a proxy, not Indian ATF.
 - The uploaded flat EDA output repeats early-quarter margins where the separate quarterly file marks results unavailable. Rebuild those rows from the raw financial statement.
 - Use Indian fiscal-quarter alignment (Q1 Apr–Jun, Q2 Jul–Sep, Q3 Oct–Dec, Q4 Jan–Mar) consistently. The current D3 notebook encodes this convention.
 
 The D3 implementation and outstanding findings are documented in [the D3 notebook](../notebooks/03_eda.ipynb) and [D3 status note](../reports/D3_eda/README.md).
 
 **Decision:** data collection has advanced, but the final master remains **not model-ready** until the financial reconciliation, CPI date check, fiscal-quarter alignment and historical availability audit are complete. No model has yet been trained or validated on the reconciled data.
+
+
+**Actual Bloomberg series IDs in the uploaded files:**
+- Financials: `INDIGO IN` / BBG GAAP; `SALES_REV_TURN`, `NET_INCOME`, `EBITDA`.
+- USD/INR: `USDINR REGN Curncy` (monthly).
+- CPI inflation indicator: `INFUTOTY Index` (monthly, `PX_LAST`).
+- WPI inflation indicator: `INBGWPIY Index` (monthly, `PX_LAST`).
+- Dated Brent crude benchmark: `EUCRBRDT Index` (daily and monthly, `PX_LAST`).
+
+Bloomberg source/access references: [Bloomberg Terminal](https://professional.bloomberg.com/products/bloomberg-terminal/), [Bloomberg DATA](https://data.bloomberg.com/), [InterGlobe Aviation Bloomberg profile](https://www.bloomberg.com/profile/company/INDIGO%3AIN). Exact terminal exports have no public unauthenticated series download URL. Official pages listed in the original source desk audit should be treated as independent cross-checks, not as the source of these uploaded values.
