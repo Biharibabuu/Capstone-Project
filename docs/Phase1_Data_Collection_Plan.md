@@ -9,7 +9,7 @@
 
 1. Establish repeatable source collection and source-level provenance.
 2. Create one row per forecast target quarter with an explicit forecast cutoff date.
-3. Align reported financials, operational statistics, ATF, USD/INR and CPI data without future information.
+3. Align the collected Bloomberg financials, monthly USD/INR, CPI/WPI inflation and Dated Brent benchmark without future information. Operational indicators are optional and not yet collected.
 4. Audit coverage, definitions, units, duplicates, missingness and publication timing.
 5. Decide whether the available quarterly sample can support forecasting before advancing to EDA/model experiments.
 
@@ -17,37 +17,21 @@
 
 Maintain one row for every source file or series with these fields: source_id, variable_name, publisher, source_url, source_document_title, period_start, period_end, observation_frequency, units, definition, release_date_rule, retrieval_date, revision_policy, rights_or_access_notes, local_filename, and quality_notes.
 
-Use the official sources below. Save the downloaded raw files unchanged whenever their terms permit. If a source cannot be redistributed, keep it locally and place its URL and retrieval details in the register instead of committing its raw data to GitHub.
+The original collection plan began with official public sources; the current workbook review shows that the supplied data were exported from Bloomberg Terminal. Record the actual vendor/security/field for every collected series and keep official public pages as independent validation references. Save raw files unchanged in authorized local storage; do not commit licensed exports to GitHub unless redistribution is expressly permitted.
 
-## Step 2 — Collect the quarterly financial statements
+## Step 2 — Company financials actually supplied
 
-**Source:** [IndiGo quarterly financial results](https://www.goindigo.in/information/investor-relations/quarterly-financial-results.html).
+**Current source:** Bloomberg Terminal export in `CP(3).xlsx`, `IS` sheet, security `INDIGO IN`, BBG GAAP. It contains Revenue (`SALES_REV_TURN`), Net Income, GAAP (`NET_INCOME`) and EBITDA (`EBITDA`), with units stated as millions of INR except per-share items.
 
-For each available quarter, extract:
-- quarter end;
-- revenue from operations;
-- PAT;
-- EBITDAR, if consistently defined and reported;
-- the actual date the result was published;
-- source URL and source file/report name.
+The raw export has actual financial quarter-end rows from 31 March 2017 through 30 June 2026. The rows dated 30 September and 31 December 2026 are labelled `Est` and must not be treated as actual results. The current `CP Master Data.xlsx` `Financial source` sheet is shifted by two quarters compared with the raw `IS` dates, so rebuild margins from the raw sheet rather than copying the legacy financial sheet.
 
-Use the same consolidated/standalone basis across every quarter. Prefer consolidated company performance if it is consistently reported, and document the choice. Confirm the financial statement line item definition for revenue and PAT; do not mix revenue from operations with another revenue definition. Store the original reported units, then convert to one standard unit (suggested: INR million) in a separate processed column. Record whether results are unaudited, audited, restated or revised.
+**Reconciliation is still required:** confirm whether `SALES_REV_TURN` exactly matches the project's Revenue from Operations definition and reconcile `NET_INCOME` to reported PAT in [IndiGo's quarterly filings](https://www.goindigo.in/information/investor-relations/quarterly-financial-results.html). The source contains EBITDA, not EBITDAR. Capture the true public publication date of each financial statement from the corresponding filing; it is not supplied as a publication-date field in the Bloomberg export.
 
-**Important:** quarter_end is not the date a result became public. The field financial_published_on must be the actual release/publication date used for historical availability checks.
+## Step 3 — Operational / demand indicators (not yet collected)
 
-## Step 3 — Collect airline operating statistics
+The current supplied workbooks do **not** include passenger counts, passenger load factor, RPK/ASK or capacity. Do not describe these as existing data or current model inputs. If they are added later, potential public sources are [IndiGo domestic operational statistics](https://www.goindigo.in/information/investor-relations/operational-statistics/domestic.html), [IndiGo international operational statistics](https://www.goindigo.in/information/investor-relations/operational-statistics/international.html) and [DGCA](https://www.dgca.gov.in/).
 
-**Source:** [IndiGo domestic operational statistics](https://www.goindigo.in/information/investor-relations/operational-statistics/domestic.html) and [international operational statistics](https://www.goindigo.in/information/investor-relations/operational-statistics/international.html). The site labels the operational series as reported by DGCA.
-
-Collect monthly passenger counts and load-factor support fields with:
-- month_start;
-- passengers_carried;
-- passenger_km_thousand;
-- available_seat_km_thousand;
-- operational_published_on;
-- source URL and data scope.
-
-Keep the series' scope consistent with the target financial reporting scope. If domestic and international statistics are combined, sum passengers, passenger kilometres and available seat kilometres; recompute the overall load factor as total passenger kilometres / total available seat kilometres × 100. Do not take a simple arithmetic average of domestic and international load factors. If only a domestic series is available, label it clearly as a domestic operational proxy and document the mismatch with company-wide financials.
+For any future collection, retain month, actual publication date, source reference and scope. If domestic and international data are combined, sum passenger counts, passenger kilometres and available seat kilometres, then recompute load factor as total passenger kilometres / total available seat kilometres × 100. Never take a simple arithmetic average of load-factor percentages.
 
 ## Step 4 — Oil-price indicator actually collected
 
@@ -110,21 +94,22 @@ For the financial predictors, select the most recent earlier quarter whose finan
 
 ## Step 9 — Master dataset structure
 
-The exact output columns are documented in Master_Dataset_Schema.md. Main groups:
-- identifiers and target period: forecast_as_of_date, target_quarter, target_quarter_start/end;
-- latest reported financial values and their quarter/publication metadata;
-- latest available monthly operational values and publication metadata;
-- latest available ATF price proxy and metadata;
-- latest available USD/INR and metadata;
-- latest available CPI and metadata;
-- labels: target_revenue_inr_mn, target_pat_inr_mn, target_pat_margin_pct, target_financial_published_on;
-- source URLs, where available.
+The normalized output schema is documented in [Master_Dataset_Schema.md](Master_Dataset_Schema.md). For the current collected sources, the master will need:
+- target-quarter and forecast-cutoff identifiers using the Indian fiscal year;
+- reconciled Revenue, Net Income/PAT and EBITDA with actual publication metadata;
+- eligible monthly USD/INR and CPI/WPI values;
+- eligible Dated Brent crude observations, kept explicitly separate from Indian ATF;
+- target-quarter financial outcomes as labels only;
+- source security IDs, field mnemonics, original observation dates and public release/availability dates;
+- operational features only if they are collected later.
+
+The current flat master must be rebuilt before it is used for EDA or training.
 
 ## Step 10 — Cleaning and acceptance checks
 
 Required checks:
 1. All dates parse successfully; quarterly end dates are quarter ends.
-2. One financial record per quarter_end; one operational/ATF/CPI record per month_start; one FX record per observation_date. Aggregate domestic/international operational records before building the master table.
+2. One financial record per quarter_end; one record per source observation date/month for USD/INR, CPI, WPI and Brent; preserve source grain when daily and monthly Brent both exist. Operational aggregation checks are only applicable if operational data are collected later.
 3. Required target revenue is numeric and strictly positive; PAT may be negative.
 4. Numeric values must be finite. Keep negative PAT when reported; investigate surprising values rather than deleting them automatically.
 5. Units and reporting basis are consistent, with all conversions documented.
