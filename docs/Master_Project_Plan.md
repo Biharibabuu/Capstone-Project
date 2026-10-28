@@ -55,7 +55,7 @@ The system will combine financial, market and operating indicators, transform th
 
 Profitability can be affected by interacting factors such as fuel costs, currency movements, inflation, passenger demand and operating performance. The business need is to translate the latest available information into an evidence-based view of future profitability.
 
-**Problem statement:** Develop and evaluate a machine-learning model that uses historical IndiGo financial performance and publicly available market and operating indicators to forecast the company's next-quarter PAT margin, and determine whether the selected model improves predictive performance over a simple historical baseline on unseen quarters.
+**Problem statement:** Develop and evaluate a machine-learning model that uses historical IndiGo financial performance and Bloomberg-sourced currency, inflation and Dated Brent indicators to forecast the company's next-quarter PAT margin, and determine whether the selected model improves predictive performance over a simple historical baseline on unseen quarters. Public operating indicators may be added only after collection and validation.
 
 **Decision-maker:** Business/finance decision-makers, analysts and project stakeholders who need an evidence-based view of future profitability and risk.
 
