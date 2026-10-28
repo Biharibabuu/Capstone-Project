@@ -9,7 +9,7 @@
 
 - **38 quarterly observations**, from **2017-03-31 to 2026-06-30**.
 - **19 analytical fields** in the cleaned analytical master.
-- **33 model-training rows** after required lag/target completeness checks.
+- **33 rows were previously reported as model-training rows, but this count is not approved for training** because the financial target sheet was found to be shifted by two quarters. Rebuild and rerun all row-count and missingness checks from raw actual financials.
 - Primary outcome: PAT margin (%).
 - Secondary outcome: EBITDA margin (%).
 - Candidate external inputs: USD/INR, CPI inflation, WPI inflation and an oil benchmark proxy.
@@ -26,7 +26,7 @@ The extreme COVID-period negative PAT margin is retained because it is reproduci
 
 | Check | Finding | Treatment |
 |---|---|---|
-| CPI date integrity | The 5.54 observation has a malformed final date in the master | Reconcile to 2026-09-30 using the raw Bloomberg export |
+| CPI date integrity | The supplied master contains a date irregularity around August 2026; the prior note records a malformed final date | Reconcile the exact observation date against the raw export and source release before changing the date |
 | Duplicates | No duplicate rows in supplied master sheets | No deduplication required |
 | Missingness | Market source series are complete on PX_LAST; lags/targets have structural missing values | Do not impute structural NA values |
 | Outliers | Extreme oil and profitability observations detected by the 1.5×IQR diagnostic | Retain economically plausible observations; flag and document rather than winsorise |
@@ -76,3 +76,19 @@ For historical evaluation, simulate the information available at each forecast o
 The raw Bloomberg export should remain outside the public repository unless the licence expressly permits it. Re-run the cleaning script and verify the checksum for every versioned release.
 
 **CO2 / CO6:** reproducible data acquisition and preparation, data-quality assessment, responsible data use, bias awareness and documented analytics.
+
+
+## D3 follow-up — 28 October 2026
+
+This follow-up supersedes the earlier provisional modelling-row count and records the status after the next review of the supplied workbooks.
+
+- The raw Bloomberg `IS` sheet and legacy `Financial source` sheet do not align: the legacy financial values are shifted by two quarters. Do not use the legacy sheet as the source of target labels.
+- The earlier figure of 33 model-training rows is **not an approved training count**. Rebuild the financial series from raw `IS`, keep only actual reported outcomes, align them to Indian fiscal quarters and rerun completeness checks before counting eligible rows.
+- Exclude `Est` periods from observed historical outcomes. The target-quarter result and any financial information published after a historical forecast cutoff must not enter the predictors.
+- The prior CPI correction is not regarded as closed until the irregular date around August 2026 has been checked against the underlying source/export.
+- The oil benchmark remains a proxy until its security/source definition is verified. Do not describe it as Indian ATF or IndiGo's realised fuel cost without evidence.
+- The D3 source notebook is published with execution outputs cleared. Public raw or derived Bloomberg exports remain excluded unless the applicable licence expressly allows redistribution.
+
+**Next action:** rebuild `Final_Quarterly_Data.xlsx` and its data dictionary/calculation checks from the raw statement, reconcile the market series, rerun the D3 notebook locally, and retain a dated data version only after the checks pass. No ML model has been trained or evaluated on the reconciled dataset yet.
+
+Reference: [D3 notebook](../notebooks/03_eda.ipynb) and [D3 review notes](../reports/D3_eda/README.md).
