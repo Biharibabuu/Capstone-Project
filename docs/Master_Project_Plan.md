@@ -11,6 +11,23 @@ The project began as an IndiGo macroeconomic profitability-forecasting capstone 
 
 The project forecasts **IndiGo business profitability, not its stock price**. The primary output remains next-quarter PAT margin. The ML prediction engine is the main technical deliverable. The HTML application is the single user interface; Python handles data preparation, prediction, scenarios and validation.
 
+## Current implementation status — 28 October 2026
+
+D1 documentation and the D2 audit notes are in the repository. The raw Bloomberg workbook, the market-indicator master workbook, a quarterly output workbook and a D3 EDA HTML export have been received for review, but licensed workbooks and output-rich exports are kept in local/private storage rather than committed to the public repository.
+
+The reviewed D3 source notebook is available at [`notebooks/03_eda.ipynb`](../notebooks/03_eda.ipynb). It reconstructs PAT and EBITDA margins from raw Bloomberg `IS` inputs, excludes rows marked `Est`, uses the project's Indian fiscal-quarter convention (`Q-MAR`) and checks the legacy master sheet against the raw statement. The public notebook has no stored execution outputs.
+
+**Important data-reconciliation gate before D4:**
+- The legacy `Financial source` sheet in the master workbook is shifted by two quarters relative to raw `IS` financial values.
+- The supplied flat EDA output repeats margins in two early quarters that are marked unavailable in the separate quarterly dataset; rebuild it from raw financial outcomes.
+- Historical rows marked as estimates must not be treated as actual labels.
+- The oil benchmark's definition must be verified before it is described as Indian ATF.
+- The CPI date irregularity needs reconciliation against the source record.
+- The previously reported 33-row training count is provisional and must not be used until the master is rebuilt and the audit rerun.
+
+**Next gate:** rebuild and verify the target-quarter master from actual raw financial periods, reconcile CPI and publication timing, rerun D3 locally, then establish the D4 baseline and chronological evaluation. No forecasting model has been trained or validated yet.
+
+
 ## 2. Final project vision
 
 The system will combine financial, market and operating indicators, transform them into forecasting features, run a trained ML model and return a next-quarter profitability forecast with supporting context.
