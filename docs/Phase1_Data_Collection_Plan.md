@@ -3,7 +3,7 @@
 **Project:** IndiGo Profitability Intelligence System  
 **Primary target:** Next-quarter PAT margin (%)  
 **Team:** Nikhil Raj, Krishan Sharma, K. Shreya  
-**Status (28 October 2026):** Source workbooks have been collected locally and the D3 source notebook has been added to the repository. The workbooks are not committed publicly while Bloomberg redistribution permission remains unconfirmed. The current flat master is not model-ready: the legacy financial sheet is shifted by two quarters, estimates must be excluded from actual outcomes, fiscal-quarter labels need to follow the Indian fiscal calendar, and the CPI date anomaly needs source verification. No model has been trained.
+**Status (28 October 2026):** Source workbooks have been collected locally and the D3 source notebook has been added to the repository. The workbooks are not committed publicly while Bloomberg redistribution permission remains unconfirmed. The current flat master is not model-ready: the legacy financial sheet is shifted by two quarters, estimates must be excluded from actual outcomes, fiscal-quarter labels need to follow the Indian fiscal calendar, and the current raw CPI series runs through 2026-09-30; the earlier malformed-date concern was not reproduced in the latest file. No model has been trained.
 
 ## Phase 1 objectives
 
@@ -153,6 +153,6 @@ The source workbook review found that the `Financial source` sheet in `CP Master
 
 The separate `EDA ANALYSIS` workbook should be regenerated: its first two quarters repeat margin values while the quarterly dataset indicates that these financial observations were unavailable. The project uses fiscal-quarter convention Q1 Apr–Jun, Q2 Jul–Sep, Q3 Oct–Dec, Q4 Jan–Mar; calendar-quarter labels must not be used for fiscal-seasonality claims.
 
-The supplied oil series is labelled an oil benchmark and is not yet verified as Indian ATF or the airline's realised fuel cost. The CPI observation date around August 2026 also requires comparison with the source. Keep missing values visible until source checks resolve them.
+The supplied oil series is labelled an oil benchmark and is not yet verified as Indian ATF or the airline's realised fuel cost. The latest raw CPI sheet has observations through 2026-09-30; compare the derived workbook's dates against raw observations instead of changing source dates manually. The raw series IDs are `USDINR REGN Curncy` (monthly), `INFUTOTY Index` (CPI), `INBGWPIY Index` (WPI), and `EUCRBRDT Index` (Dated Brent crude, daily/monthly). Keep missing values visible and exclude the 2026-10-30 USD/INR record from analyses dated 2026-10-28.
 
 See [the D3 status note](../reports/D3_eda/README.md) and [D3 notebook](../notebooks/03_eda.ipynb). Do not freeze the feature set or begin model training until the reconciled master, source dates, definitions and availability cutoffs have passed review.
