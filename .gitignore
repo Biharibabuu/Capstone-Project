@@ -29,3 +29,6 @@ reports/generated/
 *.log
 .DS_Store
 Thumbs.db
+notebooks/.ipynb_checkpoints/
+reports/D3_eda/*.html
+reports/D3_eda/*.xlsx
