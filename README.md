@@ -179,7 +179,7 @@ The D2 audit report and its three-page datasheet document the audit of the Bloom
 - **Required PDF filename:** `reports/ANCP_T##_D2_v1.pdf` (11 pages total: up to 8 audit-report pages plus 3 datasheet pages).
 - **Provisional coverage:** the raw `IS` export contains actual quarters from 2017-03-31 through 2026-06-30 plus later rows marked as estimates. The earlier 33-row modelling count is not approved for training because the generated master target sheet was misaligned; rebuild and recalculate it from raw actual financials first.
 - **Critical finding:** the supplied master workbook's `Financial source` sheet is shifted by two quarters relative to the raw Bloomberg `IS` sheet. The analytical financial outcomes must be rebuilt from raw `IS` values; do not use the misaligned financial source sheet for modelling.
-- **CPI date check:** the supplied master still has a non-month-end observation date around August 2026; verify it against the source export before treating the issue as resolved.
+- **CPI date check:** the latest raw `CP(3).xlsx` sheet has monthly dates through 2026-09-30; the earlier malformed-date concern was not reproduced in this version. Verify any dates in the derived quarterly file against the raw series and do not manually alter source dates.
 - **Data governance:** Bloomberg source files are proprietary. Do not publish raw exports or derived data unless institutional licence terms permit it. Keep raw exports in authorised private storage.
 - **Feature timing:** use only information available at the forecast cutoff; the next-quarter PAT margin is a target, never a predictor.
 
