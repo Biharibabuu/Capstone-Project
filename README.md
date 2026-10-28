@@ -147,22 +147,16 @@ See the [D1 charter](docs/Project_Charter.md) and [full plan](docs/Master_Projec
 
 ## Phase 1 — data collection and dataset build
 
-- [Data collection plan](docs/Phase1_Data_Collection_Plan.md) — source-by-source steps, release-date rules, quarter alignment, cleaning and small-sample policy.
-- [Master dataset schema](docs/Master_Dataset_Schema.md) — exact output columns, feature/label separation and timing rules.
-- [Initial source register](data/source_register.csv) · [Blank source register template](data/templates/source_register.csv).
-- [Financials template](data/templates/financial_quarterly.csv).
-- [Operations template](data/templates/operational_monthly.csv).
-- [ATF template](data/templates/atf_monthly.csv).
-- [USD/INR template](data/templates/usd_inr_daily.csv).
-- [Legacy normalized financial template](data/templates/financial_quarterly.csv) and [Bloomberg raw-field mapping template](data/templates/financial_bloomberg_quarterly.csv).
+- [Data collection plan](docs/Phase1_Data_Collection_Plan.md) — actual Bloomberg series, fiscal-quarter alignment, publication timing and open data-quality issues.
+- [Master dataset schema](docs/Master_Dataset_Schema.md) — normalized target-quarter schema and leakage controls.
+- [Actual Bloomberg source register](data/source_register.csv) · [Collection tracker](data/collection_tracker.csv).
+- [Bloomberg financial-field mapping template](data/templates/financial_bloomberg_quarterly.csv).
 - [Bloomberg USD/INR monthly template](data/templates/usd_inr_monthly.csv).
 - [Bloomberg CPI-inflation template](data/templates/cpi_inflation_monthly.csv).
 - [Bloomberg WPI-inflation template](data/templates/wpi_inflation_monthly.csv).
-- [Bloomberg Dated Brent daily template](data/templates/brent_daily.csv) and [monthly template](data/templates/brent_monthly.csv).
-- [Operational data template](data/templates/operational_monthly.csv) — optional; passenger data are not yet collected.
-- The original [ATF](data/templates/atf_monthly.csv), [daily FX](data/templates/usd_inr_daily.csv) and [CPI-index](data/templates/cpi_monthly.csv) templates are from the earlier source plan and do not represent the currently collected Bloomberg series.
-- [Phase 1 collection plan](docs/Phase1_Data_Collection_Plan.md).
-- [Master dataset schema](docs/Master_Dataset_Schema.md).
+- [Bloomberg Dated Brent daily template](data/templates/brent_daily.csv) · [monthly template](data/templates/brent_monthly.csv).
+- [Operations template](data/templates/operational_monthly.csv) — optional; passenger/load-factor data have not been collected.
+- The older [normalized financial template](data/templates/financial_quarterly.csv), [ATF template](data/templates/atf_monthly.csv), [daily FX template](data/templates/usd_inr_daily.csv) and [CPI-index template](data/templates/cpi_monthly.csv) reflect the earlier planned source design, not the current Bloomberg workbook.
 - [Dataset builder](src/build_master_dataset.py) and [point-in-time tests](tests/test_master_dataset_builder.py).
 
 ### Dataset build status and next implementation task
