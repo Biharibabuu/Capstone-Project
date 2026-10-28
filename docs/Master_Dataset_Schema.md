@@ -23,7 +23,7 @@ The target-quarter result is label information only. Never use target_revenue_in
 | latest_reported_revenue_inr_mn | Revenue from operations from latest report available by cutoff | Candidate predictor |
 | latest_reported_pat_inr_mn | PAT from latest report available by cutoff | Candidate predictor |
 | latest_reported_pat_margin_pct | PAT / revenue for latest report available by cutoff | Candidate predictor |
-| latest_reported_ebitdar_inr_mn | EBITDAR from latest report if consistently available | Candidate predictor |
+| latest_reported_ebitda_inr_mn | EBITDA from the raw Bloomberg `IS` sheet, if reconciled and comparable | Candidate predictor |
 | latest_financial_source_url | Source URL of latest reported financial data | Provenance only |
 | latest_operational_month | Latest operational month available by cutoff | Metadata |
 | latest_operational_published_on | Publication date for selected operational record | Metadata / leakage audit |
@@ -31,19 +31,27 @@ The target-quarter result is label information only. Never use target_revenue_in
 | latest_passenger_load_factor_pct | Reported or correctly recomputed load factor | Candidate predictor |
 | latest_operational_data_scope | Whether operational input is domestic-only or combined domestic/international | Metadata / scope audit |
 | latest_operational_source_url | Source URL for selected operational record | Provenance only |
-| latest_atf_month | Effective month of ATF price observation | Metadata |
-| latest_atf_published_on | Publication date/availability of selected ATF input | Metadata / leakage audit |
-| latest_atf_price_inr_per_kl | Chosen metro's domestic ATF price proxy | Candidate predictor |
-| latest_atf_proxy_definition | Description of selected ATF series/city basis | Metadata / provenance |
-| latest_atf_source_url | Source URL for ATF price | Provenance only |
+| latest_brent_observation_period | Daily observation date or monthly period for the Dated Brent proxy | Metadata |
+| latest_brent_published_on | Publication/availability date of selected Bloomberg observation, when verified | Metadata / leakage audit |
+| latest_dated_brent_px_last | PX_LAST value from EUCRBRDT Index; unit must be confirmed in Terminal | Candidate predictor / market proxy |
+| latest_brent_source_security_id | Bloomberg security identifier (EUCRBRDT Index) | Metadata / provenance |
+| latest_brent_source_field_id | Bloomberg field mnemonic (PX_LAST) | Metadata / provenance |
+| latest_brent_unit | Unit confirmed from Bloomberg field description | Metadata / quality control |
+| latest_brent_source_reference | Bloomberg Terminal/Data product reference, not a direct public series URL | Provenance only |
 | latest_fx_observation_date | Date of selected USD/INR observation | Metadata |
 | latest_fx_published_on | Publication date/availability of USD/INR observation | Metadata / leakage audit |
 | latest_usd_inr | INR per USD under the selected official series | Candidate predictor |
 | latest_fx_source_url | Source URL for exchange rate | Provenance only |
 | latest_cpi_month | Reference month for selected CPI value | Metadata |
 | latest_cpi_published_on | CPI release date | Metadata / leakage audit |
-| latest_cpi_index | Index level for consistent All-India Combined General CPI series | Candidate predictor |
-| latest_cpi_inflation_yoy_pct | Published year-on-year CPI inflation, where available | Candidate predictor |
+| latest_cpi_inflation_pct | CPI inflation indicator from INFUTOTY Index (exact series definition to be confirmed in Terminal) | Candidate predictor |
+| latest_cpi_source_security_id | Bloomberg security identifier (INFUTOTY Index) | Metadata / provenance |
+| latest_cpi_source_field_id | Bloomberg field mnemonic (PX_LAST) | Metadata / provenance |
+| latest_wpi_month | Reference month for WPI observation | Metadata |
+| latest_wpi_published_on | Actual public release/availability date, when verified | Metadata / leakage audit |
+| latest_wpi_inflation_pct | WPI inflation indicator from INBGWPIY Index (verify series/base linkage) | Candidate predictor |
+| latest_wpi_source_security_id | Bloomberg security identifier (INBGWPIY Index) | Metadata / provenance |
+| latest_wpi_source_field_id | Bloomberg field mnemonic (PX_LAST) | Metadata / provenance |
 | latest_cpi_series_base_year | CPI base-year metadata to prevent accidental series mixing | Metadata / quality control |
 | latest_cpi_source_url | Source URL for CPI | Provenance only |
 | target_revenue_inr_mn | Target quarter's revenue from operations | Label/supporting outcome only |
