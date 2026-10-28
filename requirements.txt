@@ -1,5 +1,4 @@
-# Initial environment for the IndiGo Profitability Intelligence capstone
-# Review and pin versions after D2 and before the reproducible final demo.
+# Core runtime
 pandas
 numpy
 scikit-learn
@@ -8,3 +7,9 @@ uvicorn[standard]
 pydantic
 joblib
 pytest
+
+# D3 EDA notebook dependencies
+matplotlib
+scipy
+openpyxl
+ipykernel
