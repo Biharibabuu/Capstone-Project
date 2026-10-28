@@ -154,7 +154,13 @@ See the [D1 charter](docs/Project_Charter.md) and [full plan](docs/Master_Projec
 - [Operations template](data/templates/operational_monthly.csv).
 - [ATF template](data/templates/atf_monthly.csv).
 - [USD/INR template](data/templates/usd_inr_daily.csv).
-- [CPI template](data/templates/cpi_monthly.csv).
+- [Legacy normalized financial template](data/templates/financial_quarterly.csv) and [Bloomberg raw-field mapping template](data/templates/financial_bloomberg_quarterly.csv).
+- [Bloomberg USD/INR monthly template](data/templates/usd_inr_monthly.csv).
+- [Bloomberg CPI-inflation template](data/templates/cpi_inflation_monthly.csv).
+- [Bloomberg WPI-inflation template](data/templates/wpi_inflation_monthly.csv).
+- [Bloomberg Dated Brent daily template](data/templates/brent_daily.csv) and [monthly template](data/templates/brent_monthly.csv).
+- [Operational data template](data/templates/operational_monthly.csv) — optional; passenger data are not yet collected.
+- The original [ATF](data/templates/atf_monthly.csv), [daily FX](data/templates/usd_inr_daily.csv) and [CPI-index](data/templates/cpi_monthly.csv) templates are from the earlier source plan and do not represent the currently collected Bloomberg series.
 - [Phase 1 collection plan](docs/Phase1_Data_Collection_Plan.md).
 - [Master dataset schema](docs/Master_Dataset_Schema.md).
 - [Dataset builder](src/build_master_dataset.py) and [point-in-time tests](tests/test_master_dataset_builder.py).
