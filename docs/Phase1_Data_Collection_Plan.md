@@ -49,41 +49,50 @@ Collect monthly passenger counts and load-factor support fields with:
 
 Keep the series' scope consistent with the target financial reporting scope. If domestic and international statistics are combined, sum passengers, passenger kilometres and available seat kilometres; recompute the overall load factor as total passenger kilometres / total available seat kilometres × 100. Do not take a simple arithmetic average of domestic and international load factors. If only a domestic series is available, label it clearly as a domestic operational proxy and document the mismatch with company-wide financials.
 
-## Step 4 — Collect ATF price proxy
+## Step 4 — Oil-price indicator actually collected
 
-**Source:** [IndianOil historical domestic ATF prices](https://www.iocl.com/atf-domestic-airlines). It reports previous ATF prices in rupees per kilolitre by metro.
+**Current source:** licensed Bloomberg Terminal export. The uploaded workbook identifies the series as `EUCRBRDT Index`, field `PX_LAST`, exported in both daily (`co new`) and monthly (`co new monthly`) sheets.
 
-For the starter dataset, choose one consistently available series (for example, Delhi domestic ATF price in INR/kL) and use it throughout. Record the chosen metro in the source register. This is a public market price proxy—not IndiGo's actual negotiated or blended fuel procurement cost. If a future analysis uses a metro average, calculate it consistently from the same cities in every month and document the exact formula.
+This is the **Dated Brent crude benchmark**, not Indian ATF and not IndiGo's negotiated fuel procurement cost. Use the terms “Dated Brent” or “oil benchmark proxy” in the dataset and report. The daily series has observations from 2 Jan 2015 through 19 Oct 2026; the monthly series runs from Jan 2015 through Sep 2026. The raw workbook records USD as currency, but confirm the unit from the Bloomberg Terminal field description before using a precise price-unit label.
 
-Fields: month_start/effective date, atf_price_inr_per_kl, atf_published_on, source_url and proxy_definition.
+**Bloomberg references:** [Bloomberg Terminal](https://professional.bloomberg.com/products/bloomberg-terminal/) and [Bloomberg DATA](https://data.bloomberg.com/). These are access/product references, not direct public downloads of licensed series. The [ECB financial-market data catalogue](https://data.ecb.europa.eu/data/datasets/FM) provides a separate reference to the Dated Brent series family.
 
-## Step 5 — Collect USD/INR
+The earlier IndianOil ATF plan is not the currently collected series. An India-specific ATF series can be considered later only if collected consistently and documented separately.
 
-**Sources:** [RBI reference-rate archive](https://www.rbi.org.in/scripts/ReferenceRateArchive.aspx), [RBI statistics](https://www.rbi.org.in/scripts/statistics.aspx/BS_ViewMMO.aspx), and [FBIL](https://www.fbil.org.in/).
+## Step 5 — USD/INR actually collected
 
-RBI documents that FBIL took over publication of the USD/INR and other reference rates effective 10 July 2018. Record the provider and any source/methodology transition. Collect a daily or otherwise consistent official series, then use the latest rate available by the forecast cutoff (or a quarterly average built strictly from observations published by that cutoff, if that measure is chosen in advance).
+**Current source:** Bloomberg Terminal export with security ID `USDINR REGN Curncy`, period `M`, and fields `PX_LAST` and `PX_BID`. The current quarterly workbook uses `PX_LAST` for the quarterly mean.
 
-Fields: observation_date, usd_inr, fx_published_on and source_url.
+The export starts in Jan 2015 and contains a 30 Oct 2026 row, which is after the 28 Oct 2026 review date and must be excluded from an as-of-28-Oct analysis. It is a **monthly** series, not a daily series. Do not describe it as a daily RBI/FBIL series; those are possible cross-check sources only.
 
-## Step 6 — Collect CPI / inflation
+**References:** [Bloomberg Terminal](https://professional.bloomberg.com/products/bloomberg-terminal/), [Bloomberg DATA](https://data.bloomberg.com/), and [RBI's reference-rate archive](https://www.rbi.org.in/scripts/ReferenceRateArchive.aspx) for independent comparison. For historical prediction evaluation, the observation date is not sufficient: verify publication/availability timing or apply a documented conservative lag.
 
-**Source:** [MoSPI CPI data catalogue](https://esankhyiki.mospi.gov.in/catalogue-main/catalogue?product=CPI).
+## Step 6 — CPI and WPI inflation actually collected
 
-Choose the All-India Combined General CPI series and document the base year. You may use the CPI index, the published year-on-year inflation rate, or both if data coverage is consistent. CPI is published monthly and release timing matters; a CPI value for a month must not be used before its publication date. Do not join historical CPI only by month label and assume it was known at month-end.
+The current raw Bloomberg workbook contains two monthly inflation indicators:
 
-Fields: month_start, cpi_index, cpi_inflation_yoy_pct, cpi_published_on and source_url.
+- **CPI:** `INFUTOTY Index`, field `PX_LAST`, observations Jan 2015–Sep 2026.
+- **WPI:** `INBGWPIY Index`, field `PX_LAST`, observations Oct 2006–Sep 2026.
 
-## Step 7 — Normalize input files
+Confirm the exact security descriptions, geographic/series definitions and field units in Bloomberg Terminal before finalizing their names in the model. The current raw CPI series has month-end observations through 30 Sep 2026; the earlier malformed-date concern was not reproduced in the latest `CP(3).xlsx` file. Check generated/derived dates against the raw observations rather than editing a source date manually.
 
-Put normalized, manually transcribed or downloaded-and-cleaned source extracts in data/raw/ using the exact column names in data/templates/:
+Use the official [MoSPI CPI catalogue](https://esankhyiki.mospi.gov.in/catalogue-main/catalogue?product=CPI) and [Office of the Economic Adviser WPI data](https://eaindustry.nic.in/download_data_2223.asp) for independent validation. They are not the source of the uploaded Bloomberg values. Record publication/release dates separately from reference months.
 
-- financial_quarterly.csv
-- operational_monthly.csv
-- atf_monthly.csv
-- usd_inr_daily.csv
-- cpi_monthly.csv
+## Step 7 — Normalize the actual Bloomberg inputs
 
-Keep raw files unmodified where practical. Preserve a separately processed copy and a source register. Do not invent publication dates. When a historical publication date cannot be verified, document that limitation and use a conservative lag / availability rule instead of pretending the data were known earlier.
+Raw Bloomberg workbook sheets should remain unchanged in authorized local storage. Map them to documented, normalized CSVs before model building:
+
+- `financial_bloomberg_quarterly.csv` — raw-period financial fields and exact Bloomberg field IDs.
+- `usd_inr_monthly.csv` — `USDINR REGN Curncy`, monthly.
+- `cpi_inflation_monthly.csv` — `INFUTOTY Index`, monthly.
+- `wpi_inflation_monthly.csv` — `INBGWPIY Index`, monthly.
+- `brent_daily.csv` — `EUCRBRDT Index`, daily.
+- `brent_monthly.csv` — `EUCRBRDT Index`, monthly.
+
+These headers-only mapping templates are for traceable transformation of the current exports. The existing `src/build_master_dataset.py` expects the earlier standardized CSV contracts and does not yet import these Bloomberg workbook sheets directly; it must be updated/tested after the mapping and financial reconciliation are finalized. Do not treat the current derived quarterly workbook as a validated master.
+
+No passenger counts, passenger load factor, RPK/ASK or event flags are present in the current workbook set. If operational indicators are added later, put them in a separate source file and include scope, definition, observation date and actual publication date.
+
 
 ## Step 8 — Fiscal-quarter alignment
 
