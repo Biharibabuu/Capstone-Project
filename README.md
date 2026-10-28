@@ -5,11 +5,11 @@
 
 ## Project vision
 
-Build an end-to-end forecasting product that combines historical IndiGo financial performance with selected public market, macroeconomic and airline operating indicators. A Python data/ML backend will expose forecasts through an API; a single HTML/CSS/JavaScript application will let users inspect inputs, next-quarter PAT-margin forecasts, scenario results, model status and data health.
+Build an end-to-end forecasting product that combines historical IndiGo financial performance exported from Bloomberg Terminal with Bloomberg-sourced currency, inflation and oil-benchmark indicators. Public operational indicators may be added later if collected and validated. A Python data/ML backend will expose forecasts through an API; a single HTML/CSS/JavaScript application will let users inspect inputs, next-quarter PAT-margin forecasts, scenario results, model status and data health.
 
 **The project predicts IndiGo business profitability, not its stock price.** Its primary target is next-quarter PAT margin. The model is the core technical deliverable; the HTML application is the user interface, not a substitute for ML experimentation and evaluation.
 
-> This is an academic prototype using public and aggregate information. It is not commissioned by or endorsed by IndiGo and does not reveal unpublished actual results. Forecasts are estimates and must be presented with evaluation results and limitations.
+> This is an academic prototype using licensed Bloomberg extracts and aggregate financial/market data, plus public reference sources where used for validation. It is not commissioned by or endorsed by IndiGo and does not reveal unpublished actual results. Forecasts are estimates and must be presented with evaluation results and limitations.
 
 ## Current implementation status
 
@@ -21,7 +21,7 @@ The repository includes the project plan, D1 charter, D2 audit notes, data dicti
 
 ## Primary business question
 
-Can historical IndiGo performance and public market, macroeconomic and operating indicators be combined to forecast next-quarter PAT margin, and does the selected model improve out-of-sample performance over a simple historical baseline?
+Can historical IndiGo financial performance and Bloomberg-sourced currency, inflation and oil-benchmark indicators be combined to forecast next-quarter PAT margin, and does the selected model improve out-of-sample performance over a simple historical baseline?
 
 **Primary target:**  
 PAT margin (%) = PAT / Revenue from Operations × 100
@@ -159,13 +159,19 @@ See the [D1 charter](docs/Project_Charter.md) and [full plan](docs/Master_Projec
 - [Master dataset schema](docs/Master_Dataset_Schema.md).
 - [Dataset builder](src/build_master_dataset.py) and [point-in-time tests](tests/test_master_dataset_builder.py).
 
-### How to build the dataset
+### Dataset build status and next implementation task
 
-1. Copy the five CSV templates into `data/raw/` using the same filenames.
-2. Fill them with normalized source records and actual publication dates. Do not invent dates; record source URLs.
-3. Install dependencies with `pip install -r requirements.txt`.
-4. Run `python -m src.build_master_dataset --input-dir data/raw --output-dir data/processed`.
-5. Review `data/processed/data_quality_report.csv` and the missingness/leakage checks before starting EDA.
+The existing `src/build_master_dataset.py` and original CSV templates were designed around the earlier normalized-source plan (including daily FX and ATF). They are **not yet mapped to the current Bloomberg export**, which contains monthly USD/INR, CPI inflation, WPI inflation, and daily/monthly Dated Brent. Do not place the Excel workbooks in `data/raw/` and expect the current builder to read them directly.
+
+The upcoming source-mapping step must convert the local workbook sheets into normalized CSVs for:
+- financial quarterly values rebuilt from raw `IS` rows;
+- monthly USD/INR;
+- monthly CPI inflation;
+- monthly WPI inflation;
+- daily and monthly Dated Brent;
+- optional operations data, once collected.
+
+For the current source IDs, file paths, units and known gaps, see [the actual-source register](data/source_register.csv) and [collection tracker](data/collection_tracker.csv). After the import mapping and fiscal-quarter corrections are implemented, run the master builder and review missingness, publication-date eligibility and leakage checks before modelling.
 
 The script creates one row per **target quarter**, with the forecast cutoff on the last day before that quarter begins. It selects only inputs whose observation period is before the target quarter and whose publication date is no later than the cutoff. The target quarter's own revenue, PAT and PAT margin are labels only.
 
