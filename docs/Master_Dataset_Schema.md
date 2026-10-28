@@ -2,6 +2,8 @@
 
 The master dataset is target-quarter based: each row represents a quarter whose PAT margin is being forecast, with a forecast cutoff on the final calendar day before that quarter begins.
 
+> **Current source alignment note (28 October 2026):** this is the intended normalized output schema, not the raw Bloomberg workbook layout. The currently collected Bloomberg inputs are `INDIGO IN` quarterly financials; `USDINR REGN Curncy` monthly FX; `INFUTOTY Index` monthly CPI inflation; `INBGWPIY Index` monthly WPI inflation; and `EUCRBRDT Index` daily/monthly Dated Brent crude. The current data do **not** contain Indian ATF or airline passenger/load-factor fields. Do not treat the old ATF/daily-FX templates as the source of the current data; map the new header-only templates to this normalized schema and update/test the builder before use. Exact Bloomberg security definitions and publication dates must be retained.
+
 ## Target definition
 
 target_pat_margin_pct = target_pat_inr_mn / target_revenue_inr_mn × 100
@@ -52,30 +54,25 @@ The target-quarter result is label information only. Never use target_revenue_in
 
 ## Input CSV templates
 
-All normalized source files live under data/raw/ and follow templates under data/templates/.
+The following header-only templates record the actual Bloomberg-export shape. They do not contain proprietary data:
 
-### financial_quarterly.csv
+- `financial_bloomberg_quarterly.csv`: raw quarter-end, Bloomberg header, Revenue, Net Income (GAAP), EBITDA, field IDs and result status. Reconcile Net Income to reported PAT and Revenue to Revenue from Operations before populating the normalized target fields.
+- `usd_inr_monthly.csv`: monthly `USDINR REGN Curncy` values (`PX_LAST`, `PX_BID`).
+- `cpi_inflation_monthly.csv`: monthly `INFUTOTY Index` `PX_LAST` values; exact series definition must be confirmed in Terminal.
+- `wpi_inflation_monthly.csv`: monthly `INBGWPIY Index` `PX_LAST` values; series/base linkage must be verified.
+- `brent_daily.csv` and `brent_monthly.csv`: daily/monthly `EUCRBRDT Index` `PX_LAST` values. This is Dated Brent crude, not Indian ATF.
+- `operational_monthly.csv`: optional future input; passenger/load-factor/RPK/ASK data have not been collected yet.
 
-Required: quarter_end, revenue_inr_mn, pat_inr_mn, financial_published_on, source_url.  
-Optional: ebitdar_inr_mn.
+Older templates `atf_monthly.csv`, `usd_inr_daily.csv` and `cpi_monthly.csv` reflect the earlier proposed source plan. They are not the current raw Bloomberg series. The existing master-data builder still expects its earlier standardized input contracts and must be mapped/tested against the current source templates before execution. Keep the raw Bloomberg Excel workbook unchanged in local authorized storage.
 
-Use quarter-end dates at 31 March, 30 June, 30 September or 31 December. Use actual publication dates, not quarter-end dates.
+### Normalized target fields
 
-### operational_monthly.csv
-
-Required: month_start, passengers_carried, operational_published_on, source_url. Include passenger_load_factor_pct OR both passenger_km_thousand and available_seat_km_thousand. When combining domestic and international series, combine volumes and calculate load factor from total passenger-kilometres divided by total available seat-kilometres.
-
-### atf_monthly.csv
-
-Required: month_start, atf_price_inr_per_kl, atf_published_on, source_url, proxy_definition. Use one consistent official price series, such as IndianOil domestic ATF price for Delhi.
-
-### usd_inr_daily.csv
-
-Required: observation_date, usd_inr, fx_published_on, source_url.
-
-### cpi_monthly.csv
-
-Required: month_start, cpi_index, cpi_published_on, source_url. Optional: cpi_inflation_yoy_pct. Keep the CPI series and base year consistent.
+After source reconciliation, the model-ready dataset should use:
+- `quarter_end`, `fiscal_quarter`, `forecast_as_of_date`;
+- `revenue_inr_mn`, `pat_inr_mn` (only after Net Income/PAT mapping is verified), `ebitda_inr_mn`, `pat_margin_pct`, `ebitda_margin_pct`;
+- monthly-derived quarter summaries for USD/INR, CPI inflation, WPI inflation and Dated Brent (daily and/or monthly, if justified);
+- financial and market availability dates, exact source IDs/fields and quality flags;
+- target-quarter outcomes as labels only.
 
 ## Timing rules
 
