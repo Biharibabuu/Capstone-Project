@@ -13,9 +13,11 @@ Build an end-to-end forecasting product that combines historical IndiGo financia
 
 ## Current implementation status
 
-The repository now includes the project plan, D1 charter, data dictionary, initial data-validation/lag-feature utilities, a basic HTML/CSS/JavaScript interface, and a FastAPI scaffold. The API reports that the model is not trained and deliberately does not return a fabricated prediction. The feature list and forecasting code will be completed after D2 data audit and D3 EDA confirm comparable history, predictor coverage and publication timing.
+The repository includes the project plan, D1 charter, D2 audit notes, data dictionary, validation utilities, HTML/CSS/JavaScript interface, FastAPI scaffold, and the reviewed D3 EDA notebook. The prediction API deliberately remains disabled until the financial inputs are reconciled and a model has been evaluated against a baseline.
 
-**Next recommended step:** follow [the D2 data-feasibility audit](docs/Data_Feasibility_Audit.md) and [collection tracker](data/collection_tracker.csv), populate normalized historical records in local `data/raw/`, and complete the data audit before modelling or enabling predictions.
+**Current D3 review status:** the raw Bloomberg `IS` sheet and supplied master workbook do not align: the legacy `Financial source` margins in the master workbook are shifted by two quarters. The raw workbook also contains periods marked `Est`, which must not be labelled as actual outcomes. The notebook reconstructs margins from the raw statement, excludes estimates and aligns series to the project's Indian fiscal-quarter convention. The supplied flat EDA analysis workbook should be rebuilt before any model training.
+
+**Next recommended step:** rebuild `Final_Quarterly_Data.xlsx` and the calculation audit from actual raw `IS` periods, verify financial definitions and publication dates, then rerun D3 before starting D4 baseline modelling. Local Bloomberg workbooks and output-rich reports are not stored in this public repo unless licence terms permit redistribution.
 
 ## Primary business question
 
@@ -156,7 +158,7 @@ See the [D1 charter](docs/Project_Charter.md) and [full plan](docs/Master_Projec
 
 The script creates one row per **target quarter**, with the forecast cutoff on the last day before that quarter begins. It selects only inputs whose observation period is before the target quarter and whose publication date is no later than the cutoff. The target quarter's own revenue, PAT and PAT margin are labels only.
 
-The source templates are headers only; the historical data have not been collected/populated yet. The builder and model have not been run on real project data.
+The public source templates are headers only. Raw Bloomberg workbooks and working master files are maintained locally in the ignored data folders. The master-data builder and model have not yet been run on a reconciled dataset; do not treat earlier generated quarterly workbooks as training-ready.
 
 ## D2 — Data audit (data-v1.0)
 
@@ -164,10 +166,18 @@ The D2 audit report and its three-page datasheet document the audit of the Bloom
 
 - **Audit summary:** [D2 Data Audit Summary](docs/D2_Data_Audit_Summary.md)
 - **Required PDF filename:** `reports/ANCP_T##_D2_v1.pdf` (11 pages total: up to 8 audit-report pages plus 3 datasheet pages).
-- **Dataset coverage:** 38 quarterly observations from 2017-03-31 to 2026-06-30; 19 analytical fields. After required lag/target completeness checks, 33 rows are available for model training.
+- **Provisional coverage:** the raw `IS` export contains actual quarters from 2017-03-31 through 2026-06-30 plus later rows marked as estimates. The earlier 33-row modelling count is not approved for training because the generated master target sheet was misaligned; rebuild and recalculate it from raw actual financials first.
 - **Critical finding:** the supplied master workbook's `Financial source` sheet is shifted by two quarters relative to the raw Bloomberg `IS` sheet. The analytical financial outcomes must be rebuilt from raw `IS` values; do not use the misaligned financial source sheet for modelling.
-- **CPI correction:** the malformed September 2026 CPI date was reconciled against the raw Bloomberg export.
+- **CPI date check:** the supplied master still has a non-month-end observation date around August 2026; verify it against the source export before treating the issue as resolved.
 - **Data governance:** Bloomberg source files are proprietary. Do not publish raw exports or derived data unless institutional licence terms permit it. Keep raw exports in authorised private storage.
 - **Feature timing:** use only information available at the forecast cutoff; the next-quarter PAT margin is a target, never a predictor.
 
-The cleaned CSV, XLSX, data dictionary, source log and SHA-256 file should be versioned together as described in the D2 report. Do not use an earlier generated master dataset that has not been rebuilt from the raw `IS` sheet.
+Keep licensed Bloomberg exports and data-derived workbook values in authorized local/private storage. The public repository should contain code, schemas, source metadata and documentation only unless the applicable licence explicitly permits redistribution. Do not use the earlier generated master dataset until it has been rebuilt from the raw `IS` sheet.
+
+
+## D3 — Exploratory Data Analysis (reviewed source notebook)
+
+- **Notebook:** [`notebooks/03_eda.ipynb`](notebooks/03_eda.ipynb). The source-only notebook includes pre-specified hypotheses, source and cleaned-data quality checks, distributions, trends, fiscal-quarter segmentation, statistical tests, an insight log and modelling recommendations. Outputs are cleared in the public copy to avoid republishing Bloomberg-derived values and figures.
+- **Review note:** the supplied master workbook's `Financial source` sheet is shifted by two quarters relative to the raw Bloomberg `IS` sheet. The notebook reconstructs quarterly PAT and EBITDA margins from the raw statement, excludes records marked `Est`, and aligns market indicators to Indian fiscal quarters. The separate flat EDA analysis workbook should be rebuilt rather than used as the modelling master.
+- **Next step:** rebuild the final quarterly master and calculation audit from actual raw financials, rerun EDA locally, then start D4 baseline modelling. No forecast model has been trained or validated yet.
+- **Data governance:** raw Bloomberg workbooks, output-rich notebook/HTML exports and derived data tables are not committed to the public repo unless the applicable licence permits redistribution. Local input paths are documented in [`notebooks/README.md`](notebooks/README.md) and [the D3 status note](reports/D3_eda/README.md).
