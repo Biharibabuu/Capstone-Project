@@ -26,7 +26,7 @@ The extreme COVID-period negative PAT margin is retained because it is reproduci
 
 | Check | Finding | Treatment |
 |---|---|---|
-| CPI date integrity | The supplied master contains a date irregularity around August 2026; the prior note records a malformed final date | Reconcile the exact observation date against the raw export and source release before changing the date |
+| CPI date integrity | The latest raw `CP(3).xlsx` sheet has month-end observations through 2026-09-30; the earlier malformed-date concern was not reproduced in this version | Keep the raw source date unchanged; verify dates in derived quarterly outputs against raw observations and the official release calendar |
 | Duplicates | No duplicate rows in supplied master sheets | No deduplication required |
 | Missingness | Market source series are complete on PX_LAST; lags/targets have structural missing values | Do not impute structural NA values |
 | Outliers | Extreme oil and profitability observations detected by the 1.5×IQR diagnostic | Retain economically plausible observations; flag and document rather than winsorise |
@@ -35,7 +35,7 @@ The extreme COVID-period negative PAT margin is retained because it is reproduci
 
 ## Source, access and licence
 
-The audit uses two user-supplied workbooks: `CP.xlsx` (raw Bloomberg export) and `CP Master Data.xlsx` (user-derived master). The files were accessed for this audit on 23 October 2026; the original terminal export timestamps are not embedded in the workbooks.
+The review uses the latest supplied raw Bloomberg workbook `CP(3).xlsx`, market/master workbook `CP Master Data.xlsx`, and derived workbooks `Final_Quarterly_Data.xlsx` and `EDA ANALYSIS(1).xlsx`. These files were reviewed on 28 October 2026; original Terminal extraction timestamps are not embedded. The raw export identifies the financial security as `INDIGO IN` (BBG GAAP), USD/INR as `USDINR REGN Curncy`, CPI as `INFUTOTY Index`, WPI as `INBGWPIY Index`, and the oil benchmark as `EUCRBRDT Index`.
 
 Bloomberg data are proprietary and subject to the applicable institutional subscription terms. Do not place raw licensed exports in a public repository unless redistribution is permitted. Keep raw exports in authorised private storage and confirm whether derived extracts may be publicly shared with the institution/library or faculty.
 
@@ -85,7 +85,7 @@ This follow-up supersedes the earlier provisional modelling-row count and record
 - The raw Bloomberg `IS` sheet and legacy `Financial source` sheet do not align: the legacy financial values are shifted by two quarters. Do not use the legacy sheet as the source of target labels.
 - The earlier figure of 33 model-training rows is **not an approved training count**. Rebuild the financial series from raw `IS`, keep only actual reported outcomes, align them to Indian fiscal quarters and rerun completeness checks before counting eligible rows.
 - Exclude `Est` periods from observed historical outcomes. The target-quarter result and any financial information published after a historical forecast cutoff must not enter the predictors.
-- The prior CPI correction is not regarded as closed until the irregular date around August 2026 has been checked against the underlying source/export.
+- The earlier CPI date anomaly was not reproduced in the latest `CP(3).xlsx` raw sheet, which has observations through 2026-09-30. Check derived quarter dates against that raw series; do not manually change a raw source date without evidence.
 - The oil benchmark remains a proxy until its security/source definition is verified. Do not describe it as Indian ATF or IndiGo's realised fuel cost without evidence.
 - The D3 source notebook is published with execution outputs cleared. Public raw or derived Bloomberg exports remain excluded unless the applicable licence expressly allows redistribution.
 
