@@ -5,7 +5,7 @@
 
 ## Project vision
 
-Build an end-to-end forecasting product that combines historical IndiGo financial performance exported from Bloomberg Terminal with Bloomberg-sourced currency, inflation and oil-benchmark indicators. Public operational indicators may be added later if collected and validated. A Python data/ML backend will expose forecasts through an API; a single HTML/CSS/JavaScript application will let users inspect inputs, next-quarter PAT-margin forecasts, scenario results, model status and data health.
+Build an end-to-end forecasting product that combines historical IndiGo financial performance exported from Bloomberg Terminal with Bloomberg-sourced currency, inflation and oil-benchmark indicators. A Python data/ML backend will expose forecasts through an API; a single HTML/CSS/JavaScript application will let users inspect inputs, next-quarter PAT-margin forecasts, scenario results, model status and data health.
 
 **The project predicts IndiGo business profitability, not its stock price.** Its primary target is next-quarter PAT margin. The model is the core technical deliverable; the HTML application is the user interface, not a substitute for ML experimentation and evaluation.
 
@@ -64,7 +64,6 @@ The table below reflects the workbooks reviewed: `CP(3).xlsx` (raw Bloomberg exp
 | WPI inflation | Monthly WPI inflation indicator values from the Bloomberg export. | **`INBGWPIY Index`**, period `M`; field `PX_LAST`; workbook sheet `wpi`. | Observations run from Oct 2006 through Sep 2026. Verify the precise Bloomberg series definition and its linkage to the WPI base-year revision before analysis. The [Office of the Economic Adviser WPI data page](<https://eaindustry.nic.in/download_data_2223.asp>) is an official cross-check, not the source of the uploaded values. |
 | Oil / market benchmark | Daily and monthly USD oil-price observations. | **`EUCRBRDT Index`**, field `PX_LAST`; daily source sheet `co new`, monthly source sheet `co new monthly`; workbook records currency as USD. | Daily records run from 2 Jan 2015 through 19 Oct 2026; monthly records run from Jan 2015 through Sep 2026. This ticker identifies **Dated Brent crude**, not Indian ATF and not IndiGo's negotiated fuel cost. Keep it labelled as a Brent/oil benchmark proxy unless another series is collected. Bloomberg access reference: [Terminal](<https://professional.bloomberg.com/products/bloomberg-terminal/>) / [Bloomberg DATA](<https://data.bloomberg.com/>); a general series reference is also available via the [ECB financial-market data catalogue](https://data.ecb.europa.eu/data/datasets/FM). |
 | Derived quarterly workbook | Quarterly means of USD/INR, CPI, WPI, daily Brent and monthly Brent; the workbook also has a `Calculation Audit` and `Data Quality Checks` sheet. PAT and EBITDA margins are included in `Final_Quarterly_Data.xlsx`. | Derived locally from the Bloomberg exports above; this is not a separate Bloomberg series. | The current derived workbook labels periods as `Quarter (Calendar)` and repeats the first PAT/EBITDA margin values despite those early periods being marked unavailable. Rebuild margins from the raw `IS` sheet, reconcile financial rows, and relabel quarter IDs to the Indian fiscal year before EDA/model training. |
-| Operations / demand | Passenger counts, passenger load factor, RPK/ASK and capacity are **not present** in the currently supplied workbooks. | No Bloomberg operational series has been included in this data version. | Not collected yet. This is a possible later feature only; do not present it as an existing model input. Official [IndiGo investor relations](https://www.goindigo.in/information/investor-relations.html) and [DGCA](https://www.dgca.gov.in/) are candidate sources if we decide to add operational data. |
 | Time / events | Year and calendar-quarter labels are derived in the current quarterly workbook. No event flags are present. | Project-derived fields, not Bloomberg event data. | Convert calendar-quarter labels to the project's Indian fiscal-quarter convention consistently (Q1 Apr–Jun, Q2 Jul–Sep, Q3 Oct–Dec, Q4 Jan–Mar). No exceptional-event flags have been collected. |
 
 ### Source and data-use notes
@@ -155,7 +154,6 @@ See the [D1 charter](docs/Project_Charter.md) and [full plan](docs/Master_Projec
 - [Bloomberg CPI-inflation template](data/templates/cpi_inflation_monthly.csv).
 - [Bloomberg WPI-inflation template](data/templates/wpi_inflation_monthly.csv).
 - [Bloomberg Dated Brent daily template](data/templates/brent_daily.csv) · [monthly template](data/templates/brent_monthly.csv).
-- [Operations template](data/templates/operational_monthly.csv) — optional; passenger/load-factor data have not been collected.
 - The older [normalized financial template](data/templates/financial_quarterly.csv), [ATF template](data/templates/atf_monthly.csv), [daily FX template](data/templates/usd_inr_daily.csv) and [CPI-index template](data/templates/cpi_monthly.csv) reflect the earlier planned source design, not the current Bloomberg workbook.
 - [Dataset builder](src/build_master_dataset.py) and [point-in-time tests](tests/test_master_dataset_builder.py).
 
@@ -169,7 +167,6 @@ The upcoming source-mapping step must convert the local workbook sheets into nor
 - monthly CPI inflation;
 - monthly WPI inflation;
 - daily and monthly Dated Brent;
-- optional operations data, once collected.
 
 For the current source IDs, file paths, units and known gaps, see [the actual-source register](data/source_register.csv) and [collection tracker](data/collection_tracker.csv). After the import mapping and fiscal-quarter corrections are implemented, run the master builder and review missingness, publication-date eligibility and leakage checks before modelling.
 
