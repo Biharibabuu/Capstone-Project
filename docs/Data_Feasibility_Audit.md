@@ -7,7 +7,7 @@
 
 ## 1. Actual collected source inventory
 
-The working files reviewed are `CP(3).xlsx` (raw Bloomberg export), `CP Master Data.xlsx` (market series and legacy financial sheet), `Final_Quarterly_Data.xlsx` (derived quarterly panel and calculation audit) and `EDA ANALYSIS(1).xlsx` (flat EDA input). They remain in authorized local storage; Bloomberg-derived records are not committed to the public repository.
+The working files reviewed are `CP(4).xlsx` (raw Bloomberg export), `CP Master Data(3).xlsx` (market series and legacy financial sheet), `Final_Quarterly_Data(1).xlsx` (derived quarterly panel and calculation audit) and `EDA ANALYSIS(2).xlsx` (flat EDA input). They remain in authorized local storage; Bloomberg-derived records are not committed to the public repository.
 
 | Dataset | Bloomberg identifier / fields | Frequency and coverage in supplied export | Use and validation |
 |---|---|---|---|
@@ -31,7 +31,7 @@ These public links are validation references only; they were not the source of t
 
 ## 3. Data-quality and reconciliation findings
 
-1. **Financial alignment:** the legacy `Financial source` sheet in `CP Master Data.xlsx` is shifted by two quarters relative to the raw Bloomberg `IS` sheet. Rebuild Revenue, Net Income and EBITDA from raw `IS` dates and values; do not use the legacy sheet as target labels.
+1. **Financial alignment:** the legacy `Financial source` sheet in `CP Master Data(3).xlsx` is shifted by two quarters relative to the raw Bloomberg `IS` sheet. Rebuild Revenue, Net Income and EBITDA from raw `IS` dates and values; do not use the legacy sheet as target labels.
 2. **Actual versus estimates:** rows marked `Est` are estimates, not actual reported results. Exclude them from historical targets and model evaluation.
 3. **Financial definition:** `NET_INCOME` is a provisional PAT component and `SALES_REV_TURN` a provisional Revenue component. Verify them against the exact company financial-statement line items before calculating PAT margin = PAT / Revenue from Operations × 100.
 4. **EBITDA versus EBITDAR:** the supplied Bloomberg export contains EBITDA. Do not label it EBITDAR or substitute it for EBITDAR without a separate verified source.
@@ -51,4 +51,11 @@ Keep target-quarter revenue, PAT and PAT margin as labels only. Preserve missing
 
 The collected feature categories for this capstone are **company financials, Dated Brent oil benchmark, WPI inflation, CPI inflation and USD/INR**. The dataset is not yet model-ready because the financial alignment and financial-statement definitions must be reconciled, fiscal-quarter labels corrected, and publication availability audited.
 
-Next: rebuild `Final_Quarterly_Data.xlsx` and the calculation audit from raw `IS` actual periods; validate financial line items; correct Indian fiscal-quarter labels; enforce the USD/INR date cutoff; and rerun the D3 EDA notebook. No ML model has been trained or validated on the reconciled data.
+Next: rebuild `Final_Quarterly_Data(1).xlsx` and the calculation audit from raw `IS` actual periods; validate financial line items; correct Indian fiscal-quarter labels; enforce the USD/INR date cutoff; and rerun the D3 EDA notebook. No ML model has been trained or validated on the reconciled data.
+
+
+## Latest workbook package — 30 October 2026
+
+The current review set consists of `CP(4).xlsx`, `CP Master Data(3).xlsx`, `Final_Quarterly_Data(1).xlsx` and `EDA ANALYSIS(2).xlsx`. Their sheet-level inventory and hashes are in [Data Package Manifest](Data_Package_Manifest.md), and unchanged local copies are in `IndiGo_Capstone_Project_Data_Pack.zip`.
+
+The latest raw observations in this package extend to 2026-10-30 for monthly USD/INR, 2026-09-30 for CPI and WPI, 2026-10-19 for daily Dated Brent, and 2026-09-30 for monthly Dated Brent. Because the FX file does not carry intraday/publication timestamps, use the 2026-10-30 observation only when its availability by the model's forecast cutoff is established.
