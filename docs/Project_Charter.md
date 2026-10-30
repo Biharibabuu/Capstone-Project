@@ -22,11 +22,11 @@ This is an academic prototype using licensed Bloomberg extracts and aggregate fi
 |---|---|
 | Business / finance decision-maker | Uses forecast for planning and risk assessment; needs forecast, scenarios, reliability information and limitations |
 | Project team | Builds, validates and documents the data, model and prototype |
-| Public data suppliers | Provide financial, macroeconomic and operating information; source definitions, dates, units and access conditions must be documented |
+| Bloomberg data provider | Supplies licensed financial and market time series; security IDs, field definitions, dates, units and access conditions must be documented |
 | Faculty / evaluator | Assesses analytical rigor and course outcomes through charter, evidence, evaluation, report and presentation |
 | Prototype users | Interact with the HTML application and receive validated inputs and prediction outputs |
 
-IndiGo public investor-relations disclosures and external data providers are sources of public data, not project partners.
+Bloomberg is the provider for the currently supplied financial and market exports; official public pages are used only for independent cross-checks.
 
 ## 3. Success metrics and acceptance criteria
 
@@ -46,7 +46,7 @@ The final feature list and any data-completeness thresholds will be decided duri
 
 **In scope:** Bloomberg Terminal exports for quarterly company financials and USD/INR, CPI, WPI and Dated Brent indicators; source register and data dictionary; reconciliation and data-quality checks; EDA; baseline and candidate models; time-ordered evaluation; explainability; low-cost/favourable, base and high-cost/adverse scenarios; a local HTML web application with a Python API; data refresh where reliable; monitoring and final reporting.
 
-**Out of scope:** passenger-level personal data; internal or paid company data; stock-price prediction; live airline operations; automated investment/trading recommendations; claims of causal impact; official forecasts for IndiGo; use of future information in historical evaluation.
+**Out of scope:** internal company records beyond the approved export; stock-price prediction; live airline operations; automated investment/trading recommendations; claims of causal impact; official forecasts for IndiGo; use of future information in historical evaluation.
 
 **Assumptions:** enough comparable historical observations may be available; financial definitions can be aligned; the data audit and EDA will determine the final feature list and model complexity. The model cannot know unpublished actual current-quarter profit.
 
