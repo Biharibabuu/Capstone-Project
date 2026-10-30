@@ -9,7 +9,7 @@
 
 1. Establish repeatable source collection and source-level provenance.
 2. Create one row per forecast target quarter with an explicit forecast cutoff date.
-3. Align the collected Bloomberg financials, monthly USD/INR, CPI/WPI inflation and Dated Brent benchmark without future information. Operational indicators are optional and not yet collected.
+3. Align the collected Bloomberg financials, monthly USD/INR, CPI/WPI inflation and Dated Brent benchmark without future information.
 4. Audit coverage, definitions, units, duplicates, missingness and publication timing.
 5. Decide whether the available quarterly sample can support forecasting before advancing to EDA/model experiments.
 
@@ -26,12 +26,6 @@ The original collection plan began with official public sources; the current wor
 The raw export has actual financial quarter-end rows from 31 March 2017 through 30 June 2026. The rows dated 30 September and 31 December 2026 are labelled `Est` and must not be treated as actual results. The current `CP Master Data.xlsx` `Financial source` sheet is shifted by two quarters compared with the raw `IS` dates, so rebuild margins from the raw sheet rather than copying the legacy financial sheet.
 
 **Reconciliation is still required:** confirm whether `SALES_REV_TURN` exactly matches the project's Revenue from Operations definition and reconcile `NET_INCOME` to reported PAT in [IndiGo's quarterly filings](https://www.goindigo.in/information/investor-relations/quarterly-financial-results.html). The source contains EBITDA, not EBITDAR. Capture the true public publication date of each financial statement from the corresponding filing; it is not supplied as a publication-date field in the Bloomberg export.
-
-## Step 3 — Operational / demand indicators (not yet collected)
-
-The current supplied workbooks do **not** include passenger counts, passenger load factor, RPK/ASK or capacity. Do not describe these as existing data or current model inputs. If they are added later, potential public sources are [IndiGo domestic operational statistics](https://www.goindigo.in/information/investor-relations/operational-statistics/domestic.html), [IndiGo international operational statistics](https://www.goindigo.in/information/investor-relations/operational-statistics/international.html) and [DGCA](https://www.dgca.gov.in/).
-
-For any future collection, retain month, actual publication date, source reference and scope. If domestic and international data are combined, sum passenger counts, passenger kilometres and available seat kilometres, then recompute load factor as total passenger kilometres / total available seat kilometres × 100. Never take a simple arithmetic average of load-factor percentages.
 
 ## Step 4 — Oil-price indicator actually collected
 
@@ -75,7 +69,7 @@ Raw Bloomberg workbook sheets should remain unchanged in authorized local storag
 
 These headers-only mapping templates are for traceable transformation of the current exports. The existing `src/build_master_dataset.py` expects the earlier standardized CSV contracts and does not yet import these Bloomberg workbook sheets directly; it must be updated/tested after the mapping and financial reconciliation are finalized. Do not treat the current derived quarterly workbook as a validated master.
 
-No passenger counts, passenger load factor, RPK/ASK or event flags are present in the current workbook set. If operational indicators are added later, put them in a separate source file and include scope, definition, observation date and actual publication date.
+The current modelling dataset is restricted to the collected company financial, USD/INR, CPI, WPI and Dated Brent series.
 
 
 ## Step 8 — Fiscal-quarter alignment
@@ -101,7 +95,6 @@ The normalized output schema is documented in [Master_Dataset_Schema.md](Master_
 - eligible Dated Brent crude observations, kept explicitly separate from Indian ATF;
 - target-quarter financial outcomes as labels only;
 - source security IDs, field mnemonics, original observation dates and public release/availability dates;
-- operational features only if they are collected later.
 
 The current flat master must be rebuilt before it is used for EDA or training.
 
@@ -109,7 +102,7 @@ The current flat master must be rebuilt before it is used for EDA or training.
 
 Required checks:
 1. All dates parse successfully; quarterly end dates are quarter ends.
-2. One financial record per quarter_end; one record per source observation date/month for USD/INR, CPI, WPI and Brent; preserve source grain when daily and monthly Brent both exist. Operational aggregation checks are only applicable if operational data are collected later.
+2. One financial record per quarter_end; one record per source observation date/month for USD/INR, CPI, WPI and Brent; preserve source grain when daily and monthly Brent both exist.
 3. Required target revenue is numeric and strictly positive; PAT may be negative.
 4. Numeric values must be finite. Keep negative PAT when reported; investigate surprising values rather than deleting them automatically.
 5. Units and reporting basis are consistent, with all conversions documented.
@@ -133,12 +126,12 @@ Quarterly history is likely to be a small sample (actual usable rows to be measu
 
 ## Privacy and usage
 
-Only public, aggregate company/market data are planned. Do not collect passenger-level personal information, credentials or private internal records. Check source usage terms before publishing downloads. In the GitHub repository, commit templates, metadata and derived data only when redistribution is permitted.
+The selected data are aggregate company financial and market time series. Check Bloomberg usage terms before publishing data downloads. In the GitHub repository, commit templates, metadata and derived data only when redistribution is permitted.
 
 
 ## Source-feasibility findings (checked 20 October 2026)
 
-The current official-source desk audit is documented in [Data Feasibility Audit](Data_Feasibility_Audit.md) and tracked in [data/collection_tracker.csv](../data/collection_tracker.csv). The results page lists historical financial reports beginning with Q3 FY2015-16; operational-statistics pages include historical fiscal-year selectors. The visible IndianOil domestic ATF history is much shorter than the financial history, so a long-history EIA jet-fuel proxy is being treated as a candidate only, not as equivalent to Indian ATF. RBI's reference-rate series transitions to FBIL from 10 July 2018. MoSPI CPI base-year changes must be handled explicitly. No model should be trained until the source records have been collected, date-aligned and audited.
+The current official-source desk audit is documented in [Data Feasibility Audit](Data_Feasibility_Audit.md) and tracked in [data/collection_tracker.csv](../data/collection_tracker.csv). The financial data review is recorded in the actual Bloomberg source register. The visible IndianOil domestic ATF history is much shorter than the financial history, so a long-history EIA jet-fuel proxy is being treated as a candidate only, not as equivalent to Indian ATF. RBI's reference-rate series transitions to FBIL from 10 July 2018. MoSPI CPI base-year changes must be handled explicitly. No model should be trained until the source records have been collected, date-aligned and audited.
 
 
 ## Follow-up from D3 review — 28 October 2026
