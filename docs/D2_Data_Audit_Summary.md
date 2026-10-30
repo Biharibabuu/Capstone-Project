@@ -46,7 +46,6 @@ The reviewed workbooks contain corporate financial and market time series; no di
 ## Representativeness and bias
 
 - This is a single-company dataset and does not represent the Indian airline industry.
-- Passenger demand/load factor and explicit operational-disruption flags are not present in the supplied workbooks.
 - The oil benchmark is a proxy, not a verified India-specific aviation turbine fuel (ATF) price series.
 - Only 38 quarterly outcomes are available; use parsimonious models and chronological validation.
 - Assess sensitivity to COVID-period observations during modelling without automatically deleting them.
