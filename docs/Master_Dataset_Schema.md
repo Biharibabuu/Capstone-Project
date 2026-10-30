@@ -2,7 +2,7 @@
 
 The master dataset is target-quarter based: each row represents a quarter whose PAT margin is being forecast, with a forecast cutoff on the final calendar day before that quarter begins.
 
-> **Current source alignment note (28 October 2026):** this is the intended normalized output schema, not the raw Bloomberg workbook layout. The currently collected Bloomberg inputs are `INDIGO IN` quarterly financials; `USDINR REGN Curncy` monthly FX; `INFUTOTY Index` monthly CPI inflation; `INBGWPIY Index` monthly WPI inflation; and `EUCRBRDT Index` daily/monthly Dated Brent crude. The current data do **not** contain Indian ATF or airline passenger/load-factor fields. Do not treat the old ATF/daily-FX templates as the source of the current data; map the new header-only templates to this normalized schema and update/test the builder before use. Exact Bloomberg security definitions and publication dates must be retained.
+> **Current source alignment note (28 October 2026):** this is the intended normalized output schema, not the raw Bloomberg workbook layout. The currently collected Bloomberg inputs are `INDIGO IN` quarterly financials; `USDINR REGN Curncy` monthly FX; `INFUTOTY Index` monthly CPI inflation; `INBGWPIY Index` monthly WPI inflation; and `EUCRBRDT Index` daily/monthly Dated Brent crude. The current data do **not** contain Indian ATF; the selected modelling scope is limited to the financial and market indicators listed here. Do not treat the old ATF/daily-FX templates as the source of the current data; map the new header-only templates to this normalized schema and update/test the builder before use. Exact Bloomberg security definitions and publication dates must be retained.
 
 ## Target definition
 
@@ -25,12 +25,6 @@ The target-quarter result is label information only. Never use target_revenue_in
 | latest_reported_pat_margin_pct | PAT / revenue for latest report available by cutoff | Candidate predictor |
 | latest_reported_ebitda_inr_mn | EBITDA from the raw Bloomberg `IS` sheet, if reconciled and comparable | Candidate predictor |
 | latest_financial_source_url | Source URL of latest reported financial data | Provenance only |
-| latest_operational_month | Latest operational month available by cutoff | Metadata |
-| latest_operational_published_on | Publication date for selected operational record | Metadata / leakage audit |
-| latest_passengers_carried | Passenger count from the selected comparable operational series | Candidate predictor |
-| latest_passenger_load_factor_pct | Reported or correctly recomputed load factor | Candidate predictor |
-| latest_operational_data_scope | Whether operational input is domestic-only or combined domestic/international | Metadata / scope audit |
-| latest_operational_source_url | Source URL for selected operational record | Provenance only |
 | latest_brent_observation_period | Daily observation date or monthly period for the Dated Brent proxy | Metadata |
 | latest_brent_published_on | Publication/availability date of selected Bloomberg observation, when verified | Metadata / leakage audit |
 | latest_dated_brent_px_last | PX_LAST value from EUCRBRDT Index; unit must be confirmed in Terminal | Candidate predictor / market proxy |
@@ -69,7 +63,6 @@ The following header-only templates record the actual Bloomberg-export shape. Th
 - `cpi_inflation_monthly.csv`: monthly `INFUTOTY Index` `PX_LAST` values; exact series definition must be confirmed in Terminal.
 - `wpi_inflation_monthly.csv`: monthly `INBGWPIY Index` `PX_LAST` values; series/base linkage must be verified.
 - `brent_daily.csv` and `brent_monthly.csv`: daily/monthly `EUCRBRDT Index` `PX_LAST` values. This is Dated Brent crude, not Indian ATF.
-- `operational_monthly.csv`: optional future input; passenger/load-factor/RPK/ASK data have not been collected yet.
 
 Older templates `atf_monthly.csv`, `usd_inr_daily.csv` and `cpi_monthly.csv` reflect the earlier proposed source plan. They are not the current raw Bloomberg series. The existing master-data builder still expects its earlier standardized input contracts and must be mapped/tested against the current source templates before execution. Keep the raw Bloomberg Excel workbook unchanged in local authorized storage.
 
