@@ -68,7 +68,7 @@ The table below reflects the workbooks reviewed: `CP(3).xlsx` (raw Bloomberg exp
 
 ### Source and data-use notes
 
-- The uploaded Bloomberg exports are the **actual data source** for the variables listed above. Do not describe the current data as downloaded from RBI, MoSPI, IndianOil, DGCA or IndiGo IR.
+- The uploaded Bloomberg exports are the **actual data source** for the variables listed above. The official RBI, MoSPI and IndiGo pages linked in the inventory are independent validation references, not the source of the uploaded Bloomberg values.
 - Bloomberg public references: [Bloomberg Terminal](<https://professional.bloomberg.com/products/bloomberg-terminal/>), [Bloomberg DATA](<https://data.bloomberg.com/>), and [InterGlobe Aviation company profile](<https://www.bloomberg.com/profile/company/INDIGO%3AIN>). The exact security identifiers and field mnemonics above are required to reproduce the terminal extraction.
 - Independent cross-check links: [IndiGo quarterly results](<https://www.goindigo.in/information/investor-relations/quarterly-financial-results.html>), [RBI reference-rate archive](<https://www.rbi.org.in/scripts/ReferenceRateArchive.aspx>), [MoSPI CPI catalogue](<https://esankhyiki.mospi.gov.in/catalogue-main/catalogue?product=CPI>), and [Office of the Economic Adviser WPI data](<https://eaindustry.nic.in/download_data_2223.asp>).
 - Raw Bloomberg workbooks, values and output-filled Excel/HTML files stay in authorized local/private storage unless your Bloomberg/institutional licence explicitly permits redistribution. The public repository contains source identifiers, code and documentation only.
