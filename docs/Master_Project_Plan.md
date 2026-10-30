@@ -30,7 +30,7 @@ The reviewed D3 source notebook is available at [`notebooks/03_eda.ipynb`](../no
 
 ## 2. Final project vision
 
-The system will combine financial, market and operating indicators, transform them into forecasting features, run a trained ML model and return a next-quarter profitability forecast with supporting context.
+The system will combine historical company financials with Bloomberg USD/INR, CPI, WPI and Dated Brent indicators, transform them into forecasting features, and return a next-quarter PAT-margin forecast with supporting context.
 
 ### Planned capabilities
 
@@ -59,13 +59,13 @@ Profitability can be affected by financial performance, fuel-price movements, cu
 
 **Decision-maker:** Business/finance decision-makers, analysts and project stakeholders who need an evidence-based view of future profitability and risk.
 
-**Primary analytics question:** Can public macroeconomic, market and airline operating indicators, together with historical IndiGo performance, be combined in a machine-learning model to forecast next-quarter PAT margin?
+**Primary analytics question:** Can historical IndiGo financial performance and Bloomberg USD/INR, CPI, WPI and Dated Brent indicators be combined in a machine-learning model to forecast next-quarter PAT margin?
 
 **Target:**
 
 PAT Margin (%) = Profit After Tax / Revenue from Operations × 100
 
-PAT margin is the primary output. EBITDAR margin is a secondary operating-performance indicator where data definitions are consistent.
+PAT margin is the primary output. EBITDA margin is a secondary financial performance indicator, subject to reconciliation of the Bloomberg EBITDA field.
 
 **Forecast horizon:** One quarter ahead.
 
@@ -77,7 +77,7 @@ PAT margin is the primary output. EBITDAR margin is a secondary operating-perfor
 |---|---|---|
 | Decision-maker / business user | Uses forecast for planning and risk assessment | Forecast, scenarios, reliability information and limitations |
 | Project team | Builds, validates and documents the system | Data, code, experiments and documentation |
-| Public data suppliers | Provide financial, macroeconomic and operating information | Definitions, publication dates, units and access conditions |
+| Bloomberg data provider | Supplies licensed financial and market data series | Security IDs, field definitions, publication dates, units and access conditions |
 | Faculty / evaluator | Assesses analytical rigor and course outcomes | Charter, evidence, evaluation, report and presentation |
 | Prototype users | Interact with the HTML application | Validated inputs and prediction output |
 
@@ -161,7 +161,7 @@ The planned current-market function is a refreshable forecasting pipeline. When 
 
 1. Update latest fuel/market inputs where reliable.
 2. Update USD/INR and selected macroeconomic indicators where available.
-3. Update operating indicators when new company disclosures are published.
+3. Refresh eligible Bloomberg market indicators when updated data become available.
 4. Validate freshness and completeness.
 5. Recalculate the feature vector using the training-compatible feature process.
 6. Generate a revised next-quarter profitability forecast.
@@ -178,7 +178,7 @@ The HTML application is the single user-facing interface. Python remains respons
 | Market Inputs | Latest validated variables and timestamps |
 | Profitability Forecast | Next-quarter PAT margin and evaluation-supported reliability information |
 | Drivers | Important inputs associated with the prediction |
-| Scenario Analysis | Alternative fuel, currency and demand assumptions where justified |
+| Scenario Analysis | Alternative Dated Brent, USD/INR, CPI and WPI assumptions within defensible ranges |
 | Historical Performance | Predictions versus actual values when available |
 | Model Information | Model version, validation metrics, training period and limitations |
 | Data Health | Missing/stale-input warnings and refresh status |
@@ -236,7 +236,7 @@ Collect financial and market data, record each source/date/unit/definition, and 
 Align to fiscal quarters, standardise definitions and units, calculate PAT margin, build the data dictionary and check feature availability at forecast dates.
 
 ### Week 4 — EDA
-Analyse trends and seasonality; examine fuel, currency, inflation and demand relationships; investigate unusual periods; test hypotheses and freeze the initial predictor list.
+Analyse trends and seasonality; examine financial, Brent, USD/INR, CPI and WPI relationships; investigate unusual periods; test hypotheses and freeze the initial predictor list.
 
 ### Week 5 — Baseline
 Build the feature pipeline, create a simple baseline, define chronological evaluation and calculate MAE/RMSE.
@@ -268,7 +268,7 @@ Scenario analysis is a business sensitivity tool, not a causal claim.
 
 | Scenario | Concept | Purpose |
 |---|---|---|
-| Low-cost / favourable | More favourable cost/currency conditions with an appropriate demand assumption | Supportive-condition estimate |
+| Low-cost / favourable | More favourable Dated Brent, USD/INR and inflation assumptions | Supportive-condition estimate |
 | Base case | Central assumptions supported by available evidence | Reference forecast |
 | High-cost / adverse | Higher costs / less favourable currency conditions | Downside-risk estimate |
 
@@ -301,7 +301,7 @@ Only vary inputs that the model and data can reasonably support. Keep the scenar
 
 ### In scope
 - Quarterly next-period PAT-margin forecasting.
-- Historical financial and selected market/operating variables.
+- Historical financial data and selected Bloomberg market/macro indicators.
 - ML comparison and time-based evaluation.
 - Latest-available market-data refresh where reliable.
 - HTML interface connected to a Python backend.
@@ -353,4 +353,4 @@ Only vary inputs that the model and data can reasonably support. Keep the scenar
 
 ## Final working project statement
 
-This project will develop an integrated, market-sensitive machine-learning system for forecasting IndiGo's next-quarter PAT margin. It will combine historical financial performance with selected market, macroeconomic and operating indicators, evaluate forecasting approaches against a simple baseline using leakage-free time-based validation, and expose the selected model through an HTML application connected to a Python backend. The application will support refreshed forecasts, scenario analysis and monitoring while communicating uncertainty and limitations.
+This project will develop an integrated, market-sensitive machine-learning system for forecasting IndiGo's next-quarter PAT margin. It will combine historical company financials with Bloomberg USD/INR, CPI, WPI and Dated Brent indicators, evaluate forecasting approaches against a simple baseline using leakage-free time-based validation, and expose the selected model through an HTML application connected to a Python backend. The application will support refreshed forecasts, scenario analysis and monitoring while communicating uncertainty and limitations.
