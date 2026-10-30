@@ -21,9 +21,9 @@ The original collection plan began with official public sources; the current wor
 
 ## Step 2 — Company financials actually supplied
 
-**Current source:** Bloomberg Terminal export in `CP(3).xlsx`, `IS` sheet, security `INDIGO IN`, BBG GAAP. It contains Revenue (`SALES_REV_TURN`), Net Income, GAAP (`NET_INCOME`) and EBITDA (`EBITDA`), with units stated as millions of INR except per-share items.
+**Current source:** Bloomberg Terminal export in `CP(4).xlsx`, `IS` sheet, security `INDIGO IN`, BBG GAAP. It contains Revenue (`SALES_REV_TURN`), Net Income, GAAP (`NET_INCOME`) and EBITDA (`EBITDA`), with units stated as millions of INR except per-share items.
 
-The raw export has actual financial quarter-end rows from 31 March 2017 through 30 June 2026. The rows dated 30 September and 31 December 2026 are labelled `Est` and must not be treated as actual results. The current `CP Master Data.xlsx` `Financial source` sheet is shifted by two quarters compared with the raw `IS` dates, so rebuild margins from the raw sheet rather than copying the legacy financial sheet.
+The raw export has actual financial quarter-end rows from 31 March 2017 through 30 June 2026. The rows dated 30 September and 31 December 2026 are labelled `Est` and must not be treated as actual results. The current `CP Master Data(3).xlsx` `Financial source` sheet is shifted by two quarters compared with the raw `IS` dates, so rebuild margins from the raw sheet rather than copying the legacy financial sheet.
 
 **Reconciliation is still required:** confirm whether `SALES_REV_TURN` exactly matches the project's Revenue from Operations definition and reconcile `NET_INCOME` to reported PAT in [IndiGo's quarterly filings](https://www.goindigo.in/information/investor-relations/quarterly-financial-results.html). The source contains EBITDA, not EBITDAR. Capture the true public publication date of each financial statement from the corresponding filing; it is not supplied as a publication-date field in the Bloomberg export.
 
@@ -52,7 +52,7 @@ The current raw Bloomberg workbook contains two monthly inflation indicators:
 - **CPI:** `INFUTOTY Index`, field `PX_LAST`, observations Jan 2015–Sep 2026.
 - **WPI:** `INBGWPIY Index`, field `PX_LAST`, observations Oct 2006–Sep 2026.
 
-Confirm the exact security descriptions, geographic/series definitions and field units in Bloomberg Terminal before finalizing their names in the model. The current raw CPI series has month-end observations through 30 Sep 2026; the earlier malformed-date concern was not reproduced in the latest `CP(3).xlsx` file. Check generated/derived dates against the raw observations rather than editing a source date manually.
+Confirm the exact security descriptions, geographic/series definitions and field units in Bloomberg Terminal before finalizing their names in the model. The current raw CPI series has month-end observations through 30 Sep 2026; the earlier malformed-date concern was not reproduced in the latest `CP(4).xlsx` file. Check generated/derived dates against the raw observations rather than editing a source date manually.
 
 Use the official [MoSPI CPI catalogue](https://esankhyiki.mospi.gov.in/catalogue-main/catalogue?product=CPI) and [Office of the Economic Adviser WPI data](https://eaindustry.nic.in/download_data_2223.asp) for independent validation. They are not the source of the uploaded Bloomberg values. Record publication/release dates separately from reference months.
 
@@ -136,10 +136,15 @@ The current official-source desk audit is documented in [Data Feasibility Audit]
 
 ## Follow-up from D3 review — 28 October 2026
 
-The source workbook review found that the `Financial source` sheet in `CP Master Data.xlsx` is shifted by two quarters relative to the raw Bloomberg `IS` sheet. The raw `IS` sheet must be the basis for the target financial series; recompute PAT margin as Net Income / Revenue × 100 and EBITDA margin as EBITDA / Revenue × 100, excluding rows marked `Est` from actual outcomes.
+The source workbook review found that the `Financial source` sheet in `CP Master Data(3).xlsx` is shifted by two quarters relative to the raw Bloomberg `IS` sheet. The raw `IS` sheet must be the basis for the target financial series; recompute PAT margin as Net Income / Revenue × 100 and EBITDA margin as EBITDA / Revenue × 100, excluding rows marked `Est` from actual outcomes.
 
 The separate `EDA ANALYSIS` workbook should be regenerated: its first two quarters repeat margin values while the quarterly dataset indicates that these financial observations were unavailable. The project uses fiscal-quarter convention Q1 Apr–Jun, Q2 Jul–Sep, Q3 Oct–Dec, Q4 Jan–Mar; calendar-quarter labels must not be used for fiscal-seasonality claims.
 
 The supplied oil series is labelled an oil benchmark and is not yet verified as Indian ATF or the airline's realised fuel cost. The latest raw CPI sheet has observations through 2026-09-30; compare the derived workbook's dates against raw observations instead of changing source dates manually. The raw series IDs are `USDINR REGN Curncy` (monthly), `INFUTOTY Index` (CPI), `INBGWPIY Index` (WPI), and `EUCRBRDT Index` (Dated Brent crude, daily/monthly). Keep missing values visible and exclude the 2026-10-30 USD/INR record from analyses dated 2026-10-28.
 
 See [the D3 status note](../reports/D3_eda/README.md) and [D3 notebook](../notebooks/03_eda.ipynb). Do not freeze the feature set or begin model training until the reconciled master, source dates, definitions and availability cutoffs have passed review.
+
+
+## Latest file package — 30 October 2026
+
+The current workbook names are `CP(4).xlsx`, `CP Master Data(3).xlsx`, `Final_Quarterly_Data(1).xlsx` and `EDA ANALYSIS(2).xlsx`. The D3 notebook is configured to find the new raw and master workbook names. See [Data Package Manifest](Data_Package_Manifest.md) for sheet inventory and file checksums.
