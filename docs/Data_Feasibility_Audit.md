@@ -7,7 +7,7 @@
 
 ## 1. Actual collected source inventory
 
-The working files reviewed are `CP(4).xlsx` (raw Bloomberg export), `CP Master Data(3).xlsx` (market series and legacy financial sheet), `Final_Quarterly_Data(1).xlsx` (derived quarterly panel and calculation audit) and `EDA ANALYSIS(2).xlsx` (flat EDA input). They remain in authorized local storage; Bloomberg-derived records are not committed to the public repository.
+The working files reviewed are `CP(4).xlsx` (raw Bloomberg export), `CP Master Data(3).xlsx` (market series and legacy financial sheet), `Final_Quarterly_Data(1).xlsx` (derived quarterly panel and calculation audit) and `EDA ANALYSIS(2).xlsx` (flat EDA input). They are committed unchanged in `data/raw/` and `data/processed/`, following the user's confirmation of permission to publish.
 
 | Dataset | Bloomberg identifier / fields | Frequency and coverage in supplied export | Use and validation |
 |---|---|---|---|
