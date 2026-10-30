@@ -53,9 +53,9 @@ The system will combine financial, market and operating indicators, transform th
 
 ## 3. Business problem and decision context
 
-Profitability can be affected by interacting factors such as fuel costs, currency movements, inflation, passenger demand and operating performance. The business need is to translate the latest available information into an evidence-based view of future profitability.
+Profitability can be affected by financial performance, fuel-price movements, currency movements and inflation. The business need is to translate the latest available information into an evidence-based view of future profitability.
 
-**Problem statement:** Develop and evaluate a machine-learning model that uses historical IndiGo financial performance and Bloomberg-sourced currency, inflation and Dated Brent indicators to forecast the company's next-quarter PAT margin, and determine whether the selected model improves predictive performance over a simple historical baseline on unseen quarters. Public operating indicators may be added only after collection and validation.
+**Problem statement:** Develop and evaluate a machine-learning model that uses historical IndiGo financial performance and Bloomberg-sourced USD/INR, CPI, WPI and Dated Brent indicators to forecast the company's next-quarter PAT margin, and determine whether the selected model improves predictive performance over a simple historical baseline on unseen quarters.
 
 **Decision-maker:** Business/finance decision-makers, analysts and project stakeholders who need an evidence-based view of future profitability and risk.
 
@@ -116,7 +116,6 @@ The currently supplied working files contain Bloomberg Terminal exports; public 
 | WPI inflation | WPI inflation indicator | `INBGWPIY Index`; `PX_LAST` | Monthly, Oct 2006–Sep 2026. Verify exact definition/base-series history. |
 | Oil benchmark | Dated Brent crude proxy, not aviation fuel | `EUCRBRDT Index`; `PX_LAST`; raw daily and monthly sheets | Daily, 2 Jan 2015–19 Oct 2026; monthly, Jan 2015–Sep 2026. Do not label as Indian ATF or IndiGo's realised fuel cost. |
 | Quarterly derived fields | Quarterly means of FX, CPI, WPI, daily Brent and monthly Brent; margin calculations | Derived from current local workbooks and the Bloomberg fields above | Current output labels use calendar quarters and the first two financial margins are not reconciled to raw `IS`; rebuild before model training. |
-| Operations / demand | Passenger counts, load factor and RPK/ASK | Not present in current files | Not collected yet; may be added later if definitions and historical availability can be verified. |
 
 **Source references:** [Bloomberg Terminal](<https://professional.bloomberg.com/products/bloomberg-terminal/>), [Bloomberg DATA](<https://data.bloomberg.com/>), [Bloomberg's InterGlobe Aviation profile](<https://www.bloomberg.com/profile/company/INDIGO%3AIN>). These vendor/product links are access and source references, not public downloads of the licensed series. Cross-check financial disclosures at [IndiGo IR](<https://www.goindigo.in/information/investor-relations/quarterly-financial-results.html>), FX definitions against [RBI](<https://www.rbi.org.in/scripts/ReferenceRateArchive.aspx>), CPI against [MoSPI](<https://esankhyiki.mospi.gov.in/catalogue-main/catalogue?product=CPI>), and WPI against [the Office of the Economic Adviser](<https://eaindustry.nic.in/download_data_2223.asp>).
 
