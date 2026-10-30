@@ -1,17 +1,17 @@
 # Capstone Data Package — 30 October 2026
 
-This manifest describes the latest four Excel workbooks supplied for the IndiGo Profitability Intelligence capstone. A local archive named `IndiGo_Capstone_Project_Data_Pack.zip` was prepared with the workbooks unchanged, plus `README_DATA_PACK.md`, `manifest.json` and `SHA256SUMS.txt`.
+This manifest describes the latest four Excel workbooks supplied for the IndiGo Profitability Intelligence capstone. All four workbooks are committed unchanged to the GitHub repository under `data/raw/` and `data/processed/`. A local archive named `IndiGo_Capstone_Project_Data_Pack.zip` is also available as a conversation attachment.
 
-**Repository visibility:** this GitHub repository is public. The original Bloomberg export and Bloomberg-derived data workbooks are therefore not committed here unless the applicable Bloomberg/institutional agreement expressly permits public redistribution. The archive is available as a downloadable attachment in the current ChatGPT conversation.
+**Repository visibility:** this GitHub repository is public. The user confirmed permission to publish the supplied Bloomberg-derived files. The four workbooks were uploaded on 30 October 2026 in commit `11bffd420d9396896452fd7f3c8a0b425a0a9746`.
 
 ## Package contents
 
 | Package path | Workbook | Sheets | Sheet dimensions (data rows × columns) |
 |---|---|---|---|
-| `01_Raw_Bloomberg_Export/CP(4).xlsx` | Raw Bloomberg export | `IS`, `usd inr`, `cpi`, `wpi`, `co new`, `co new monthly` | IS: 59 × 42; USD/INR: 148 × 3; CPI: 147 × 3; WPI: 246 × 3; Brent daily: 3,000 × 3; Brent monthly: 148 × 3 |
-| `02_Master_Indicators/CP Master Data(3).xlsx` | Master indicator workbook | `USD INR`, `CPI inflation`, `WPI inflation`, `Oil benchmark(DAILY)`, `Oil benchmark(MONTHLY)`, `Financial source` | 117 × 2; 117 × 2; 117 × 2; 2,484 × 2; 117 × 2; 36 × 3 |
+| [`data/raw/CP(4).xlsx`](../data/raw/CP%284%29.xlsx) | Raw Bloomberg export | `IS`, `usd inr`, `cpi`, `wpi`, `co new`, `co new monthly` | IS: 59 × 42; USD/INR: 148 × 3; CPI: 147 × 3; WPI: 246 × 3; Brent daily: 3,000 × 3; Brent monthly: 148 × 3 |
+| [`data/raw/CP Master Data(3).xlsx`](../data/raw/CP%20Master%20Data%283%29.xlsx) | Master indicator workbook | `USD INR`, `CPI inflation`, `WPI inflation`, `Oil benchmark(DAILY)`, `Oil benchmark(MONTHLY)`, `Financial source` | 117 × 2; 117 × 2; 117 × 2; 2,484 × 2; 117 × 2; 36 × 3 |
 | `03_Quarterly_Derived/Final_Quarterly_Data(1).xlsx` | Final quarterly derived workbook | `Final_Quarterly_Data`, `Calculation Audit`, `Data Quality Checks` | 38 × 12; 196 × 13; 20 × 6 |
-| `04_EDA_Analysis/EDA ANALYSIS(2).xlsx` | Flat EDA input | `Sheet1` | 38 × 9 |
+| [`data/processed/EDA ANALYSIS(2).xlsx`](../data/processed/EDA%20ANALYSIS%282%29.xlsx) | Flat EDA input | `Sheet1` | 38 × 9 |
 
 ## Data scope
 
