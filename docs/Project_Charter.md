@@ -7,7 +7,7 @@
 
 ## 1. Problem statement
 
-Develop and evaluate a machine-learning model that uses historical IndiGo financial performance and Bloomberg-sourced currency, inflation and oil-benchmark indicators to forecast the company's next-quarter PAT margin, and determine whether the selected model improves predictive performance over a simple historical baseline on unseen quarters. Public operating indicators may be added only if collected and validated.
+Develop and evaluate a machine-learning model that uses historical IndiGo financial performance and Bloomberg-sourced USD/INR, CPI, WPI and Dated Brent indicators to forecast the company's next-quarter PAT margin, and determine whether the selected model improves predictive performance over a simple historical baseline on unseen quarters.
 
 **Business decision:** Use the forecast and scenario analysis to support quarterly financial planning and risk discussion.  
 **Decision-maker:** Business/finance decision-makers, analysts and project stakeholders.  
@@ -44,11 +44,11 @@ The final feature list and any data-completeness thresholds will be decided duri
 
 ## 4. Scope and assumptions
 
-**In scope:** Bloomberg Terminal exports for quarterly company financials and USD/INR, CPI, WPI and Dated Brent indicators; source register and data dictionary; reconciliation and data-quality checks; EDA; baseline and candidate models; time-ordered evaluation; explainability; low-cost/favourable, base and high-cost/adverse scenarios; a local HTML web application with a Python API; data refresh where reliable; monitoring and final reporting. Passenger/load-factor data are not yet collected.
+**In scope:** Bloomberg Terminal exports for quarterly company financials and USD/INR, CPI, WPI and Dated Brent indicators; source register and data dictionary; reconciliation and data-quality checks; EDA; baseline and candidate models; time-ordered evaluation; explainability; low-cost/favourable, base and high-cost/adverse scenarios; a local HTML web application with a Python API; data refresh where reliable; monitoring and final reporting.
 
 **Out of scope:** passenger-level personal data; internal or paid company data; stock-price prediction; live airline operations; automated investment/trading recommendations; claims of causal impact; official forecasts for IndiGo; use of future information in historical evaluation.
 
-**Assumptions:** enough comparable historical observations may be available; financial and operational definitions can be aligned; the data audit and EDA will determine the final feature list and model complexity. The model cannot know unpublished actual current-quarter profit.
+**Assumptions:** enough comparable historical observations may be available; financial definitions can be aligned; the data audit and EDA will determine the final feature list and model complexity. The model cannot know unpublished actual current-quarter profit.
 
 ## 5. Data plan
 
@@ -61,12 +61,11 @@ The current working data were exported from Bloomberg Terminal. Official public 
 | CPI inflation | Monthly indicator values | `INFUTOTY Index`, `PX_LAST` | [Bloomberg Terminal](<https://professional.bloomberg.com/products/bloomberg-terminal/>); confirm exact description; [MoSPI CPI catalogue](<https://esankhyiki.mospi.gov.in/catalogue-main/catalogue?product=CPI>) is for validation. |
 | WPI inflation | Monthly indicator values | `INBGWPIY Index`, `PX_LAST` | [Bloomberg Terminal](<https://professional.bloomberg.com/products/bloomberg-terminal/>); verify series/base version; [Office of the Economic Adviser WPI data](<https://eaindustry.nic.in/download_data_2223.asp>) is for validation. |
 | Oil-price indicator | Daily and monthly Dated Brent crude price series; not Indian ATF | `EUCRBRDT Index`, `PX_LAST` | [Bloomberg Terminal](<https://professional.bloomberg.com/products/bloomberg-terminal/>) / [Bloomberg DATA](<https://data.bloomberg.com/>). Document unit and proxy limitations. |
-| Operational indicators | Passenger counts, load factor and RPK/ASK | Not in the currently supplied data | Not collected yet. Potential sources if needed: [IndiGo investor relations](https://www.goindigo.in/information/investor-relations.html) and [DGCA](https://www.dgca.gov.in/). |
 | Derived quarterly panel | Quarterly means and margin fields in local workbook | Calculated locally from the above exports | Current quarter labels are calendar-based and financial margins require reconciliation against raw `IS`. Rebuild before training. |
 
 **Access and redistribution:** Bloomberg product links are not public download URLs for the licensed terminal series. Keep raw Bloomberg exports and output files in authorized private storage unless the applicable institutional licence permits redistribution. The public repository should contain source metadata, code, documentation and permitted artifacts only.
 
-The final predictor list, quarterly alignment and historical availability controls will be frozen only after the source rows are reconciled. No passenger-level personal data is needed.
+The final predictor list, quarterly alignment and historical availability controls will be frozen only after the source rows are reconciled. The selected dataset contains aggregate company financial and market time series.
 
 
 ## 6. Feasibility and key risks
