@@ -42,9 +42,15 @@ function renderMarketData(records) {
     heading.textContent = names[record.source] || record.source;
     const value = document.createElement("p");
     value.className = "market-value";
-    const prefix = record.currency === "INR" ? "₹" : record.currency === "USD" ? "$" : "";
     const decimals = record.source === "alpha_vantage_usd_inr" ? 4 : 2;
-    value.textContent = (prefix + Number(record.value).toFixed(decimals) + " " + (record.unit || "")).trim();
+    const number = Number(record.value).toFixed(decimals);
+    if (record.source === "alpha_vantage_usd_inr") {
+      value.textContent = number + " INR per USD";
+    } else if (record.source === "oilpriceapi_brent") {
+      value.textContent = "$" + number + " per barrel";
+    } else {
+      value.textContent = number + "% year-on-year";
+    }
     const observed = document.createElement("p");
     observed.className = "muted market-timestamp";
     observed.textContent = (record.reference_period ? "Reference period: " + record.reference_period + " · " : "") + "Observation time: " + formatTimestamp(record.observed_at) + (record.publication_date ? " · Released: " + record.publication_date : "");
