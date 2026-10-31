@@ -32,3 +32,8 @@ Thumbs.db
 notebooks/.ipynb_checkpoints/
 reports/D3_eda/*.html
 reports/D3_eda/*.xlsx
+
+
+# Local external-market cache
+*.sqlite3
+*.db
