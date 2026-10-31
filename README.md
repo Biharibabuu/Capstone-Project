@@ -83,7 +83,7 @@ The application now refreshes four market and macro inputs through server-side P
 |---|---|---|
 | USD/INR | [Alpha Vantage](https://www.alphavantage.co/documentation/) | Current USD-to-INR exchange-rate API |
 | Brent crude | [OilPriceAPI](https://docs.oilpriceapi.com/api-reference/prices/latest) | Latest Brent benchmark quote API (`BRENT_CRUDE_USD`) |
-| CPI | [MoSPI eSankhyiki](https://esankhyiki.mospi.gov.in/macroindicators?product=cpi&tab=api) | Official monthly All-India General Combined series; base year 2024 by default |
+| CPI | [MoSPI eSankhyiki](https://esankhyiki.mospi.gov.in/macroindicators?product=cpi&tab=api) | Official monthly All-India General Combined series; base year 2012 by default |
 | WPI | [MoSPI eSankhyiki](https://esankhyiki.mospi.gov.in/macroindicators?product=wpi&tab=api) | Official monthly All Commodities series; base year 2022-23 by default |
 
 The four feeds are called independently, so a failure at one provider does not prevent successful sources from updating. The backend normalizes values, records source and fetch timestamps, and stores the last successful observations in a local SQLite database. A cached observation is retained when a provider fails. Monthly CPI/WPI observations use a longer freshness window than FX and Brent.
