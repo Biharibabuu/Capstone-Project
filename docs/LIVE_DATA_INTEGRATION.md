@@ -1,42 +1,61 @@
-# Live Data Integration — First Implementation
+# Live Data Integration — Four External Data Connectors
 
-## Connected market APIs
+The web application no longer requires a Bloomberg Terminal session. Four server-side connectors refresh the market and macro inputs used by the IndiGo profitability project.
 
-| Series | Provider | Endpoint / Function | Authentication | Data meaning |
+## Connected inputs
+
+| Input | Provider | Endpoint / method | Credential | Frequency and definition |
 |---|---|---|---|---|
-| USD/INR | Alpha Vantage | **CURRENCY_EXCHANGE_RATE**, USD to INR | **ALPHAVANTAGE_API_KEY** | Provider-reported current exchange rate and refresh timestamp |
-| Brent crude | OilPriceAPI | **GET /v1/prices/latest?by_code=BRENT_CRUDE_USD** | **OILPRICEAPI_KEY** in the Authorization: Token header | Latest provider-published Brent benchmark quote, with source timestamp |
+| USD/INR | Alpha Vantage | `CURRENCY_EXCHANGE_RATE`, USD to INR | `ALPHAVANTAGE_API_KEY` | Latest provider-reported FX observation; see provider cadence and plan limits |
+| Brent crude | OilPriceAPI | `GET /v1/prices/latest?by_code=BRENT_CRUDE_USD` | `OILPRICEAPI_KEY` | Latest provider-published Brent benchmark quote |
+| CPI inflation | MoSPI eSankhyiki | `/api/cpi/getCPIData` for base year 2024 | Optional `MOSPI_API_TOKEN` Bearer token | Monthly All-India General Combined CPI inflation |
+| WPI inflation | MoSPI eSankhyiki | `/api/wpi/getWpiRecords` | Optional `MOSPI_API_TOKEN` Bearer token | Monthly All Commodities WPI; year-on-year change is calculated from index values when no inflation field is supplied |
 
-The application stores each normalized observation in a local SQLite database. A provider failure is reported independently and does not erase the last successful cached observation. A cached observation older than 72 hours is labelled **stale**; this is a dashboard warning, not a claim that the provider is publishing a quote every 72 hours.
+The CPI and WPI API parameter choices are based on the official MoSPI OpenAPI specifications and the NSO's published eSankhyiki API client examples. The CPI connector requests the current base-year series and selects the All-India General Combined observation. The WPI connector defaults to the newer 2022-23 base year and selects the All Commodities aggregate. Change the base years only after checking the matching series and definitions.
 
-## Official-release inputs
+Official references:
+- CPI API: https://esankhyiki.mospi.gov.in/macroindicators?product=cpi&tab=api
+- WPI API: https://esankhyiki.mospi.gov.in/macroindicators?product=wpi&tab=api
+- CPI specification: https://raw.githubusercontent.com/nso-india/esankhyiki-mcp/main/swagger/swagger_user_cpi.yaml
+- WPI specification: https://raw.githubusercontent.com/nso-india/esankhyiki-mcp/main/swagger/swagger_user_wpi.yaml
+- NSO API client examples: https://github.com/nso-india/mospi-esankhyiki
+- Alpha Vantage: https://www.alphavantage.co/documentation/
+- OilPriceAPI: https://docs.oilpriceapi.com/api-reference/prices/latest
 
-The source catalogue also lists CPI (MoSPI), WPI (Office of the Economic Adviser), and IndiGo quarterly financial results. These are monthly or quarterly official publications, not intraday feeds. This implementation identifies their official source pages and marks them as **official_release_import**; a stable public REST endpoint is not assumed. The next ingestion step should download/parse a published release, preserve its reference period and release date, and append it to the existing master data.
+## Data meaning and cadence
 
-- CPI: https://esankhyiki.mospi.gov.in/catalogue-main/catalogue?product=CPI
-- WPI: https://eaindustry.nic.in/download_data_2223.asp
-- IndiGo results: https://www.goindigo.in/information/investor-relations/quarterly-financial-results.html
+- USD/INR and Brent are market observations. The provider timestamp is stored separately from the time this application fetched the data.
+- CPI and WPI are monthly official statistics, not intraday market feeds. The latest available month may lag the current calendar month until the next release is published.
+- CPI is stored as All-India General Combined year-on-year inflation. If the API supplies an index but not a percentage, the connector derives year-on-year inflation only when the same month in the prior year is available in the same base-year series.
+- WPI is stored as All Commodities year-on-year inflation. If only the index is supplied, the connector calculates `(current index / index 12 months earlier - 1) × 100`. It will fail safely rather than substitute a subgroup when the All Commodities aggregate is missing.
+- Brent crude is a global benchmark proxy, not Indian aviation turbine fuel (ATF) and not IndiGo's realised fuel cost.
+- IndiGo revenue and PAT remain quarterly published financial outcomes. They must be imported only after public release.
 
 ## Setup
 
-1. Create API keys with [Alpha Vantage](https://www.alphavantage.co/documentation/) and [OilPriceAPI](https://www.oilpriceapi.com/dashboard).
-2. Copy **.env.example** to **.env** and replace the placeholder values. Do not put keys in frontend JavaScript or commit **.env**.
-3. Install dependencies: **pip install -r requirements.txt**.
-4. Start the backend from the repository root: **uvicorn backend.main:app --reload**.
-5. Open **http://127.0.0.1:8000/docs** and call **POST /api/market/refresh**.
-6. Read cached values using **GET /api/market/latest**; the frontend also displays them and provides a refresh button.
+1. Get an Alpha Vantage key: https://www.alphavantage.co/support/#api-key
+2. Create an OilPriceAPI account and obtain a key: https://www.oilpriceapi.com/dashboard
+3. Copy `.env.example` to `.env` and enter the two provider keys. The MoSPI Bearer token is optional for open endpoints; if MoSPI responds with HTTP 401/403, configure `MOSPI_API_TOKEN` using an authorized token issued through the portal's API access process.
+4. Install dependencies: `pip install -r requirements.txt`.
+5. Start the backend from the repository root: `uvicorn backend.main:app --reload`.
+6. Open `http://127.0.0.1:8000/docs` and call `POST /api/market/refresh`.
+7. Read the latest cached observations using `GET /api/market/latest`.
+
+Never put API credentials in browser JavaScript or commit the real `.env` file to GitHub. The backend stores the last successful observation in a local SQLite cache. A provider failure does not delete a previous successful value.
 
 ## API routes
 
-- **GET /api/market/latest** — last successfully stored values and source catalogue.
-- **POST /api/market/refresh** — refresh USD/INR and Brent independently.
-- **GET /api/sources** — source catalogue, cadence, source link, and ingestion mode.
+- `GET /api/market/latest` — latest stored USD/INR, Brent, CPI and WPI records, including source timestamps and freshness status.
+- `POST /api/market/refresh` — attempts all four connectors independently; partial success is reported per source.
+- `GET /api/sources` — source catalogue, cadence, official/provider links and connection mode.
 
-## Important modelling controls
+The current refresh action is user-triggered. A hosted deployment can later add a scheduler, with a slower cadence for CPI/WPI than for market quotes.
 
-- Keep provider observation time and application fetch time separately.
-- Do not treat the Brent proxy as Indian ATF or IndiGo's realised fuel expense.
-- Do not call CPI/WPI real-time; update those series only when official monthly releases are published.
-- Do not use unpublished financial outcomes as live predictors. IndiGo revenue/PAT are imported after quarterly results are published.
-- Build historical training features using the same calculation definitions as the live feature-refresh pipeline. A current spot quote must not be substituted for a historical quarterly average without changing and evaluating the model feature definition.
-- API keys and provider responses must remain server-side. Check each provider's current rate limits, data-use and display/redistribution terms before any public deployment.
+## Model and point-in-time safeguards
+
+- Keep provider observation time, reference month, publication date (when supplied), and application fetch time separate.
+- Do not use a current spot FX or Brent price as a historical quarterly average. The training and prediction pipelines must calculate matching features.
+- Use the CPI/WPI observation only after its publication date is on or before the forecast cutoff. If publication dates are unavailable, record this limitation and use a conservative release-lag rule; do not pretend the reference month's end is the release date.
+- CPI/WPI base-year revisions can change index levels. Inflation rates can be compared only when the correct matching series and calculation method are used. Do not splice index levels from different base years.
+- Check provider quotas, terms, and display/redistribution rights before public deployment. OilPriceAPI's terms may restrict public display or redistribution of raw price data.
+- Keep last-good-value caching and visible freshness warnings. Do not forecast when required values are missing or beyond the configured freshness window.
