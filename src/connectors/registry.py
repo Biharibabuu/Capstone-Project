@@ -29,7 +29,7 @@ SOURCES = [
         "frequency": "Monthly, when the official CPI release is published",
         "mode": "api",
         "key_variable": "MOSPI_API_TOKEN",
-        "status_note": "Queries the All-India General Combined CPI series. The optional Bearer token is read server-side; the API result is monthly, not intraday.",
+        "status_note": "Queries the All-India General Combined CPI series (2012 base year by default to avoid a documented 2024-endpoint issue). The optional Bearer token is read server-side; the API result is monthly, not intraday.",
         "url": "https://esankhyiki.mospi.gov.in/macroindicators?product=cpi&tab=api",
     },
     {
