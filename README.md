@@ -5,7 +5,7 @@
 
 ## Project vision
 
-Build an end-to-end forecasting product that combines the historical IndiGo financial and macro/market dataset already assembled for the capstone with selected data refreshed from external web APIs. The live prototype uses Alpha Vantage for USD/INR and OilPriceAPI for the latest Brent benchmark quote; CPI, WPI and IndiGo financial results are updated from official monthly/quarterly releases. No Bloomberg Terminal session is required to run the live API connectors. A Python data/ML backend exposes forecasts through an API; a single HTML/CSS/JavaScript application lets users inspect inputs, market observations, next-quarter PAT-margin forecasts, scenarios, model status and data health.
+Build an end-to-end forecasting product that combines the historical IndiGo financial and macro/market dataset already assembled for the capstone with selected data refreshed from external web APIs. The live prototype uses Alpha Vantage for USD/INR, OilPriceAPI for Brent, and the official MoSPI eSankhyiki API for monthly CPI and WPI. IndiGo financial results are updated after official quarterly releases. No Bloomberg Terminal session is required to run the live API connectors. A Python data/ML backend exposes forecasts through an API; a single HTML/CSS/JavaScript application lets users inspect inputs, market observations, next-quarter PAT-margin forecasts, scenarios, model status and data health.
 
 **The project predicts IndiGo business profitability, not its stock price.** Its primary target is next-quarter PAT margin. The model is the core technical deliverable; the HTML application is the user interface, not a substitute for ML experimentation and evaluation.
 
@@ -13,7 +13,7 @@ Build an end-to-end forecasting product that combines the historical IndiGo fina
 
 ## Current implementation status
 
-The repository includes the project plan, D1 charter, D2 audit notes, data dictionary, validation utilities, HTML/CSS/JavaScript interface, FastAPI scaffold, and the reviewed D3 EDA notebook. The prediction API deliberately remains disabled until the financial inputs are reconciled and a model has been evaluated against a baseline.
+The repository includes four server-side data connectors (USD/INR, Brent, CPI and WPI), a SQLite cache, a FastAPI refresh API, the HTML/CSS/JavaScript dashboard, project documents and the reviewed D3 EDA notebook. The prediction API deliberately remains disabled until the financial inputs are reconciled and a model has been evaluated against a baseline.
 
 **Current D3 review status:** the raw Bloomberg `IS` sheet and supplied master workbook do not align: the legacy `Financial source` margins in the master workbook are shifted by two quarters. The raw workbook also contains periods marked `Est`, which must not be labelled as actual outcomes. The notebook reconstructs margins from the raw statement, excludes estimates and aligns series to the project's Indian fiscal-quarter convention. The supplied flat EDA analysis workbook should be rebuilt before any model training.
 
@@ -77,21 +77,26 @@ The latest four workbooks have now been uploaded to this public repository, with
 
 ## External web API integration
 
-The repository now includes a first-stage connector and dashboard integration:
+The application now refreshes four market and macro inputs through server-side Python connectors:
 
 | Data | Provider | Refresh method |
 |---|---|---|
-| USD/INR | [Alpha Vantage](https://www.alphavantage.co/documentation/) | FX current exchange-rate API |
-| Brent crude | [OilPriceAPI](https://docs.oilpriceapi.com/api-reference/prices/latest) | Latest Brent benchmark quote API |
-| CPI | [MoSPI eSankhyiki](https://esankhyiki.mospi.gov.in/catalogue-main/catalogue?product=CPI) | Import on monthly official release |
-| WPI | [Office of the Economic Adviser](https://eaindustry.nic.in/download_data_2223.asp) | Import on monthly official release |
-| IndiGo financial results | [IndiGo Investor Relations](https://www.goindigo.in/information/investor-relations/quarterly-financial-results.html) | Import after quarterly results publication |
+| USD/INR | [Alpha Vantage](https://www.alphavantage.co/documentation/) | Current USD-to-INR exchange-rate API |
+| Brent crude | [OilPriceAPI](https://docs.oilpriceapi.com/api-reference/prices/latest) | Latest Brent benchmark quote API (`BRENT_CRUDE_USD`) |
+| CPI | [MoSPI eSankhyiki](https://esankhyiki.mospi.gov.in/macroindicators?product=cpi&tab=api) | Official monthly All-India General Combined series; base year 2024 by default |
+| WPI | [MoSPI eSankhyiki](https://esankhyiki.mospi.gov.in/macroindicators?product=wpi&tab=api) | Official monthly All Commodities series; base year 2022-23 by default |
 
-The two market APIs are connected through server-side Python clients. Normalized observations and source timestamps are cached in a local SQLite database. The dashboard can display cached values and request a refresh using **POST /api/market/refresh**; **GET /api/market/latest** returns the latest stored observations. **GET /api/sources** returns the source catalogue. A missing key or provider failure is reported without deleting a previous successful observation.
+The four feeds are called independently, so a failure at one provider does not prevent successful sources from updating. The backend normalizes values, records source and fetch timestamps, and stores the last successful observations in a local SQLite database. A cached observation is retained when a provider fails. Monthly CPI/WPI observations use a longer freshness window than FX and Brent.
 
-To configure the API keys, copy `.env.example` to `.env`, add your own `ALPHAVANTAGE_API_KEY` and `OILPRICEAPI_KEY`, install the requirements, and start the app with `uvicorn backend.main:app --reload`. Never commit `.env` or put provider keys in browser JavaScript. The local SQLite market cache is ignored by Git.
+The CPI connector uses MoSPI's `getCPIData` endpoint and extracts All-India General Combined year-on-year inflation. The WPI connector uses `getWpiRecords`, selects the All Commodities aggregate, and computes year-on-year inflation from the index when the response does not supply the inflation percentage. Base years can be changed in `.env`, but only after reconciling the relevant series. The API specifications and NSO client examples are documented in [the live-data integration guide](docs/LIVE_DATA_INTEGRATION.md).
 
-CPI and WPI are monthly releases and IndiGo financial results are quarterly releases; they are not streaming feeds. The current code lists their official sources and marks them for official-release import rather than scraping webpages or claiming an undocumented public REST API. Brent is a global benchmark proxy, not IndiGo's realised ATF expense. Confirm provider quotas and data-use/display rights before a public deployment. See [the live-data integration guide](docs/LIVE_DATA_INTEGRATION.md) for setup and modelling safeguards.
+To configure the feeds, copy `.env.example` to `.env`, enter `ALPHAVANTAGE_API_KEY` and `OILPRICEAPI_KEY`, then install requirements and run `uvicorn backend.main:app --reload`. `MOSPI_API_TOKEN` is optional for MoSPI endpoints that allow open access; configure it if the API returns 401/403. Keep every real key in `.env` or the hosting platform's secret manager, never in frontend JavaScript or public GitHub files.
+
+- `GET /api/market/latest` returns the latest stored observations for all four feeds.
+- `POST /api/market/refresh` attempts USD/INR, Brent, CPI and WPI independently and reports each result.
+- `GET /api/sources` returns the source catalogue and update cadence.
+
+CPI and WPI are published monthly, not continuously. IndiGo PAT and revenue remain quarterly outcomes and must only be loaded after publication. Brent is a global benchmark proxy, not Indian ATF or IndiGo's realised fuel cost. Provider quotas, security requirements and data-use/display rights must be checked before public deployment. The current refresh is user-triggered; scheduled refresh can be added at deployment.
 
 ## Modelling and evaluation
 
