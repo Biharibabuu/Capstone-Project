@@ -32,6 +32,8 @@ function renderMarketData(records) {
   const names = {
     alpha_vantage_usd_inr: "USD/INR",
     oilpriceapi_brent: "Brent crude benchmark",
+    mospi_cpi: "India CPI inflation",
+    mospi_wpi: "India WPI inflation",
   };
   records.forEach((record) => {
     const card = document.createElement("article");
@@ -45,10 +47,10 @@ function renderMarketData(records) {
     value.textContent = (prefix + Number(record.value).toFixed(decimals) + " " + (record.unit || "")).trim();
     const observed = document.createElement("p");
     observed.className = "muted market-timestamp";
-    observed.textContent = "Source time: " + formatTimestamp(record.observed_at);
+    observed.textContent = (record.reference_period ? "Reference period: " + record.reference_period + " · " : "") + "Observation time: " + formatTimestamp(record.observed_at) + (record.publication_date ? " · Released: " + record.publication_date : "");
     const freshness = document.createElement("span");
     freshness.className = record.freshness === "stale" ? "pill pill-error" : "pill pill-good";
-    freshness.textContent = record.freshness === "stale" ? "Stale observation" : "Latest stored observation";
+    freshness.textContent = record.freshness === "stale" ? "Potentially stale" : "Latest stored observation";
     card.append(heading, value, observed, freshness);
     marketGrid.append(card);
   });
@@ -118,7 +120,7 @@ async function refreshMarketData() {
   if (!refreshButton) return;
   refreshButton.disabled = true;
   refreshButton.textContent = "Refreshing…";
-  if (marketStatus) marketStatus.textContent = "Requesting USD/INR and Brent updates…";
+  if (marketStatus) marketStatus.textContent = "Requesting USD/INR, Brent, CPI and WPI updates…";
   try {
     const response = await fetch(API_BASE + "/api/market/refresh", { method: "POST" });
     if (!response.ok) throw new Error("API returned HTTP " + response.status);
