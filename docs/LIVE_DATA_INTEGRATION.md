@@ -8,10 +8,10 @@ The web application no longer requires a Bloomberg Terminal session. Four server
 |---|---|---|---|---|
 | USD/INR | Alpha Vantage | `CURRENCY_EXCHANGE_RATE`, USD to INR | `ALPHAVANTAGE_API_KEY` | Latest provider-reported FX observation; see provider cadence and plan limits |
 | Brent crude | OilPriceAPI | `GET /v1/prices/latest?by_code=BRENT_CRUDE_USD` | `OILPRICEAPI_KEY` | Latest provider-published Brent benchmark quote |
-| CPI inflation | MoSPI eSankhyiki | `/api/cpi/getCPIData` for base year 2024 | Optional `MOSPI_API_TOKEN` Bearer token | Monthly All-India General Combined CPI inflation |
+| CPI inflation | MoSPI eSankhyiki | `/api/cpi/getCPIIndex` for base year 2012 by default | Optional `MOSPI_API_TOKEN` Bearer token | Monthly All-India General Combined CPI inflation |
 | WPI inflation | MoSPI eSankhyiki | `/api/wpi/getWpiRecords` | Optional `MOSPI_API_TOKEN` Bearer token | Monthly All Commodities WPI; year-on-year change is calculated from index values when no inflation field is supplied |
 
-The CPI and WPI API parameter choices are based on the official MoSPI OpenAPI specifications and the NSO's published eSankhyiki API client examples. The CPI connector requests the current base-year series and selects the All-India General Combined observation. The WPI connector defaults to the newer 2022-23 base year and selects the All Commodities aggregate. Change the base years only after checking the matching series and definitions.
+The CPI and WPI API parameter choices are based on the official MoSPI OpenAPI specifications and the NSO's published eSankhyiki API client examples. CPI defaults to the 2012 series through `getCPIIndex`; the NSO changelog notes an upstream 400 regression for the 2024 endpoint in its integration tests. The connector selects All-India General Combined. You can test the 2024 series by setting `MOSPI_CPI_BASE_YEAR=2012` once the endpoint is confirmed working. The WPI connector defaults to the newer 2022-23 base year and selects the All Commodities aggregate. Change the base years only after checking the matching series and definitions.
 
 Official references:
 - CPI API: https://esankhyiki.mospi.gov.in/macroindicators?product=cpi&tab=api
@@ -26,7 +26,7 @@ Official references:
 
 - USD/INR and Brent are market observations. The provider timestamp is stored separately from the time this application fetched the data.
 - CPI and WPI are monthly official statistics, not intraday market feeds. The latest available month may lag the current calendar month until the next release is published.
-- CPI is stored as All-India General Combined year-on-year inflation. If the API supplies an index but not a percentage, the connector derives year-on-year inflation only when the same month in the prior year is available in the same base-year series.
+- CPI is stored as All-India General Combined year-on-year inflation. The default base year is 2012 for endpoint compatibility; the 2024 base-year route remains configurable. If the API supplies an index but not a percentage, the connector derives year-on-year inflation only when the same month in the prior year is available in the same base-year series.
 - WPI is stored as All Commodities year-on-year inflation. If only the index is supplied, the connector calculates `(current index / index 12 months earlier - 1) × 100`. It will fail safely rather than substitute a subgroup when the All Commodities aggregate is missing.
 - Brent crude is a global benchmark proxy, not Indian aviation turbine fuel (ATF) and not IndiGo's realised fuel cost.
 - IndiGo revenue and PAT remain quarterly published financial outcomes. They must be imported only after public release.
