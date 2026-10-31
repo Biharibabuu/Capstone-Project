@@ -39,7 +39,7 @@ def market_latest() -> dict:
 
 @router.post("/market/refresh")
 def market_refresh() -> dict:
-    """Refresh USD/INR and Brent; report each connector result separately."""
+    """Refresh USD/INR, Brent, CPI and WPI; report each connector result separately."""
     return refresh_market_data()
 
 
