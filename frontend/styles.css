@@ -100,3 +100,21 @@ a { color: var(--accent); text-underline-offset: 3px; }
   main { padding: 0 16px 30px; }
   .card { padding: 18px; }
 }
+
+
+.section-heading { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+button {
+  border: 0; border-radius: 10px; padding: 11px 16px; cursor: pointer;
+  color: #fff; background: var(--accent); font: inherit; font-weight: 700;
+}
+button:disabled { opacity: .6; cursor: wait; }
+.market-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.market-metric { border: 1px solid var(--line); background: #fbfdff; border-radius: 14px; padding: 16px; }
+.market-metric h3 { margin: 0 0 8px; font-size: 1rem; }
+.market-value { font-size: 1.5rem; font-weight: 800; margin: 0 0 7px; }
+.market-timestamp { font-size: .85rem; margin: 0 0 10px; }
+.source-list { display: grid; gap: 14px; padding-left: 20px; }
+.source-list li { padding-left: 4px; }
+.source-list strong, .source-list span { display: block; }
+.source-list span { color: var(--muted); font-size: .92rem; margin: 3px 0; }
+@media (max-width: 760px) { .market-grid { grid-template-columns: 1fr; } .section-heading { align-items: flex-start; } }
