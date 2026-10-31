@@ -40,11 +40,11 @@ def normalize_cpi_payload(payload: dict[str, Any]) -> dict[str, Any]:
         group = row_value(row, ("group", "group_name", "group_description", "groupname"))
         subgroup = row_value(row, ("subgroup", "sub_group", "subgroup_name"))
         sector = row_value(row, ("sector", "sector_name"))
-        if group is not None and "general" not in str(group).lower():
+        if group is not None and str(group).strip().lower() not in {"0", "general"} and "general" not in str(group).lower():
             continue
         if subgroup is not None and not any(term in str(subgroup).lower() for term in ("general", "overall")):
             continue
-        if sector is not None and "combined" not in str(sector).lower():
+        if sector is not None and str(sector).strip() != "3" and "combined" not in str(sector).lower():
             continue
         if group is None and subgroup is None and "general" not in text:
             continue
@@ -102,7 +102,7 @@ def normalize_cpi_payload(payload: dict[str, Any]) -> dict[str, Any]:
 def fetch_cpi() -> dict[str, Any]:
     """Fetch recent CPI rows from the official monthly API."""
     years = get_year_window()
-    base_year = os.getenv("MOSPI_CPI_BASE_YEAR", "2024").strip()
+    base_year = os.getenv("MOSPI_CPI_BASE_YEAR", "2012").strip()
     params = {
         "base_year": base_year,
         "series": "Current",
@@ -111,11 +111,11 @@ def fetch_cpi() -> dict[str, Any]:
         "limit": "2000",
         "page": "1",
     }
-    if base_year == "2024":
-        path = API_PATH_2024
-    elif base_year in {"2012", "2010"}:
+    if base_year in {"2012", "2010"}:
         path = API_PATH_2012
         params.update({"state_code": "99", "group_code": "0", "sector_code": "3"})
+    elif base_year == "2024":
+        path = API_PATH_2024
     else:
         raise ConnectorError("MOSPI_CPI_BASE_YEAR must be 2024, 2012 or 2010.")
     payload = fetch_mospi_json(path, params)
