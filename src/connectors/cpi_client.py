@@ -1,7 +1,7 @@
 """India CPI connector using the official MoSPI eSankhyiki API."""
 from __future__ import annotations
 
-from datetime import datetime
+import os
 from typing import Any
 
 from src.connectors.common import ConnectorError, finite_number, utc_now_iso
@@ -102,7 +102,7 @@ def normalize_cpi_payload(payload: dict[str, Any]) -> dict[str, Any]:
 def fetch_cpi() -> dict[str, Any]:
     """Fetch recent CPI rows from the official monthly API."""
     years = get_year_window()
-    base_year = "2024"
+    base_year = os.getenv("MOSPI_CPI_BASE_YEAR", "2024").strip()
     params = {
         "base_year": base_year,
         "series": "Current",
@@ -111,5 +111,14 @@ def fetch_cpi() -> dict[str, Any]:
         "limit": "2000",
         "page": "1",
     }
-    payload = fetch_mospi_json(API_PATH_2024, params)
-    return normalize_cpi_payload(payload)
+    if base_year == "2024":
+        path = API_PATH_2024
+    elif base_year in {"2012", "2010"}:
+        path = API_PATH_2012
+        params.update({"state_code": "99", "group_code": "0", "sector_code": "3"})
+    else:
+        raise ConnectorError("MOSPI_CPI_BASE_YEAR must be 2024, 2012 or 2010.")
+    payload = fetch_mospi_json(path, params)
+    result = normalize_cpi_payload(payload)
+    result["base_year"] = base_year
+    return result
