@@ -20,12 +20,25 @@
     <section class="hero card">
       <p class="eyebrow">Forecast workspace</p>
       <h2>One quarter ahead. Evidence first.</h2>
-      <p>The system will combine historical financial results with selected market, macroeconomic and operating indicators. The Python model will be exposed through an API and this page will be the user interface.</p>
+      <p>The system combines historical IndiGo financial results with currency, oil and official inflation indicators. External market APIs refresh the latest available USD/INR and Brent observations; monthly and quarterly official data are updated when releases are published.</p>
       <div class="status-row">
         <span id="api-pill" class="pill pill-pending">Checking API…</span>
         <span id="model-pill" class="pill pill-pending">Model not checked</span>
       </div>
       <p id="health-message" class="muted" role="status">Checking local API status.</p>
+    </section>
+
+    <section class="card">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">External market feeds</p>
+          <h2>Latest available market observations</h2>
+        </div>
+        <button id="refresh-market" type="button">Refresh market data</button>
+      </div>
+      <p id="market-status" class="muted" role="status">Loading market-data status…</p>
+      <div id="market-grid" class="market-grid" aria-live="polite">No market observations stored yet.</div>
+      <p class="note">Source timestamps are shown separately from the time this application fetched the records. Brent is a benchmark proxy, not IndiGo’s realised ATF purchase cost.</p>
     </section>
 
     <section class="grid">
@@ -42,9 +55,18 @@
       </article>
       <article class="card">
         <p class="eyebrow">Data health</p>
-        <h2>Validate before forecasting</h2>
-        <p class="muted">The pipeline must check source dates, fiscal-quarter alignment, units, missing values and freshness. It must not silently use stale or invalid inputs.</p>
+        <h2>Monitor source freshness</h2>
+        <p class="muted">The pipeline retains observation timestamps, fetch timestamps and source status. Old or missing observations must be flagged before forecasting.</p>
       </article>
+    </section>
+
+    <section class="card">
+      <p class="eyebrow">Data-source register</p>
+      <h2>Connected feeds and official releases</h2>
+      <ul id="source-list" class="source-list">
+        <li>Loading source register…</li>
+      </ul>
+      <p class="note">CPI and WPI update monthly; IndiGo revenue and PAT update after quarterly results are published. These are not intraday feeds.</p>
     </section>
 
     <section class="card">
@@ -54,16 +76,16 @@
         <span>Profitability forecast</span>
         <span>Market inputs</span>
         <span>Low / Base / High scenarios</span>
-        <span>Model drivers</span>
+        <span>Key model drivers</span>
         <span>Historical predictions vs actuals</span>
         <span>Model version and evaluation</span>
       </div>
-      <p class="note">Input controls and scenario forecasts will be activated after the data audit, EDA and baseline/model evaluation. A scenario is a sensitivity estimate, not a causal claim.</p>
+      <p class="note">A scenario is a sensitivity estimate, not a causal claim. Live market observations will be converted to the same feature definitions used during model training.</p>
     </section>
 
     <footer>
-      <p>Academic prototype using public and aggregate information. Not commissioned by or endorsed by IndiGo. Not a stock-price predictor and not a measure of unpublished current-quarter profit.</p>
-      <p><a href="../docs/Master_Project_Plan.md">Master project plan</a> · <a href="../docs/Project_Charter.md">D1 project charter</a></p>
+      <p>Academic prototype using licensed historical extracts and published/aggregate information. Not commissioned by or endorsed by IndiGo. Not a stock-price predictor and not a measure of unpublished current-quarter profit.</p>
+      <p><a href="../docs/Master_Project_Plan.md">Master project plan</a> · <a href="../docs/LIVE_DATA_INTEGRATION.md">Live data integration guide</a> · <a href="../docs/Project_Charter.md">D1 project charter</a></p>
     </footer>
   </main>
   <script src="app.js" defer></script>
