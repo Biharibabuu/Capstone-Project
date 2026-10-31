@@ -1,7 +1,7 @@
 """India WPI connector using the official MoSPI eSankhyiki API."""
 from __future__ import annotations
 
-from datetime import datetime
+import os
 from typing import Any
 
 from src.connectors.common import ConnectorError, finite_number, utc_now_iso
@@ -87,7 +87,7 @@ def normalize_wpi_payload(payload: dict[str, Any]) -> dict[str, Any]:
 def fetch_wpi() -> dict[str, Any]:
     """Fetch two calendar years of monthly WPI rows for a YoY calculation."""
     years = get_year_window()
-    base_year = "2022-23"
+    base_year = os.getenv("MOSPI_WPI_BASE_YEAR", "2022-23").strip()
     params = {
         "base_year": base_year,
         "year": years,
