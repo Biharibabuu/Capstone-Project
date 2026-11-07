@@ -23,3 +23,14 @@ Deployment architecture/API contract; model integration and API/frontend tests; 
 
 ## Dependencies and exit gate
 Do not integrate an unapproved M4 candidate. D6 starts only after D5 provides an approved model and reproducible input contract.
+
+
+## Standard evaluation structure
+
+- [01_INPUTS](01_INPUTS/README.md)
+- [02_WORKING](02_WORKING/README.md)
+- [03_DELIVERABLES](03_DELIVERABLES/README.md)
+- [04_EVIDENCE](04_EVIDENCE/README.md)
+- [05_REFERENCES](05_REFERENCES/README.md)
+
+See MILESTONE_CONTROL.md, DELIVERABLES_CHECKLIST.md, EVALUATION_RECORD.md and MILESTONE_MANIFEST.csv.
