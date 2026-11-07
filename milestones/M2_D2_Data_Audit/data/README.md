@@ -1,31 +1,35 @@
-# M2 Data Folder — Source and Audit Data
+# M2 / D2 — Data Package
 
-This folder is the milestone-level data index. Canonical source workbooks are maintained once in the repository's shared data area to avoid uncontrolled duplicate copies.
+**Purpose:** Preserve the audited source datasets, data definitions, quality controls and provenance that support later milestones.
 
-## Canonical data locations
+## Files stored in this milestone
 
-| Data class | Canonical repository location | Use |
+| File | Role | SHA-256 |
 |---|---|---|
-| Raw source workbook | [data/raw/CP(4).xlsx](../../../data/raw/CP%284%29.xlsx) | Original Bloomberg source export, immutable |
-| Raw master indicators | [data/raw/CP%20Master%20Data(3).xlsx](../../../data/raw/CP%20Master%20Data%283%29.xlsx) | Monthly/daily macro and market series |
-| Derived quarterly workbook | [data/processed/Final_Quarterly_Data(1).xlsx](../../../data/processed/Final_Quarterly_Data%281%29.xlsx) | D4-v1 locked input snapshot; preserve checksum |
-| EDA workbook | [data/processed/EDA%20ANALYSIS(2).xlsx](../../../data/processed/EDA%20ANALYSIS%282%29.xlsx) | Historical flat EDA input, not the authoritative target source |
+| [CP(4).xlsx](raw/CP%284%29.xlsx) | Raw Bloomberg export: statement, FX, CPI, WPI and dated Brent source sheets | 208fc66a69c548023c4591bb8b7b5ba41624cdfe56fdd757612cc7b5fd01879e |
+| [CP Master Data(3).xlsx](raw/CP%20Master%20Data(3).xlsx) | Consolidated monthly/daily indicator series and legacy financial-source sheet | 30220588fe96276662a8eeadf56ea6a583da71479e0e26923383c517cc8af474 |
+| [Final_Quarterly_Data(1).xlsx](processed/Final_Quarterly_Data%281%29.xlsx) | Quarterly derived data and calculation/quality audit; 38 observations + two audit sheets | 87e56b4a08a81740c93386f62845bb48de53d0cbea754427b0da3d5b8fd5d970 |
 
-## Supporting records
+## Data definitions and lineage
 
-- [Data package manifest](../Data_Package_Manifest.md)
-- [Source register](../../../data/source_register.csv)
-- [Collection tracker](../../../data/collection_tracker.csv)
-- [Data dictionary](../IndiGo_Data_Dictionary.csv)
-- [Audit report](../D2_Data_Audit_Summary.md)
+- Company: InterGlobe Aviation / IndiGo (INDIGO IN); Revenue, Net Income (GAAP), EBITDA.
+- Currency: USD/INR (USDINR REGN Curncy, monthly).
+- CPI: INFUTOTY Index.
+- WPI: INBGWPIY Index.
+- Oil proxy: Dated Brent (EUCRBRDT Index), daily and monthly; this is not IndiGo's realised ATF price.
+- Source workbook units, frequency, dates and field IDs are documented in the data dictionary, source register and package manifest in this folder.
 
-## Incoming versions and rights gate
+## Audit rules
 
-Newer 7-Nov workbooks are listed in the audit inventory but are not promoted to approved/raw data. Reconcile their content and checksums against the canonical set and confirm redistribution permission before committing them. Do not overwrite D4-v1's locked input.
+1. Treat source workbooks as immutable evidence.
+2. Use actual/reported financial periods only; exclude estimates from realised outcomes.
+3. Use a consistent Indian fiscal-quarter key: Q1 Apr–Jun, Q2 Jul–Sep, Q3 Oct–Dec, Q4 Jan–Mar.
+4. Retain observation date, publication/availability date where known, source identifier, field, unit and quality flag.
+5. Record a checksum for every new derived dataset and keep its source workbook hashes.
+6. Newer or unreconciled workbooks remain in quarantine until a documented comparison and approval are complete.
 
-## Data folder convention
+## Data use by later milestones
 
-- `raw/`: unchanged source files with provenance and redistribution decision.
-- `processed/`: reproducible derived datasets with source hashes and transformation code.
-- `quarantine/`: unapproved, unreconciled or rights-pending files (do not use for modelling).
-- Every file must appear in the manifest with version, owner, date, units, checksum and approval status.
+- M3 / D3 uses a flat quarterly EBITDA analysis panel stored in the M3 data folder.
+- M4 / D4 uses the approved quarterly snapshot and documented macro/market features. M4 keeps its own copy of the exact experiment input.
+- M5 and later milestones should record the precise model-ready data vintage they consume rather than independently creating new data versions.
