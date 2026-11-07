@@ -4,3 +4,7 @@ D3_Review_Notes.md,"Source lineage, review findings, analytical controls and M4 
 EVALUATION_RECORD.md,"D3 hypotheses, data-quality controls and evaluation notes",EVALUATION_RECORD.md,"Included"
 README.md,"M3 folder guide and data-governance instructions",README.md,"Updated"
 MILESTONE_MANIFEST.csv,"M3 file inventory",MILESTONE_MANIFEST.csv,"Updated"
+
+MILESTONE_CONTROL.md,Milestone scope inputs outputs and acceptance criteria,MILESTONE_CONTROL.md,Included
+DELIVERABLES_CHECKLIST.md,Review and closure checklist,DELIVERABLES_CHECKLIST.md,Included
+data/README.md,Data lineage and governed input reference,Canonical M2 data and notebooks/03_eda.ipynb,Included reference
