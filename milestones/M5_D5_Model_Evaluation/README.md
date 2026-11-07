@@ -25,3 +25,14 @@ Rolling-origin notebook/code; evaluation experiment log; metrics and quarter-lev
 
 ## Dependencies and exit gate
 Start after M4 model candidates and training protocol are stable. Close only when time-aware validation, leakage checks, baseline comparison, uncertainty and limitations are reviewed and reproducible.
+
+
+## Standard evaluation structure
+
+- [01_INPUTS](01_INPUTS/README.md)
+- [02_WORKING](02_WORKING/README.md)
+- [03_DELIVERABLES](03_DELIVERABLES/README.md)
+- [04_EVIDENCE](04_EVIDENCE/README.md)
+- [05_REFERENCES](05_REFERENCES/README.md)
+
+See MILESTONE_CONTROL.md, DELIVERABLES_CHECKLIST.md, EVALUATION_RECORD.md and MILESTONE_MANIFEST.csv.
