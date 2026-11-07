@@ -1,25 +1,33 @@
-# M3 / D3 — Exploratory Data Analysis
+# M3 / D3 — Milestone Control
 
-**Status:** DONE
+**Status:** IN REVIEW  
+**Canonical notebook:** 02_WORKING/ANCP_T##_D3_EDA_New_Dataset_EXECUTED.ipynb
 
-## 1. Purpose
-Describe distributions, trends, missingness, relationships and test pre-specified hypotheses without claiming causation.
+## Purpose
+Assess the 38-quarter dataset, describe EBITDA Margin and macro-market indicators, explore time trends and quarter patterns, test the pre-defined hypotheses and document implications for later modelling.
 
-## 2. Inputs and dependencies
-M2-approved dataset version, data dictionary, analysis plan and hypotheses.
+## Inputs
+- Required notebook input: EDA ANALYSIS(5).xlsx, worksheet Sheet1.
+- This workbook was not included with the current upload and is not in GitHub.
+- Required columns are listed in notebook cell 6 and in the README summary.
 
-## 3. Required outputs
-Reproducible EDA notebook, data-quality tables, charts, hypothesis tests, insight log and modelling handoff.
+## Work completed
+- Latest executed notebook received and committed.
+- All 34 cells, 43 saved outputs and 14 execution counts are retained.
+- Descriptive analysis, data checks, trend/relationship charts, five hypotheses, insight log and modelling recommendations are present.
 
-## 4. Acceptance criteria
-Notebook runs end-to-end; code, data version, outputs, assumptions, caveats and feature handoff are recorded.
+## Deliverables and evidence
+- Executed notebook: uploaded.
+- Separate faculty-ready report: not supplied.
+- Clean execution from a fresh clone: pending the input workbook.
+- Target-scope decision: pending (EBITDA Margin in D3 vs PAT Margin in D1/D4).
 
-## 5. Governance and reproducibility
-- Keep source files immutable; create versioned derived outputs.
-- Record file name, source, retrieval date, observation period, units, owner, access/redistribution decision and SHA-256 for each dataset.
-- Keep code, notebooks, reports, test evidence and data manifests in their designated subfolders.
-- Never commit credentials, tokens, personal data or source material without redistribution authorization.
-- Record all scope or data-definition changes in the project change log and update affected milestone documents.
+## Acceptance criteria
+1. Add exact EDA ANALYSIS(5).xlsx input and record its SHA-256.
+2. Execute the notebook from a clean environment without hidden dependencies.
+3. Document each input field, unit, benchmark identity and aggregation method.
+4. Resolve EBITDA-vs-PAT target alignment with the team/faculty.
+5. Review results and approve the D3 insight summary and modelling handoff.
 
-## 6. Current next action
-Treat completed D3 as the approved EDA baseline; document any later refresh as a new version rather than silently replacing it.
+## Risks
+Only 38 quarterly observations are analysed. The notebook warns about time dependence. The dataset omits passenger load factor, passenger yield, capacity, revenue, fuel consumption and source metadata. The oil series must not be described as IndiGo's realised ATF cost.

@@ -1,10 +1,14 @@
-file,description,canonical_source,record_status
-ANCP_T##_D3_eda.ipynb,"Latest D3 EDA notebook; analysis code and markdown retained; saved outputs cleared",notebooks/03_eda.ipynb,"Published source-only copy"
-D3_Review_Notes.md,"Source lineage, review findings, analytical controls and M4 handoff",D3_Review_Notes.md,"Included"
-EVALUATION_RECORD.md,"D3 hypotheses, data-quality controls and evaluation notes",EVALUATION_RECORD.md,"Included"
-README.md,"M3 folder guide and data-governance instructions",README.md,"Updated"
-MILESTONE_MANIFEST.csv,"M3 file inventory",MILESTONE_MANIFEST.csv,"Updated"
-
-MILESTONE_CONTROL.md,Milestone scope inputs outputs and acceptance criteria,MILESTONE_CONTROL.md,Included
-DELIVERABLES_CHECKLIST.md,Review and closure checklist,DELIVERABLES_CHECKLIST.md,Included
-data/README.md,Data lineage and governed input reference,Canonical M2 data and notebooks/03_eda.ipynb,Included reference
+file,description,status,canonical_path_or_note
+ANCP_T##_D3_EDA_New_Dataset_EXECUTED.ipynb,"Latest executed notebook; 34 cells; 43 saved outputs retained",Uploaded,"02_WORKING/ANCP_T##_D3_EDA_New_Dataset_EXECUTED.ipynb"
+EDA ANALYSIS(5).xlsx,"Input workbook required by notebook; not attached or uploaded",Missing input,"Expected in 01_INPUTS/EDA ANALYSIS(5).xlsx"
+README.md,"Milestone overview and navigation",Updated,"README.md"
+MILESTONE_CONTROL.md,"Status, inputs, outputs and exit criteria",Updated,"MILESTONE_CONTROL.md"
+DELIVERABLES_CHECKLIST.md,"D3 completion checklist",Updated,"DELIVERABLES_CHECKLIST.md"
+D3_Review_Notes.md,"Notebook review and analysis summary",Updated,"D3_Review_Notes.md"
+EVALUATION_RECORD.md,"Results and evaluation status",Updated,"EVALUATION_RECORD.md"
+01_INPUTS/README.md,"Input register",Included,"01_INPUTS/README.md"
+02_WORKING/README.md,"Canonical notebook index",Included,"02_WORKING/README.md"
+03_DELIVERABLES/README.md,"Faculty-facing deliverable index",Included,"03_DELIVERABLES/README.md"
+04_EVIDENCE/README.md,"Execution and review evidence",Included,"04_EVIDENCE/README.md"
+05_REFERENCES/README.md,"Sources and provenance",Included,"05_REFERENCES/README.md"
+CHANGE_LOG.md,"Files added, retired and reason for replacement",Included,"CHANGE_LOG.md"

@@ -1,20 +1,23 @@
 # M3 / D3 — Deliverables Checklist
 
-## Planning and control
-- [ ] Scope, owner, dependencies and acceptance criteria confirmed
-- [ ] Risks, assumptions and decisions recorded
-- [ ] Inputs and versions listed in the milestone manifest
+## Inputs and governance
+- [x] Latest executed notebook received and stored.
+- [ ] EDA ANALYSIS(5).xlsx input workbook supplied and placed in 01_INPUTS.
+- [ ] Input SHA-256, source, units and data lineage recorded.
+- [ ] Data-use/redistribution decision confirmed for input and executed outputs.
 
-## Execution evidence
-- [ ] Source files / code / notebooks stored in the correct subfolder
-- [ ] Reproducible execution instructions provided
-- [ ] Quality checks, tests or review evidence attached
-- [ ] Results and limitations documented
+## Analysis and review
+- [x] Notebook contains 34 cells and 43 saved outputs.
+- [x] Descriptive and data-quality checks included.
+- [x] Five hypotheses, charts and insight log included.
+- [ ] Re-execute from a clean environment using the exact input workbook.
+- [ ] Review EBITDA Margin outcome against the PAT Margin project target.
+- [ ] Verify oil benchmark identity and units.
 
-## Review and closure
-- [ ] Deliverables reviewed against acceptance criteria
-- [ ] Final artifacts and checksums recorded
-- [ ] README, milestone register and GitHub issue updated
-- [ ] Closure decision and date recorded
+## Evaluation and closure
+- [ ] D3 findings report/summary reviewed.
+- [ ] Assumptions, caveats and model handoff approved.
+- [ ] Manifest and milestone register updated after input is supplied.
+- [ ] Faculty review/closure recorded.
 
-**Milestone-specific acceptance:** Notebook runs end-to-end; code, data version, outputs, assumptions, caveats and feature handoff are recorded.
+Do not mark D3 complete while the input workbook and target-alignment gates remain unresolved.
