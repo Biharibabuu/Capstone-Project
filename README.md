@@ -3,6 +3,14 @@
 **Integrated market-sensitive machine-learning model for forecasting IndiGo's business profitability**  
 **Capstone:** PGDM Business Analytics · **Modules:** M1–M7 · **Deliverables:** D1–D7
 
+
+
+> **Project status snapshot — 7 November 2026:** D1 is complete; D2 is complete for the 30-Oct data package but the latest derived workbooks are still under reconciliation; D3 has been reviewed and must be rerun on the approved dataset; D4-v1 has been executed with persistence selected because Ridge and Random Forest did not beat it; D5 is pending; the D6 API/frontend and data-refresh scaffold exists but approved model integration and monitoring are pending; D7 is planned.
+
+For the detailed completed/in-progress/next-step register, see [Project Status and Work Log](docs/PROJECT_STATUS_AND_WORKLOG.md). For data lineage, the fiscal-quarter and point-in-time rules, quality checks, dataset versioning and end-to-end flow, see [Workflow and Data Governance](docs/WORKFLOW_AND_DATA_GOVERNANCE.md). Use [Ongoing Project Context](docs/PROJECT_CONTEXT_FOR_ONGOING_WORK.md) as the persistent working brief for future project updates.
+
+**Latest workbook handling:** the 7-Nov raw workbook attachments are byte-identical to the earlier raw copies already committed. The newer derived quarterly and EDA workbooks have been reviewed locally but are not approved or committed; the D4-v1 input remains pinned and unchanged. See the [7-Nov artifact audit](milestones/ARTIFACT_AUDIT_2026-11-07.md).
+
 ## Milestone-wise evaluation folders
 
 | Milestone | Deliverable | Status | Folder |
