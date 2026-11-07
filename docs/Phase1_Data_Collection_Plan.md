@@ -3,7 +3,7 @@
 **Project:** IndiGo Profitability Intelligence System  
 **Primary target:** Next-quarter PAT margin (%)  
 **Team:** Nikhil Raj, Krishan Sharma, K. Shreya  
-**Status (28 October 2026):** Source workbooks have been collected locally and the D3 source notebook has been added to the repository. The workbooks are not committed publicly while Bloomberg redistribution permission remains unconfirmed. The current flat master is not model-ready: the legacy financial sheet is shifted by two quarters, estimates must be excluded from actual outcomes, fiscal-quarter labels need to follow the Indian fiscal calendar, and the current raw CPI series runs through 2026-09-30; the earlier malformed-date concern was not reproduced in the latest file. No model has been trained.
+**Status (updated 7 November 2026):** The latest CP(6).xlsx and CP Master Data(5).xlsx uploads are byte-identical to the CP raw/master workbooks already stored in GitHub. The latest Final_Quarterly_Data(3).xlsx is a local candidate and has not been uploaded or approved as a replacement for the pinned D4-v1 input. See the workbook source map below. The current flat master is not model-ready: the legacy financial sheet is shifted by two quarters, estimates must be excluded from actual outcomes, fiscal-quarter labels need to follow the Indian fiscal calendar, and the current raw CPI series runs through 2026-09-30; the earlier malformed-date concern was not reproduced in the latest file. No model has been trained.
 
 ## Phase 1 objectives
 
@@ -142,7 +142,7 @@ The separate `EDA ANALYSIS` workbook should be regenerated: its first two quarte
 
 The supplied oil series is labelled an oil benchmark and is not yet verified as Indian ATF or the airline's realised fuel cost. The latest raw CPI sheet has observations through 2026-09-30; compare the derived workbook's dates against raw observations instead of changing source dates manually. The raw series IDs are `USDINR REGN Curncy` (monthly), `INFUTOTY Index` (CPI), `INBGWPIY Index` (WPI), and `EUCRBRDT Index` (Dated Brent crude, daily/monthly). Keep missing values visible and exclude the 2026-10-30 USD/INR record from analyses dated 2026-10-28.
 
-See [the D3 status note](../reports/D3_eda/README.md) and [D3 notebook](../notebooks/03_eda.ipynb). Do not freeze the feature set or begin model training until the reconciled master, source dates, definitions and availability cutoffs have passed review.
+See the [M3 D3 milestone record](../milestones/M3_D3_Exploratory_Data_Analysis/README.md) and the [current executed D3 notebook](../milestones/M3_D3_Exploratory_Data_Analysis/02_WORKING/ANCP_T%23%23_D3_EDA_New_Dataset_EXECUTED.ipynb). Do not freeze the feature set or begin model training until the reconciled master, source dates, definitions and availability cutoffs have passed review.
 
 
 ## Latest file package — 30 October 2026
