@@ -1,18 +1,28 @@
 # M1 / D1 — Project Charter
 
-Status: Done. This folder records the project baseline, scope, business question, target, roles, constraints and milestones.
+**Status:** DONE
 
-Primary question: Can historical IndiGo financial performance and macro/market indicators help forecast next-quarter PAT margin and support scenario planning?
+## Brief
+Establish the capstone business problem, objective, scope, team responsibilities, assumptions, risks, constraints and delivery plan.
 
-Target: PAT margin = PAT / Revenue from Operations × 100. This is a profitability forecast, not a stock-price prediction, and it does not use unpublished company results.
+## Project framing
+The capstone forecasts IndiGo's business profitability, not its share price. The active modelling outcome is next-quarter EBITDA margin. The charter baseline, data definition and later milestones should use the same target definition and forecast horizon.
 
-Team: Nikhil Raj, Krishan Sharma and K. Shreya. See Project_Charter.md for the role allocation.
+## Workflow
+1. Define the business question and measurable target.
+2. Set in-scope and out-of-scope features and intended users.
+3. Assign team responsibilities and decision rights.
+4. Record assumptions, dependencies, risks and constraints.
+5. Review and approve the charter; baseline the milestone plan.
 
-Files: Project_Charter.md (charter copied from docs/Project_Charter.md); MILESTONE_MANIFEST.csv (file inventory).
+## Deliverables
+- Project_Charter.md — project scope and baseline.
+- MILESTONE_CONTROL.md — purpose, dependencies, outputs and acceptance criteria.
+- DELIVERABLES_CHECKLIST.md — review and closure controls.
+- MILESTONE_MANIFEST.csv — artifact inventory.
 
-## Folder structure
+## Data
+No raw analytical workbook is required in M1. Dataset inventory, provenance and quality approval belong to M2.
 
-- `Project_Charter.md` — approved scope and project baseline.
-- `MILESTONE_CONTROL.md` — purpose, dependencies, outputs and acceptance criteria.
-- `DELIVERABLES_CHECKLIST.md` — review and closure controls.
-- `MILESTONE_MANIFEST.csv` — artifact inventory.
+## Acceptance / closure
+The business question, EBITDA-margin target, scope, roles, risks and milestone plan are documented. Any future scope change must be recorded explicitly.
