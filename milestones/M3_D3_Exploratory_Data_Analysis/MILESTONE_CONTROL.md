@@ -1,33 +1,29 @@
 # M3 / D3 — Milestone Control
 
-**Status:** IN REVIEW  
-**Canonical notebook:** 02_WORKING/ANCP_T##_D3_EDA_New_Dataset_EXECUTED.ipynb
+**Administrative status:** Done (EDA handoff accepted for the current project scope).  
+**Target:** EBITDA Margin only.  
+**Canonical notebook:** 02_WORKING/ANCP_T##_D3_EDA_New_Dataset_EXECUTED.ipynb  
+**Canonical input:** data/EDA_ANALYSIS_EBITDA_ONLY_38Q.csv
 
 ## Purpose
-Assess the 38-quarter dataset, describe EBITDA Margin and macro-market indicators, explore time trends and quarter patterns, test the pre-defined hypotheses and document implications for later modelling.
+Assess the 38-quarter dataset, describe EBITDA Margin and macro-market indicators, explore time trends and quarter patterns, test five predefined hypotheses and document implications for M4.
 
 ## Inputs
-- Required notebook input: EDA ANALYSIS(5).xlsx, worksheet Sheet1.
-- This workbook was not included with the current upload and is not in GitHub.
-- Required columns are listed in notebook cell 6 and in the README summary.
+- M3 EBITDA-only 38-quarter CSV panel (eight columns).
+- M2 source definitions and workbooks (source lineage only).
+- The historical executed notebook upload, retained with 43 outputs.
 
 ## Work completed
-- Latest executed notebook received and committed.
-- All 34 cells, 43 saved outputs and 14 execution counts are retained.
-- Descriptive analysis, data checks, trend/relationship charts, five hypotheses, insight log and modelling recommendations are present.
+- Committed the EBITDA-only panel in M3/data.
+- Updated the executed notebook's business framing and CSV input path.
+- Preserved 34 cells, 14 code cells and 43 prior output records.
+- Recorded scope, hypotheses, limitations and M4 handoff.
 
-## Deliverables and evidence
-- Executed notebook: uploaded.
-- Separate faculty-ready report: not supplied.
-- Clean execution from a fresh clone: pending the input workbook.
-- Target-scope decision: pending (EBITDA Margin in D3 vs PAT Margin in D1/D4).
+## Known reproducibility caveat
+The notebook's original output cells were retained from the uploaded executed file; they were not regenerated after correcting the input path. A fresh execution from a clean clone is still recommended to independently confirm the visible results.
 
-## Acceptance criteria
-1. Add exact EDA ANALYSIS(5).xlsx input and record its SHA-256.
-2. Execute the notebook from a clean environment without hidden dependencies.
-3. Document each input field, unit, benchmark identity and aggregation method.
-4. Resolve EBITDA-vs-PAT target alignment with the team/faculty.
-5. Review results and approve the D3 insight summary and modelling handoff.
+## Acceptance and next gate
+M3's current accepted handoff is the 38-quarter EBITDA-only panel and analysis. M4 must verify the target denominator, period definitions, data availability, missingness and chronological modelling protocol before training.
 
 ## Risks
-Only 38 quarterly observations are analysed. The notebook warns about time dependence. The dataset omits passenger load factor, passenger yield, capacity, revenue, fuel consumption and source metadata. The oil series must not be described as IndiGo's realised ATF cost.
+Only 38 observations are available. Time dependence, omitted operational drivers and ambiguous oil benchmark units limit interpretation. Dated Brent must not be called IndiGo's realised ATF cost. No passenger load factor, passenger yield, capacity, fuel consumption or route mix is present.
