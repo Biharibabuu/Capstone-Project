@@ -1,26 +1,26 @@
-# M4 Data Folder — Modelling Inputs and Snapshots
+# M4 / D4 — Modelling Input Data
 
-M4 consumes versioned, approved datasets; it does not silently modify the M2 source workbooks.
+**Status:** M4 is In Progress. This folder contains the modelling snapshot; do not overwrite it in place.
 
-## D4-v1 locked input
+## Dataset stored in this milestone
 
-- Canonical path: [data/processed/Final_Quarterly_Data(1).xlsx](../../../data/processed/Final_Quarterly_Data%281%29.xlsx)
-- Worksheet: `Final_Quarterly_Data`
-- SHA-256: `85bf9e7ee51860fa38892ba3cb3e24b74887645bb2570c096f6183e59a97670c`
-- Snapshot status: immutable D4-v1 benchmark input.
+[Final_Quarterly_Data(1).xlsx](Final_Quarterly_Data%281%29.xlsx)
 
-## Related modelling data and evidence
+- SHA-256: 87e56b4a08a81740c93386f62845bb48de53d0cbea754427b0da3d5b8fd5d970
+- Worksheets: Final_Quarterly_Data, Calculation Audit, Data Quality Checks.
+- This exact file is also stored in the M2 audit folder as the versioned derived quarterly workbook.
 
-- D4 input manifest: [experiments/D4_data_manifest.json](../experiments/D4_data_manifest.json)
-- D4 metrics: [experiments/D4_metrics.json](../experiments/D4_metrics.json)
-- D4 predictions: [experiments/D4_test_predictions.csv](../experiments/D4_test_predictions.csv)
-- Training code: [src/d4_train.py](../src/d4_train.py)
-- Experiment notebook: [notebooks/D4_modeling_experiment.ipynb](../notebooks/D4_modeling_experiment.ipynb)
+## Active target and legacy evidence
 
-## Rules
+The active project target is next-quarter EBITDA margin. Older D4-v1 experiment artifacts report a PAT-margin experiment. Preserve them as historical/legacy evidence; they are not an approved EBITDA-margin model. M4 must run and document a fresh EBITDA-target training workflow based on the M3 output and create a separate experiment version.
 
-1. Never overwrite the D4-v1 input snapshot.
-2. Every new data version gets a new filename, source manifest and SHA-256.
-3. Do not use unreconciled or rights-pending workbooks as training data.
-4. Keep raw source files in M2's canonical data location; record their exact paths here rather than duplicating binaries.
-5. New modelling datasets must record target definition, fiscal-quarter key, feature availability cut-off, row exclusions and train/validation/test period boundaries.
+## Candidate predictors
+
+Use only fields supported by the approved M2/M3 package: USD/INR, CPI, WPI and supplied daily/monthly oil-benchmark proxies. Document date/frequency aggregation and feature availability. Do not claim load factor, yield, capacity, ATF spend or passenger-demand features are present.
+
+## Modelling controls
+
+- Use chronological or rolling/expanding splits; do not shuffle time-series observations.
+- Document target/predictor periods, leakage controls, row exclusions and split boundaries.
+- Record input hashes, code version, parameters, seed and environment for every run.
+- Never overwrite D4-v1 historical inputs/results; create a new named experiment version.
