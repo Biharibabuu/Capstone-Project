@@ -1,0 +1,170 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Count 4 /Kids [5 0 R 7 0 R 9 0 R 11 0 R] >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 6 0 R >>
+endobj
+6 0 obj
+<< /Length 2327 >>
+stream
+BT /F2 8 Tf 48 790 Td (ANCP / MODELLING CHECKPOINT / D4-v1) Tj ET
+BT /F2 18 Tf 48 756 Td (IndiGo Profitability Intelligence) Tj ET
+BT /F2 11 Tf 48 724 Td (D4-v1 | CO3 | 07 November 2026) Tj ET
+BT /F1 9 Tf 56 706 Td (Next-quarter PAT margin forecasting using quarterly financial and macro/market) Tj ET
+BT /F1 9 Tf 56 694 Td (indicators.) Tj ET
+BT /F1 9 Tf 56 682 Td (35 supervised observations | Target range: 2017Q4 to 2026Q2) Tj ET
+BT /F1 9 Tf 56 670 Td (Best validation MAE: 12.18 percentage points \(persistence baseline\)) Tj ET
+BT /F1 9 Tf 56 658 Td (Locked test MAE: 11.53 percentage points \(persistence baseline\)) Tj ET
+BT /F2 11 Tf 48 637 Td (1. Problem type and model choice) Tj ET
+BT /F1 9 Tf 56 619 Td (Business question: can historical IndiGo profitability and lagged currency, inflation) Tj ET
+BT /F1 9 Tf 56 607 Td (and Brent benchmark indicators support a one-quarter-ahead PAT-margin forecast?) Tj ET
+BT /F1 9 Tf 56 595 Td (Target: PAT / Revenue from Operations x 100. This is supervised regression in) Tj ET
+BT /F1 9 Tf 56 583 Td (percentage points, not a stock-price prediction.) Tj ET
+BT /F1 9 Tf 56 571 Td (Source: data/processed/Final_Quarterly_Data\(1\).xlsx, sheet Final_Quarterly_Data.) Tj ET
+BT /F1 9 Tf 56 559 Td (Thirty-eight rows are present; two rows marked Not available in source are excluded.) Tj ET
+BT /F1 9 Tf 56 547 Td (One-quarter lagging leaves 35 adjacent reported-quarter examples.) Tj ET
+BT /F2 11 Tf 48 526 Td (Why these model families fit) Tj ET
+BT /F1 9 Tf 56 508 Td (Persistence baseline: carry forward the last reported PAT margin. Transparent) Tj ET
+BT /F1 9 Tf 56 496 Td (time-series) Tj ET
+BT /F1 9 Tf 56 484 Td (benchmark, particularly appropriate for a small quarterly sample.) Tj ET
+BT /F1 9 Tf 56 472 Td (Ridge regression: regularised linear challenger; scaling and L2 shrinkage help with) Tj ET
+BT /F1 9 Tf 56 460 Td (correlated macro indicators and limited observations.) Tj ET
+BT /F1 9 Tf 56 448 Td (Random Forest regression: nonlinear challenger for possible thresholds/interactions;) Tj ET
+BT /F1 9 Tf 56 436 Td (shallow trees and larger leaves constrain overfitting.) Tj ET
+BT /F1 9 Tf 56 424 Td (D4 decision: neither candidate beats persistence on validation; retain the baseline.) Tj ET
+BT /F1 8 Tf 48 40 Td (ANCP_T##_D4_v1 | CO3 | 07 NOV 2026 | Page 1 of 4) Tj ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 8 0 R >>
+endobj
+8 0 obj
+<< /Length 2318 >>
+stream
+BT /F2 8 Tf 48 790 Td (ANCP / MODELLING CHECKPOINT / D4-v1) Tj ET
+BT /F2 18 Tf 48 756 Td (Features and validation design) Tj ET
+BT /F2 11 Tf 48 724 Td (2. Declared time-aware split) Tj ET
+BT /F1 9 Tf 56 706 Td (The split windows were fixed before tuning, are contiguous/disjoint and are constants) Tj ET
+BT /F1 9 Tf 56 694 Td (in src/d4_train.py. No random shuffle is used.) Tj ET
+BT /F1 9 Tf 56 682 Td (TRAIN 2017Q4-2022Q4 21 rows Fit model and preprocessing.) Tj ET
+BT /F1 9 Tf 56 670 Td (VALIDATION 2023Q1-2024Q2 6 rows Select algorithm and tune hyperparameters.) Tj ET
+BT /F1 9 Tf 56 658 Td (TEST 2024Q3-2026Q2 8 rows Locked holdout; evaluated after selection.) Tj ET
+BT /F2 11 Tf 48 637 Td (Predictor definitions \(one-quarter lag\)) Tj ET
+BT /F1 9 Tf 56 619 Td (lag1_pat_margin_pct: prior reported quarter PAT margin.) Tj ET
+BT /F1 9 Tf 56 607 Td (lag1_ebitda_margin_pct: prior reported quarter EBITDA margin.) Tj ET
+BT /F1 9 Tf 56 595 Td (lag1_usd_inr_q_mean: prior-quarter mean USD/INR.) Tj ET
+BT /F1 9 Tf 56 583 Td (lag1_cpi_inflation_q_mean: prior-quarter mean CPI inflation.) Tj ET
+BT /F1 9 Tf 56 571 Td (lag1_wpi_inflation_q_mean: prior-quarter mean WPI inflation.) Tj ET
+BT /F1 9 Tf 56 559 Td (lag1_brent_monthly_q_mean: prior-quarter mean monthly Brent benchmark.) Tj ET
+BT /F2 11 Tf 48 538 Td (Leakage controls and limitation) Tj ET
+BT /F1 9 Tf 56 520 Td (All predictors are shifted from the immediately preceding reported quarter;) Tj ET
+BT /F1 9 Tf 56 508 Td (target-quarter) Tj ET
+BT /F1 9 Tf 56 496 Td (PAT margin is label only. Gaps are not bridged. Test data are not used for tuning.) Tj ET
+BT /F1 9 Tf 56 484 Td (Ridge imputation and scaling are fitted inside the training pipeline; Random Forest) Tj ET
+BT /F1 9 Tf 56 472 Td (uses median imputation without scaling.) Tj ET
+BT /F1 9 Tf 56 460 Td (Limitation: the workbook has no historical publication timestamps. Lagging prevents) Tj ET
+BT /F1 9 Tf 56 448 Td (same-quarter target leakage but cannot prove that every input was public at the exact) Tj ET
+BT /F1 9 Tf 56 436 Td (historical forecast date. This is a chronological academic backtest, not a vintage-) Tj ET
+BT /F1 9 Tf 56 424 Td (controlled backtest. Calendar-quarter labels are retained as supplied.) Tj ET
+BT /F1 8 Tf 48 40 Td (ANCP_T##_D4_v1 | CO3 | 07 NOV 2026 | Page 2 of 4) Tj ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 10 0 R >>
+endobj
+10 0 obj
+<< /Length 1832 >>
+stream
+BT /F2 8 Tf 48 790 Td (ANCP / MODELLING CHECKPOINT / D4-v1) Tj ET
+BT /F2 18 Tf 48 756 Td (Baseline and candidate experiments) Tj ET
+BT /F2 11 Tf 48 724 Td (3. Baselines first) Tj ET
+BT /F1 9 Tf 56 706 Td (Primary metric: mean absolute error \(MAE\), in PAT-margin percentage points.) Tj ET
+BT /F1 9 Tf 56 694 Td (Secondary metric: root mean squared error \(RMSE\), which penalises large misses.) Tj ET
+BT /F1 9 Tf 56 682 Td (Persistence rule: predict margin\(t\) = margin\(t-1\).) Tj ET
+BT /F1 9 Tf 56 670 Td (Validation baseline: MAE 12.18 pp | RMSE 13.92 pp.) Tj ET
+BT /F2 11 Tf 48 649 Td (Candidate models and tuning approach) Tj ET
+BT /F1 9 Tf 56 631 Td (Ridge Regression: alpha in {0.1, 1, 10, 100}; median imputation, StandardScaler and) Tj ET
+BT /F1 9 Tf 56 619 Td (Ridge. Best validation setting: alpha=100; MAE 42.62 pp; RMSE 43.94 pp.) Tj ET
+BT /F1 9 Tf 56 607 Td (Random Forest: 300 trees; max_depth in {2,3,4}; min_samples_leaf in {2,3};) Tj ET
+BT /F1 9 Tf 56 595 Td (max_features=1.0; random_state=42. Best setting: depth=2, leaf=3;) Tj ET
+BT /F1 9 Tf 56 583 Td (validation MAE 51.95 pp; RMSE 54.15 pp.) Tj ET
+BT /F2 11 Tf 48 562 Td (Validation comparison) Tj ET
+BT /F1 9 Tf 56 544 Td (Persistence baseline MAE 12.18 pp RMSE 13.92 pp) Tj ET
+BT /F1 9 Tf 56 532 Td (Ridge \(alpha=100\) MAE 42.62 pp RMSE 43.94 pp) Tj ET
+BT /F1 9 Tf 56 520 Td (Random Forest \(depth=2, leaf=3\) MAE 51.95 pp RMSE 54.15 pp) Tj ET
+BT /F1 9 Tf 56 508 Td (Both candidate families underperform persistence on the six-quarter validation) Tj ET
+BT /F1 9 Tf 56 496 Td (window. The current data do not show stable incremental signal beyond recent PAT) Tj ET
+BT /F1 9 Tf 56 484 Td (margin. Ten candidate configurations plus baseline/final test are logged: 12 runs.) Tj ET
+BT /F1 8 Tf 48 40 Td (ANCP_T##_D4_v1 | CO3 | 07 NOV 2026 | Page 3 of 4) Tj ET
+endstream
+endobj
+11 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 12 0 R >>
+endobj
+12 0 obj
+<< /Length 2870 >>
+stream
+BT /F2 8 Tf 48 790 Td (ANCP / MODELLING CHECKPOINT / D4-v1) Tj ET
+BT /F2 18 Tf 48 756 Td (Locked test and reproducibility) Tj ET
+BT /F2 11 Tf 48 724 Td (4. Locked test result) Tj ET
+BT /F1 9 Tf 56 706 Td (After selection, persistence was evaluated once on the untouched 2024Q3-2026Q2 test.) Tj ET
+BT /F1 9 Tf 56 694 Td (Selected model: Persistence baseline) Tj ET
+BT /F1 9 Tf 56 682 Td (Test MAE: 11.53 pp | Test RMSE: 14.20 pp | MAE improvement vs baseline: 0.0%.) Tj ET
+BT /F1 9 Tf 56 670 Td (The average absolute error is material relative to ordinary positive margins. This is) Tj ET
+BT /F1 9 Tf 56 658 Td (a benchmark result, not evidence of production-ready forecasting accuracy.) Tj ET
+BT /F2 11 Tf 48 637 Td (Reproducibility package) Tj ET
+BT /F1 9 Tf 56 619 Td (src/d4_train.py: supervised data preparation, fixed split, baseline, model tuning,) Tj ET
+BT /F1 9 Tf 56 607 Td (locked holdout evaluation and run logging.) Tj ET
+BT /F1 9 Tf 56 595 Td (notebooks/D4_modeling_experiment.ipynb: notebook entry point and result inspection.) Tj ET
+BT /F1 9 Tf 56 583 Td (experiments/D4_experiment_log.csv: date, data hash, features, parameters, seed, metric.) Tj ET
+BT /F1 9 Tf 56 571 Td (D4_candidate_results.csv, D4_metrics.json and D4_test_predictions.csv: results.) Tj ET
+BT /F1 9 Tf 56 559 Td (D4_data_manifest.json: source file, worksheet, row accounting and SHA-256.) Tj ET
+BT /F1 9 Tf 56 547 Td (D4_environment.json and requirements-d4.txt: runtime and pinned dependencies.) Tj ET
+BT /F1 9 Tf 56 535 Td (tests/test_d4_train.py: lag and split tests \(2 passed locally\).) Tj ET
+BT /F2 11 Tf 48 514 Td (Run instructions) Tj ET
+BT /F1 9 Tf 56 496 Td (1. Create and activate a Python virtual environment.) Tj ET
+BT /F1 9 Tf 56 484 Td (2. pip install -r requirements-d4.txt) Tj ET
+BT /F1 9 Tf 56 472 Td (3. From repository root: python -m src.d4_train) Tj ET
+BT /F1 9 Tf 56 460 Td (4. Test: pytest -q tests/test_d4_train.py) Tj ET
+BT /F1 9 Tf 56 448 Td (The script defaults to data/processed/Final_Quarterly_Data\(1\).xlsx.) Tj ET
+BT /F2 11 Tf 48 427 Td (Reproducibility identifiers and limitations) Tj ET
+BT /F1 9 Tf 56 409 Td (Run date: 2026-11-07 | Random seed: 42) Tj ET
+BT /F1 9 Tf 56 397 Td (Source SHA-256: 85bf9e7ee51860fa38892ba3cb3e24b74887645bb2570c096f6183e59a97670c) Tj ET
+BT /F1 9 Tf 56 385 Td (Only 35 supervised rows; calendar-quarter labels retained; historical publication) Tj ET
+BT /F1 9 Tf 56 373 Td (timestamps absent; Brent is a crude benchmark proxy, not IndiGo-specific ATF expense.) Tj ET
+BT /F1 9 Tf 56 361 Td (Extreme loss quarters are retained, not winsorised. D5 should add vintage controls,) Tj ET
+BT /F1 9 Tf 56 349 Td (regime error analysis, rolling-origin backtests and forecast uncertainty.) Tj ET
+BT /F1 9 Tf 56 337 Td (Linked course outcome: CO3.) Tj ET
+BT /F1 8 Tf 48 40 Td (ANCP_T##_D4_v1 | CO3 | 07 NOV 2026 | Page 4 of 4) Tj ET
+endstream
+endobj
+xref
+0 13
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000134 00000 n 
+0000000204 00000 n 
+0000000279 00000 n 
+0000000415 00000 n 
+0000002794 00000 n 
+0000002930 00000 n 
+0000005300 00000 n 
+0000005437 00000 n 
+0000007322 00000 n 
+0000007460 00000 n 
+trailer
+<< /Size 13 /Root 1 0 R >>
+startxref
+10383
+%%EOF
