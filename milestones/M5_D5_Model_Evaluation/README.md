@@ -1,24 +1,27 @@
 # M5 / D5 — Model Evaluation
 
-Status: Todo — not started. This folder is an evaluation checklist, not a claim that D5 is complete.
+**Status:** TODO — NOT STARTED
 
-Required work:
-1. Preserve the D4-v1 data snapshot and model-selection decision.
-2. Add release-date/vintage controls and point-in-time feature eligibility.
-3. Run expanding-window or rolling-origin backtests where history permits.
-4. Compare persistence and candidate models using MAE and RMSE.
-5. Analyse errors by period/regime, especially exceptional loss quarters.
-6. Quantify uncertainty and document when forecasting should be withheld.
-7. Produce an evaluation memo and updated experiment log.
+## Brief
+Independently evaluate the model selected from M4. D5 tests whether the model is reliable enough for intended use; it is not another model-building stage.
 
-D4 handoff: persistence was selected because Ridge and Random Forest did not improve validation MAE. Locked test MAE was 11.53 pp; the eight-quarter holdout is small and historical release timestamps are unavailable.
+## Workflow
+1. Freeze the M4 candidate, baseline, preprocessing and dataset vintage.
+2. Establish point-in-time feature eligibility using observation and publication/availability dates.
+3. Run expanding-window or rolling-origin backtests.
+4. Compare against a simple baseline using MAE and RMSE.
+5. Analyse residuals by period, market regime and unusual quarters.
+6. Quantify uncertainty and define conditions under which forecasts should be withheld.
+7. Write the evaluation report and update the model card.
 
-Expected evidence: D5 evaluation report PDF; rolling-origin code/notebook; updated log; error-analysis CSV; metrics JSON; model card; data/environment manifests.
+## Inputs and data
+- M2 source-data definitions and approved data package.
+- M3 EDA handoff and exact data-vintage manifest.
+- M4 EBITDA-target model artifact, preprocessing pipeline, experiment log and baseline.
+- Any new data/features must be versioned; do not silently replace the M4 input snapshot.
 
-## Folder structure
+## Planned deliverables
+Rolling-origin notebook/code; evaluation experiment log; metrics and quarter-level error analysis; evaluation report; model-card evidence; data/environment manifests; reproducibility instructions.
 
-- `notebooks/` — rolling-origin evaluation notebook.
-- `experiments/` — run log, metrics and error analysis.
-- `reports/` — evaluation memo/report.
-- `references/` — validation protocol and methodological sources.
-- `MILESTONE_CONTROL.md`, `DELIVERABLES_CHECKLIST.md` and `MILESTONE_MANIFEST.csv` — governance and evidence tracking.
+## Dependencies and exit gate
+Start after M4 model candidates and training protocol are stable. Close only when time-aware validation, leakage checks, baseline comparison, uncertainty and limitations are reviewed and reproducible.
