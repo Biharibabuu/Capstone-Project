@@ -33,14 +33,6 @@ Build an end-to-end forecasting product that combines the historical IndiGo fina
 
 > This is an academic prototype using licensed Bloomberg extracts and aggregate financial/market data, plus public reference sources where used for validation. It is not commissioned by or endorsed by IndiGo and does not reveal unpublished actual results. Forecasts are estimates and must be presented with evaluation results and limitations.
 
-## Current implementation status
-
-The repository includes four server-side data connectors (USD/INR, Brent, CPI and WPI), a SQLite cache, a FastAPI refresh API, the HTML/CSS/JavaScript dashboard, project documents and the reviewed D3 EDA notebook. The prediction API deliberately remains disabled until the financial inputs are reconciled and a model has been evaluated against a baseline.
-
-**Current D3 review status:** the raw Bloomberg `IS` sheet and supplied master workbook do not align: the legacy `Financial source` margins in the master workbook are shifted by two quarters. The raw workbook also contains periods marked `Est`, which must not be labelled as actual outcomes. The notebook reconstructs margins from the raw statement, excludes estimates and aligns series to the project's Indian fiscal-quarter convention. The supplied flat EDA analysis workbook should be rebuilt before any model training.
-
-**Next recommended step:** rebuild `Final_Quarterly_Data.xlsx` and the calculation audit from actual raw `IS` periods, verify financial definitions and publication dates, then rerun D3 before starting D4 baseline modelling. Local Bloomberg workbooks and output-rich reports are not stored in this public repo unless licence terms permit redistribution.
-
 ## Primary business question
 
 Can historical IndiGo financial performance and Bloomberg-sourced currency, inflation and oil-benchmark indicators be combined to forecast next-quarter PAT margin, and does the selected model improve out-of-sample performance over a simple historical baseline?
