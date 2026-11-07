@@ -1,32 +1,33 @@
 # M2 / D2 — Data Audit
 
-Status: Done. This folder records dataset provenance, definitions, coverage, known gaps, quality checks, governance and model-readiness limitations.
+**Status:** DONE
 
-Data categories: IndiGo quarterly revenue/PAT/EBITDA; USD/INR; CPI; WPI; Dated Brent crude benchmark. Brent is a proxy, not IndiGo's realised ATF cost. The supplied company data contain EBITDA, not EBITDAR.
+## Brief
+Audit data provenance, definitions, units, period coverage, missingness, duplicates, financial status, quality and permitted use before analysis/model development.
 
-Files include the D2 audit summary, feasibility audit, data package manifest, source register, collection tracker and data dictionary.
+## Data used and stored
+- Raw source workbook: `data/raw/CP(4).xlsx` and the milestone copy at [data/raw/CP(4).xlsx](data/raw/CP%284%29.xlsx).
+- Master indicators: `data/raw/CP Master Data(3).xlsx` and the milestone copy at [data/raw/CP Master Data(3).xlsx](data/raw/CP%20Master%20Data%283%29.xlsx).
+- Quarterly snapshot: [data/processed/Final_Quarterly_Data(1).xlsx](data/processed/Final_Quarterly_Data%281%29.xlsx).
+- Audit evidence, data dictionary, source register and collection tracker are listed in MILESTONE_MANIFEST.csv.
 
-Canonical raw and processed workbooks remain in the repository's data/raw and data/processed folders to avoid duplicate competing copies. Their names, sizes and checksums are recorded in Data_Package_Manifest.md.
+## Workflow
+1. Register all source files and source identifiers.
+2. Record fields, units, frequency, coverage and collection date.
+3. Check missingness, duplicates, invalid dates, estimates and data alignment.
+4. Reconcile derived financial lines against raw statement fields.
+5. Record checksums, quality issues, rights/redistribution status and approval decisions.
+6. Publish the approved source package and handoff limitations to M3.
 
-Key limitations: D2 notes issues with the supplied derived financial alignment and estimate rows. D4 uses the identified workbook and filters to records marked Reported (original value). Historical publication timestamps remain unavailable.
-## Standard folder structure
+## Key findings and limits
+- Raw financial and macro/market data cover revenue, net income, EBITDA, USD/INR, CPI, WPI and Dated Brent.
+- Brent is a proxy, not IndiGo's realised ATF cost.
+- The data lack passenger load factor, passenger yield, RPK/ASK and other operating measures.
+- Historical release/availability timestamps are incomplete and must be treated as a limitation in forecasting.
+- Newer file versions should be compared and rights-cleared before replacing approved data.
 
-- `data/` — canonical dataset index and approval/quarantine rules.
-- `reports/` — audit report and review records.
-- `references/` — source definitions and supporting documentation.
-- `MILESTONE_CONTROL.md` — scope, inputs, outputs, acceptance criteria and next action.
-- `DELIVERABLES_CHECKLIST.md` — review and closure checklist.
-- `MILESTONE_MANIFEST.csv` — file-by-file record.
+## Folder map
+01_INPUTS source files and registers; 02_WORKING audit and data checks; 03_DELIVERABLES audit reports and dictionary; 04_EVIDENCE hashes/quality findings; 05_REFERENCES source definitions and validation sources; data/ stores milestone data copies.
 
-The raw workbooks are stored once under the repository's `data/raw/` folder and processed datasets under `data/processed/`; the `data/README.md` in this milestone links to those canonical copies. Do not duplicate or overwrite them.
-
-
-## Standard evaluation structure
-
-- [01_INPUTS](01_INPUTS/README.md)
-- [02_WORKING](02_WORKING/README.md)
-- [03_DELIVERABLES](03_DELIVERABLES/README.md)
-- [04_EVIDENCE](04_EVIDENCE/README.md)
-- [05_REFERENCES](05_REFERENCES/README.md)
-
-See MILESTONE_CONTROL.md, DELIVERABLES_CHECKLIST.md, EVALUATION_RECORD.md and MILESTONE_MANIFEST.csv.
+## Handoff
+M3 uses the approved data definitions and source data to create the EBITDA-only EDA panel. Do not use unapproved workbook versions without documented reconciliation.
