@@ -1,0 +1,15 @@
+file,description,canonical_path_or_source,status
+README.md,M4 purpose methods scores limitations and reproduction instructions,milestones/M4_D4_Modelling/README.md,Uploaded
+MILESTONE_MANIFEST.csv,Complete M4 file register,milestones/M4_D4_Modelling/MILESTONE_MANIFEST.csv,Uploaded
+ANCP_T##_D4_v1.pdf,Four-page D4 submission report,reports/ANCP_T##_D4_v1.pdf,Pending upload
+src/d4_train.py,Reproducible baseline and candidate training workflow,src/d4_train.py,Uploaded
+notebooks/D4_modeling_experiment.ipynb,Reproducible experiment notebook,notebooks/D4_modeling_experiment.ipynb,Uploaded
+tests/test_d4_train.py,Feature lag and split tests,tests/test_d4_train.py,Uploaded
+requirements-d4.txt,Pinned D4 Python environment,requirements-d4.txt,Uploaded
+experiments/D4_experiment_log.csv,All 12 runs including baseline candidates and final locked test,experiments/D4_experiment_log.csv,Uploaded
+experiments/D4_candidate_results.csv,Candidate validation comparison,experiments/D4_candidate_results.csv,Uploaded
+experiments/D4_metrics.json,Selected model and validation/test metrics,experiments/D4_metrics.json,Uploaded
+experiments/D4_test_predictions.csv,Quarter-level locked holdout predictions,experiments/D4_test_predictions.csv,Uploaded
+experiments/D4_data_manifest.json,Source workbook worksheet row counts and SHA-256,experiments/D4_data_manifest.json,Uploaded
+experiments/D4_environment.json,Python platform and package versions,experiments/D4_environment.json,Uploaded
+data/processed/Final_Quarterly_Data(1).xlsx,Source dataset snapshot referenced by hash,data/processed/Final_Quarterly_Data(1).xlsx,Existing canonical repository file
