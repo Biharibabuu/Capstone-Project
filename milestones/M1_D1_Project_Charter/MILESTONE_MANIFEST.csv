@@ -1,3 +1,5 @@
 file,description,canonical_source,record_status
 README.md,Milestone overview,milestones/M1_D1_Project_Charter/README.md,Included
 Project_Charter.md,Project charter and scope,docs/Project_Charter.md,Included copy
+MILESTONE_CONTROL.md,Milestone scope inputs outputs and acceptance criteria,MILESTONE_CONTROL.md,Included
+DELIVERABLES_CHECKLIST.md,Review and closure checklist,DELIVERABLES_CHECKLIST.md,Included
