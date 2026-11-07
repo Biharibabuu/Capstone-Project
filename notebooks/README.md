@@ -2,7 +2,7 @@
 
 ## Current D3 notebook
 
-- [`03_eda.ipynb`](03_eda.ipynb) — exploratory analysis of IndiGo profitability and available market indicators. Includes pre-specified hypotheses, original and cleaned-data quality checks, representativeness/bias checks, distributions, trends, Spearman/Kruskal–Wallis tests, an insight log and modelling recommendations.
+- [`03_eda.ipynb`](03_eda.ipynb) — synchronized shared copy of the latest D3 notebook, also stored in [M3](../milestones/M3_D3_Exploratory_Data_Analysis/ANCP_T##_D3_eda.ipynb). Includes pre-specified hypotheses, original and cleaned-data quality checks, representativeness/bias checks, distributions, trends, statistical tests, an insight log and modelling recommendations.
 
 ## Local data setup
 
@@ -11,7 +11,7 @@ Place the authorized input workbooks at these paths in your local clone:
 - `data/raw/CP.xlsx` — raw Bloomberg export with the multi-row-header `IS` sheet.
 - `data/processed/CP Master Data.xlsx` — market indicators by monthly/daily frequency.
 
-These files are intentionally excluded from the public repository. The public notebook has execution outputs cleared; run it locally to produce tables and figures. Do not publish workbook exports or rendered HTML that embeds Bloomberg-derived values unless the applicable licence permits redistribution.
+These files are intentionally excluded from the public repository. The public notebook has saved execution outputs cleared; run it locally to produce tables and figures. The M3 milestone copy is the evaluation-facing notebook. Do not publish workbook exports or rendered HTML that embeds Bloomberg-derived values unless the applicable licence permits redistribution.
 
 ## Important controls in the D3 notebook
 
