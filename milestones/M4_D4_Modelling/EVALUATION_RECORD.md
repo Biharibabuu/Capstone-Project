@@ -1,47 +1,41 @@
-# M4 / D4-v1 — Modelling Checkpoint: Evaluation Record
+# M4 / D4 — Modelling Evaluation Record
 
-**Status:** Executed and documented on 7-Nov-2026. Course outcome CO3.
+**Status:** IN PROGRESS — current active milestone  
+**Current target:** Next-quarter EBITDA margin
 
-## Objective and data
-Supervised regression to estimate next-quarter PAT margin in percentage points (PAT / Revenue from Operations × 100); not share-price prediction.
+## 1. Purpose
 
-- Input: data/processed/Final_Quarterly_Data(1).xlsx; worksheet Final_Quarterly_Data.
-- SHA-256: 85bf9e7ee51860fa38892ba3cb3e24b74887645bb2570c096f6183e59a97670c.
-- 38 source rows; two excluded because Financial Data Status was not Reported (original value); 35 supervised observations after one-quarter lag.
-- Calendar-quarter labels retained as supplied, not relabelled as Indian fiscal quarters.
+Build and compare forecasting baselines and candidate models using the M3 EBITDA-only EDA handoff and approved M2 source definitions. M4 is not complete merely because an earlier PAT-margin experiment was run.
 
-| Split | Window | Rows |
-|---|---|---:|
-| Train | 2017Q4–2022Q4 | 21 |
-| Validation | 2023Q1–2024Q2 | 6 |
-| Locked test | 2024Q3–2026Q2 | 8 |
+## 2. Current data
 
-Predictors: lag1 PAT margin, EBITDA margin, USD/INR, CPI, WPI and monthly Brent. Only the immediately preceding reported quarter is used; gaps are not bridged. No random shuffling.
+- Primary EDA panel: [M3 EBITDA-only 38-quarter CSV](../../M3_D3_Exploratory_Data_Analysis/data/EDA_ANALYSIS_EBITDA_ONLY_38Q.csv).
+- Quarterly workbook snapshot: [Final_Quarterly_Data(1).xlsx](data/Final_Quarterly_Data%281%29.xlsx); SHA-256 recorded in `data/README.md`.
+- Raw statement and market sources: [M2 data package](../../M2_D2_Data_Audit/data/README.md).
 
-## Model results
-| Model | Validation MAE (pp) | Validation RMSE (pp) | Decision |
-|---|---:|---:|---|
-| Persistence | **12.18** | **13.92** | Selected |
-| Best Ridge (alpha=100) | 42.62 | 43.94 | Not selected |
-| Best Random Forest (depth=2, leaf=3) | 51.95 | 54.15 | Not selected |
+## 3. Historical experiment — D4-v1 (legacy PAT target)
 
-Locked test persistence MAE = **11.53 pp**, RMSE = **14.20 pp**; improvement versus the same baseline = **0%**. No trained ML artifact was selected.
+D4-v1 remains preserved as historical evidence only:
+- Target: next-quarter PAT margin, not EBITDA margin.
+- Models compared: persistence, Ridge and Random Forest.
+- Persistence validation MAE/RMSE: 12.18/13.92 percentage points.
+- Ridge and Random Forest did not outperform persistence on validation.
+- Locked-test persistence MAE/RMSE: 11.53/14.20 percentage points.
+- No ML improvement was demonstrated.
 
-## Files in this milestone
-- reports/ANCP_T##_D4_v1.pdf — four-page report.
-- src/d4_train.py — preparation, fixed split, baseline and challenger workflow.
-- notebooks/D4_modeling_experiment.ipynb — experiment notebook.
-- tests/test_d4_train.py — lag/split tests.
-- requirements-d4.txt — pinned environment.
-- experiments/D4_experiment_log.csv — 12 runs.
-- experiments/D4_candidate_results.csv — validation comparison.
-- experiments/D4_metrics.json — selection and metrics.
-- experiments/D4_test_predictions.csv — eight locked test rows.
-- experiments/D4_data_manifest.json — input checksum/row accounting.
-- experiments/D4_environment.json — runtime/dependency versions.
-- README.md and MILESTONE_MANIFEST.csv — reproduction and inventory.
+Do not quote these values as performance of the current EBITDA model.
 
-Reproduce: install milestones/M4_D4_Modelling/requirements-d4.txt; run src/d4_train.py with data/processed/Final_Quarterly_Data(1).xlsx; run pytest on milestones/M4_D4_Modelling/tests/test_d4_train.py.
+## 4. Current M4 work required
 
-## Limitations and next gate
-35 observations are small; validation/test are 6/8. Historical release timestamps are missing, Brent is a proxy and calendar quarter labels remain. Newer Final_Quarterly_Data(2).xlsx is a distinct local receipt and must be reconciled/versioned, not substituted silently. D5 should add point-in-time checks, rolling-origin evaluation, regime/error analysis and uncertainty.
+1. Freeze the M3 EBITDA-only panel and its checksum.
+2. Confirm the EBITDA margin formula and revenue denominator against source statement data.
+3. Construct a clean one-quarter-ahead supervised table; do not bridge missing quarters.
+4. Establish persistence and seasonal-naive baselines.
+5. Compare parsimonious candidates with time-ordered validation.
+6. Enforce training-only preprocessing and feature-availability cut-offs.
+7. Save run configuration, metrics, predictions, residuals, tests, environment and report.
+8. Select no complex model unless it beats the baseline in defensible validation.
+
+## 5. Exit gate
+
+M4 is complete only when the EBITDA target data and feature pipeline are frozen, the experiments are reproducible, the model comparison is documented, and the selected baseline/candidate is handed to M5 for independent rolling-origin evaluation.
