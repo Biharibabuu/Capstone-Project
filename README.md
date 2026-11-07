@@ -8,7 +8,6 @@
 
 For the detailed completed/in-progress/next-step register, see [Project Status and Work Log](docs/PROJECT_STATUS_AND_WORKLOG.md). For data lineage, the fiscal-quarter and point-in-time rules, quality checks, dataset versioning and end-to-end flow, see [Workflow and Data Governance](docs/WORKFLOW_AND_DATA_GOVERNANCE.md). Use [Ongoing Project Context](docs/PROJECT_CONTEXT_FOR_ONGOING_WORK.md) as the persistent working brief for future project updates.
 
-**Latest workbook handling:** the 7-Nov raw workbook attachments are byte-identical to the earlier raw copies already committed. The newer derived quarterly and EDA workbooks have been reviewed locally but are not approved or committed; the D4-v1 input remains pinned and unchanged. See the [7-Nov artifact audit](milestones/ARTIFACT_AUDIT_2026-11-07.md).
 
 ## Milestone-wise evaluation folders
 
