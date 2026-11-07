@@ -6,3 +6,7 @@ data connectors,FX Brent CPI WPI connectors,src/connectors/,Existing elsewhere i
 LIVE_DATA_INTEGRATION.md,External data integration guide,docs/LIVE_DATA_INTEGRATION.md,Existing elsewhere in repository
 Deployment architecture note,Deployment design,Pending
 Monitoring plan,Freshness drift performance and retraining controls,Pending
+MILESTONE_CONTROL.md,Milestone scope inputs outputs and acceptance criteria,MILESTONE_CONTROL.md,Included
+DELIVERABLES_CHECKLIST.md,Review and closure checklist,DELIVERABLES_CHECKLIST.md,Included
+MILESTONE_CONTROL.md,Milestone scope and acceptance criteria,MILESTONE_CONTROL.md,Included
+DELIVERABLES_CHECKLIST.md,Deliverable checklist,DELIVERABLES_CHECKLIST.md,Included
