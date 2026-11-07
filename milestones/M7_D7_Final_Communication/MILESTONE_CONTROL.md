@@ -1,25 +1,21 @@
-# M7 / D7 — Final Report and Presentation
+# M7 / D7 — Final Communication: Milestone Control
 
-**Status:** TODO
+**Status:** PLANNED — final submission package is not complete.
 
-## 1. Purpose
-Communicate business value, methods, results, limitations and demonstration clearly.
+## Purpose
+Communicate the business problem, data, EDA findings, model evaluation, uncertainty, prototype, monitoring, limitations and reproducibility in a clear and evidence-backed submission.
 
-## 2. Inputs and dependencies
-Approved M2-M6 evidence, team contribution records, course rubric and final demo.
+## Inputs
+Use only reviewed milestone records and approved data/model versions. D4-v1 results must be represented accurately; D5 and D6 evidence remain pending.
 
-## 3. Required outputs
-Final report, model card, presentation, speaker notes, demo runbook, references and release record.
+## Working record
+Draft final report, model card, presentation, speaker notes and demo script in 02_WORKING.
 
-## 4. Acceptance criteria
-All claims trace to repository evidence; performance and limitations are honestly stated; demo is reproducible.
+## Deliverables
+Final_Capstone_Report.pdf, Model_Card.md, Final_Presentation.pptx, Speaker_Notes.md and Demo_Runbook.md.
 
-## 5. Governance and reproducibility
-- Keep source files immutable; create versioned derived outputs.
-- Record file name, source, retrieval date, observation period, units, owner, access/redistribution decision and SHA-256 for each dataset.
-- Keep code, notebooks, reports, test evidence and data manifests in their designated subfolders.
-- Never commit credentials, tokens, personal data or source material without redistribution authorization.
-- Record scope or data-definition changes in the project change log and update affected milestone documents.
+## Evidence
+Final metrics, dataset/model hashes, reproducibility steps, references, team-contribution log, application demonstration and review sign-off.
 
-## 6. Current next action
-Prepare after evaluation and deployment evidence are complete.
+## Exit gate
+All key claims must trace to a milestone artifact. State limitations and whether ML beats persistence honestly; do not describe pending D5/D6 activities as complete.

@@ -23,3 +23,14 @@ Final capstone report and executive summary; model card; final presentation and 
 
 ## Exit gate
 Close only after the report, model card, presentation and end-to-end demonstration are reviewed and numerical claims trace to repository evidence.
+
+
+## Standard evaluation structure
+
+- [01_INPUTS](01_INPUTS/README.md)
+- [02_WORKING](02_WORKING/README.md)
+- [03_DELIVERABLES](03_DELIVERABLES/README.md)
+- [04_EVIDENCE](04_EVIDENCE/README.md)
+- [05_REFERENCES](05_REFERENCES/README.md)
+
+See MILESTONE_CONTROL.md, DELIVERABLES_CHECKLIST.md, EVALUATION_RECORD.md and MILESTONE_MANIFEST.csv.

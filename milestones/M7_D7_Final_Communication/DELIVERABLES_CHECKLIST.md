@@ -1,20 +1,15 @@
 # M7 / D7 — Deliverables Checklist
 
-## Planning and control
-- [ ] Scope, owner, dependencies and acceptance criteria confirmed
-- [ ] Risks, assumptions and decisions recorded
-- [ ] Inputs and versions listed in the milestone manifest
+- [ ] Executive summary and business problem.
+- [ ] Data sources, lineage, access and data-quality limitations.
+- [ ] EDA results with sample sizes, methods and caveats.
+- [ ] D4/D5 baseline and challenger comparison using chronological evaluation.
+- [ ] Forecast uncertainty, scenario assumptions and withholding conditions.
+- [ ] Deployment architecture, data refresh and monitoring evidence.
+- [ ] Model card, intended use and limitations.
+- [ ] Final report and reference list.
+- [ ] Presentation and speaker notes.
+- [ ] Reproducible demo runbook and team contributions.
+- [ ] Repository release/commit record and final review.
 
-## Execution evidence
-- [ ] Source files / code / notebooks stored in the correct subfolder
-- [ ] Reproducible execution instructions provided
-- [ ] Quality checks, tests or review evidence attached
-- [ ] Results and limitations documented
-
-## Review and closure
-- [ ] Deliverables reviewed against acceptance criteria
-- [ ] Final artifacts and checksums recorded
-- [ ] README, milestone register and GitHub issue updated
-- [ ] Closure decision and date recorded
-
-**Milestone-specific acceptance:** All claims trace to repository evidence; performance and limitations are honestly stated; demo is reproducible.
+**Status:** Planned. Finalize only after D5 and D6 evidence is ready.
