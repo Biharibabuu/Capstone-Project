@@ -15,10 +15,10 @@ For the live Todo / In Progress / Done issue tracker and milestone delivery sequ
 |---|---|---|---|
 | M1 | D1 Project Charter | Completed | [M1_D1_Project_Charter](milestones/M1_D1_Project_Charter/) |
 | M2 | D2 Data Audit | Completed | [M2_D2_Data_Audit](milestones/M2_D2_Data_Audit/) |
-| M3 | D3 Exploratory Data Analysis | Reviewed | [M3_D3_Exploratory_Data_Analysis](milestones/M3_D3_Exploratory_Data_Analysis/) |
-| M4 | D4 Modelling | D4-v1 report and evidence uploaded | [M4_D4_Modelling](milestones/M4_D4_Modelling/) |
+| M3 | D3 Exploratory Data Analysis | Completed | [M3_D3_Exploratory_Data_Analysis](milestones/M3_D3_Exploratory_Data_Analysis/) |
+| M4 | D4 Modelling | In Progress | [M4_D4_Modelling](milestones/M4_D4_Modelling/) |
 | M5 | D5 Model Evaluation | Planned | [M5_D5_Model_Evaluation](milestones/M5_D5_Model_Evaluation/) |
-| M6 | D6 Deployment and Monitoring | In progress/planned | [M6_D6_Deployment_Monitoring](milestones/M6_D6_Deployment_Monitoring/) |
+| M6 | D6 Deployment and Monitoring | Planned | [M6_D6_Deployment_Monitoring](milestones/M6_D6_Deployment_Monitoring/) |
 | M7 | D7 Final Communication | Planned | [M7_D7_Final_Communication](milestones/M7_D7_Final_Communication/) |
 
 See [milestones/README.md](milestones/README.md) for the milestone index and [MILESTONE_REGISTER.csv](milestones/MILESTONE_REGISTER.csv) for status, evidence and next gates. Each milestone folder contains its own README and file manifest. D4 experiment details are in [README_D4.md](README_D4.md).
