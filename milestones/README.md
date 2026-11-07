@@ -11,9 +11,9 @@ Each milestone has its own evaluation record and file manifest. Shared code and 
 | 2 | M2 | D2 Data Audit | Completed | [M2 record](M2_D2_Data_Audit/EVALUATION_RECORD.md) |
 | 3 | M3 | D3 EDA | Completed | [M3 record](M3_D3_Exploratory_Data_Analysis/EVALUATION_RECORD.md) |
 | 4 | M4 | D4 Modelling | In Progress — active milestone | [M4 record](M4_D4_Modelling/EVALUATION_RECORD.md) |
-| 5 | M5 | D5 Evaluation | Planned; report/backtest pending | [M5 record](M5_D5_Model_Evaluation/EVALUATION_RECORD.md) |
-| 6 | M6 | D6 Deployment/Monitoring | API/frontend/connectors scaffold exists; integration pending | [M6 record](M6_D6_Deployment_Monitoring/EVALUATION_RECORD.md) |
-| 7 | M7 | D7 Final Communication | Planned; final package pending | [M7 record](M7_D7_Final_Communication/EVALUATION_RECORD.md) |
+| 5 | M5 | D5 Evaluation | Todo — not started | [M5 record](M5_D5_Model_Evaluation/EVALUATION_RECORD.md) |
+| 6 | M6 | D6 Deployment/Monitoring | Todo — not started; existing scaffold is reusable, not completed D6 | [M6 record](M6_D6_Deployment_Monitoring/EVALUATION_RECORD.md) |
+| 7 | M7 | D7 Final Communication | Todo — not started | [M7 record](M7_D7_Final_Communication/EVALUATION_RECORD.md) |
 
 ## Evaluation controls
 
