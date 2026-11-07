@@ -1,0 +1,17 @@
+{
+  "dataset_file": "data/processed/Final_Quarterly_Data(1).xlsx",
+  "local_file_used": "Final_Quarterly_Data(1).xlsx",
+  "worksheet": "Final_Quarterly_Data",
+  "sha256": "85bf9e7ee51860fa38892ba3cb3e24b74887645bb2570c096f6183e59a97670c",
+  "source_rows_including_header": 39,
+  "source_data_rows": 38,
+  "rows_excluded": 2,
+  "exclusion_rule": "Financial Data Status != Reported (original value)",
+  "supervised_rows_after_one_quarter_lag": 35,
+  "target_quarter_range": ["2017Q4", "2026Q2"],
+  "train_rows": 21,
+  "validation_rows": 6,
+  "test_rows": 8,
+  "quarter_label_convention": "Calendar quarters as provided in source workbook; not relabelled as Indian fiscal quarters.",
+  "data_handling": "One-quarter lag applied to all predictors; only adjacent reported quarters form a supervised example."
+}
