@@ -1,0 +1,8 @@
+milestone,deliverable,status,primary_folder,key_evidence,next_gate
+M1,D1 Project Charter,Completed,milestones/M1_D1_Project_Charter,Project charter and scope,Scope baseline
+M2,D2 Data Audit,Completed,milestones/M2_D2_Data_Audit,Source register; collection tracker; data dictionary; audit; package manifest,Confirm approved master dataset
+M3,D3 Exploratory Data Analysis,Reviewed,milestones/M3_D3_Exploratory_Data_Analysis,EDA notebook and D3 review notes,Approve feature list and data definitions
+M4,D4 Modelling Checkpoint,Submitted d4-v1,milestones/M4_D4_Modelling,Four-page PDF; source; notebook; tests; experiment log; metrics; data/environment manifest,Proceed to evaluation and robustness work
+M5,D5 Model Evaluation,Planned,milestones/M5_D5_Model_Evaluation,Evaluation protocol template; pending test and robustness evidence,Complete rolling-origin evaluation and error analysis
+M6,D6 Deployment and Monitoring,In progress/planned,milestones/M6_D6_Deployment_Monitoring,FastAPI and frontend scaffold; external data connectors; monitoring plan pending,Connect validated model and verify refresh
+M7,D7 Final Communication,Planned,milestones/M7_D7_Final_Communication,Submission checklist; report/model card/presentation pending,Prepare final report and demonstration
