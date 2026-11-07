@@ -5,3 +5,7 @@ notebooks/D5_rolling_origin_evaluation.ipynb,Rolling-origin backtest,Pending
 experiments/D5_experiment_log.csv,Repeatable run tracker,Pending
 experiments/D5_error_analysis.csv,Quarter-level residual diagnostics,Pending
 experiments/D5_metrics.json,Final validation/test metrics,Pending
+MILESTONE_CONTROL.md,Milestone scope inputs outputs and acceptance criteria,MILESTONE_CONTROL.md,Included
+DELIVERABLES_CHECKLIST.md,Review and closure checklist,DELIVERABLES_CHECKLIST.md,Included
+MILESTONE_CONTROL.md,Milestone scope and acceptance criteria,MILESTONE_CONTROL.md,Included
+DELIVERABLES_CHECKLIST.md,Deliverable checklist,DELIVERABLES_CHECKLIST.md,Included
