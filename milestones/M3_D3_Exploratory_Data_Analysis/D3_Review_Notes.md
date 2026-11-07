@@ -1,0 +1,64 @@
+# D3 — Exploratory Data Analysis: Review and Status
+
+**Project:** IndiGo Profitability Intelligence System  
+**Status:** Reproducible analysis notebook prepared; results should be regenerated after source reconciliation.
+
+## Included in the public repository
+
+- [`notebooks/03_eda.ipynb`](../../notebooks/03_eda.ipynb) — source-only notebook with pre-specified hypotheses, data-quality checks, distributions, fiscal-quarter segmentation, statistical tests, an insight log and modelling recommendations. Execution outputs are cleared so Bloomberg-derived values and figures are not republished in this public repository.
+- This note records the source-alignment issues found during review.
+
+## Local input files required
+
+Place the latest authorized local workbooks at:
+
+- `data/raw/CP(4).xlsx` — raw Bloomberg workbook containing the `IS` sheet.
+- `data/processed/CP Master Data(3).xlsx` — market-indicator workbook containing `USD INR`, `CPI inflation`, `WPI inflation`, `Oil benchmark(MONTHLY)`, `Oil benchmark(DAILY)` and the legacy `Financial source` sheet.
+
+These data paths are ignored by Git. Do not publish Bloomberg exports, embedded report outputs or derived values unless the applicable Bloomberg and institutional licence permits redistribution.
+
+## Important findings from the file review
+
+1. **The legacy financial sheet is shifted.** The margins in the master workbook's `Financial source` sheet match raw Bloomberg `IS` margin calculations two quarters earlier, rather than on the same quarter-end date. The notebook rebuilds Revenue, PAT and EBITDA margins from the raw `IS` sheet and displays a reconciliation check. It does not use the shifted sheet as the target source.
+2. **Estimated quarters are not actual outcomes.** Rows whose Bloomberg quarter header is marked `Est` are excluded from the historical outcome panel. Estimates must not be used as realised PAT-margin labels for model training or evaluation.
+3. **The supplied flat EDA analysis workbook needs rebuilding.** Its first two quarter rows repeat the same PAT and EBITDA margins even though the separate quarterly dataset marks financial observations for those periods as unavailable. These are not supported as two independent observed outcomes by that dataset; use the raw `IS` source and the reconciliation check instead.
+4. **Use fiscal-quarter labels consistently.** The project schema uses Indian fiscal quarters: Q1 = Apr–Jun, Q2 = Jul–Sep, Q3 = Oct–Dec, Q4 = Jan–Mar. The notebook uses `Q-MAR` alignment; prior flat outputs labelled calendar quarters and should not be used for fiscal-seasonality conclusions.
+5. **The oil series is now identified as a Dated Brent proxy.** The raw Bloomberg export gives security ID `EUCRBRDT Index` and the source sheet names are `co new` (daily) and `co new monthly` (monthly). This is Dated Brent crude, not Indian ATF or IndiGo's realised fuel cost.
+6. **CPI date check:** the latest raw `CP(4).xlsx` CPI sheet has monthly observations through 2026-09-30; the earlier malformed-date concern was not reproduced in this version. Compare the derived workbook's dates with the raw dated observations and preserve source dates. The data also has one future-dated USD/INR row on 2026-10-30, which must be excluded from as-of-2026-10-28 analysis.
+7. **The EDA is not model evaluation.** Same-quarter relationships are exploratory. For actual forecasting, every feature must be available by the forecast cutoff, and candidate models must be compared with a baseline using chronological validation.
+
+## Hypotheses documented before results
+
+- H1: oil benchmark and PAT margin are associated.
+- H2: USD/INR and PAT margin are associated.
+- H3: CPI inflation and PAT margin are associated.
+- H4: WPI inflation and PAT margin are associated.
+- H5: PAT margin differs across Indian fiscal quarters.
+- H6: PAT and EBITDA margins move together.
+
+The notebook computes paired sample sizes and effect sizes alongside p-values, repeats coverage/missingness checks on the cleaned panel, creates plots and distributions, and produces an insight log with decision implications and confidence notes. No causal claim or model-performance claim is made by the EDA.
+
+## Next steps
+
+1. Rebuild `Final_Quarterly_Data.xlsx` and its calculation audit from the raw `IS` source using actual quarters only and fiscal-quarter labels.
+2. Verify financial definitions and published-result dates against official filings.
+3. Re-run `notebooks/03_eda.ipynb` locally and review the generated evidence.
+4. Carry only defensible predictors into the D4 baseline and candidate-model experiments.
+
+
+## Bloomberg series identifiers added in the repository
+
+- Financials: `INDIGO IN` (BBG GAAP); `SALES_REV_TURN` (Revenue), `NET_INCOME` (Net Income GAAP), `EBITDA`.
+- USD/INR: `USDINR REGN Curncy` (monthly; `PX_LAST` used in aggregation, `PX_BID` also exported).
+- CPI indicator: `INFUTOTY Index` (`PX_LAST`).
+- WPI indicator: `INBGWPIY Index` (`PX_LAST`).
+- Dated Brent crude: `EUCRBRDT Index` (`PX_LAST`, daily and monthly).
+
+Reference/access links: [Bloomberg Terminal](https://professional.bloomberg.com/products/bloomberg-terminal/), [Bloomberg DATA](https://data.bloomberg.com/), and [InterGlobe Aviation's Bloomberg profile](https://www.bloomberg.com/profile/company/INDIGO%3AIN). These pages are not public download links for licensed Terminal exports.
+
+
+## Latest source package — 30 October 2026
+
+The latest local workbook package is `CP(4).xlsx`, `CP Master Data(3).xlsx`, `Final_Quarterly_Data(1).xlsx` and `EDA ANALYSIS(2).xlsx`. Their unchanged copies are in the local `IndiGo_Capstone_Project_Data_Pack.zip`; see [the package manifest](../../docs/Data_Package_Manifest.md). The D3 notebook now searches for `CP(4).xlsx` and `CP Master Data(3).xlsx` first.
+
+The raw workbook's latest observed dates are: USD/INR 2026-10-30 (same-day availability timestamp not supplied), CPI 2026-09-30, WPI 2026-09-30, Dated Brent daily 2026-10-19 and Dated Brent monthly 2026-09-30. The files remain unchanged; these dates do not resolve the previously documented financial mapping or point-in-time release-date checks.
