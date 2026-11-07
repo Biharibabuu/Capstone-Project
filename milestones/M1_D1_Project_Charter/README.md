@@ -26,3 +26,14 @@ No raw analytical workbook is required in M1. Dataset inventory, provenance and 
 
 ## Acceptance / closure
 The business question, EBITDA-margin target, scope, roles, risks and milestone plan are documented. Any future scope change must be recorded explicitly.
+
+
+## Standard evaluation structure
+
+- [01_INPUTS](01_INPUTS/README.md)
+- [02_WORKING](02_WORKING/README.md)
+- [03_DELIVERABLES](03_DELIVERABLES/README.md)
+- [04_EVIDENCE](04_EVIDENCE/README.md)
+- [05_REFERENCES](05_REFERENCES/README.md)
+
+See MILESTONE_CONTROL.md, DELIVERABLES_CHECKLIST.md, EVALUATION_RECORD.md and MILESTONE_MANIFEST.csv.
