@@ -1,38 +1,50 @@
-# Capstone milestone archive — evaluator guide
+# Capstone Milestone Archive
 
 **Project:** IndiGo Profitability Intelligence System  
-**Audit date:** 7 November 2026
+**Current project target:** Next-quarter EBITDA margin  
+**Active milestone:** M4 / D4 — Modelling
 
-Each milestone has its own evaluation record and file manifest. Shared code and data remain at canonical repository paths and are referenced instead of duplicated.
+This is the evaluator-facing delivery archive. Each milestone has its own brief, workflow, evidence checklist, control record and manifest. Each README explains purpose, inputs, outputs, workflow, acceptance gate and data/artifacts used.
 
-| Order | Milestone | Deliverable | Status | Evaluation record |
-|---:|---|---|---|---|
-| 1 | M1 | D1 Project Charter | Completed | [M1 record](M1_D1_Project_Charter/EVALUATION_RECORD.md) |
-| 2 | M2 | D2 Data Audit | Completed | [M2 record](M2_D2_Data_Audit/EVALUATION_RECORD.md) |
-| 3 | M3 | D3 EDA | Completed | [M3 record](M3_D3_Exploratory_Data_Analysis/EVALUATION_RECORD.md) |
-| 4 | M4 | D4 Modelling | In Progress — active milestone | [M4 record](M4_D4_Modelling/EVALUATION_RECORD.md) |
-| 5 | M5 | D5 Evaluation | Todo — not started | [M5 record](M5_D5_Model_Evaluation/EVALUATION_RECORD.md) |
-| 6 | M6 | D6 Deployment/Monitoring | Todo — not started; existing scaffold is reusable, not completed D6 | [M6 record](M6_D6_Deployment_Monitoring/EVALUATION_RECORD.md) |
-| 7 | M7 | D7 Final Communication | Todo — not started | [M7 record](M7_D7_Final_Communication/EVALUATION_RECORD.md) |
+## Milestone status
 
-## Evaluation controls
+| Order | Milestone | Status | Primary folder |
+|---:|---|---|---|
+| M1 | D1 Project Charter | Done | [M1_D1_Project_Charter](M1_D1_Project_Charter/) |
+| M2 | D2 Data Audit | Done | [M2_D2_Data_Audit](M2_D2_Data_Audit/) |
+| M3 | D3 EBITDA-only EDA | Done | [M3_D3_Exploratory_Data_Analysis](M3_D3_Exploratory_Data_Analysis/) |
+| M4 | D4 Modelling | **In Progress** | [M4_D4_Modelling](M4_D4_Modelling/) |
+| M5 | D5 Model Evaluation | Todo — not started | [M5_D5_Model_Evaluation](M5_D5_Model_Evaluation/) |
+| M6 | D6 Deployment and Monitoring | Todo — not started | [M6_D6_Deployment_Monitoring](M6_D6_Deployment_Monitoring/) |
+| M7 | D7 Final Communication | Todo — not started | [M7_D7_Final_Communication](M7_D7_Final_Communication/) |
 
-- Target definition: use the approved project target recorded in the current charter and data dictionary; keep it consistent across D4 and subsequent deliverables.
-- D4-v1 is pinned to data/processed/Final_Quarterly_Data(1).xlsx, SHA-256 85bf9e7ee51860fa38892ba3cb3e24b74887645bb2570c096f6183e59a97670c. Do not silently replace it.
-- Current execution status: M1, M2 and M3 are Done; M4 is In Progress; M5, M6 and M7 are Todo.
-- D4 selected persistence because Ridge and Random Forest did not beat it on validation.
-- Historical release timestamps are unavailable for every input; one-quarter lagging does not prove exact point-in-time availability.
-- Brent is a crude benchmark proxy, not IndiGo's realised ATF cost. The audited package has EBITDA, not confirmed EBITDAR, and no passenger count/load-factor records.
-- Planned milestones are not represented as completed.
+## Standard structure
 
-## Registers
+Every milestone includes:
+- `README.md` — brief, workflow, inputs, outputs and status.
+- `MILESTONE_CONTROL.md` — scope, acceptance criteria, risks and next gate.
+- `DELIVERABLES_CHECKLIST.md` — completion checklist.
+- `MILESTONE_MANIFEST.csv` — specific evidence, dataset and artifact inventory.
+- Supporting folders (where relevant): `data/`, `notebooks/`, `src/`, `tests/`, `experiments/`, `reports/`, `references/`, `presentation/`, `demo/`.
 
-- [Milestone status register](MILESTONE_REGISTER.csv)
-- [File-by-file inventory — all 61 Project Library files](ARTIFACT_INVENTORY_2026-11-07.csv)
-- [Audit and upload decisions](ARTIFACT_AUDIT_2026-11-07.md)
+## Data placement and ownership
 
-Repository convention: raw/processed data, source code, reports and notebooks retain canonical locations. Each milestone manifest lists shared files. Do not commit secrets or unlicensed Bloomberg exports/output-rich analysis without permission.
+- M1: no analytical data; charter only.
+- M2: raw/source data and audit records.
+- M3: exact EDA input panel and EDA notebook/review evidence.
+- M4: exact modelling input snapshot, features, run evidence, predictions and model outputs.
+- M5: frozen evaluation input vintage, rolling-origin predictions and error analysis.
+- M6: approved model package and deployment/configuration evidence; no duplicate training dataset.
+- M7: final approved reports/slides/demo and version references.
 
-## Standard milestone folder structure
+Where a source file is shared, M2 holds the source and downstream milestones hold a clearly identified snapshot or data index with source version and SHA-256. Do not silently copy, rename or alter licensed source data.
 
-Every milestone folder now has a `README.md`, `MILESTONE_CONTROL.md`, `DELIVERABLES_CHECKLIST.md` and `MILESTONE_MANIFEST.csv`. Evidence is organized by type in `data/`, `notebooks/`, `src/`, `tests/`, `experiments/`, `reports/` and `references/` where applicable. Each milestone links to canonical shared data instead of creating uncontrolled duplicate copies.
+## Registers and governance
+
+- [Milestone register](MILESTONE_REGISTER.csv)
+- [Artifact audit](ARTIFACT_AUDIT_2026-11-07.md)
+- [Artifact inventory](ARTIFACT_INVENTORY_2026-11-07.csv)
+- [Project board workflow](../docs/GITHUB_PROJECT_BOARD.md)
+- [Project status and work log](../docs/PROJECT_STATUS_AND_WORKLOG.md)
+
+M5-M7 are planning folders only until evidence is produced. Do not describe checklists, templates or placeholders as completed deliverables.
