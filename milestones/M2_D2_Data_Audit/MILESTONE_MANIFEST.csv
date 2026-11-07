@@ -6,7 +6,7 @@ source_register.csv,Data source catalogue,data/source_register.csv,Included copy
 collection_tracker.csv,Collection tracker,data/collection_tracker.csv,Included copy
 IndiGo_Data_Dictionary.csv,Variable definitions and units,IndiGo_Data_Dictionary.csv,Included copy
 Raw workbooks,Original source workbook files,data/raw/CP(4).xlsx; data/raw/CP Master Data(3).xlsx,Canonical files in data/raw
-Processed workbooks,Derived source workbooks,data/processed/Final_Quarterly_Data(1).xlsx; data/processed/EDA ANALYSIS(2).xlsx,Canonical files in data/processeddata/README.md,Canonical raw and processed data index with quarantine and approval rules,milestones/M2_D2_Data_Audit/data/README.md,Included
+Processed workbooks,"Final quarterly datasets: D4-v1 pinned and candidate (3) tracked separately",data/processed/Final_Quarterly_Data(1).xlsx,"D4-v1 canonical; Final_Quarterly_Data(3).xlsx local only; not uploaded or approved"
 MILESTONE_CONTROL.md,Scope inputs outputs acceptance criteria and next action,MILESTONE_CONTROL.md,Included
 DELIVERABLES_CHECKLIST.md,Review and closure checklist,DELIVERABLES_CHECKLIST.md,Included
 01_INPUTS/README.md,01_INPUTS folder index,Included
@@ -14,3 +14,5 @@ DELIVERABLES_CHECKLIST.md,Review and closure checklist,DELIVERABLES_CHECKLIST.md
 03_DELIVERABLES/README.md,03_DELIVERABLES folder index,Included
 04_EVIDENCE/README.md,04_EVIDENCE folder index,Included
 05_REFERENCES/README.md,05_REFERENCES folder index,Included
+
+CP(6).xlsx,Latest CP source alias; hash-identical to CP(4).xlsx,data/raw/CP(4).xlsx,Existing canonical workbook in GitHub; sheet-level inventory in Data Collection Register
