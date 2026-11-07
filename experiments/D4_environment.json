@@ -1,0 +1,7 @@
+{
+  "run_date": "2026-11-07",
+  "python": "3.13.5",
+  "packages": {"pandas":"2.2.3","numpy":"2.3.5","scikit-learn":"1.8.0","joblib":"1.5.3","openpyxl":"3.1.5","pytest":"9.0.2"},
+  "random_seed": 42,
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41"
+}
