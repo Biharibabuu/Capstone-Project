@@ -1,22 +1,13 @@
-file,description,canonical_path_or_source,status
-README.md,M4 purpose methods scores limitations and reproduction instructions,milestones/M4_D4_Modelling/README.md,Uploaded
-MILESTONE_MANIFEST.csv,Complete M4 file register,milestones/M4_D4_Modelling/MILESTONE_MANIFEST.csv,Uploaded
-ANCP_T##_D4_v1.pdf,Four-page D4 submission report,reports/ANCP_T##_D4_v1.pdf; milestones/M4_D4_Modelling/reports/ANCP_T##_D4_v1.pdf,Uploaded and verified
-src/d4_train.py,Reproducible baseline and candidate training workflow,src/d4_train.py,Uploaded
-notebooks/D4_modeling_experiment.ipynb,Reproducible experiment notebook,notebooks/D4_modeling_experiment.ipynb,Uploaded
-tests/test_d4_train.py,Feature lag and split tests,tests/test_d4_train.py,Uploaded
-requirements-d4.txt,Pinned D4 Python environment,requirements-d4.txt,Uploaded
-experiments/D4_experiment_log.csv,All 12 runs including baseline candidates and final locked test,experiments/D4_experiment_log.csv,Uploaded
-experiments/D4_candidate_results.csv,Candidate validation comparison,experiments/D4_candidate_results.csv,Uploaded
-experiments/D4_metrics.json,Selected model and validation/test metrics,experiments/D4_metrics.json,Uploaded
-experiments/D4_test_predictions.csv,Quarter-level locked holdout predictions,experiments/D4_test_predictions.csv,Uploaded
-experiments/D4_data_manifest.json,Source workbook worksheet row counts and SHA-256,experiments/D4_data_manifest.json,Uploaded
-experiments/D4_environment.json,Python platform and package versions,experiments/D4_environment.json,Uploaded
-data/processed/Final_Quarterly_Data(1).xlsx,Source dataset snapshot referenced by hash,data/processed/Final_Quarterly_Data(1).xlsx,Existing canonical repository filedata/README.md,D4 locked input snapshot and checksum reference,milestones/M4_D4_Modelling/data/README.md,Included
-MILESTONE_CONTROL.md,Scope inputs outputs acceptance criteria and next action,MILESTONE_CONTROL.md,Included
-DELIVERABLES_CHECKLIST.md,Review and closure checklist,DELIVERABLES_CHECKLIST.md,Included
-01_INPUTS/README.md,01_INPUTS folder index,Included
-02_WORKING/README.md,02_WORKING folder index,Included
-03_DELIVERABLES/README.md,03_DELIVERABLES folder index,Included
-04_EVIDENCE/README.md,04_EVIDENCE folder index,Included
-05_REFERENCES/README.md,05_REFERENCES folder index,Included
+file,description,status,canonical_path_or_source
+README.md,M4 brief workflow inputs outputs and exit criteria,milestones/M4_D4_Modelling/README.md,Updated
+MILESTONE_CONTROL.md,Scope inputs outputs acceptance criteria and next gate,MILESTONE_CONTROL.md,Included
+DELIVERABLES_CHECKLIST.md,Modelling completion checklist,DELIVERABLES_CHECKLIST.md,Included
+01_INPUTS/README.md,Current EBITDA model input contract,01_INPUTS/README.md,Updated
+02_WORKING/README.md,Code notebook test and environment index,02_WORKING/README.md,Included
+03_DELIVERABLES/README.md,Model report index,03_DELIVERABLES/README.md,Included
+04_EVIDENCE/README.md,Run logs metrics and prediction index,04_EVIDENCE/README.md,Included
+05_REFERENCES/README.md,Source/method reference index,05_REFERENCES/README.md,Included
+data/Final_Quarterly_Data(1).xlsx,Quarterly modelling snapshot with three worksheets,data/Final_Quarterly_Data(1).xlsx,Committed in M4; SHA-256 87e56b4a08a81740c93386f62845bb48de53d0cbea754427b0da3d5b8fd5d970
+../M3_D3_Exploratory_Data_Analysis/data/EDA_ANALYSIS_EBITDA_ONLY_38Q.csv,38-quarter eight-field EBITDA-only EDA handoff,../M3_D3_Exploratory_Data_Analysis/data/EDA_ANALYSIS_EBITDA_ONLY_38Q.csv,Committed M3 source
+legacy D4-v1 inputs and outputs,Historical PAT-margin experiment evidence,experiments/ and reports/,Retained as legacy evidence; not EBITDA model performance
+Current EBITDA target experiment,Fresh baseline/candidate modelling outputs,experiments/,Pending — active M4 work
