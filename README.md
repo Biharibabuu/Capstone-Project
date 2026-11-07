@@ -6,7 +6,7 @@
 
 
 
-For the detailed completed/in-progress/next-step register, see [Project Status and Work Log](docs/PROJECT_STATUS_AND_WORKLOG.md). For data lineage, the fiscal-quarter and point-in-time rules, quality checks, dataset versioning and end-to-end flow, see [Workflow and Data Governance](docs/WORKFLOW_AND_DATA_GOVERNANCE.md). Use [Ongoing Project Context](docs/PROJECT_CONTEXT_FOR_ONGOING_WORK.md) as the persistent working brief for future project updates.
+For the live Todo / In Progress / Done issue tracker and milestone delivery sequence, see [GitHub Project Board and Delivery Workflow](docs/GITHUB_PROJECT_BOARD.md). For the detailed completed/in-progress/next-step register, see [Project Status and Work Log](docs/PROJECT_STATUS_AND_WORKLOG.md). For data lineage, the fiscal-quarter and point-in-time rules, quality checks, dataset versioning and end-to-end flow, see [Workflow and Data Governance](docs/WORKFLOW_AND_DATA_GOVERNANCE.md). Use [Ongoing Project Context](docs/PROJECT_CONTEXT_FOR_ONGOING_WORK.md) as the persistent working brief for future project updates.
 
 
 ## Milestone-wise evaluation folders
