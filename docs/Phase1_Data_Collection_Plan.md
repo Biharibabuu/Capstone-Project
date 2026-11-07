@@ -148,3 +148,47 @@ See [the D3 status note](../reports/D3_eda/README.md) and [D3 notebook](../noteb
 ## Latest file package — 30 October 2026
 
 The current workbook names are `CP(4).xlsx`, `CP Master Data(3).xlsx`, `Final_Quarterly_Data(1).xlsx` and `EDA ANALYSIS(2).xlsx`. The D3 notebook is configured to find the new raw and master workbook names. See [Data Package Manifest](Data_Package_Manifest.md) for sheet inventory and file checksums.
+
+
+---
+
+## Current workbook collection map — 7 November 2026
+
+### CP(6).xlsx — raw source workbook
+
+The latest local upload `CP(6).xlsx` has SHA-256 `208fc66a69c548023c4591bb8b7b5ba41624cdfe56fdd757612cc7b5fd01879e`. It is byte-identical to the repository's [CP(4).xlsx source workbook](https://github.com/Biharibabuu/Capstone-Project/blob/main/data/raw/CP%284%29.xlsx); the same raw source file is already available in GitHub.
+
+| CP workbook sheet | Data collected | Frequency | Fields / purpose |
+|---|---|---|---|
+| `IS` | IndiGo BBG GAAP financial statements | Quarterly | Revenue (`SALES_REV_TURN`), Net Income GAAP (`NET_INCOME`), EBITDA (`EBITDA`) |
+| `usd inr` | USD/INR | Monthly | `USDINR REGN Curncy`, `PX_LAST` and `PX_BID` |
+| `cpi` | CPI indicator | Monthly | `INFUTOTY Index`, `PX_LAST` |
+| `wpi` | WPI indicator | Monthly | `INBGWPIY Index`, `PX_LAST` |
+| `co new` | Dated Brent crude benchmark | Daily | `EUCRBRDT Index`, `PX_LAST` |
+| `co new monthly` | Dated Brent crude benchmark | Monthly | `EUCRBRDT Index`, `PX_LAST` |
+
+The `IS` worksheet is the financial source sheet within CP. Rows marked `Est` must be excluded from actual historical outcome labels. The final Bloomberg source label at the bottom of the sheet is provenance text, not another data tab.
+
+### CP Master Data(5).xlsx
+
+The latest local `CP Master Data(5).xlsx` has SHA-256 `30220588fe96276662a8eeadf56ea6a583da71479e0e26923383c517cc8af474`, identical to the repository's [CP Master Data(3).xlsx](https://github.com/Biharibabuu/Capstone-Project/blob/main/data/raw/CP%20Master%20Data%283%29.xlsx). Its legacy `Financial source` tab must not replace the raw CP `IS` sheet without correcting the previously documented two-quarter shift.
+
+### Final quarterly derived data — source link
+
+**GitHub link to the pinned D4-v1 file:** [Final_Quarterly_Data(1).xlsx](https://github.com/Biharibabuu/Capstone-Project/blob/main/data/processed/Final_Quarterly_Data%281%29.xlsx).
+
+The latest local candidate `Final_Quarterly_Data(3).xlsx` has SHA-256 `87e56b4a08a81740c93386f62845bb48de53d0cbea754427b0da3d5b8fd5d970`. It contains:
+- `Final_Quarterly_Data`: 38 data rows, 12 columns (plus header);
+- `Calculation Audit`: 196 audit rows, 13 columns (plus header);
+- `Data Quality Checks`: 20 check rows, 6 columns (plus header).
+
+Candidate (3) is different from the D4-v1 file and has not been uploaded. Do not treat the D4-v1 GitHub link as a link to candidate (3). Reconcile the candidate against the CP `IS` sheet and CP market tabs before approving a new modelling version.
+
+### Public cross-check links
+- [IndiGo quarterly financial results](https://www.goindigo.in/information/investor-relations/quarterly-financial-results.html) — cross-check quarterly Revenue from Operations and PAT.
+- [Bloomberg Terminal](https://professional.bloomberg.com/products/bloomberg-terminal/) — source platform for CP exports, not a direct public download.
+- [RBI Reference Rate Archive](https://www.rbi.org.in/scripts/ReferenceRateArchive.aspx) — USD/INR cross-check.
+- [MoSPI CPI Catalogue](https://esankhyiki.mospi.gov.in/catalogue-main/catalogue?product=CPI) — CPI cross-check.
+- [Office of the Economic Adviser WPI Data](https://eaindustry.nic.in/download_data_2223.asp) — WPI cross-check.
+
+The Final Quarterly file is a derived project dataset, not an independent external source. Record the CP source workbook, sheet names, source hash and transformation details in its lineage.
