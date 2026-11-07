@@ -1,6 +1,6 @@
 # M5 / D5 — Model Evaluation
 
-Status: Planned. This folder is an evaluation checklist, not a claim that D5 is complete.
+Status: Todo — not started. This folder is an evaluation checklist, not a claim that D5 is complete.
 
 Required work:
 1. Preserve the D4-v1 data snapshot and model-selection decision.
@@ -14,3 +14,11 @@ Required work:
 D4 handoff: persistence was selected because Ridge and Random Forest did not improve validation MAE. Locked test MAE was 11.53 pp; the eight-quarter holdout is small and historical release timestamps are unavailable.
 
 Expected evidence: D5 evaluation report PDF; rolling-origin code/notebook; updated log; error-analysis CSV; metrics JSON; model card; data/environment manifests.
+
+## Folder structure
+
+- `notebooks/` — rolling-origin evaluation notebook.
+- `experiments/` — run log, metrics and error analysis.
+- `reports/` — evaluation memo/report.
+- `references/` — validation protocol and methodological sources.
+- `MILESTONE_CONTROL.md`, `DELIVERABLES_CHECKLIST.md` and `MILESTONE_MANIFEST.csv` — governance and evidence tracking.
