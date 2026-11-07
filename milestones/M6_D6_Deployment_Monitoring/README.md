@@ -3,34 +3,30 @@
 **Status:** TODO — NOT STARTED
 
 ## Brief
-Package the D5-approved forecasting logic into a tested API and user interface, then monitor data and prediction quality. Existing scaffolding is reusable groundwork, not a completed deployment milestone.
-
-## Workflow
-1. Receive the D5-approved model, feature schema and preprocessing contract.
-2. Integrate that exact model into the API prediction route.
-3. Align live feature definitions and update cadence with training.
-4. Validate API inputs, output schema, errors and frontend integration.
-5. Configure secrets securely and document local/hosted run instructions.
-6. Log forecast time, input vintage, model version and prediction.
-7. Monitor freshness, missingness, source failures, feature drift and prediction errors when actuals arrive.
-8. Run an end-to-end demo and document limitations.
+Integrate the D5-approved forecasting model into a tested API and user interface, with controlled market-data refresh and ongoing data/model monitoring. Existing backend/frontend/connectors are scaffolding only; D6 is not complete until end-to-end integration is tested.
 
 ## Inputs and data
-D5-approved model artifact; M2 source register; live connectors for USD/INR, Brent, CPI and WPI; M4/M5 approved feature schema, transformations and units. Training data remain governed by M2/M4; the frontend must not recreate them.
+- D5-approved model artefact and model card.
+- Frozen preprocessing and feature schema from M4/M5.
+- M2 source register and connector contracts for USD/INR, CPI, WPI and Brent proxies.
+- No duplicate training dataset is created in this milestone.
+
+## Workflow
+1. Receive the D5 approval and model contract.
+2. Integrate model and preprocessing into API routes.
+3. Align live feature transformation and update cadence with training.
+4. Validate request/response schemas and error cases.
+5. Connect the HTML frontend to the API.
+6. Protect secrets and document deployment configuration.
+7. Log timestamp, input vintage, model version and predictions.
+8. Monitor freshness, missingness, source errors, drift and prediction errors once actuals arrive.
+9. Run a reproducible end-to-end demo and capture evidence.
 
 ## Planned deliverables
-Deployment architecture/API contract; model integration and API/frontend tests; refresh/store workflow; monitoring plan and thresholds; deployment runbook, security notes and demo evidence.
+Architecture and API contract; integrated prediction service; API/UI tests; refresh/store configuration; monitoring plan and thresholds; deployment runbook; demo evidence.
 
-## Dependencies and exit gate
-Do not integrate an unapproved M4 candidate. D6 starts only after D5 provides an approved model and reproducible input contract.
+## Folder map
+01_INPUTS approved model/features; 02_WORKING implementation/tests; 03_DELIVERABLES deployable app/runbook; 04_EVIDENCE test reports/logs/screens; 05_REFERENCES deployment/security references.
 
-
-## Standard evaluation structure
-
-- [01_INPUTS](01_INPUTS/README.md)
-- [02_WORKING](02_WORKING/README.md)
-- [03_DELIVERABLES](03_DELIVERABLES/README.md)
-- [04_EVIDENCE](04_EVIDENCE/README.md)
-- [05_REFERENCES](05_REFERENCES/README.md)
-
-See MILESTONE_CONTROL.md, DELIVERABLES_CHECKLIST.md, EVALUATION_RECORD.md and MILESTONE_MANIFEST.csv.
+## Exit gate
+End-to-end application works with D5-approved model, secure configuration, tests and monitoring plan.
