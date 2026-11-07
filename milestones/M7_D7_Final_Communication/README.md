@@ -3,34 +3,26 @@
 **Status:** TODO — NOT STARTED
 
 ## Brief
-Prepare the final capstone story and demonstration after modelling, evaluation and deployment evidence are complete.
-
-## Workflow
-1. Freeze the final problem statement, dataset versions and approved model.
-2. Summarize M2 data provenance and limitations.
-3. Present M3 EDA findings without causal claims.
-4. Present M4 model development and M5 time-aware evaluation honestly.
-5. Explain D6 architecture, user journey and monitoring controls.
-6. Prepare executive summary, report, model card, slides and speaker notes.
-7. Rehearse the demo using a documented runbook and reproducible environment.
-8. Check every performance claim against committed metrics and outputs.
+Prepare the final report, model card, presentation and reproducible demonstration after modelling, evaluation and deployment have been completed.
 
 ## Inputs
-M1 charter; M2 data manifest; M3 EDA handoff; M4 experiment records; M5 evaluation results; D6 API/UI test evidence; course rubric; references; team contribution record.
+Approved M1 charter; M2 data audit; M3 EBITDA EDA; M4 experiment records; M5 evaluation report and approved model; M6 integration, monitoring and demo evidence; course rubric and team contribution record.
+
+## Workflow
+1. Freeze final scope, target definition and dataset/model versions.
+2. Summarize business problem, data sources and governance.
+3. Present EDA evidence and limitations without causal claims.
+4. Explain model development, baselines and D5 out-of-sample evaluation.
+5. Describe deployment architecture, interface and monitoring.
+6. Prepare final report, model card, slides and speaker notes.
+7. Rehearse a clean demo with a runbook.
+8. Check every metric/claim against committed evidence.
 
 ## Planned deliverables
-Final capstone report and executive summary; model card; final presentation and speaker notes; demo runbook; references; team contribution statement; repository release record.
+Final capstone report; model card; presentation; speaker notes; demo runbook; reference list; team contribution record; repository release tag.
+
+## Folder map
+01_INPUTS final approved evidence; 02_WORKING report and slide drafts; 03_DELIVERABLES final report/deck/model card; 04_EVIDENCE demo screenshots and review record; 05_REFERENCES cited materials.
 
 ## Exit gate
-Close only after the report, model card, presentation and end-to-end demonstration are reviewed and numerical claims trace to repository evidence.
-
-
-## Standard evaluation structure
-
-- [01_INPUTS](01_INPUTS/README.md)
-- [02_WORKING](02_WORKING/README.md)
-- [03_DELIVERABLES](03_DELIVERABLES/README.md)
-- [04_EVIDENCE](04_EVIDENCE/README.md)
-- [05_REFERENCES](05_REFERENCES/README.md)
-
-See MILESTONE_CONTROL.md, DELIVERABLES_CHECKLIST.md, EVALUATION_RECORD.md and MILESTONE_MANIFEST.csv.
+Final artefacts reviewed; presentation and demo reproducible; all claims trace to repository evidence.
