@@ -26,18 +26,18 @@ See [milestones/README.md](milestones/README.md) for the milestone index and [MI
 
 ## Project vision
 
-Build an end-to-end forecasting product that combines the historical IndiGo financial and macro/market dataset already assembled for the capstone with selected data refreshed from external web APIs. The live prototype uses Alpha Vantage for USD/INR, OilPriceAPI for Brent, and the official MoSPI eSankhyiki API for monthly CPI and WPI. IndiGo financial results are updated after official quarterly releases. No Bloomberg Terminal session is required to run the live API connectors. A Python data/ML backend exposes forecasts through an API; a single HTML/CSS/JavaScript application lets users inspect inputs, market observations, next-quarter PAT-margin forecasts, scenarios, model status and data health.
+Build an end-to-end forecasting product that combines the historical IndiGo financial and macro/market dataset already assembled for the capstone with selected data refreshed from external web APIs. The live prototype uses Alpha Vantage for USD/INR, OilPriceAPI for Brent, and the official MoSPI eSankhyiki API for monthly CPI and WPI. IndiGo financial results are updated after official quarterly releases. No Bloomberg Terminal session is required to run the live API connectors. A Python data/ML backend exposes forecasts through an API; a single HTML/CSS/JavaScript application lets users inspect inputs, market observations, next-quarter EBITDA-margin forecasts, scenarios, model status and data health.
 
-**The project predicts IndiGo business profitability, not its stock price.** Its primary target is next-quarter PAT margin. The model is the core technical deliverable; the HTML application is the user interface, not a substitute for ML experimentation and evaluation.
+**The project predicts IndiGo business profitability, not its stock price.** Its primary target is next-quarter EBITDA margin. The model is the core technical deliverable; the HTML application is the user interface, not a substitute for ML experimentation and evaluation.
 
 > This is an academic prototype using licensed Bloomberg extracts and aggregate financial/market data, plus public reference sources where used for validation. It is not commissioned by or endorsed by IndiGo and does not reveal unpublished actual results. Forecasts are estimates and must be presented with evaluation results and limitations.
 
 ## Primary business question
 
-Can historical IndiGo financial performance and Bloomberg-sourced currency, inflation and oil-benchmark indicators be combined to forecast next-quarter PAT margin, and does the selected model improve out-of-sample performance over a simple historical baseline?
+Can historical IndiGo financial performance and Bloomberg-sourced currency, inflation and oil-benchmark indicators be combined to forecast next-quarter EBITDA margin, and does the selected model improve out-of-sample performance over a simple historical baseline?
 
 **Primary target:**  
-PAT margin (%) = PAT / Revenue from Operations × 100
+EBITDA margin (%) = EBITDA / Revenue from Operations × 100
 
 **Forecast horizon:** one quarter ahead. The pipeline may refresh the latest valid inputs, but it cannot know an unpublished current-quarter profit.
 
@@ -45,7 +45,7 @@ PAT margin (%) = PAT / Revenue from Operations × 100
 
 - Import or refresh latest available financial, market and macroeconomic information.
 - Validate source dates, units, missing values, data freshness and feature availability at forecast time.
-- Produce a next-quarter PAT-margin forecast using the same preprocessing as model training.
+- Produce a next-quarter EBITDA-margin forecast using the same preprocessing as model training.
 - Compare models using chronological validation and a simple baseline.
 - Show inputs used, key contributing factors and reliability/uncertainty information where supported by evaluation.
 - Run low-cost/favourable, base and high-cost/adverse scenarios where assumptions are defensible.
@@ -220,7 +220,7 @@ The D2 audit report and its three-page datasheet document the audit of the Bloom
 - **Critical finding:** the supplied master workbook's `Financial source` sheet is shifted by two quarters relative to the raw Bloomberg `IS` sheet. The analytical financial outcomes must be rebuilt from raw `IS` values; do not use the misaligned financial source sheet for modelling.
 - **CPI date check:** the latest raw `CP(4).xlsx` sheet has monthly dates through 2026-09-30; the earlier malformed-date concern was not reproduced in this version. Verify any dates in the derived quarterly file against the raw series and do not manually alter source dates.
 - **Data governance:** Bloomberg source files are proprietary. Do not publish raw exports or derived data unless institutional licence terms permit it. Keep raw exports in authorised private storage.
-- **Feature timing:** use only information available at the forecast cutoff; the next-quarter PAT margin is a target, never a predictor.
+- **Feature timing:** use only information available at the forecast cutoff; the next-quarter EBITDA margin is a target, never a predictor.
 
 Keep licensed Bloomberg exports and data-derived workbook values in authorized local/private storage. The public repository should contain code, schemas, source metadata and documentation only unless the applicable licence explicitly permits redistribution. Do not use the earlier generated master dataset until it has been rebuilt from the raw `IS` sheet.
 
