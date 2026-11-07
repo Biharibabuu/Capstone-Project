@@ -3,6 +3,6 @@
 ## Canonical executed notebook
 [ANCP_T##_D3_EDA_New_Dataset_EXECUTED.ipynb](ANCP_T%23%23_D3_EDA_New_Dataset_EXECUTED.ipynb)
 
-The repository notebook has been updated to read the committed M3 EBITDA-only CSV input at `../data/EDA_ANALYSIS_EBITDA_ONLY_38Q.csv` (with repository-root and Colab fallbacks). It retains 34 cells, 14 code cells, the 14 previous execution counts and 43 saved outputs. The markdown, data path and input-loading cell were corrected. **The embedded outputs are retained from the supplied executed run and have not been re-executed in GitHub.**
+This is the only D3 notebook retained in the repository. It contains 34 cells, 14 code cells, 43 saved outputs and 14 execution counts. The code reads the canonical Excel workbook from `../01_INPUTS/EDA ANALYSIS(4).xlsx` when run from this folder, and has repository-root/Colab/local fallbacks.
 
-For a clean re-run, run the notebook from this folder with the M3 data CSV present. Review and regenerate all outputs before relying on updated results.
+All original executed outputs are retained. The dataset filename in the notebook's markdown, code and saved output labels has been aligned to the actual uploaded workbook. The notebook has not been freshly re-executed after changing the path; the saved summary statistics were independently checked against the attached Excel workbook.

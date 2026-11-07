@@ -1,36 +1,38 @@
 # M3 / D3 — Exploratory Data Analysis
 
-**Status:** DONE — EBITDA-only EDA handoff completed.
+**Status: IN REVIEW — the executed notebook and matching Excel input are now stored in the milestone. Scope approval and final reviewer sign-off remain open.**
 
-## Brief
-M3 explores the distribution, time pattern and macro/market associations of IndiGo's quarterly EBITDA margin. It is an explanatory/diagnostic milestone; it does not train or validate the forecasting model.
+## Objective
+Explore quarterly IndiGo EBITDA Margin and its association with USD/INR, CPI, WPI and supplied daily/monthly oil-benchmark indicators. This is exploratory analysis, not a causal study or forecast evaluation.
 
-## Dataset used
-[EDA_ANALYSIS_EBITDA_ONLY_38Q.csv](data/EDA_ANALYSIS_EBITDA_ONLY_38Q.csv) — 38 quarterly observations from 2017 to 2026 Q2, with EBITDA Margin and five macro/market indicator series. PAT is not included as an outcome.
+## Canonical files
+- **Dataset:** [EDA ANALYSIS(4).xlsx](01_INPUTS/EDA%20ANALYSIS%284%29.xlsx), worksheet `Sheet1`.
+- **Notebook:** [ANCP_T##_D3_EDA_New_Dataset_EXECUTED.ipynb](02_WORKING/ANCP_T%23%23_D3_EDA_New_Dataset_EXECUTED.ipynb).
 
-## Canonical notebook
-[Executed EBITDA-only EDA notebook](02_WORKING/ANCP_T%23%23_D3_EDA_New_Dataset_EXECUTED.ipynb). It retains 34 cells, 14 executed code cells and 43 outputs. Its file input was corrected to point to the committed M3 CSV. Previously captured outputs remain embedded; a clean re-run is a recommended independent verification step.
+The workbook contains 38 quarterly records and 9 columns, including PAT Margin. The notebook deliberately uses 8 columns and EBITDA Margin as its only profitability outcome. Its saved outputs were checked against the workbook: EBITDA Margin mean 12.306%, median 15.000% and standard deviation 14.255 percentage points.
 
-## Workflow
-1. Load the versioned M3 CSV panel.
-2. Check rows, columns, duplicates, missingness and quarter coverage.
-3. Standardise column names/types and create chronological quarter-end dates.
-4. Describe EBITDA margin and indicator distributions.
-5. Examine time trends, correlations and calendar-quarter differences.
-6. Test five pre-specified hypotheses; report n/effect/p-value cautiously.
-7. Record insights, limitations and modelling recommendations.
-8. Hand the approved EDA input and caveats to M4.
+## Notebook record
+34 cells (20 markdown, 14 code), 43 saved outputs and 14 execution counts are retained. The input-loading code points to the workbook in M3/01_INPUTS and includes notebook-directory, repository-root, Colab and /mnt/data fallbacks.
 
-## Folder map
-- 01_INPUTS/ — input register and data-use notes.
-- 02_WORKING/ — canonical executed notebook.
-- 03_DELIVERABLES/ — evaluator-facing output index.
-- 04_EVIDENCE/ — outputs and clean-run verification evidence.
-- 05_REFERENCES/ — data and method references.
-- data/ — exact 38-quarter EBITDA-only input panel.
+## Analysis workflow
+1. Load `Sheet1` from the canonical Excel input.
+2. Check dimensions, duplicates, missingness, types and quarter coverage.
+3. Standardize columns and construct chronological quarter-end dates.
+4. Describe EBITDA-margin and macro/market indicator distributions.
+5. Examine trends, correlations and calendar-quarter differences.
+6. Test the five pre-specified hypotheses and record effect sizes and p-values.
+7. Summarize insights, limitations and modelling recommendations for M4.
 
-## Limitations
-Only 38 observations; time-series dependence; no passenger operating metrics; oil series identity and units are not specified in this workbook and must be treated as proxies. Associations are not causation or forecast-performance evidence.
+## Scope and limitations
+D1/D4 currently define PAT Margin as the overall capstone forecast target, whereas this D3 notebook analyses EBITDA Margin only. The workbook contains PAT Margin but the notebook intentionally does not use it as the EDA outcome. The team must confirm whether D3 is supplementary EBITDA analysis or whether a separate PAT-margin EDA is required.
 
-## Handoff
-M4 is the active milestone. Use this EBITDA-only input and confirm target construction, date alignment, fiscal-quarter labels, feature availability and chronological validation before modelling.
+There are 38 quarterly observations. The oil series is a supplied benchmark proxy; the exact instrument and units are not fully established in the EDA workbook. Association does not establish causation or predictive performance.
+
+## Standard milestone structure
+- [01_INPUTS](01_INPUTS/README.md) — canonical Excel dataset and input lineage.
+- [02_WORKING](02_WORKING/README.md) — canonical executed notebook.
+- [03_DELIVERABLES](03_DELIVERABLES/README.md) — separate faculty-facing summary/report, if required.
+- [04_EVIDENCE](04_EVIDENCE/README.md) — execution and review evidence.
+- [05_REFERENCES](05_REFERENCES/README.md) — source and method references.
+
+See [MILESTONE_CONTROL](MILESTONE_CONTROL.md), [DELIVERABLES_CHECKLIST](DELIVERABLES_CHECKLIST.md), [EVALUATION_RECORD](EVALUATION_RECORD.md) and [MILESTONE_MANIFEST](MILESTONE_MANIFEST.csv).

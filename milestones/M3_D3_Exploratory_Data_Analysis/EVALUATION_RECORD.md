@@ -1,57 +1,31 @@
 # M3 / D3 — EDA Evaluation Record
 
-**Status:** Done  
-**Analysis scope:** EBITDA-margin EDA only  
-**Dataset:** 38 quarterly observations, 2017–2026 Q2
+**Status:** Notebook and matching Excel input uploaded; scope/reviewer approval pending.  
+**Dataset:** [EDA ANALYSIS(4).xlsx](01_INPUTS/EDA%20ANALYSIS%284%29.xlsx), Sheet1.  
+**Notebook:** [ANCP_T##_D3_EDA_New_Dataset_EXECUTED.ipynb](02_WORKING/ANCP_T%23%23_D3_EDA_New_Dataset_EXECUTED.ipynb).
 
-## 1. Objective
+## Dataset
+38 quarterly observations, 9 columns including header. The data fields are Year, Quarter (Calendar), PAT Margin, EBITDA Margin, USD/INR quarterly mean, CPI quarterly mean, WPI quarterly mean, daily oil-benchmark quarterly mean and monthly oil-benchmark quarterly mean. SHA-256: `0c2a79065faaee48cec6393f79ff330a98a9eb20c1add3e87e8a45dd7e1c0f46`.
 
-Describe the quarterly distribution and movement of IndiGo EBITDA margin, examine its association with available macro/market indicators, test pre-specified hypotheses, and pass defensible insights and caveats to M4. This is exploratory analysis, not a causal study or forecast evaluation.
+The notebook uses 8 fields: Year, Quarter (Calendar), EBITDA Margin, USD/INR, CPI, WPI, daily oil benchmark and monthly oil benchmark. PAT Margin is present in the Excel file but intentionally excluded from this EBITDA-focused notebook.
 
-## 2. Exact analysis input
+## Notebook integrity and data match
+The executed notebook retains 34 cells, 43 saved outputs and 14 execution counts. The workbook's EBITDA Margin statistics are mean 12.305878%, median 15.000185% and sample standard deviation 14.255359 percentage points. These match the notebook's saved rounded summary (12.306%, 15.000%, 14.255%). The notebook input path and labels have been updated to the committed Excel filename. The notebook was not freshly re-executed after that path change.
 
-The milestone data folder contains [EDA_ANALYSIS_EBITDA_ONLY_38Q.csv](data/EDA_ANALYSIS_EBITDA_ONLY_38Q.csv), an eight-column analysis panel:
-- Year
-- Calendar Quarter
-- EBITDA Margin
-- USD/INR quarterly mean
-- CPI quarterly mean
-- WPI quarterly mean
-- Daily oil-benchmark quarterly mean
-- Monthly oil-benchmark quarterly mean
+## Exploratory results
+- H1 USD/INR: Spearman rho 0.554, p < 0.001, n = 38.
+- H2 monthly oil proxy: rho 0.264, p = 0.109, n = 38.
+- H3 CPI: rho -0.087, p = 0.605, n = 38.
+- H4 WPI: rho -0.450, p = 0.005, n = 38.
+- H5 calendar-quarter difference: Kruskal–Wallis p = 0.125, n = 38.
 
-The source workbook most recently supplied was EDA ANALYSIS(6).xlsx; SHA-256: 0c2a79065faaee48cec6393f79ff330a98a9eb20c1add3e87e8a45dd7e1c0f46. The original workbook remains the authoritative binary for data; the CSV is the explicit EBITDA-only analysis extract.
+These are exploratory same-period associations, not causal effects or out-of-sample next-quarter prediction evidence. The sample is small and time-dependent.
 
-## 3. Hypotheses
+## Critical project-target alignment
+The approved D1/D4 project target is PAT Margin. This notebook analyses EBITDA Margin only, even though PAT Margin exists in the input workbook. Keep D3 described as EBITDA-focused unless the team explicitly expands the analysis to PAT Margin and reruns the tests.
 
-| ID | Hypothesis | Method |
-|---|---|---|
-| H1 | USD/INR is associated with EBITDA margin | Spearman correlation |
-| H2 | Monthly oil benchmark proxy is associated with EBITDA margin | Spearman correlation |
-| H3 | CPI is associated with EBITDA margin | Spearman correlation |
-| H4 | WPI is associated with EBITDA margin | Spearman correlation |
-| H5 | EBITDA margin differs across calendar-quarter groups | Kruskal-Wallis / non-parametric group comparison |
-
-Report paired n, effect size and p-value. Treat significance tests as exploratory; small samples, trends, multiple tests and omitted variables limit interpretation. Do not infer causality.
-
-## 4. Quality and interpretation controls
-
-- Use only EBITDA margin as the EDA outcome; do not include PAT in this analysis.
-- Verify target denominator, source period and actual/estimate status before forecasting.
-- Preserve the supplied quarter labels in this EDA record; M4 must convert to the agreed fiscal-quarter key where required.
-- The Brent field is a crude benchmark proxy, not Indian ATF or IndiGo's realised fuel spend.
-- Do not claim load factor, passenger yield, RPK/ASK or passenger counts: those fields are not in this dataset.
-- EDA associations are not evidence of future model performance.
-
-## 5. Files and evidence
-
-- `data/EDA_ANALYSIS_EBITDA_ONLY_38Q.csv` — analysis panel.
-- `ANCP_T##_D3_eda.ipynb` — current published source-only notebook (legacy source currently retained; see README/known limitation).
-- `D3_Review_Notes.md` — review and handoff.
-- `MILESTONE_CONTROL.md`, `DELIVERABLES_CHECKLIST.md`, `MILESTONE_MANIFEST.csv`.
-
-The user's latest executed EDA notebook (34 cells; 14 executed code cells with saved tables and charts) was supplied in this session. It has not yet been committed as a repository notebook binary. Use the source-only copy until the notebook is corrected and committed with the exact EDA data input.
-
-## 6. Handoff to M4
-
-Use the EBITDA-only 38-quarter extract and verified M2 source definitions. Recheck target construction, chronology, fiscal-quarter labels, data availability cut-offs, missingness and baseline performance before selecting a model.
+## Closure criteria
+1. Clean-run the notebook from M3/02_WORKING using the uploaded workbook in M3/01_INPUTS.
+2. Confirm the oil benchmark definition/units and source lineage.
+3. Approve the EBITDA-vs-PAT EDA scope with the capstone team/faculty.
+4. Store any separate faculty-ready summary/report in 03_DELIVERABLES and update the manifest.

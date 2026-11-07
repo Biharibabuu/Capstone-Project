@@ -1,11 +1,13 @@
 # M3 / D3 Change Log
 
-## 7 November 2026 — Replace earlier EDA artifacts
-- Added ANCP_T##_D3_EDA_New_Dataset_EXECUTED.ipynb as the one canonical D3 notebook under 02_WORKING.
-- Preserved all 34 cells and all 43 saved outputs from the uploaded notebook.
-- Removed the earlier M3 notebook, the shared notebooks/03_eda.ipynb copy, the old EDA ANALYSIS(2).xlsx workbook from processed-data and M3 data folders, and the old EDA_ANALYSIS_EBITDA_ONLY_38Q.csv duplicate.
-- The new executed notebook is the only D3 notebook in GitHub.
-- EDA ANALYSIS(5).xlsx is referenced by the notebook but was not included with the upload; it remains a required, missing input.
-- Recorded the mismatch between EBITDA Margin in D3 and PAT Margin in the D1/D4 project target.
+## 7 November 2026 — Replace EDA input and notebook
+- The latest executed notebook supplied by the user is the canonical D3 notebook.
+- All 34 cells, 43 saved outputs and 14 execution counts are preserved.
+- The notebook's input path and dataset labels now refer to EDA ANALYSIS(4).xlsx.
+- Uploaded the matching EDA ANALYSIS(4).xlsx workbook to 01_INPUTS.
+- Removed the previous small EDA ANALYSIS(5).xlsx placeholder/incorrect workbook.
+- Removed the previous notebook variant that read the old CSV dataset; only one D3 notebook is retained.
+- The dataset's EBITDA Margin statistics match the notebook's saved summary.
+- Recorded the D3 EBITDA Margin vs D1/D4 PAT Margin target-scope issue for review.
 
-The raw financial source workbooks and D4-v1 input were not changed.
+The raw CP source workbooks and D4-v1 dataset were not changed.
