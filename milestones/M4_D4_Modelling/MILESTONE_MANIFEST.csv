@@ -12,4 +12,6 @@ experiments/D4_metrics.json,Selected model and validation/test metrics,experimen
 experiments/D4_test_predictions.csv,Quarter-level locked holdout predictions,experiments/D4_test_predictions.csv,Uploaded
 experiments/D4_data_manifest.json,Source workbook worksheet row counts and SHA-256,experiments/D4_data_manifest.json,Uploaded
 experiments/D4_environment.json,Python platform and package versions,experiments/D4_environment.json,Uploaded
-data/processed/Final_Quarterly_Data(1).xlsx,Source dataset snapshot referenced by hash,data/processed/Final_Quarterly_Data(1).xlsx,Existing canonical repository file
+data/processed/Final_Quarterly_Data(1).xlsx,Source dataset snapshot referenced by hash,data/processed/Final_Quarterly_Data(1).xlsx,Existing canonical repository filedata/README.md,D4 locked input snapshot and checksum reference,milestones/M4_D4_Modelling/data/README.md,Included
+MILESTONE_CONTROL.md,Scope inputs outputs acceptance criteria and next action,MILESTONE_CONTROL.md,Included
+DELIVERABLES_CHECKLIST.md,Review and closure checklist,DELIVERABLES_CHECKLIST.md,Included
