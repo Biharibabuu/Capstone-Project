@@ -1,33 +1,36 @@
-# D3 — Review Notes for the New Executed EDA Notebook
+# M3 / D3 — Review Notes and M4 Handoff
 
-**Review date:** 7 November 2026  
-**Canonical artifact:** [Executed notebook](02_WORKING/ANCP_T%23%23_D3_EDA_New_Dataset_EXECUTED.ipynb)
+**Status:** Done  
+**Target:** EBITDA margin only
 
-## Source and run record
-The uploaded notebook is Jupyter Notebook v4.5. It contains 34 cells (20 markdown, 14 code), 43 saved outputs and 14 execution counts. The notebook reports that it was run against EDA ANALYSIS(5).xlsx, worksheet Sheet1.
+## Data panel
 
-## Dataset schema and coverage stated in notebook
-38 quarterly observations from 31 March 2017 to 30 June 2026. The notebook requires Year, Quarter (Calendar), EBITDA Margin, USD INR (Quarterly Mean), CPI inflation (Quarterly Mean), WPI inflation (Quarterly Mean), Oil benchmark(DAILY) (Quarterly Mean), and Oil benchmark(MONTHLY) (Quarterly Mean).
+The M3 milestone contains [EDA_ANALYSIS_EBITDA_ONLY_38Q.csv](data/EDA_ANALYSIS_EBITDA_ONLY_38Q.csv), an eight-field quarterly extract with 38 observations (2017–2026 Q2). It excludes PAT and carries the USD/INR, CPI, WPI and daily/monthly Dated Brent benchmark proxies supplied in the EDA workbook.
 
-## Hypothesis results
-| ID | Relationship | n | Statistic | p-value |
-|---|---|---:|---:|---:|
-| H1 | EBITDA Margin and USD/INR | 38 | Spearman rho 0.554 | <0.001 |
-| H2 | EBITDA Margin and monthly oil proxy | 38 | Spearman rho 0.264 | 0.109 |
-| H3 | EBITDA Margin and CPI | 38 | Spearman rho -0.087 | 0.605 |
-| H4 | EBITDA Margin and WPI | 38 | Spearman rho -0.450 | 0.005 |
-| H5 | EBITDA Margin across calendar quarters | 38 | Kruskal–Wallis | 0.125 |
+## Main controls
 
-## Interpretation controls
-- Results are exploratory; the notebook warns about small sample size and time dependence.
-- Do not interpret an observed correlation as causal.
-- Same-quarter association is not a one-quarter-ahead forecasting test.
-- The oil benchmark is a proxy; exact instrument and units are not verified by this workbook.
-- The D3 outcome is EBITDA Margin, while the D1/D4 capstone target is PAT Margin.
+1. Validate EBITDA and Revenue from Operations definitions and the calculation denominator against the underlying company statements.
+2. Exclude estimated or unavailable financial rows from realised targets.
+3. Use a unique chronological quarter key; convert calendar quarter to Indian fiscal-quarter labels for modelling only after agreeing the convention.
+4. Preserve source observation dates and known publication/availability dates.
+5. Dated Brent is an oil benchmark proxy, not aviation turbine fuel or IndiGo's actual fuel price.
+6. The analysis is observational and exploratory; correlation does not prove causality.
+7. No passenger count, load factor, yield, RPK/ASK, capacity or route-mix dataset is present in the supplied panel.
 
-## Outstanding actions
-1. Supply EDA ANALYSIS(5).xlsx to 01_INPUTS and record its SHA-256.
-2. Confirm data-use rights for the workbook and saved notebook outputs.
-3. Re-run from a clean environment with the exact input.
-4. Decide whether this is supplementary EBITDA analysis or whether PAT-margin EDA is also needed.
-5. Review the D3 summary and modelling handoff before closure.
+## Hypothesis framework
+
+- H1: USD/INR and EBITDA margin association.
+- H2: monthly oil benchmark proxy and EBITDA margin association.
+- H3: CPI and EBITDA margin association.
+- H4: WPI and EBITDA margin association.
+- H5: EBITDA margin differences across calendar-quarter groups.
+
+Use paired sample sizes and Spearman effect sizes/p-values where appropriate. Avoid interpreting small-sample p-values as proof of business causation.
+
+## Notebook publication note
+
+The older notebook source currently in the repository still contains legacy PAT language and must not be presented as the approved EBITDA-only notebook. The latest uploaded notebook has 34 cells and saved outputs in its uploaded copy, but the raw notebook binary has not yet been published to the repository. Until it is corrected and committed, use the M3 EBITDA-only CSV and this review note as the scope-controlled data handoff.
+
+## Handoff to M4
+
+M4 owns the modelling data snapshot, features, chronological splits, training code, experiment log, model comparison, predictions and model-selection report. Do not use the old PAT experiment as evidence of an EBITDA-margin model.
