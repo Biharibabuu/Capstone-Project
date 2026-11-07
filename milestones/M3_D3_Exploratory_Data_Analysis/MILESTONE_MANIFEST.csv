@@ -1,3 +1,6 @@
 file,description,canonical_source,record_status
-03_eda.ipynb,EDA notebook source,notebooks/03_eda.ipynb,Included copy
-D3_Review_Notes.md,EDA review notes,reports/D3_eda/README.md,Included copy
+ANCP_T##_D3_eda.ipynb,"Latest D3 EDA notebook; analysis code and markdown retained; saved outputs cleared",notebooks/03_eda.ipynb,"Published source-only copy"
+D3_Review_Notes.md,"Source lineage, review findings, analytical controls and M4 handoff",D3_Review_Notes.md,"Included"
+EVALUATION_RECORD.md,"D3 hypotheses, data-quality controls and evaluation notes",EVALUATION_RECORD.md,"Included"
+README.md,"M3 folder guide and data-governance instructions",README.md,"Updated"
+MILESTONE_MANIFEST.csv,"M3 file inventory",MILESTONE_MANIFEST.csv,"Updated"
