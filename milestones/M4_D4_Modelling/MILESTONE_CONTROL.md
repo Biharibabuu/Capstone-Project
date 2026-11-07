@@ -1,25 +1,21 @@
-# M4 / D4 — Modelling and Forecasting
+# M4 / D4 — Modelling: Milestone Control
 
-**Status:** IN PROGRESS
+**Status:** D4-v1 executed and documented.
 
-## 1. Purpose
-Build transparent forecasting baselines and candidate models for the approved next-quarter profitability target.
+## Purpose
+Compare a simple persistence baseline with candidate regression models for next-quarter PAT Margin using a fixed chronological train/validation/test design.
 
-## 2. Inputs and dependencies
-M2 approved data snapshot, M3 EDA insights, target/feature definitions and chronological split protocol.
+## Inputs
+Final_Quarterly_Data(1).xlsx; worksheet Final_Quarterly_Data. SHA-256: 85bf9e7ee51860fa38892ba3cb3e24b74887645bb2570c096f6183e59a97670c. Do not replace this source in the D4-v1 record.
 
-## 3. Required outputs
-Training pipeline, baseline and candidate models, tuning log, reproducible notebook, tests, metrics, predictions, model-selection report and environment/data manifests.
+## Working record
+src/d4_train.py, notebooks/D4_modeling_experiment.ipynb, tests/test_d4_train.py, requirements-d4.txt.
 
-## 4. Acceptance criteria
-No leakage; chronological validation; baseline comparison; reproducible run; limitations and model-selection rationale documented.
+## Deliverable
+reports/ANCP_T##_D4_v1.pdf.
 
-## 5. Governance and reproducibility
-- Keep source files immutable; create versioned derived outputs.
-- Record file name, source, retrieval date, observation period, units, owner, access/redistribution decision and SHA-256 for each dataset.
-- Keep code, notebooks, reports, test evidence and data manifests in their designated subfolders.
-- Never commit credentials, tokens, personal data or source material without redistribution authorization.
-- Record all scope or data-definition changes in the project change log and update affected milestone documents.
+## Evidence
+The experiments folder contains 12 runs, candidate validation results, full metrics, eight locked-test predictions, data manifest and runtime environment.
 
-## 6. Current next action
-Current active milestone: continue D4 modelling work, preserve prior experiment snapshots and record every run in the experiment log.
+## Result and exit gate
+Persistence was selected because Ridge and Random Forest did not outperform it on validation. Locked-test MAE was 11.53 percentage points and RMSE 14.20 percentage points on eight quarters. D4-v1 is a completed benchmark checkpoint; D5 must add point-in-time controls, rolling-origin evaluation and uncertainty analysis before model selection for deployment.

@@ -1,20 +1,13 @@
 # M4 / D4 — Deliverables Checklist
 
-## Planning and control
-- [ ] Scope, owner, dependencies and acceptance criteria confirmed
-- [ ] Risks, assumptions and decisions recorded
-- [ ] Inputs and versions listed in the milestone manifest
+- [x] Source dataset and SHA-256 pinned.
+- [x] Target, lag and chronological split documented.
+- [x] Persistence baseline implemented.
+- [x] Ridge and Random Forest challenger runs completed.
+- [x] Validation metrics and candidate decision recorded.
+- [x] Locked holdout predictions and metrics recorded.
+- [x] Experiment log, environment manifest and requirements saved.
+- [x] Training script, notebook, tests and report uploaded.
+- [ ] D5 point-in-time and rolling-origin robustness review completed.
 
-## Execution evidence
-- [ ] Source files / code / notebooks stored in the correct subfolder
-- [ ] Reproducible execution instructions provided
-- [ ] Quality checks, tests or review evidence attached
-- [ ] Results and limitations documented
-
-## Review and closure
-- [ ] Deliverables reviewed against acceptance criteria
-- [ ] Final artifacts and checksums recorded
-- [ ] README, milestone register and GitHub issue updated
-- [ ] Closure decision and date recorded
-
-**Milestone-specific acceptance:** No leakage; chronological validation; baseline comparison; reproducible run; limitations and model-selection rationale documented.
+**Status:** D4-v1 checkpoint complete; this does not mean D5 model evaluation or deployment is complete.

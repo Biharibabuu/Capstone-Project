@@ -35,3 +35,14 @@ The existing D4-v1 run is a historical PAT-margin experiment. It compared persis
 
 ## Exit gate
 M4 closes only when the EBITDA-margin training workflow is reproducible, tested, chronologically evaluated, compared against a baseline and documented with limitations.
+
+
+## Standard evaluation structure
+
+- [01_INPUTS](01_INPUTS/README.md)
+- [02_WORKING](02_WORKING/README.md)
+- [03_DELIVERABLES](03_DELIVERABLES/README.md)
+- [04_EVIDENCE](04_EVIDENCE/README.md)
+- [05_REFERENCES](05_REFERENCES/README.md)
+
+See MILESTONE_CONTROL.md, DELIVERABLES_CHECKLIST.md, EVALUATION_RECORD.md and MILESTONE_MANIFEST.csv.

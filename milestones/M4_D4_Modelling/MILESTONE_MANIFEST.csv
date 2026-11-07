@@ -15,3 +15,8 @@ experiments/D4_environment.json,Python platform and package versions,experiments
 data/processed/Final_Quarterly_Data(1).xlsx,Source dataset snapshot referenced by hash,data/processed/Final_Quarterly_Data(1).xlsx,Existing canonical repository filedata/README.md,D4 locked input snapshot and checksum reference,milestones/M4_D4_Modelling/data/README.md,Included
 MILESTONE_CONTROL.md,Scope inputs outputs acceptance criteria and next action,MILESTONE_CONTROL.md,Included
 DELIVERABLES_CHECKLIST.md,Review and closure checklist,DELIVERABLES_CHECKLIST.md,Included
+01_INPUTS/README.md,01_INPUTS folder index,Included
+02_WORKING/README.md,02_WORKING folder index,Included
+03_DELIVERABLES/README.md,03_DELIVERABLES folder index,Included
+04_EVIDENCE/README.md,04_EVIDENCE folder index,Included
+05_REFERENCES/README.md,05_REFERENCES folder index,Included
