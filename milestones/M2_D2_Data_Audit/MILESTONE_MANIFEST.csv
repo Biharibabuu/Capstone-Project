@@ -1,0 +1,9 @@
+file,description,canonical_source,record_status
+D2_Data_Audit_Summary.md,D2 audit summary,docs/D2_Data_Audit_Summary.md,Included copy
+Data_Feasibility_Audit.md,Source and modelling feasibility audit,docs/Data_Feasibility_Audit.md,Included copy
+Data_Package_Manifest.md,Workbook inventory and checksums,docs/Data_Package_Manifest.md,Included copy
+source_register.csv,Data source catalogue,data/source_register.csv,Included copy
+collection_tracker.csv,Collection tracker,data/collection_tracker.csv,Included copy
+IndiGo_Data_Dictionary.csv,Variable definitions and units,IndiGo_Data_Dictionary.csv,Included copy
+Raw workbooks,Original source workbook files,data/raw/CP(4).xlsx; data/raw/CP Master Data(3).xlsx,Canonical files in data/raw
+Processed workbooks,Derived source workbooks,data/processed/Final_Quarterly_Data(1).xlsx; data/processed/EDA ANALYSIS(2).xlsx,Canonical files in data/processed
