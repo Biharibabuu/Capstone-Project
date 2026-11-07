@@ -3,36 +3,28 @@
 **Status:** TODO — NOT STARTED
 
 ## Brief
-Independently evaluate the model selected from M4. D5 tests whether the model is reliable enough for intended use; it is not another model-building stage.
-
-## Workflow
-1. Freeze the M4 candidate, baseline, preprocessing and dataset vintage.
-2. Establish point-in-time feature eligibility using observation and publication/availability dates.
-3. Run expanding-window or rolling-origin backtests.
-4. Compare against a simple baseline using MAE and RMSE.
-5. Analyse residuals by period, market regime and unusual quarters.
-6. Quantify uncertainty and define conditions under which forecasts should be withheld.
-7. Write the evaluation report and update the model card.
+Independently evaluate the M4-selected EBITDA-margin forecasting model. D5 tests reliability and robustness; it does not build the production UI or re-run arbitrary model searches.
 
 ## Inputs and data
-- M2 source-data definitions and approved data package.
-- M3 EDA handoff and exact data-vintage manifest.
-- M4 EBITDA-target model artifact, preprocessing pipeline, experiment log and baseline.
-- Any new data/features must be versioned; do not silently replace the M4 input snapshot.
+- Frozen M4 model, preprocessing and candidate/baseline definitions.
+- Exact M4 modelling dataset version and SHA-256.
+- M2 source availability metadata and M3 EDA limitations.
+- New evaluation panels only when versioned with source and availability dates.
+
+## Workflow
+1. Freeze candidate, baseline, feature schema and input vintage.
+2. Enforce point-in-time eligibility using observation and publication/available-at dates.
+3. Run expanding-window or rolling-origin backtests.
+4. Compare MAE/RMSE against persistence and any appropriate seasonal-naive baseline.
+5. Analyse residuals by quarter, period and market regime.
+6. Quantify uncertainty and define forecast abstention conditions.
+7. Prepare an evaluation report, model card update and deployment recommendation.
 
 ## Planned deliverables
-Rolling-origin notebook/code; evaluation experiment log; metrics and quarter-level error analysis; evaluation report; model-card evidence; data/environment manifests; reproducibility instructions.
+Rolling-origin notebook/code; experiment log; prediction/error CSV; metrics JSON; evaluation report; updated model card; reproducibility manifest.
 
-## Dependencies and exit gate
-Start after M4 model candidates and training protocol are stable. Close only when time-aware validation, leakage checks, baseline comparison, uncertainty and limitations are reviewed and reproducible.
+## Folder map
+01_INPUTS frozen model and data contracts; 02_WORKING backtest notebook/code; 03_DELIVERABLES evaluation report; 04_EVIDENCE metrics/predictions/error analysis; 05_REFERENCES validation methodology.
 
-
-## Standard evaluation structure
-
-- [01_INPUTS](01_INPUTS/README.md)
-- [02_WORKING](02_WORKING/README.md)
-- [03_DELIVERABLES](03_DELIVERABLES/README.md)
-- [04_EVIDENCE](04_EVIDENCE/README.md)
-- [05_REFERENCES](05_REFERENCES/README.md)
-
-See MILESTONE_CONTROL.md, DELIVERABLES_CHECKLIST.md, EVALUATION_RECORD.md and MILESTONE_MANIFEST.csv.
+## Exit gate
+Reviewed point-in-time evaluation, benchmark comparison, error analysis and documented recommendation for deployment.
