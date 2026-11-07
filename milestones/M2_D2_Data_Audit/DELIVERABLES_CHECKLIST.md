@@ -1,20 +1,13 @@
 # M2 / D2 — Deliverables Checklist
 
-## Planning and control
-- [ ] Scope, owner, dependencies and acceptance criteria confirmed
-- [ ] Risks, assumptions and decisions recorded
-- [ ] Inputs and versions listed in the milestone manifest
+- [x] Source register and collection tracker prepared.
+- [x] Data dictionary and source/field definitions documented.
+- [x] Initial data feasibility and quality audit documented.
+- [x] Workbook package inventory and checksums recorded for 30-Oct version.
+- [x] Financial source sheet two-quarter shift recorded as a material issue.
+- [x] Estimate periods and oil-proxy limitations recorded.
+- [ ] Reconcile newer workbook versions against original source files.
+- [ ] Approve a new fiscal-quarter-aligned master dataset and manifest.
+- [ ] Verify point-in-time publication/availability dates.
 
-## Execution evidence
-- [ ] Source files / code / notebooks stored in the correct subfolder
-- [ ] Reproducible execution instructions provided
-- [ ] Quality checks, tests or review evidence attached
-- [ ] Results and limitations documented
-
-## Review and closure
-- [ ] Deliverables reviewed against acceptance criteria
-- [ ] Final artifacts and checksums recorded
-- [ ] README, milestone register and GitHub issue updated
-- [ ] Closure decision and date recorded
-
-**Milestone-specific acceptance:** Every input has provenance, units, date/frequency, quality flags, rights decision and a reproducible version/hash; unresolved limitations are visible.
+**Status:** Earlier D2 package completed; new data freeze remains pending.

@@ -1,25 +1,21 @@
-# M2 / D2 — Data Collection and Audit
+# M2 / D2 — Data Audit: Milestone Control
 
-**Status:** DONE
+**Status:** COMPLETED for the 30-Oct-2026 data package; newer workbook receipts require reconciliation before approval.
 
-## 1. Purpose
-Record provenance, definitions, units, coverage, quality, rights and fitness of each dataset.
+## Purpose
+Establish data provenance, definitions, coverage, frequency, units, quality, representativeness, source access and model-readiness limits.
 
-## 2. Inputs and dependencies
-Authorized raw company financial and macro/market source workbooks, source register and collection tracker.
+## Inputs
+Raw and derived workbook versions are listed in 01_INPUTS/README.md and docs/Data_Package_Manifest.md. D4-v1 is pinned to Final_Quarterly_Data(1).xlsx; do not overwrite it.
 
-## 3. Required outputs
-Data dictionary, source register, collection tracker, data-quality report, package manifest, checksum register and approved/rejected dataset decisions.
+## Working record
+D2_Data_Audit_Summary.md, Data_Feasibility_Audit.md, IndiGo_Data_Dictionary.csv, source_register.csv and collection_tracker.csv.
 
-## 4. Acceptance criteria
-Every input has provenance, units, date/frequency, quality flags, rights decision and a reproducible version/hash; unresolved limitations are visible.
+## Deliverables
+D2 data audit, source feasibility assessment, data dictionary and versioned data package manifest.
 
-## 5. Governance and reproducibility
-- Keep source files immutable; create versioned derived outputs.
-- Record file name, source, retrieval date, observation period, units, owner, access/redistribution decision and SHA-256 for each dataset.
-- Keep code, notebooks, reports, test evidence and data manifests in their designated subfolders.
-- Never commit credentials, tokens, personal data or source material without redistribution authorization.
-- Record all scope or data-definition changes in the project change log and update affected milestone documents.
+## Evidence
+Source IDs, field names, coverage, sheet inventories, checksums, quality-control decisions, estimate flags, financial alignment issue and known limitations.
 
-## 6. Current next action
-Use the audited canonical inputs for M4; any newer workbook remains quarantined until reconciled and rights-cleared.
+## Exit gate for a new data version
+Reconcile raw IS financial fields, correct fiscal-quarter mapping, retain actual/estimate status, verify units and availability dates, run data-quality checks, calculate SHA-256 and approve a dated dataset manifest. The older D2 package is documented; the newest candidate files are not automatically model-ready.

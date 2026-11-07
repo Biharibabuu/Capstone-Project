@@ -19,3 +19,14 @@ Key limitations: D2 notes issues with the supplied derived financial alignment a
 - `MILESTONE_MANIFEST.csv` — file-by-file record.
 
 The raw workbooks are stored once under the repository's `data/raw/` folder and processed datasets under `data/processed/`; the `data/README.md` in this milestone links to those canonical copies. Do not duplicate or overwrite them.
+
+
+## Standard evaluation structure
+
+- [01_INPUTS](01_INPUTS/README.md)
+- [02_WORKING](02_WORKING/README.md)
+- [03_DELIVERABLES](03_DELIVERABLES/README.md)
+- [04_EVIDENCE](04_EVIDENCE/README.md)
+- [05_REFERENCES](05_REFERENCES/README.md)
+
+See MILESTONE_CONTROL.md, DELIVERABLES_CHECKLIST.md, EVALUATION_RECORD.md and MILESTONE_MANIFEST.csv.

@@ -9,3 +9,8 @@ Raw workbooks,Original source workbook files,data/raw/CP(4).xlsx; data/raw/CP Ma
 Processed workbooks,Derived source workbooks,data/processed/Final_Quarterly_Data(1).xlsx; data/processed/EDA ANALYSIS(2).xlsx,Canonical files in data/processeddata/README.md,Canonical raw and processed data index with quarantine and approval rules,milestones/M2_D2_Data_Audit/data/README.md,Included
 MILESTONE_CONTROL.md,Scope inputs outputs acceptance criteria and next action,MILESTONE_CONTROL.md,Included
 DELIVERABLES_CHECKLIST.md,Review and closure checklist,DELIVERABLES_CHECKLIST.md,Included
+01_INPUTS/README.md,01_INPUTS folder index,Included
+02_WORKING/README.md,02_WORKING folder index,Included
+03_DELIVERABLES/README.md,03_DELIVERABLES folder index,Included
+04_EVIDENCE/README.md,04_EVIDENCE folder index,Included
+05_REFERENCES/README.md,05_REFERENCES folder index,Included
