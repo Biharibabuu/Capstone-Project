@@ -1,6 +1,6 @@
 # M3 / D3 — EDA: Evaluation Record
 
-**Status:** Reviewed. GitHub includes a source-only notebook and review notes. Output-rich local exports are not published.
+**Status:** Latest D3 notebook uploaded to the M3 folder as a source-only public copy. The analysis code and markdown are retained; saved outputs are cleared to avoid republishing Bloomberg-derived figures or values.
 
 ## Pre-specified hypotheses
 - H1: Dated Brent and PAT margin are associated.
@@ -21,9 +21,9 @@ Report sample sizes/effect sizes alongside statistical tests. Associations are e
 - EDA is not forecasting evaluation; model testing requires chronological splits and a baseline.
 
 ## Files
-- 03_eda.ipynb — source-only notebook with outputs cleared.
-- D3_Review_Notes.md — source lineage, findings and modelling handoff.
-- README.md and MILESTONE_MANIFEST.csv — folder guide and file list.
-- Shared canonical files: [notebooks/03_eda.ipynb](../../notebooks/03_eda.ipynb), [reports/D3_eda/README.md](../../reports/D3_eda/README.md).
+- [ANCP_T##_D3_eda.ipynb](ANCP_T##_D3_eda.ipynb) — latest D3 notebook; all 35 cells are retained, with 69 saved outputs and 15 execution counters cleared in the public copy.
+- [D3_Review_Notes.md](D3_Review_Notes.md) — source lineage, findings and modelling handoff.
+- [README.md](README.md) and [MILESTONE_MANIFEST.csv](MILESTONE_MANIFEST.csv) — folder guide and file inventory.
+- Shared notebook mirror: [notebooks/03_eda.ipynb](../../notebooks/03_eda.ipynb), synchronized with the M3 notebook.
 
-The Library holds ANCP_T##_D3_eda(1).ipynb (1,079,048 bytes) and .html (1,022,352 bytes), plus earlier PDF/ZIP/HTML/notebook versions. They are catalogued centrally but not published because outputs may expose Bloomberg-derived figures/values. Rerun the source notebook locally using authorised data for private evaluation.
+The original output-rich uploaded file remains the local source copy. The public repository copy omits saved tables and charts to avoid redistributing Bloomberg-derived values. Rerun the notebook locally using authorised data to regenerate outputs for evaluation.
