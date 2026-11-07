@@ -1,8 +1,8 @@
-milestone,deliverable,status,primary_folder,key_evidence,next_gate
-M1,D1 Project Charter,Completed,milestones/M1_D1_Project_Charter,Project charter and scope,Scope baseline
-M2,D2 Data Audit,Completed,milestones/M2_D2_Data_Audit,Source register; collection tracker; data dictionary; audit; package manifest,Confirm approved master dataset
-M3,D3 Exploratory Data Analysis,Reviewed,milestones/M3_D3_Exploratory_Data_Analysis,EDA notebook and D3 review notes,Approve feature list and data definitions
-M4,D4 Modelling Checkpoint,Submitted d4-v1,milestones/M4_D4_Modelling,Four-page PDF; source; notebook; tests; experiment log; metrics; data/environment manifest,Proceed to evaluation and robustness work
-M5,D5 Model Evaluation,Planned,milestones/M5_D5_Model_Evaluation,Evaluation protocol template; pending test and robustness evidence,Complete rolling-origin evaluation and error analysis
-M6,D6 Deployment and Monitoring,In progress/planned,milestones/M6_D6_Deployment_Monitoring,FastAPI and frontend scaffold; external data connectors; monitoring plan pending,Connect validated model and verify refresh
-M7,D7 Final Communication,Planned,milestones/M7_D7_Final_Communication,Submission checklist; report/model card/presentation pending,Prepare final report and demonstration
+milestone,deliverable,status,primary_folder,key_evidence,current_limits,next_gate
+M1,D1 Project Charter,Completed,milestones/M1_D1_Project_Charter,Charter problem target scope team risks,Feasibility assumptions tested in D2,Maintain scope and log changes
+M2,D2 Data Audit,Completed for 30-Oct package; 7-Nov files pending reconciliation,milestones/M2_D2_Data_Audit,Audit summary feasibility audit package manifest dictionary source register tracker,Financial source shifted two quarters; release timestamps missing; newest quarterly file unreconciled,Approve dated checksum-verified dataset
+M3,D3 EDA,Reviewed,milestones/M3_D3_Exploratory_Data_Analysis,Source-only notebook review notes H1-H6,EDA must be rerun after source reconciliation; output-rich exports local,Freeze features and fiscal-quarter/as-of controls
+M4,D4 Modelling,Executed D4-v1 on 2026-11-07,milestones/M4_D4_Modelling,Report source notebook tests 12-run log metrics predictions data/environment manifests,35 supervised rows; validation/test 6/8; ML candidates did not beat persistence; calendar labels and release-date gap,Preserve D4 benchmark; proceed to D5
+M5,D5 Evaluation,Planned,milestones/M5_D5_Model_Evaluation,Evaluation plan and evidence checklist,No completed rolling-origin report,Point-in-time controls; backtest; error/uncertainty analysis
+M6,D6 Deployment/Monitoring,Scaffold present; model integration pending,milestones/M6_D6_Deployment_Monitoring,FastAPI frontend four connectors refresh/store guide,Prediction model and monitoring evidence pending,Integrate D5-approved model and test
+M7,D7 Final Communication,Planned,milestones/M7_D7_Final_Communication,Final submission checklist,Final report model card presentation speaker notes demo pending,Complete D5/D6 then finalise report/demo
