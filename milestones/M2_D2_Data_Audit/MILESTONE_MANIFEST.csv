@@ -6,4 +6,6 @@ source_register.csv,Data source catalogue,data/source_register.csv,Included copy
 collection_tracker.csv,Collection tracker,data/collection_tracker.csv,Included copy
 IndiGo_Data_Dictionary.csv,Variable definitions and units,IndiGo_Data_Dictionary.csv,Included copy
 Raw workbooks,Original source workbook files,data/raw/CP(4).xlsx; data/raw/CP Master Data(3).xlsx,Canonical files in data/raw
-Processed workbooks,Derived source workbooks,data/processed/Final_Quarterly_Data(1).xlsx; data/processed/EDA ANALYSIS(2).xlsx,Canonical files in data/processed
+Processed workbooks,Derived source workbooks,data/processed/Final_Quarterly_Data(1).xlsx; data/processed/EDA ANALYSIS(2).xlsx,Canonical files in data/processeddata/README.md,Canonical raw and processed data index with quarantine and approval rules,milestones/M2_D2_Data_Audit/data/README.md,Included
+MILESTONE_CONTROL.md,Scope inputs outputs acceptance criteria and next action,MILESTONE_CONTROL.md,Included
+DELIVERABLES_CHECKLIST.md,Review and closure checklist,DELIVERABLES_CHECKLIST.md,Included
