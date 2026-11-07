@@ -36,3 +36,12 @@ D4-v1 remains pinned to Final_Quarterly_Data(1).xlsx, SHA-256 85bf9e7ee51860fa38
 
 ## Licensing
 docs/Data_Package_Manifest.md records permission for the earlier 30-Oct four-workbook package. That does not automatically establish permission for newer versions or rendered outputs. Confirm Bloomberg/institutional terms before publishing further derived data.
+
+
+## 7 November 2026 — CP source sheet and Final Quarterly Data links
+
+- The local `CP(6).xlsx` is byte-identical to GitHub's [CP(4).xlsx](../../data/raw/CP%284%29.xlsx), SHA-256 `208fc66a69c548023c4591bb8b7b5ba41624cdfe56fdd757612cc7b5fd01879e`. It contains `IS`, `usd inr`, `cpi`, `wpi`, `co new` and `co new monthly`. Use `IS` for quarterly Revenue, Net Income GAAP and EBITDA.
+- The local `CP Master Data(5).xlsx` is byte-identical to GitHub's [CP Master Data(3).xlsx](../../data/raw/CP%20Master%20Data%283%29.xlsx), SHA-256 `30220588fe96276662a8eeadf56ea6a583da71479e0e26923383c517cc8af474`.
+- [Final_Quarterly_Data(1).xlsx — D4-v1 source link](../../data/processed/Final_Quarterly_Data%281%29.xlsx) remains the immutable D4-v1 input. SHA-256: `85bf9e7ee51860fa38892ba3cb3e24b74887645bb2570c096f6183e59a97670c`.
+- The new local candidate `Final_Quarterly_Data(3).xlsx` has SHA-256 `87e56b4a08a81740c93386f62845bb48de53d0cbea754427b0da3d5b8fd5d970`; its three sheets are `Final_Quarterly_Data`, `Calculation Audit` and `Data Quality Checks`. It is not uploaded or approved for modelling.
+- See [Data Collection Register](../../data/DATA_COLLECTION_REGISTER.md) and [Phase 1 Data Collection Plan](../../docs/Phase1_Data_Collection_Plan.md) for the complete workbook/source map.
