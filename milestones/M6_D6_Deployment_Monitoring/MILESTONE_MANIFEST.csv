@@ -1,0 +1,8 @@
+file,description,status
+README.md,D6 scope and status,Included
+backend components,FastAPI source,backend/main.py; backend/routes.py; backend/schemas.py,Existing elsewhere in repository
+frontend components,Web dashboard source,frontend/index.html; frontend/app.js; frontend/styles.css,Existing elsewhere in repository
+data connectors,FX Brent CPI WPI connectors,src/connectors/,Existing elsewhere in repository
+LIVE_DATA_INTEGRATION.md,External data integration guide,docs/LIVE_DATA_INTEGRATION.md,Existing elsewhere in repository
+Deployment architecture note,Deployment design,Pending
+Monitoring plan,Freshness drift performance and retraining controls,Pending
