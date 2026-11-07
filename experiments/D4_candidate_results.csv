@@ -1,0 +1,12 @@
+algorithm,parameters,validation_mae_pp,validation_rmse_pp
+Persistence baseline,carry forward lag1_pat_margin_pct,12.175362,13.924964375381972
+Ridge Regression,"{""alpha"": 0.1}",51.46410769764892,52.22439233276292
+Ridge Regression,"{""alpha"": 1.0}",56.43966715268258,57.30308300567119
+Ridge Regression,"{""alpha"": 10.0}",62.81560948883441,63.90707195535093
+Ridge Regression,"{""alpha"": 100.0}",42.623709897671326,43.94404152724382
+Random Forest,"{""max_depth"": 2, ""max_features"": 1.0, ""min_samples_leaf"": 2, ""n_estimators"": 300, ""random_state"": 42}",61.63951290233111,67.46567230857598
+Random Forest,"{""max_depth"": 2, ""max_features"": 1.0, ""min_samples_leaf"": 3, ""n_estimators"": 300, ""random_state"": 42}",51.950340408907145,54.1546130816209
+Random Forest,"{""max_depth"": 3, ""max_features"": 1.0, ""min_samples_leaf"": 2, ""n_estimators"": 300, ""random_state"": 42}",63.55080976190385,69.09081957128299
+Random Forest,"{""max_depth"": 3, ""max_features"": 1.0, ""min_samples_leaf"": 3, ""n_estimators"": 300, ""random_state"": 42}",52.63820294444679,54.839733408703346
+Random Forest,"{""max_depth"": 4, ""max_features"": 1.0, ""min_samples_leaf"": 2, ""n_estimators"": 300, ""random_state"": 42}",63.32900486796098,69.13109110690843
+Random Forest,"{""max_depth"": 4, ""max_features"": 1.0, ""min_samples_leaf"": 3, ""n_estimators"": 300, ""random_state"": 42}",52.635451191036736,54.83705662700015
