@@ -1,7 +1,7 @@
 file,description,canonical_path_or_source,status
 README.md,M4 purpose methods scores limitations and reproduction instructions,milestones/M4_D4_Modelling/README.md,Uploaded
 MILESTONE_MANIFEST.csv,Complete M4 file register,milestones/M4_D4_Modelling/MILESTONE_MANIFEST.csv,Uploaded
-ANCP_T##_D4_v1.pdf,Four-page D4 submission report,reports/ANCP_T##_D4_v1.pdf,Pending upload
+ANCP_T##_D4_v1.pdf,Four-page D4 submission report,reports/ANCP_T##_D4_v1.pdf; milestones/M4_D4_Modelling/reports/ANCP_T##_D4_v1.pdf,Uploaded and verified
 src/d4_train.py,Reproducible baseline and candidate training workflow,src/d4_train.py,Uploaded
 notebooks/D4_modeling_experiment.ipynb,Reproducible experiment notebook,notebooks/D4_modeling_experiment.ipynb,Uploaded
 tests/test_d4_train.py,Feature lag and split tests,tests/test_d4_train.py,Uploaded
