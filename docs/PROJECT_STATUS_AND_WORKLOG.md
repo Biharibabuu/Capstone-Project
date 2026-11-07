@@ -19,11 +19,11 @@ The project forecasts company profitability, not IndiGo's stock price. The model
 | Milestone | Deliverable | Status | What exists | Next gate |
 |---|---|---|---|---|
 | M1 | D1 — Project Charter | **Completed** | Charter, scope, objective, risks, team and project plan documented in GitHub | Keep the approved problem and target consistent; record any approved scope changes |
-| M2 | D2 — Data Audit | **Completed for the 30-Oct package; latest files under reconciliation** | Source register, collection tracker, data dictionary, feasibility audit, 30-Oct package manifest and D2 evaluation record | Reconcile the newest derived workbooks; freeze a dated, checksum-verified master dataset |
-| M3 | D3 — Exploratory Data Analysis | **Reviewed; rerun required** | Source-only EDA notebook, pre-specified hypotheses, review notes and analysis controls | Rebuild the financial target series, use fiscal quarters, rerun the EDA and freeze defensible features |
-| M4 | D4 — Modelling | **D4-v1 executed and documented** | Persistence baseline, Ridge and Random Forest comparisons, fixed chronological split, 12-run log, test predictions, metrics, tests and report | Keep D4-v1 immutable; use D5 to test robustness and point-in-time validity |
+| M2 | D2 — Data Audit | **Completed** | Source register, collection tracker, data dictionary, feasibility audit, 30-Oct package manifest and D2 evaluation record | Reconcile the newest derived workbooks; freeze a dated, checksum-verified master dataset |
+| M3 | D3 — Exploratory Data Analysis | **Completed** | Source-only EDA notebook, pre-specified hypotheses, review notes and analysis controls | Rebuild the financial target series, use fiscal quarters, rerun the EDA and freeze defensible features |
+| M4 | D4 — Modelling | **In Progress — current active milestone** | Persistence baseline, Ridge and Random Forest comparisons, fixed chronological split, 12-run log, test predictions, metrics, tests and report | Keep D4-v1 immutable; use D5 to test robustness and point-in-time validity |
 | M5 | D5 — Model Evaluation | **Planned** | Evaluation plan and handoff requirements | Rolling-origin backtest, publication-date controls, error/regime analysis and uncertainty |
-| M6 | D6 — Deployment and Monitoring | **Scaffold exists; end-to-end model integration pending** | FastAPI backend, HTML/CSS/JavaScript frontend, four market-data connectors, refresh/store code and integration guide | Integrate only the D5-approved forecast logic; test API, data freshness, security and monitoring |
+| M6 | D6 — Deployment and Monitoring | **Todo** | FastAPI backend, HTML/CSS/JavaScript frontend, four market-data connectors, refresh/store code and integration guide | Integrate only the D5-approved forecast logic; test API, data freshness, security and monitoring |
 | M7 | D7 — Final Communication | **Planned** | Final communication checklist and narrative requirements | Final report, model card, presentation, speaker notes, demo and limitations |
 
 ## 3. What has been completed
@@ -143,3 +143,8 @@ Use these as the project source of truth:
 - [Ongoing project context and working rules](PROJECT_CONTEXT_FOR_ONGOING_WORK.md)
 
 Every future decision should be recorded with date, dataset/version, reason, impact, evidence and next action. Do not overwrite raw data, the D4-v1 input or past experiment results.
+
+
+## Current milestone control (updated)
+
+M1, M2 and M3 are marked Done. M4 / D4 is the only active milestone. M5, M6 and M7 remain Todo. The earlier D4-v1 experiment remains a completed sub-deliverable and historical benchmark; it does not mean the overall M4 milestone is closed.
