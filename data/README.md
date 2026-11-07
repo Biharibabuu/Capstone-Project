@@ -14,3 +14,7 @@ Do not commit personal data, access credentials, or raw files unless the source'
 The current source inventory records these Bloomberg security IDs: `INDIGO IN` (financials), `USDINR REGN Curncy` (monthly FX), `INFUTOTY Index` (monthly CPI inflation indicator), `INBGWPIY Index` (monthly WPI inflation indicator), and `EUCRBRDT Index` (Dated Brent crude, daily and monthly). Header-only mapping templates live in `data/templates/`.
 
 These templates do not contain licensed data. The source workbooks stay local/private. The importer/master-builder mapping is not yet complete: do not run the current builder directly on the raw Bloomberg Excel workbook or assume the current quarterly output is model-ready.
+
+
+## Data collection and source links
+See [Data Collection Register](DATA_COLLECTION_REGISTER.md), [collection tracker](collection_tracker.csv) and [source register](source_register.csv). The [CP raw workbook](raw/CP%284%29.xlsx) contains the quarterly financial source on its `IS` tab. The [pinned Final_Quarterly_Data(1).xlsx](processed/Final_Quarterly_Data%281%29.xlsx) is the D4-v1 derived input; the newer (3) candidate is tracked separately and is not yet in GitHub.
