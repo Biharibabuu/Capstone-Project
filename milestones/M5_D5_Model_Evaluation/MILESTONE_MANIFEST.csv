@@ -1,0 +1,7 @@
+file,description,status
+README.md,D5 scope and required evidence,Included
+D5_Evaluation_Report.pdf,Maximum-five-page evaluation report,Pending
+notebooks/D5_rolling_origin_evaluation.ipynb,Rolling-origin backtest,Pending
+experiments/D5_experiment_log.csv,Repeatable run tracker,Pending
+experiments/D5_error_analysis.csv,Quarter-level residual diagnostics,Pending
+experiments/D5_metrics.json,Final validation/test metrics,Pending
