@@ -1,6 +1,6 @@
 # Milestone M4 / D4-v1 — Modelling checkpoint
 
-**Status:** Experiment executed and locally re-tested on 7 November 2026.
+**Status:** In Progress — D4 is the active milestone. D4-v1 is a completed baseline experiment within the milestone; further modelling work remains open.
 **Course outcome:** CO3.
 
 ## Folder contents
@@ -51,3 +51,13 @@ The SHA-256 hash in the data manifest and run log identifies the exact input. Ra
 
 ## Limitations and handoff to D5
 The source uses calendar-quarter labels, not relabelled Indian fiscal quarters. Historical publication timestamps are not available, so one-quarter lagging prevents same-quarter target leakage but does not prove exact point-in-time public availability. Brent is a crude benchmark proxy, not IndiGo's realised ATF cost. D5 should add release-date/vintage controls, inspect errors by regime, expand rolling-origin evaluation and quantify forecast uncertainty.
+
+## Standard folder structure
+
+- `data/` — immutable modelling input references and checksums.
+- `notebooks/` — reproducible experiments.
+- `src/` — training and feature pipeline code.
+- `tests/` — automated checks.
+- `experiments/` — run logs, metrics, predictions and manifests.
+- `reports/` — experiment reports and model-selection decisions.
+- `MILESTONE_CONTROL.md` and `DELIVERABLES_CHECKLIST.md` — current scope and acceptance gate.
