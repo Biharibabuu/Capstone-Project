@@ -7,7 +7,7 @@
 ## Current repository coverage
 - **M1/D1:** charter and master plan are in GitHub.
 - **M2/D2:** audit summary, feasibility audit, workbook manifest, dictionary, source register, tracker and 30-Oct workbook versions are in GitHub.
-- **M3/D3:** source-only notebook and review notes are in GitHub; output-rich local exports are not public.
+- **M3/D3:** latest uploaded notebook source is published in the M3 folder as `ANCP_T##_D3_eda.ipynb`; all 35 cells are retained and 69 saved outputs were cleared from the public copy. The previous M3 `03_eda.ipynb` file was removed; `notebooks/03_eda.ipynb` is synchronized with the latest source.
 - **M4/D4:** report, training source, notebook, tests, 12-run log, candidate comparison, metrics, test predictions, data checksum and environment are in GitHub.
 - **M5/D5:** plan only; rolling-origin report/backtest pending.
 - **M6/D6:** backend, frontend and four market connectors exist; approved model integration and monitoring evidence pending.
@@ -21,7 +21,7 @@ See [ARTIFACT_INVENTORY_2026-11-07.csv](ARTIFACT_INVENTORY_2026-11-07.csv) for e
 - Final_Quarterly_Data(2).xlsx: 99,836 bytes versus D4-v1 input 99,448 bytes; not reconciled.
 - EDA ANALYSIS(3).xlsx: 13,233 bytes; older repository copy is same size, identity unverified.
 - Data Audit Report Team-K.pdf: audit narrative is represented by D2 Markdown files.
-- Latest D3 notebook/HTML exports are output-rich; the source-only notebook is already public.
+- The current-session upload `ANCP_T##_D3_eda(3).ipynb` (1,079,048 bytes) was reviewed. Its analysis source and markdown are published under M3; saved outputs were cleared to avoid republishing Bloomberg-derived values. The original output-rich attachment remains unpublished.
 - Latest D4 PDF has a same-named report in M4; exact binary identity is not verified.
 - M4 ZIP is not duplicated because individual report/code/notebook/tests/metrics are committed.
 
