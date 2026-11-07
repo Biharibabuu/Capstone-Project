@@ -1,17 +1,25 @@
 # M6 / D6 — Deployment and Monitoring
 
-Status: Todo — not started. Existing API, frontend and connector scaffolding are reusable components, not completion of D6. The repository contains a FastAPI scaffold, HTML/CSS/JS frontend and four external data connectors. The evaluated model is not yet integrated into the prediction route.
+**Status:** TODO — NOT STARTED
 
-Existing components: backend/main.py, backend/routes.py, backend/schemas.py; frontend/index.html, app.js and styles.css; src/connectors for USD/INR, Brent, CPI and WPI; src/market_refresh.py and src/market_store.py; docs/LIVE_DATA_INTEGRATION.md.
+## Brief
+Package the D5-approved forecasting logic into a tested API and user interface, then monitor data and prediction quality. Existing scaffolding is reusable groundwork, not a completed deployment milestone.
 
-Remaining work: register only the D5-approved model; align training/live feature definitions; add scheduled refresh with appropriate cadences; monitor freshness, missingness, source failures, model version, prediction errors and drift; use a secret manager for hosted deployment; add security/failure-mode tests.
+## Workflow
+1. Receive the D5-approved model, feature schema and preprocessing contract.
+2. Integrate that exact model into the API prediction route.
+3. Align live feature definitions and update cadence with training.
+4. Validate API inputs, output schema, errors and frontend integration.
+5. Configure secrets securely and document local/hosted run instructions.
+6. Log forecast time, input vintage, model version and prediction.
+7. Monitor freshness, missingness, source failures, feature drift and prediction errors when actuals arrive.
+8. Run an end-to-end demo and document limitations.
 
-Expected evidence: deployment architecture note; API test report; monitoring plan and thresholds; environment/release instructions; demonstration screenshots or walkthrough.
+## Inputs and data
+D5-approved model artifact; M2 source register; live connectors for USD/INR, Brent, CPI and WPI; M4/M5 approved feature schema, transformations and units. Training data remain governed by M2/M4; the frontend must not recreate them.
 
-## Folder structure
+## Planned deliverables
+Deployment architecture/API contract; model integration and API/frontend tests; refresh/store workflow; monitoring plan and thresholds; deployment runbook, security notes and demo evidence.
 
-- `backend/` — API integration and validation tests (canonical source currently under repository `backend/`).
-- `frontend/` — web application source (canonical source currently under repository `frontend/`).
-- `reports/` — architecture, API test and monitoring evidence.
-- `references/` — deployment/security references.
-- `MILESTONE_CONTROL.md`, `DELIVERABLES_CHECKLIST.md` and `MILESTONE_MANIFEST.csv` — governance and evidence tracking.
+## Dependencies and exit gate
+Do not integrate an unapproved M4 candidate. D6 starts only after D5 provides an approved model and reproducible input contract.
