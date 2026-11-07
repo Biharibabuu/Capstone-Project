@@ -5,7 +5,8 @@
 
 ## Included in the public repository
 
-- [`notebooks/03_eda.ipynb`](../../notebooks/03_eda.ipynb) — source-only notebook with pre-specified hypotheses, data-quality checks, distributions, fiscal-quarter segmentation, statistical tests, an insight log and modelling recommendations. Execution outputs are cleared so Bloomberg-derived values and figures are not republished in this public repository.
+- [`ANCP_T##_D3_eda.ipynb`](ANCP_T##_D3_eda.ipynb) — latest D3 notebook in this milestone; includes pre-specified hypotheses, data-quality checks, distributions, fiscal-quarter segmentation, statistical tests, an insight log and modelling recommendations. Saved outputs are cleared in the public copy so Bloomberg-derived values and figures are not republished.
+- [`notebooks/03_eda.ipynb`](../../notebooks/03_eda.ipynb) — synchronized shared copy of the same latest notebook.
 - This note records the source-alignment issues found during review.
 
 ## Local input files required
@@ -42,7 +43,7 @@ The notebook computes paired sample sizes and effect sizes alongside p-values, r
 
 1. Rebuild `Final_Quarterly_Data.xlsx` and its calculation audit from the raw `IS` source using actual quarters only and fiscal-quarter labels.
 2. Verify financial definitions and published-result dates against official filings.
-3. Re-run `notebooks/03_eda.ipynb` locally and review the generated evidence.
+3. Re-run `milestones/M3_D3_Exploratory_Data_Analysis/ANCP_T##_D3_eda.ipynb` locally (or its synchronized `notebooks/03_eda.ipynb` mirror) and review the generated evidence.
 4. Carry only defensible predictors into the D4 baseline and candidate-model experiments.
 
 
