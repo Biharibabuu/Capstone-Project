@@ -1,6 +1,6 @@
 # M3 / D3 — Exploratory Data Analysis
 
-**Status:** Latest D3 notebook uploaded. The public repository copy is source-only; analysis code and markdown are retained, while saved outputs are cleared to avoid republishing Bloomberg-derived figures or values.
+**Status:** Done — D3 analysis and review package completed. The public repository copy is source-only; analysis code and markdown are retained, while saved outputs are cleared to avoid republishing Bloomberg-derived figures or values.
 
 ## Milestone files
 
@@ -20,3 +20,13 @@ The uploaded notebook contained rendered tables and charts. These saved outputs 
 ## Handoff to M4 / D4
 
 Before promoting EDA findings into modelling, reconcile financial margins to the raw Bloomberg income-statement source, exclude estimated quarters from realised outcomes, use Indian fiscal-quarter labels, and check that every feature was available by the forecast cutoff. Exploratory association is not evidence of causation or forecast performance.
+
+## Standard folder structure
+
+- `notebooks/` — reproducible EDA notebook source.
+- `data/` — input lineage and data-version references.
+- `reports/` — review notes, insight log and summary.
+- `references/` — source and method references.
+- `MILESTONE_CONTROL.md` and `DELIVERABLES_CHECKLIST.md` — milestone governance and closure evidence.
+
+The source-only notebook is the governed public artifact. Do not add Bloomberg-derived rendered outputs until redistribution permission is confirmed; preserve local reproducibility instructions and source lineage.
