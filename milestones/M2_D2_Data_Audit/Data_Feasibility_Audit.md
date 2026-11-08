@@ -2,7 +2,7 @@
 
 **Project:** IndiGo Profitability Intelligence System  
 **Review date:** 28 October 2026  
-**Primary target:** Next-quarter PAT margin  
+**Primary target:** Next-quarter EBITDA margin (EBITDA / Revenue from Operations × 100)  
 **Current dataset scope:** quarterly company financials, Dated Brent oil benchmark, WPI inflation, CPI inflation and USD/INR.
 
 ## 1. Actual collected source inventory
@@ -11,7 +11,7 @@ The working files reviewed are `CP(4).xlsx` (raw Bloomberg export), `CP Master D
 
 | Dataset | Bloomberg identifier / fields | Frequency and coverage in supplied export | Use and validation |
 |---|---|---|---|
-| Company financials | `INDIGO IN`, BBG GAAP; `SALES_REV_TURN`, `NET_INCOME`, `EBITDA` | Quarterly actuals 31 Mar 2017–30 Jun 2026; 30 Sep and 31 Dec 2026 marked `Est` | Revenue, Net Income (GAAP) and EBITDA. Recompute margins from raw `IS` values. Confirm Revenue definition against Revenue from Operations and Net Income against PAT using [IndiGo quarterly results](https://www.goindigo.in/information/investor-relations/quarterly-financial-results.html). The current export contains EBITDA, not EBITDAR. |
+| Company financials | `INDIGO IN`, BBG GAAP; `SALES_REV_TURN`, `NET_INCOME`, `EBITDA` | Quarterly actuals 31 Mar 2017–30 Jun 2026; 30 Sep and 31 Dec 2026 marked `Est` | Revenue, Net Income (GAAP) and EBITDA. Recompute margins from raw `IS` values. Confirm Revenue definition against Revenue from Operations using [IndiGo quarterly results](https://www.goindigo.in/information/investor-relations/quarterly-financial-results.html). The current export contains EBITDA, not EBITDAR. |
 | USD/INR | `USDINR REGN Curncy`; `PX_LAST`, `PX_BID` | Monthly, Jan 2015 onward | Monthly FX indicator. The 30 Oct 2026 observation is after the 28 Oct 2026 review date and must be excluded from an as-of-28-Oct analysis. [RBI reference-rate archive](https://www.rbi.org.in/scripts/ReferenceRateArchive.aspx) is an independent comparison source, not the source of this export. |
 | CPI inflation | `INFUTOTY Index`; `PX_LAST` | Monthly, Jan 2015–Sep 2026 | Confirm exact Terminal description, unit and release timing. [MoSPI CPI catalogue](https://esankhyiki.mospi.gov.in/catalogue-main/catalogue?product=CPI) is an independent definition/value cross-check, not the source of this export. |
 | WPI inflation | `INBGWPIY Index`; `PX_LAST` | Monthly, Oct 2006–Sep 2026 | Confirm exact Terminal description and series/base linkage. [Office of the Economic Adviser WPI data](https://eaindustry.nic.in/download_data_2223.asp) is an independent cross-check, not the source of this export. |
@@ -31,9 +31,9 @@ These public links are validation references only; they were not the source of t
 
 ## 3. Data-quality and reconciliation findings
 
-1. **Financial alignment:** the legacy `Financial source` sheet in `CP Master Data(3).xlsx` is shifted by two quarters relative to the raw Bloomberg `IS` sheet. Rebuild Revenue, Net Income and EBITDA from raw `IS` dates and values; do not use the legacy sheet as target labels.
+1. **Financial alignment:** the legacy `Financial source` sheet in `CP Master Data(3).xlsx` is shifted by two quarters relative to the raw Bloomberg `IS` sheet. Rebuild Revenue, Net Income and EBITDA from raw `IS` dates and values; do not use the legacy sheet as EBITDA-margin target labels.
 2. **Actual versus estimates:** rows marked `Est` are estimates, not actual reported results. Exclude them from historical targets and model evaluation.
-3. **Financial definition:** `NET_INCOME` is a provisional PAT component and `SALES_REV_TURN` a provisional Revenue component. Verify them against the exact company financial-statement line items before calculating PAT margin = PAT / Revenue from Operations × 100.
+3. **Financial definition:** `EBITDA` is the primary financial numerator and `SALES_REV_TURN` is the provisional revenue denominator. Verify both against the exact company financial-statement line items before calculating EBITDA margin = EBITDA / Revenue from Operations × 100. `NET_INCOME` is retained only as an audited source field and is not part of the target.
 4. **EBITDA versus EBITDAR:** the supplied Bloomberg export contains EBITDA. Do not label it EBITDAR or substitute it for EBITDAR without a separate verified source.
 5. **Oil benchmark:** `EUCRBRDT Index` is Dated Brent crude. It is not an India-specific aviation turbine fuel price and not IndiGo's realised purchase price.
 6. **CPI dates:** the latest supplied raw CPI sheet has month-end observations through 30 Sep 2026. The earlier malformed-date concern was not reproduced in this raw sheet. Check derived quarterly dates against raw records and do not manually alter source dates.
@@ -45,7 +45,7 @@ These public links are validation references only; they were not the source of t
 
 For each target quarter, forecast cutoff is the last calendar day before the target quarter starts. Use only predictor observations whose periods precede the target quarter and whose values were available by the cutoff. Record publication/availability dates where verifiable. Quarter-end or reference-month dates do not automatically prove public availability.
 
-Keep target-quarter revenue, PAT and PAT margin as labels only. Preserve missing values and source history. Use chronological holdout or rolling-origin validation, compare with a simple historical baseline, and fit imputation/scaling only inside each training window. Do not randomly shuffle quarterly observations.
+Keep target-quarter EBITDA and Revenue from Operations as inputs to the EBITDA-margin label only; do not use target-quarter financial values as predictors. Preserve missing values and source history. Use chronological holdout or rolling-origin validation, compare with a simple historical baseline, and fit imputation/scaling only inside each training window. Do not randomly shuffle quarterly observations.
 
 ## 5. Current decision and next step
 
