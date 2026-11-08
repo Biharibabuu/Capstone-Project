@@ -1,0 +1,56 @@
+name: One-time D1 DOCX upload
+on:
+  push:
+    paths:
+      - "temp_upload_d1/READY"
+permissions:
+  contents: write
+jobs:
+  add-d1-docx:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Reassemble and commit the D1 DOCX
+        shell: bash
+        run: |
+          python - <<'PY'
+          import base64
+          import hashlib
+          from pathlib import Path
+
+          upload_dir = Path("temp_upload_d1")
+          parts = sorted(upload_dir.glob("part*.b64"))
+          if not parts:
+              raise SystemExit("No D1 upload chunks found.")
+          encoded = "".join(p.read_text(encoding="ascii").strip() for p in parts)
+          data = base64.b64decode(encoded, validate=True)
+          actual = hashlib.sha256(data).hexdigest()
+          expected = "d96c5cddecd2cb33e5eaceca61c7387b43468481c1d22d0a68f8a295c0a52e9f"
+          if actual != expected:
+              raise SystemExit(f"SHA-256 mismatch: got {actual}, expected {expected}")
+
+          destination = Path("milestones/M1_D1_Project_Charter/03_DELIVERABLES/IndiGo_Macroeconomic_Profitability_Capstone_M1.docx")
+          destination.parent.mkdir(parents=True, exist_ok=True)
+          destination.write_bytes(data)
+
+          for p in parts:
+              p.unlink()
+          (upload_dir / "READY").unlink(missing_ok=True)
+          try:
+              upload_dir.rmdir()
+          except OSError:
+              pass
+
+          workflow_file = Path(".github/workflows/ingest-d1-docx-once.yml")
+          workflow_file.unlink(missing_ok=True)
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add milestones/M1_D1_Project_Charter/03_DELIVERABLES/IndiGo_Macroeconomic_Profitability_Capstone_M1.docx
+          git add -u temp_upload_d1 .github/workflows/ingest-d1-docx-once.yml || true
+          git commit -m "Add revised D1 project charter DOCX"
+          git push origin HEAD:main
