@@ -1,28 +1,30 @@
-# M1 / D1 — Submitted Deliverables
+# M1 / D1 — Current Submitted Deliverable
 
-## D1 Project Charter PDF
+## Revised D1 Project Charter — EBITDA Margin focus
 
-**File received:** `IndiGo_Macroeconomic_Profitability_Capstone_M1.pdf`  
+**File received:** `IndiGo_Macroeconomic_Profitability_Capstone_M1.docx`  
+**Format:** Microsoft Word DOCX  
 **Document title:** *Problem Framing IndiGo — A public-data predictive study of aviation fuel prices, USD/INR, inflation and passenger demand*  
 **Course deliverable:** Module 1 Deliverable — Project Charter Foundation  
 **Pages:** 9  
 **Received:** 8 November 2026  
-**SHA-256 (original uploaded PDF):** `408f2a67f038013b124c5ef4e9818c3e56b1866dd4601a7eb792797342f02676`
+**SHA-256:** `d96c5cddecd2cb33e5eaceca61c7387b43468481c1d22d0a68f8a295c0a52e9f`
 
-### What the submitted PDF originally records
-- Initial primary analytical output: one-quarter-ahead PAT Margin = PAT / Revenue from Operations × 100.
-- Secondary operating indicator: EBITDAR Margin, using a consistent published definition.
-- Business decision: quarterly planning under different macroeconomic conditions.
-- Main drivers to investigate: aviation fuel prices, USD/INR, inflation and passenger-demand conditions.
-- Required comparison: a transparent historical baseline against a parsimonious candidate model, using chronological evaluation.
-- Intended use: scenario planning, budgeting and cost-risk awareness.
-- Boundaries: no route-level confidential profit prediction, unsupported causal claims, automatic fare decisions or investment recommendations.
+### Target verified in the revised DOCX
+- **Primary analytical output:** EBITDA Margin, using a consistent published definition (including ex-forex where comparable), as stated in the project definition table on page 3.
+- **Initial data plan target:** EBITDA margin under company profitability, page 7.
+- **Forecast problem:** one-quarter-ahead company-level profitability prediction using quarterly financial results and macroeconomic indicators.
+- **Intended use:** scenario planning, budgeting, cost-risk awareness and decision support.
+- **Proposed evaluation:** a transparent historical baseline, chronological validation, out-of-sample MAE/RMSE and scenario analysis.
+- **Boundaries:** no confidential route-wise profit prediction, unsupported causal claims, automatic fare decisions or investment recommendations.
 
-### Adopted project target after scope decision
-The project team has subsequently adopted **next-quarter EBITDA Margin (%) = EBITDA / Revenue from Operations × 100** as the primary target for D3–D7. This scope decision is documented in [M1 Evaluation Record](../EVALUATION_RECORD.md) and the [editable Project Charter](../../../docs/Project_Charter.md).
+### GitHub binary-upload status
+The revised DOCX was received and reviewed, but its binary is **not yet present in the GitHub repository**. This README and the milestone manifest record the exact filename and SHA-256 to identify the intended source. Do not treat this record as proof of binary upload.
 
-The submitted PDF remains unchanged as historical evidence of the initial D1 proposal. This record does not claim that the original PDF specified EBITDA Margin. EBITDA Margin and EBITDAR Margin are not interchangeable.
+## Historical version
+The earlier PDF `IndiGo_Macroeconomic_Profitability_Capstone_M1.pdf` is a superseded version. The revised DOCX above is the current D1 document for the EBITDA Margin project scope. Keep the old PDF only as historical context and do not use its earlier wording as the active target definition.
 
-## GitHub binary-upload status
-
-The PDF was received and inspected. Its binary has not yet been committed to this repository through the current GitHub write connection. Do not treat this README entry as proof that the PDF itself is already in GitHub. The original PDF is available in the conversation attachment.
+## Related editable project records
+- [Editable M1 Project Charter](../Project_Charter.md)
+- [M1 Evaluation Record](../EVALUATION_RECORD.md)
+- [M1 README](../README.md)
