@@ -7,11 +7,11 @@
 
 ## 1. Problem statement
 
-Develop and evaluate a machine-learning model that uses historical IndiGo financial performance and Bloomberg-sourced USD/INR, CPI, WPI and Dated Brent indicators to forecast the company's next-quarter PAT margin, and determine whether the selected model improves predictive performance over a simple historical baseline on unseen quarters.
+Develop and evaluate a machine-learning model that uses historical IndiGo financial performance and Bloomberg-sourced USD/INR, CPI, WPI and Dated Brent indicators to forecast the company's next-quarter EBITDA Margin, and determine whether the selected model improves predictive performance over a simple historical baseline on unseen quarters.
 
 **Business decision:** Use the forecast and scenario analysis to support quarterly financial planning and risk discussion.  
 **Decision-maker:** Business/finance decision-makers, analysts and project stakeholders.  
-**Target:** PAT Margin (%) = Profit After Tax / Revenue from Operations × 100.  
+**Adopted project target:** EBITDA Margin (%) = EBITDA / Revenue from Operations × 100.  
 **Forecast horizon:** One quarter ahead.
 
 This is an academic prototype using licensed Bloomberg extracts and aggregate financial/market data, with public disclosures used for cross-checking where appropriate. It is not commissioned by or endorsed by IndiGo and does not reveal unpublished actual results.
@@ -33,7 +33,7 @@ Bloomberg is the provider for the currently supplied financial and market export
 | Measure | Acceptance check | Comparison / evidence |
 |---|---|---|
 | Forecast error | Calculate MAE and RMSE on unseen later quarters | Compare selected model with a simple historical baseline on the same quarters |
-| Directional accuracy | Report if defined consistently and useful for the data | Predicted versus actual direction of PAT-margin movement |
+| Directional accuracy | Report if defined consistently and useful for the data | Predicted versus actual direction of EBITDA-Margin movement |
 | Baseline improvement | Determine whether ML adds value; do not assume it will | Out-of-sample performance versus baseline |
 | Data quality | Document missingness, duplicates, inconsistent units and revisions | D2 data audit and source register |
 | Leakage control | Every feature must have been available at the forecast date | Publication-date checks and chronological/rolling-origin validation |
@@ -126,3 +126,10 @@ Enter only meetings that have actually occurred. Record the actual date, decisio
 - [Data dictionary](../IndiGo_Data_Dictionary.csv)
 
 Confirm the required team number and PDF filename against the course submission instructions before submitting.
+
+
+## 9. Project scope decision — 8 November 2026
+
+The submitted D1 PDF (Module 1 Project Charter Foundation) originally proposed PAT Margin as the primary analytical output and EBITDAR Margin as a secondary indicator. Following the team's review of the available quarterly data and the direction of the current D3 EDA and M4 modelling work, the adopted project target is **next-quarter EBITDA Margin (%) = EBITDA / Revenue from Operations × 100**.
+
+This is a documented project-scope decision for all subsequent work: data preparation, D3 EDA interpretation, M4 model training, M5 evaluation, D6 application outputs and D7 reporting must consistently use EBITDA Margin as the primary target. The submitted D1 PDF remains unchanged as historical evidence of the initial proposal. EBITDA Margin must not be described as EBITDAR Margin; the two measures have different definitions.
