@@ -25,17 +25,31 @@ Canonical datasets are indexed in [data/README.md](data/README.md); M2 and M4 ea
 
 
 
-## D1 — Project Charter (M1)
+## Phase 1 — Project Foundation (D1 followed by D2)
+
+Phase 1 contains the project definition and the data-readiness work. The deliverables are intentionally listed in sequence: **D1 first, then D2**.
+
+### D1 — Project Charter (M1)
 
 **Submitted deliverable:** `IndiGo_Macroeconomic_Profitability_Capstone_M1.pdf` (9 pages; Module 1 Project Charter Foundation; received 8 November 2026).
 
-The submitted D1 charter PDF originally proposed PAT margin as the primary analytical output and EBITDA margin as a secondary operating indicator. The project team subsequently adopted **EBITDA Margin** as the primary modelling target for the capstone. This approved project scope is used in D3, the active M4 modelling work, the model workflow and the application. The original D1 PDF is retained unchanged as the submitted historical document; the target change is recorded in the editable charter and M1 evaluation record.
+The submitted D1 charter PDF originally proposed PAT Margin as the primary analytical output and EBITDA Margin as a secondary operating indicator. The project team subsequently adopted **EBITDA Margin** as the primary modelling target for the capstone. This approved project scope is used in D3, the active M4 modelling work, the model workflow and the application. The original D1 PDF is retained unchanged as the submitted historical document; the target change is recorded in the editable charter and M1 evaluation record.
 
 - [M1 / D1 milestone folder](milestones/M1_D1_Project_Charter/)
 - [M1 PDF deliverable location](milestones/M1_D1_Project_Charter/03_DELIVERABLES/README.md)
 - [Editable charter baseline](docs/Project_Charter.md)
 
-**PDF repository status:** The source PDF has been received and inspected, but the PDF binary could not be committed through the current GitHub file-write connection. The M1 deliverables README and manifest record it as received locally with the checksum; the GitHub PDF upload remains pending. The original PDF remains available in this conversation as a download.
+**PDF repository status:** The source PDF has been received and inspected, but the PDF binary could not be committed through the current GitHub file-write connection. The M1 deliverables README and manifest record it as received locally with the checksum; the GitHub PDF upload remains pending.
+
+### D2 — Data Audit (M2)
+
+D2 follows D1 within Phase 1. It records the source data, definitions, units, coverage, data-quality checks, permissions and approved dataset handoff used by later milestones.
+
+- [M2 / D2 milestone folder](milestones/M2_D2_Data_Audit/)
+- [M2 data-audit README](milestones/M2_D2_Data_Audit/README.md)
+- [M2 data manifest](milestones/M2_D2_Data_Audit/MILESTONE_MANIFEST.csv)
+
+**Phase 1 completion:** D1 establishes the project scope; D2 establishes whether the data are suitable and traceable. The adopted project target for subsequent analysis and modelling is EBITDA Margin.
 
 ## Project vision
 
