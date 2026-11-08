@@ -25,20 +25,6 @@ Canonical datasets are indexed in [data/README.md](data/README.md); M2 and M4 ea
 
 
 
-## D1 — Project Charter (M1)
-
-**Current revised deliverable received:** `IndiGo_Macroeconomic_Profitability_Capstone_M1.docx` (9 pages; received 8 November 2026).  
-**SHA-256:** `d96c5cddecd2cb33e5eaceca61c7387b43468481c1d22d0a68f8a295c0a52e9f`
-
-The revised charter establishes **EBITDA Margin** as the primary analytical output. The project definition, analytics question and data plan are aligned to a one-quarter-ahead EBITDA-margin forecast. The earlier D1 PDF is retained only as historical submission evidence; it is not the current charter for the adopted target.
-
-- [M1 / D1 milestone folder](milestones/M1_D1_Project_Charter/)
-- [M1 deliverables index](milestones/M1_D1_Project_Charter/03_DELIVERABLES/README.md)
-- [Editable charter baseline](docs/Project_Charter.md)
-- [M1 scope decision and evaluation record](milestones/M1_D1_Project_Charter/EVALUATION_RECORD.md)
-
-**GitHub binary status:** The revised DOCX has been received and inspected, but its binary upload to GitHub is still pending. The repository records the exact version and checksum; it is not marked as committed.
-
 ## Project vision
 
 Build an end-to-end forecasting product that combines the historical IndiGo financial and macro/market dataset already assembled for the capstone with selected data refreshed from external web APIs. The live prototype uses Alpha Vantage for USD/INR, OilPriceAPI for Brent, and the official MoSPI eSankhyiki API for monthly CPI and WPI. IndiGo financial results are updated after official quarterly releases. No Bloomberg Terminal session is required to run the live API connectors. A Python data/ML backend exposes forecasts through an API; a single HTML/CSS/JavaScript application lets users inspect inputs, market observations, next-quarter EBITDA-margin forecasts, scenarios, model status and data health.
@@ -196,6 +182,20 @@ Every feature must pass the **forecast-date availability rule**. Latest-market r
 
 See the [D1 charter](docs/Project_Charter.md) and [full plan](docs/Master_Project_Plan.md) before implementation.
 
+
+## D1 — Project Charter (M1)
+
+**Current revised deliverable received:** `IndiGo_Macroeconomic_Profitability_Capstone_M1.docx` (9 pages; received 8 November 2026).  
+**SHA-256:** `d96c5cddecd2cb33e5eaceca61c7387b43468481c1d22d0a68f8a295c0a52e9f`
+
+The revised charter establishes **EBITDA Margin** as the primary analytical output. The project definition, analytics question and data plan are aligned to a one-quarter-ahead EBITDA-margin forecast. The earlier D1 PDF is retained only as historical submission evidence; it is not the current charter for the adopted target.
+
+- [M1 / D1 milestone folder](milestones/M1_D1_Project_Charter/)
+- [M1 deliverables index](milestones/M1_D1_Project_Charter/03_DELIVERABLES/README.md)
+- [Editable charter baseline](docs/Project_Charter.md)
+- [M1 scope decision and evaluation record](milestones/M1_D1_Project_Charter/EVALUATION_RECORD.md)
+
+**GitHub binary status:** The revised DOCX has been received and inspected, but its binary upload to GitHub is still pending. The repository records the exact version and checksum; it is not marked as committed.
 
 ## Phase 1 — data collection and dataset build
 
