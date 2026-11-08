@@ -55,7 +55,7 @@ Four additional workbooks were attached in the current conversation session and 
 | `CP(6).xlsx` | 157,304 bytes | `208fc66a69c548023c4591bb8b7b5ba41624cdfe56fdd757612cc7b5fd01879e` | Byte-identical to existing `data/raw/CP(4).xlsx`; no new binary upload needed |
 | `CP Master Data(5).xlsx` | 71,747 bytes | `30220588fe96276662a8eeadf56ea6a583da71479e0e26923383c517cc8af474` | Byte-identical to existing `data/raw/CP Master Data(3).xlsx`; no new binary upload needed |
 | `Final_Quarterly_Data(3).xlsx` | 99,836 bytes | `87e56b4a08a81740c93386f62845bb48de53d0cbea754427b0da3d5b8fd5d970` | New local derived version; sheets: Final_Quarterly_Data (39×12), Calculation Audit (197×13), Data Quality Checks (21×6); not committed |
-| `EDA ANALYSIS(4).xlsx` | 13,247 bytes | `0c2a79065faaee48cec6393f79ff330a98a9eb20c1add3e87e8a45dd7e1c0f46` | New local flat EDA version; Sheet1 (39×9); not committed |
+| `EDA ANALYSIS(4).xlsx` | 13,247 bytes | `0c2a79065faaee48cec6393f79ff330a98a9eb20c1add3e87e8a45dd7e1c0f46` | Previously used in M3; removed from the current milestone on 2026-11-08 at user request. The latest executed notebook is retained; its exact `EDA ANALYSIS(5).xlsx` runtime input is not committed. |
 
 The latest quarterly workbook still contains two early rows with repeated numeric margins despite `Financial Data Status = Not available in source`. The flat EDA workbook does not carry that status column. Both are review candidates, not approved modelling inputs. The financial-series and fiscal-quarter alignment issue recorded above remains an open reconciliation gate. The D4-v1 input snapshot and its SHA-256 remain unchanged.
 
