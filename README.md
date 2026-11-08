@@ -25,34 +25,19 @@ Canonical datasets are indexed in [data/README.md](data/README.md); M2 and M4 ea
 
 
 
-## Phase 1 — Project Foundation (D1 followed by D2)
+## D1 — Project Charter (M1)
 
-Phase 1 contains the project definition and the data-readiness work. The deliverables are intentionally listed in sequence: **D1 first, then D2**.
-
-### D1 — Project Charter (M1)
-
-**Current revised deliverable received:** `IndiGo_Macroeconomic_Profitability_Capstone_M1.docx` (DOCX; 9 pages; received 8 November 2026).  
+**Current revised deliverable received:** `IndiGo_Macroeconomic_Profitability_Capstone_M1.docx` (9 pages; received 8 November 2026).  
 **SHA-256:** `d96c5cddecd2cb33e5eaceca61c7387b43468481c1d22d0a68f8a295c0a52e9f`
 
-The revised DOCX explicitly establishes **EBITDA Margin** as the primary analytical output. On page 3, the project definition table states that EBITDA margin (using a consistent published definition, including ex-forex where comparable) is the primary analytical output. Page 7's initial data plan also lists EBITDA margin as the company-profitability target. The analytics question and problem framing focus on a one-quarter-ahead company-level profitability forecast, baseline comparison and scenario planning.
-
-The revised DOCX is the current D1 version for the adopted EBITDA Margin scope. The earlier D1 PDF is a superseded version and should be retained only as historical context, not used as the current charter.
+The revised charter establishes **EBITDA Margin** as the primary analytical output. The project definition, analytics question and data plan are aligned to a one-quarter-ahead EBITDA-margin forecast. The earlier D1 PDF is retained only as historical submission evidence; it is not the current charter for the adopted target.
 
 - [M1 / D1 milestone folder](milestones/M1_D1_Project_Charter/)
 - [M1 deliverables index](milestones/M1_D1_Project_Charter/03_DELIVERABLES/README.md)
 - [Editable charter baseline](docs/Project_Charter.md)
+- [M1 scope decision and evaluation record](milestones/M1_D1_Project_Charter/EVALUATION_RECORD.md)
 
-**GitHub binary status:** The revised DOCX has been received, inspected and verified locally, but the binary itself is not yet present in GitHub. The repository's M1 records now identify this exact version and its SHA-256; the DOCX upload remains pending rather than being marked as committed.
-
-### D2 — Data Audit (M2)
-
-D2 follows D1 within Phase 1. It records the source data, definitions, units, coverage, data-quality checks, permissions and approved dataset handoff used by later milestones.
-
-- [M2 / D2 milestone folder](milestones/M2_D2_Data_Audit/)
-- [M2 data-audit README](milestones/M2_D2_Data_Audit/README.md)
-- [M2 data manifest](milestones/M2_D2_Data_Audit/MILESTONE_MANIFEST.csv)
-
-**Phase 1 completion:** D1 establishes the project scope; D2 establishes whether the data are suitable and traceable. The adopted project target for subsequent analysis and modelling is EBITDA Margin.
+**GitHub binary status:** The revised DOCX has been received and inspected, but its binary upload to GitHub is still pending. The repository records the exact version and checksum; it is not marked as committed.
 
 ## Project vision
 
