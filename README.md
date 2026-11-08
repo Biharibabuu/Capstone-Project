@@ -31,15 +31,18 @@ Phase 1 contains the project definition and the data-readiness work. The deliver
 
 ### D1 — Project Charter (M1)
 
-**Submitted deliverable:** `IndiGo_Macroeconomic_Profitability_Capstone_M1.pdf` (9 pages; Module 1 Project Charter Foundation; received 8 November 2026).
+**Current revised deliverable received:** `IndiGo_Macroeconomic_Profitability_Capstone_M1.docx` (DOCX; 9 pages; received 8 November 2026).  
+**SHA-256:** `d96c5cddecd2cb33e5eaceca61c7387b43468481c1d22d0a68f8a295c0a52e9f`
 
-The submitted D1 charter PDF originally proposed PAT Margin as the primary analytical output and EBITDA Margin as a secondary operating indicator. The project team subsequently adopted **EBITDA Margin** as the primary modelling target for the capstone. This approved project scope is used in D3, the active M4 modelling work, the model workflow and the application. The original D1 PDF is retained unchanged as the submitted historical document; the target change is recorded in the editable charter and M1 evaluation record.
+The revised DOCX explicitly establishes **EBITDA Margin** as the primary analytical output. On page 3, the project definition table states that EBITDA margin (using a consistent published definition, including ex-forex where comparable) is the primary analytical output. Page 7's initial data plan also lists EBITDA margin as the company-profitability target. The analytics question and problem framing focus on a one-quarter-ahead company-level profitability forecast, baseline comparison and scenario planning.
+
+The revised DOCX is the current D1 version for the adopted EBITDA Margin scope. The earlier D1 PDF is a superseded version and should be retained only as historical context, not used as the current charter.
 
 - [M1 / D1 milestone folder](milestones/M1_D1_Project_Charter/)
-- [M1 PDF deliverable location](milestones/M1_D1_Project_Charter/03_DELIVERABLES/README.md)
+- [M1 deliverables index](milestones/M1_D1_Project_Charter/03_DELIVERABLES/README.md)
 - [Editable charter baseline](docs/Project_Charter.md)
 
-**PDF repository status:** The source PDF has been received and inspected, but the PDF binary could not be committed through the current GitHub file-write connection. The M1 deliverables README and manifest record it as received locally with the checksum; the GitHub PDF upload remains pending.
+**GitHub binary status:** The revised DOCX has been received, inspected and verified locally, but the binary itself is not yet present in GitHub. The repository's M1 records now identify this exact version and its SHA-256; the DOCX upload remains pending rather than being marked as committed.
 
 ### D2 — Data Audit (M2)
 
