@@ -21,11 +21,11 @@ The executed notebook retains 34 cells, 43 saved outputs and 14 execution counts
 
 These are exploratory same-period associations, not causal effects or out-of-sample next-quarter prediction evidence. The sample is small and time-dependent.
 
-## Critical project-target alignment
-The approved D1/D4 project target is PAT Margin. This notebook analyses EBITDA Margin only, even though PAT Margin exists in the input workbook. Keep D3 described as EBITDA-focused unless the team explicitly expands the analysis to PAT Margin and reruns the tests.
+## Project-target alignment
+The adopted project target is EBITDA Margin, and this D3 notebook analyses EBITDA Margin as its primary outcome. PAT Margin appears in the workbook as a separate reference field and is intentionally excluded from the D3 analytical frame. The original D1 PDF proposed PAT Margin, but the team's later scope decision adopted EBITDA Margin for D3–D7. See the M1 evaluation record.
 
 ## Closure criteria
 1. Clean-run the notebook from M3/02_WORKING using the uploaded workbook in M3/01_INPUTS.
 2. Confirm the oil benchmark definition/units and source lineage.
-3. Approve the EBITDA-vs-PAT EDA scope with the capstone team/faculty.
+3. Confirm the recorded EBITDA Margin scope decision in the capstone review.
 4. Store any separate faculty-ready summary/report in 03_DELIVERABLES and update the manifest.
