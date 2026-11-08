@@ -1,6 +1,6 @@
 # M3 / D3 — Exploratory Data Analysis
 
-**Status: IN REVIEW — the executed notebook and matching Excel input are now stored in the milestone. Scope approval and final reviewer sign-off remain open.**
+**Status: IN REVIEW — executed notebook and matching Excel input uploaded; reviewer sign-off pending.**
 
 ## Objective
 Explore quarterly IndiGo EBITDA Margin and its association with USD/INR, CPI, WPI and supplied daily/monthly oil-benchmark indicators. This is exploratory analysis, not a causal study or forecast evaluation.
@@ -23,9 +23,10 @@ The workbook contains 38 quarterly records and 9 columns, including PAT Margin. 
 6. Test the five pre-specified hypotheses and record effect sizes and p-values.
 7. Summarize insights, limitations and modelling recommendations for M4.
 
-## Scope and limitations
-D1/D4 currently define PAT Margin as the overall capstone forecast target, whereas this D3 notebook analyses EBITDA Margin only. The workbook contains PAT Margin but the notebook intentionally does not use it as the EDA outcome. The team must confirm whether D3 is supplementary EBITDA analysis or whether a separate PAT-margin EDA is required.
+## Scope alignment
+The adopted project target is EBITDA Margin, and this notebook's EBITDA-focused analysis is aligned with that target. The workbook also contains PAT Margin as a separate reference field, but PAT Margin is not the D3 outcome. The original D1 PDF proposed PAT Margin; the project's later scope decision adopting EBITDA Margin is documented in the M1 evaluation record and editable charter.
 
+## Limitations
 There are 38 quarterly observations. The oil series is a supplied benchmark proxy; the exact instrument and units are not fully established in the EDA workbook. Association does not establish causation or predictive performance.
 
 ## Standard milestone structure
