@@ -124,7 +124,7 @@ To configure the feeds, copy `.env.example` to `.env`, enter `ALPHAVANTAGE_API_K
 - `POST /api/market/refresh` attempts USD/INR, Brent, CPI and WPI independently and reports each result.
 - `GET /api/sources` returns the source catalogue and update cadence.
 
-CPI and WPI are published monthly, not continuously. IndiGo PAT and revenue remain quarterly outcomes and must only be loaded after publication. Brent is a global benchmark proxy, not Indian ATF or IndiGo's realised fuel cost. Provider quotas, security requirements and data-use/display rights must be checked before public deployment. The current refresh is user-triggered; scheduled refresh can be added at deployment.
+CPI and WPI are published monthly, not continuously. IndiGo EBITDA and Revenue from Operations remain quarterly outcomes used to calculate EBITDA Margin, and must only be loaded after publication. Brent is a global benchmark proxy, not Indian ATF or IndiGo's realised fuel cost. Provider quotas, security requirements and data-use/display rights must be checked before public deployment. The current refresh is user-triggered; scheduled refresh can be added at deployment.
 
 ## Modelling and evaluation
 
