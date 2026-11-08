@@ -1,0 +1,56 @@
+name: One-time project artifact ingest
+on:
+  push:
+    paths:
+      - "temp_upload/READY"
+permissions:
+  contents: write
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Restore and verify binary artifacts
+        shell: bash
+        run: |
+          python - <<'PY'
+          import base64, gzip, hashlib, json
+          from pathlib import Path
+          root = Path("temp_upload")
+          manifest = json.loads((root / "manifest.json").read_text(encoding="utf-8"))
+          for item in manifest["files"]:
+              encoded = "".join((root / part).read_text(encoding="ascii").strip()
+                                for part in item["chunks"])
+              compressed = base64.b64decode(encoded, validate=True)
+              payload = gzip.decompress(compressed) if item.get("gzip", False) else compressed
+              digest = hashlib.sha256(payload).hexdigest()
+              if digest != item["sha256"]:
+                  raise SystemExit(f"SHA-256 mismatch for {item['destination']}: {digest}")
+              destination = Path(item["destination"])
+              destination.parent.mkdir(parents=True, exist_ok=True)
+              destination.write_bytes(payload)
+              print(f"Restored {destination} ({len(payload)} bytes; SHA-256 {digest})")
+          for p in root.rglob("*"):
+              if p.is_file():
+                  p.unlink()
+          for p in sorted(root.rglob("*"), reverse=True):
+              if p.is_dir():
+                  p.rmdir()
+          root.rmdir()
+          workflow = Path(".github/workflows/ingest-project-artifacts-once.yml")
+          workflow.unlink(missing_ok=True)
+          PY
+      - name: Commit restored files and remove staging
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add milestones/M1_D1_Project_Charter/03_DELIVERABLES/IndiGo_Macroeconomic_Profitability_Capstone_M1.docx
+          git add milestones/M3_D3_Exploratory_Data_Analysis/02_WORKING/ANCP_T\#\#_D3_EDA_New_Dataset_EXECUTED.ipynb
+          git add -u temp_upload .github/workflows/ingest-project-artifacts-once.yml || true
+          git commit -m "Upload revised D1 charter and replace D3 EDA notebook"
+          git push origin HEAD:main
