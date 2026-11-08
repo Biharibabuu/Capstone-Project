@@ -5,7 +5,7 @@
 ## Data inventory
 | Data group | Bloomberg identifier | Intended use | Limitation |
 |---|---|---|---|
-| IndiGo financials | INDIGO IN; Revenue, Net Income (GAAP), EBITDA | PAT and EBITDA margin | EBITDAR is not established in the supplied data |
+| IndiGo financials | INDIGO IN; Revenue and EBITDA (Net Income retained as source audit field only) | Primary target: EBITDA margin = EBITDA / Revenue from Operations × 100 | EBITDAR is not established in the supplied data |
 | USD/INR | USDINR REGN Curncy | Currency indicator | Historical release timing to verify |
 | CPI | INFUTOTY Index | Inflation | Series/base and release timing to verify |
 | WPI | INBGWPIY Index | Inflation | Series/base and release timing to verify |
@@ -15,7 +15,7 @@ The audited package does not include passenger counts, passenger load factor, RP
 
 ## Audit findings and controls
 1. The master workbook's legacy Financial source sheet is shifted by **two quarters** relative to raw Bloomberg IS. Rebuild financial outcomes directly from raw IS.
-2. Rows marked Est are estimates, not realised PAT labels.
+2. Rows marked Est are estimates, not realised EBITDA-margin labels.
 3. The earlier 33-row training count was provisional. D4 documents 38 source rows, two excluded rows and 35 supervised examples for its pinned snapshot.
 4. Lag/target missingness can be structural; do not mechanically impute.
 5. Retain plausible extreme oil/profitability events, including COVID losses, with documented sensitivity review.
