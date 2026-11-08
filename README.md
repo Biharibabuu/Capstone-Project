@@ -29,7 +29,7 @@ Canonical datasets are indexed in [data/README.md](data/README.md); M2 and M4 ea
 
 **Submitted deliverable:** `IndiGo_Macroeconomic_Profitability_Capstone_M1.pdf` (9 pages; Module 1 Project Charter Foundation; received 8 November 2026).
 
-The submitted D1 charter PDF originally proposed PAT margin as the primary analytical output and EBITDAR margin as a secondary operating indicator. The project team subsequently adopted **EBITDA Margin** as the primary modelling target for the capstone. This approved project scope is used in D3, the active M4 modelling work, the model workflow and the application. The original D1 PDF is retained unchanged as the submitted historical document; the target change is recorded in the editable charter and M1 evaluation record.
+The submitted D1 charter PDF originally proposed PAT margin as the primary analytical output and EBITDA margin as a secondary operating indicator. The project team subsequently adopted **EBITDA Margin** as the primary modelling target for the capstone. This approved project scope is used in D3, the active M4 modelling work, the model workflow and the application. The original D1 PDF is retained unchanged as the submitted historical document; the target change is recorded in the editable charter and M1 evaluation record.
 
 - [M1 / D1 milestone folder](milestones/M1_D1_Project_Charter/)
 - [M1 PDF deliverable location](milestones/M1_D1_Project_Charter/03_DELIVERABLES/README.md)
