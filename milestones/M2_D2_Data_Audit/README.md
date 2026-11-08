@@ -3,7 +3,7 @@
 **Status:** DONE
 
 ## Brief
-Audit data provenance, definitions, units, period coverage, missingness, duplicates, financial status, quality and permitted use before analysis/model development.
+Audit data provenance, definitions, units, period coverage, missingness, duplicates, financial status, quality and permitted use before analysis/model development. The approved primary financial target for this capstone is **quarterly EBITDA Margin = EBITDA / Revenue from Operations × 100**; Net Income is retained only as a source-audit field and is not the target.
 
 ## Data used and stored
 - Raw source workbook: `data/raw/CP(4).xlsx` and the milestone copy at [data/raw/CP(4).xlsx](data/raw/CP%284%29.xlsx).
@@ -20,7 +20,7 @@ Audit data provenance, definitions, units, period coverage, missingness, duplica
 6. Publish the approved source package and handoff limitations to M3.
 
 ## Key findings and limits
-- Raw financial and macro/market data cover revenue, net income, EBITDA, USD/INR, CPI, WPI and Dated Brent.
+- Raw financial and macro/market data cover revenue, EBITDA, USD/INR, CPI, WPI and Dated Brent. Net Income remains only in the original source workbook for audit/reconciliation and is excluded from the target definition.
 - Brent is a proxy, not IndiGo's realised ATF cost.
 - The data lack passenger load factor, passenger yield, RPK/ASK and other operating measures.
 - Historical release/availability timestamps are incomplete and must be treated as a limitation in forecasting.
