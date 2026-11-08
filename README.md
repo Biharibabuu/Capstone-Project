@@ -40,7 +40,7 @@ Can historical IndiGo financial performance and public/authorized macroeconomic 
 **Adopted project primary target:**  
 EBITDA Margin (%) = EBITDA / Revenue from Operations × 100
 
-**Original D1 proposal:** PAT Margin was proposed as the primary target and EBITDAR Margin as a secondary indicator in the submitted PDF. The project team later adopted EBITDA Margin as the modelling target; see [M1 scope decision](milestones/M1_D1_Project_Charter/EVALUATION_RECORD.md#project-scope-decision-8-november-2026).
+**Approved D1 project target:** EBITDA Margin (%) = EBITDA / Revenue from Operations × 100. This is the sole primary modelling target for data preparation, EDA, forecasting, model evaluation and application development. See [M1 scope decision](milestones/M1_D1_Project_Charter/EVALUATION_RECORD.md#project-scope-decision-8-november-2026).
 
 **Forecast horizon:** one quarter ahead. The pipeline may refresh the latest valid inputs, but it cannot know an unpublished current-quarter profit.
 
