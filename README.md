@@ -238,6 +238,7 @@ The D2 audit report and its three-page datasheet document the audit of the Bloom
 - **CPI date check:** the latest raw `CP(4).xlsx` sheet has monthly dates through 2026-09-30; the earlier malformed-date concern was not reproduced in this version. Verify any dates in the derived quarterly file against the raw series and do not manually alter source dates.
 - **Data governance:** Bloomberg source files are proprietary. Do not publish raw exports or derived data unless institutional licence terms permit it. Keep raw exports in authorised private storage.
 - **Feature timing:** use only information available at the forecast cutoff; the next-quarter EBITDA margin is a target, never a predictor.
+- **Downstream D3 handoff:** [Latest executed EBITDA Margin EDA notebook](milestones/M3_D3_Exploratory_Data_Analysis/02_WORKING/ANCP_T%23%23_D3_EDA_New_Dataset_EXECUTED.ipynb). The prior standalone EDA Analysis workbook has been removed; the D3 notebook and its saved outputs are retained in M3.
 
 Keep licensed Bloomberg exports and data-derived workbook values in authorized local/private storage. The public repository should contain code, schemas, source metadata and documentation only unless the applicable licence explicitly permits redistribution. Do not use the earlier generated master dataset until it has been rebuilt from the raw `IS` sheet.
 
