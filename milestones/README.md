@@ -9,17 +9,17 @@
 
 ## Executive milestone overview
 
-| Phase | Deliverable | Focus | Status | Milestone workspace |
+| Phase | Deliverable | Focus | Status | Workspace |
 |---|---|---|---|---|
-| **01 — Project Foundation** | **D1 · Project Charter (M1)** | Business problem, EBITDA target, scope, stakeholders, risks and project plan | <badge color="success">Done</badge> | [Open M1 workspace →](M1_D1_Project_Charter/) |
-| **01 — Project Foundation** | **D2 · Data Audit (M2)** | Source register, definitions, data quality, lineage, data dictionary and approval controls | <badge color="success">Done</badge> | [Open M2 workspace →](M2_D2_Data_Audit/) |
-| **02 — Analysis & Modelling** | **D3 · EBITDA Margin EDA (M3)** | 38-quarter exploratory analysis, descriptive statistics, hypotheses and modelling handoff | <badge color="success">Done¹</badge> | [Open M3 workspace →](M3_D3_Exploratory_Data_Analysis/) |
-| **02 — Analysis & Modelling** | **D4 · Modelling (M4)** | EBITDA target construction, baselines, candidate models, chronological validation and experiment tracking | <badge color="warning">In Progress</badge> | [Open M4 workspace →](M4_D4_Modelling/) |
-| **03 — Evaluation & Delivery** | **D5 · Model Evaluation (M5)** | Rolling-origin backtesting, robustness, error analysis and uncertainty | <badge>Todo</badge> | [Open M5 workspace →](M5_D5_Model_Evaluation/) |
-| **03 — Evaluation & Delivery** | **D6 · Deployment & Monitoring (M6)** | D5-approved model integration, API/UI testing, refresh and monitoring | <badge>Todo</badge> | [Open M6 workspace →](M6_D6_Deployment_Monitoring/) |
-| **03 — Evaluation & Delivery** | **D7 · Final Communication (M7)** | Final report, model card, presentation, speaker notes and reproducible demo | <badge>Todo</badge> | [Open M7 workspace →](M7_D7_Final_Communication/) |
+| **01 · Project Foundation** | **D1 · Project Charter (M1)** | Business problem, EBITDA target, scope, stakeholders, risks and delivery plan | **Done** | [M1 workspace](M1_D1_Project_Charter/) |
+| **01 · Project Foundation** | **D2 · Data Audit (M2)** | Source register, definitions, data quality, lineage, data dictionary and approval controls | **Done** | [M2 workspace](M2_D2_Data_Audit/) |
+| **02 · Analysis & Modelling** | **D3 · EBITDA Margin EDA (M3)** | 38-quarter exploratory analysis, distributions, hypotheses, insights and modelling handoff | **Done¹** | [M3 workspace](M3_D3_Exploratory_Data_Analysis/) |
+| **02 · Analysis & Modelling** | **D4 · EBITDA Margin Modelling (M4)** | Target construction, baseline/challenger models, chronological validation and experiment tracking | **In Progress** | [M4 workspace](M4_D4_Modelling/) |
+| **03 · Evaluation & Delivery** | **D5 · Model Evaluation (M5)** | Rolling-origin backtesting, robustness, error analysis and uncertainty | **Todo** | [M5 workspace](M5_D5_Model_Evaluation/) |
+| **03 · Evaluation & Delivery** | **D6 · Deployment & Monitoring (M6)** | D5-approved model integration, API/UI testing, refresh and monitoring | **Todo** | [M6 workspace](M6_D6_Deployment_Monitoring/) |
+| **03 · Evaluation & Delivery** | **D7 · Final Communication (M7)** | Final report, model card, presentation, speaker notes and reproducible demo | **Todo** | [M7 workspace](M7_D7_Final_Communication/) |
 
-¹ M3's analysis handoff and saved notebook outputs are retained. A clean rerun remains pending the exact source workbook and reconciliation of the noted quarterly discrepancy. See M3's README for the current reproducibility caveat.
+¹ M3 analysis handoff and saved notebook outputs are retained. A clean rerun remains pending the exact source workbook and reconciliation of the noted quarterly discrepancy. See the M3 README for the reproducibility caveat.
 
 ---
 
@@ -31,79 +31,84 @@ D1 Project Charter  →  D2 Data Audit
           │
           ▼
 PHASE 02 · ANALYSIS & MODELLING
-D3 EBITDA Margin EDA  →  D4 EBITDA Modelling
-                                  │
-                                  ▼
+D3 EBITDA Margin EDA  →  D4 EBITDA Margin Modelling
+                                      │
+                                      ▼
 PHASE 03 · EVALUATION & DELIVERY
 D5 Model Evaluation  →  D6 Deployment & Monitoring  →  D7 Final Communication
 ```
 
-**Current execution rule:** M1, M2 and M3 are complete; M4 is the only active workstream. M5–M7 are planned and must remain Todo until their deliverables are produced and reviewed.
+**Execution rule:** M1–M3 are complete, with the stated M3 reproducibility caveat. M4 is the only active workstream. M5–M7 are planned and must remain Todo until their deliverables are produced and reviewed.
 
 ---
 
-## Milestone workspace standard
+## Standard milestone workspace
 
-Every milestone follows the same evaluator-friendly structure:
+Every milestone follows the same formal structure:
 
-| File / folder | Purpose |
+| File / folder | Required contents |
 |---|---|
-| `README.md` | Brief, objective, status, exact inputs, workflow, outputs, limitations and next gate |
+| `README.md` | Brief, objective, status, inputs, workflow, outputs, limitations and next gate |
 | `MILESTONE_CONTROL.md` | Scope, dependencies, acceptance criteria, risks and closure conditions |
 | `DELIVERABLES_CHECKLIST.md` | Reviewable completion checklist |
-| `MILESTONE_MANIFEST.csv` | File-level evidence inventory, paths and artifact status |
-| `01_INPUTS/` | Source files, data contracts, brief and input register |
+| `MILESTONE_MANIFEST.csv` | File-level inventory, exact paths, artifact status and evidence |
+| `01_INPUTS/` | Brief, source data, input register and data contract |
 | `02_WORKING/` | Notebooks, scripts, transformations and working records |
-| `03_DELIVERABLES/` | Formal milestone submission files |
-| `04_EVIDENCE/` | Outputs, test results, metrics, review and verification evidence |
+| `03_DELIVERABLES/` | Formal milestone submission files (PDF, DOCX, XLSX, notebook or application deliverables as relevant) |
+| `04_EVIDENCE/` | Outputs, tests, metrics, review and verification evidence |
 | `05_REFERENCES/` | Data sources, methodology, citations and technical references |
-| `data/` | Milestone-specific dataset or exact versioned data snapshot, where applicable |
+| `data/` | Exact milestone-specific dataset or versioned snapshot, where applicable |
 
-A folder or checklist is not evidence that work is complete. Manifests must distinguish committed files, pending files, missing inputs, placeholders and completed deliverables.
+**Artifact rule:** a folder, checklist or README is not proof that a deliverable exists. The manifest must distinguish committed files, received-but-not-uploaded files, missing inputs, placeholders and completed artifacts. Never claim a PDF/DOCX/XLSX/notebook has been uploaded unless it exists at the stated GitHub path.
 
 ---
 
-## Data ownership and target governance
+## Milestone-by-milestone data and document allocation
 
-The primary financial target throughout the current project is **EBITDA Margin (%) = EBITDA / Revenue from Operations × 100**.
-
-| Milestone | Data and artifact responsibility |
+| Milestone | Required files and data in this workspace |
 |---|---|
-| M1 · D1 | Defines target, business scope and data requirements; no analytical dataset required |
-| M2 · D2 | Owns raw source workbooks, source register, data dictionary, data-quality findings, checksums and approval history |
-| M3 · D3 | Owns the exact EBITDA-only EDA input, executed EDA notebook and analysis handoff |
-| M4 · D4 | Owns the versioned modelling snapshot, target/feature engineering, splits, code, experiments, predictions and model outputs |
-| M5 · D5 | Freezes the selected M4 candidate and input vintage; owns rolling-origin predictions, metrics and error analysis |
-| M6 · D6 | Uses the D5-approved model and feature contract; owns API/UI integration, refresh and monitoring evidence |
-| M7 · D7 | References approved versioned evidence; owns the final report, model card, presentation and demo package |
+| **M1 · D1 Project Charter** | Current EBITDA-focused charter (DOCX/PDF if submitted), editable charter, scope decision, roles/responsibility matrix, meeting log, assumptions and risk register. No analytical dataset required. |
+| **M2 · D2 Data Audit** | Raw/source workbooks, quarterly source snapshot, data dictionary, source register, collection tracker, audit summary, feasibility audit, data-quality evidence, workbook inventory and SHA-256 manifest. |
+| **M3 · D3 EBITDA EDA** | Exact 38-quarter EBITDA-only input panel, executed EDA notebook, charts/tables/statistical outputs, hypotheses, insight log, review notes and M4 handoff. |
+| **M4 · D4 EBITDA Modelling** | Approved M2/M3 data snapshots, target/feature engineering, modelling notebook/scripts, baseline and challenger experiments, tests, environment/data manifests, run logs, metrics, predictions and modelling report. |
+| **M5 · D5 Model Evaluation** | Frozen M4 model and dataset version, rolling-origin notebook/scripts, prediction/error files, metrics, robustness tests, uncertainty analysis and evaluation report. |
+| **M6 · D6 Deployment & Monitoring** | D5-approved model package, feature contract, API/backend, frontend, refresh/store workflow, API/UI tests, monitoring thresholds, logs, runbook and demo evidence. |
+| **M7 · D7 Final Communication** | Final report, executive summary, model card, presentation deck, speaker notes, demo runbook, references and release record. |
 
-**Data controls**
-- Preserve source workbooks as immutable inputs and record SHA-256 hashes for each approved version.
-- Any derived or transformed dataset must identify its parent source version, transformation, date, units and row coverage.
-- Record actual versus estimate status and observation versus publication/availability dates.
-- Do not use future or unpublished values in historical model features.
-- Dated Brent is a benchmark proxy; do not describe it as IndiGo's realised ATF price.
-- Net Income may exist in the original company statement source for audit/reconciliation, but it is not the project's target or a model feature.
-- Do not silently substitute a different quarterly workbook or mix versions across EDA and modelling.
+### Data ownership and target governance
+
+The current project's only primary forecasting target is:
+
+**EBITDA Margin (%) = EBITDA / Revenue from Operations × 100**
+
+- M2 owns the audited raw source data and provenance records.
+- M3 owns the exact EDA analysis input and outputs.
+- M4 owns the versioned modelling dataset and all model experiments.
+- M5 freezes and evaluates the selected M4 model and its exact data vintage.
+- M6 consumes the D5-approved model and feature contract; it does not independently redefine the target.
+- M7 reports only approved, traceable evidence and results.
+- Net Income may appear in original source statements for audit/reconciliation, but it is not the project's forecasting target or a model feature.
+- Dated Brent is a crude-oil benchmark proxy, not IndiGo's realised ATF price.
+- Every new data version must record source, units, observation period, availability date where known, transformation, approval status and SHA-256.
+- Do not mix dataset versions or use information unavailable at the historical forecast origin.
 
 ---
 
-## Milestone registers and project governance
+## Project registers and governance
 
-- [Milestone register](MILESTONE_REGISTER.csv) — status, evidence, limitations and next gate for D1–D7.
+- [Milestone register](MILESTONE_REGISTER.csv) — status, evidence, limits and next gate for D1–D7.
 - [GitHub project-board workflow](../docs/GITHUB_PROJECT_BOARD.md) — Todo, In Progress and Done tracking.
-- [Project status and work log](../docs/PROJECT_STATUS_AND_WORKLOG.md) — current execution record.
-- [Workflow and data governance](../docs/WORKFLOW_AND_DATA_GOVERNANCE.md) — point-in-time, data lineage and reproducibility rules.
+- [Project status and work log](../docs/PROJECT_STATUS_AND_WORKLOG.md) — execution record.
+- [Workflow and data governance](../docs/WORKFLOW_AND_DATA_GOVERNANCE.md) — data lineage, point-in-time and reproducibility controls.
 - [Artifact audit](ARTIFACT_AUDIT_2026-11-07.md) · [Artifact inventory](ARTIFACT_INVENTORY_2026-11-07.csv).
 
 ---
 
-## Review and closure policy
+## Review and closure rules
 
-1. Keep M4 as the only active milestone until its EBITDA-margin model development and experiment evidence meet the exit criteria.
-2. Start M5 only when M4 has a frozen, documented candidate/baseline and modelling data version.
-3. Start M6 only after M5 approves the model and feature contract.
-4. Complete M7 only after evaluation and deployment evidence are available.
-5. Mark a milestone Done only when its deliverables exist at the manifest paths, have been reviewed and are reproducible to the extent stated in the milestone README.
-6. Update the milestone README, register, GitHub issue and project board together whenever status changes.
-
+1. M4 remains the only active milestone until its EBITDA-margin modelling and experiment evidence meet the exit criteria.
+2. M5 begins only after M4 has a frozen, documented candidate/baseline and modelling data version.
+3. M6 begins only after M5 approves the model and feature contract.
+4. M7 is completed only after evaluation and deployment evidence are available.
+5. A milestone is marked Done only when its deliverables exist at the manifest paths, have been reviewed and are reproducible to the extent stated in its README.
+6. Update the milestone README, register, GitHub issue and project board together whenever a status changes.
