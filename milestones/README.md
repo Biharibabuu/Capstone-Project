@@ -94,6 +94,20 @@ The current project's only primary forecasting target is:
 
 ---
 
+## Dataset navigation by milestone
+
+Use these direct data locations when opening the repository:
+
+| Milestone | What you should find | Data location |
+|---|---|---|
+| M1 / D1 — Project Charter | Target definition, scope and data requirements; no raw dataset | [M1 data/input index](M1_D1_Project_Charter/01_INPUTS/README.md) |
+| M2 / D2 — Data Audit | Original financial/market workbooks, source definitions, data dictionary, audit and checksums | [M2 data package](M2_D2_Data_Audit/data/README.md) |
+| M3 / D3 — EDA | 38-quarter EBITDA-only panel consumed by the executed EDA notebook | [M3 EDA dataset](M3_D3_Exploratory_Data_Analysis/data/) |
+| M4 / D4 — Modelling | Historical benchmark snapshot and active EBITDA model-data build requirements | [M4 model data](M4_D4_Modelling/data/README.md) |
+| M5 / D5 — Evaluation | Frozen M4 model/data version and evaluation-only forecast/error outputs | [M5 evaluation inputs](M5_D5_Model_Evaluation/01_INPUTS/README.md) |
+| M6 / D6 — Deployment | Approved model, inference feature schema and runtime source contracts | [M6 deployment inputs](M6_D6_Deployment_Monitoring/01_INPUTS/README.md) |
+| M7 / D7 — Final Communication | Versioned approved evidence used in final report, slides and demo | [M7 final inputs](M7_D7_Final_Communication/01_INPUTS/README.md) |
+
 ## Project registers and governance
 
 - [Milestone register](MILESTONE_REGISTER.csv) — status, evidence, limits and next gate for D1–D7.
