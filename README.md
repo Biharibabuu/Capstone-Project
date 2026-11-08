@@ -23,20 +23,36 @@ For the live Todo / In Progress / Done issue tracker and milestone delivery sequ
 
 Canonical datasets are indexed in [data/README.md](data/README.md); M2 and M4 each include a milestone-specific data index and checksum references. See [milestones/README.md](milestones/README.md) for the milestone index and [MILESTONE_REGISTER.csv](milestones/MILESTONE_REGISTER.csv) for status, evidence and next gates. Each milestone folder contains its own README and file manifest. D4 experiment details are in [README_D4.md](README_D4.md).
 
+
+
+## D1 — Project Charter (M1)
+
+**Submitted deliverable:** `IndiGo_Macroeconomic_Profitability_Capstone_M1.pdf` (9 pages; Module 1 Project Charter Foundation; received 8 November 2026).
+
+The D1 charter frames a public-data, company-level one-quarter-ahead profitability study for IndiGo. It defines PAT margin (PAT divided by Revenue from Operations) as the primary analytical output and EBITDAR margin as a secondary operating indicator. It asks whether quarterly financial and macroeconomic information can improve on a simple historical baseline and support low-, base- and high-cost scenario planning. It explicitly excludes route-level confidential profitability data, causal claims, automatic fare decisions and investment recommendations.
+
+- [M1 / D1 milestone folder](milestones/M1_D1_Project_Charter/)
+- [M1 PDF deliverable location](milestones/M1_D1_Project_Charter/03_DELIVERABLES/README.md)
+- [Editable charter baseline](docs/Project_Charter.md)
+
+**PDF repository status:** The source PDF has been received and inspected, but the PDF binary could not be committed through the current GitHub file-write connection. The M1 deliverables README and manifest record it as received locally with the checksum; the GitHub PDF upload remains pending. The original PDF remains available in this conversation as a download.
+
 ## Project vision
 
 Build an end-to-end forecasting product that combines the historical IndiGo financial and macro/market dataset already assembled for the capstone with selected data refreshed from external web APIs. The live prototype uses Alpha Vantage for USD/INR, OilPriceAPI for Brent, and the official MoSPI eSankhyiki API for monthly CPI and WPI. IndiGo financial results are updated after official quarterly releases. No Bloomberg Terminal session is required to run the live API connectors. A Python data/ML backend exposes forecasts through an API; a single HTML/CSS/JavaScript application lets users inspect inputs, market observations, next-quarter EBITDA-margin forecasts, scenarios, model status and data health.
 
-**The project predicts IndiGo business profitability, not its stock price.** Its primary target is next-quarter EBITDA margin. The model is the core technical deliverable; the HTML application is the user interface, not a substitute for ML experimentation and evaluation.
+**The project predicts IndiGo business profitability, not its stock price.** The submitted D1 Project Charter defines next-quarter PAT margin (PAT / Revenue from Operations × 100) as the primary target and EBITDAR margin as a secondary operating indicator. Any later change to EBITDA margin must be recorded as a formal scope decision; EBITDA and EBITDAR are not interchangeable. The model is the core technical deliverable; the HTML application is the user interface, not a substitute for ML experimentation and evaluation.
 
 > This is an academic prototype using licensed Bloomberg extracts and aggregate financial/market data, plus public reference sources where used for validation. It is not commissioned by or endorsed by IndiGo and does not reveal unpublished actual results. Forecasts are estimates and must be presented with evaluation results and limitations.
 
 ## Primary business question
 
-Can historical IndiGo financial performance and Bloomberg-sourced currency, inflation and oil-benchmark indicators be combined to forecast next-quarter EBITDA margin, and does the selected model improve out-of-sample performance over a simple historical baseline?
+Can historical IndiGo financial performance and public/authorized macroeconomic indicators be combined to forecast next-quarter PAT margin more accurately than a simple historical baseline, and how does that forecast change under alternative fuel-price, USD/INR, inflation and demand scenarios?
 
-**Primary target:**  
-EBITDA margin (%) = EBITDA / Revenue from Operations × 100
+**D1 charter primary target:**  
+PAT margin (%) = Profit After Tax / Revenue from Operations × 100
+
+**D1 secondary indicator:** EBITDAR margin, using a consistent published definition where comparable.
 
 **Forecast horizon:** one quarter ahead. The pipeline may refresh the latest valid inputs, but it cannot know an unpublished current-quarter profit.
 
