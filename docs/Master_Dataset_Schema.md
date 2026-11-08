@@ -1,14 +1,14 @@
 # Master Dataset Schema — Phase 1
 
-The master dataset is target-quarter based: each row represents a quarter whose PAT margin is being forecast, with a forecast cutoff on the final calendar day before that quarter begins.
+The master dataset is target-quarter based: each row represents a quarter whose EBITDA Margin is being forecast, with a forecast cutoff on the final calendar day before that quarter begins.
 
 > **Current source alignment note (28 October 2026):** this is the intended normalized output schema, not the raw Bloomberg workbook layout. The currently collected Bloomberg inputs are `INDIGO IN` quarterly financials; `USDINR REGN Curncy` monthly FX; `INFUTOTY Index` monthly CPI inflation; `INBGWPIY Index` monthly WPI inflation; and `EUCRBRDT Index` daily/monthly Dated Brent crude. The current data do **not** contain Indian ATF; the selected modelling scope is limited to the financial and market indicators listed here. Do not treat the old ATF/daily-FX templates as the source of the current data; map the new header-only templates to this normalized schema and update/test the builder before use. Exact Bloomberg security definitions and publication dates must be retained.
 
 ## Target definition
 
-target_pat_margin_pct = target_pat_inr_mn / target_revenue_inr_mn × 100
+target_ebitda_margin_pct = target_ebitda_inr_mn / target_revenue_inr_mn × 100
 
-The target-quarter result is label information only. Never use target_revenue_inr_mn, target_pat_inr_mn, target_pat_margin_pct or target_financial_published_on as model predictors.
+The target-quarter result is label information only. Never use target_revenue_inr_mn, target_ebitda_inr_mn, target_ebitda_margin_pct or target_financial_published_on as model predictors. PAT target fields, if retained, are supplementary labels only.
 
 ## Output column groups
 
@@ -50,7 +50,7 @@ The target-quarter result is label information only. Never use target_revenue_in
 | latest_cpi_source_url | Source URL for CPI | Provenance only |
 | target_revenue_inr_mn | Target quarter's revenue from operations | Label/supporting outcome only |
 | target_pat_inr_mn | Target quarter's PAT | Label/supporting outcome only |
-| target_pat_margin_pct | Target quarter's PAT margin, percent | Label only |
+| target_ebitda_inr_mn | Target quarter's EBITDA | Label/supporting outcome only |\n| target_ebitda_margin_pct | Target quarter's EBITDA Margin, percent | Primary label only |\n| target_pat_margin_pct | Target quarter's PAT margin, percent | Optional secondary/reference label only |
 | target_financial_published_on | When target outcome became public | Label/provenance only |
 | target_financial_source_url | Source URL for target outcome | Provenance only |
 
@@ -58,7 +58,7 @@ The target-quarter result is label information only. Never use target_revenue_in
 
 The following header-only templates record the actual Bloomberg-export shape. They do not contain proprietary data:
 
-- `financial_bloomberg_quarterly.csv`: raw quarter-end, Bloomberg header, Revenue, Net Income (GAAP), EBITDA, field IDs and result status. Reconcile Net Income to reported PAT and Revenue to Revenue from Operations before populating the normalized target fields.
+- `financial_bloomberg_quarterly.csv`: raw quarter-end, Bloomberg header, Revenue, Net Income (GAAP), EBITDA, field IDs and result status. Reconcile EBITDA to its source definition and Revenue to Revenue from Operations before populating the primary EBITDA Margin target fields. Net Income/PAT may be retained separately as a reference financial measure.
 - `usd_inr_monthly.csv`: monthly `USDINR REGN Curncy` values (`PX_LAST`, `PX_BID`).
 - `cpi_inflation_monthly.csv`: monthly `INFUTOTY Index` `PX_LAST` values; exact series definition must be confirmed in Terminal.
 - `wpi_inflation_monthly.csv`: monthly `INBGWPIY Index` `PX_LAST` values; series/base linkage must be verified.
@@ -70,7 +70,7 @@ Older templates `atf_monthly.csv`, `usd_inr_daily.csv` and `cpi_monthly.csv` ref
 
 After source reconciliation, the model-ready dataset should use:
 - `quarter_end`, `fiscal_quarter`, `forecast_as_of_date`;
-- `revenue_inr_mn`, `pat_inr_mn` (only after Net Income/PAT mapping is verified), `ebitda_inr_mn`, `pat_margin_pct`, `ebitda_margin_pct`;
+- `revenue_inr_mn`, `ebitda_inr_mn`, `ebitda_margin_pct`; PAT fields may be retained separately as reference measures;
 - monthly-derived quarter summaries for USD/INR, CPI inflation, WPI inflation and Dated Brent (daily and/or monthly, if justified);
 - financial and market availability dates, exact source IDs/fields and quality flags;
 - target-quarter outcomes as labels only.
@@ -81,8 +81,15 @@ For each target quarter, forecast_as_of_date = target_quarter_start - 1 day. Eve
 1. observation period is strictly earlier than target_quarter_start; and
 2. the value's actual publication/availability date is on or before forecast_as_of_date.
 
-The target-quarter financial result must have been published after forecast_as_of_date. Use it to calculate the target label only; never treat it as known input information.
+The target-quarter EBITDA and revenue outcome must have been published after forecast_as_of_date. Use it to calculate the EBITDA Margin label only; never treat it as known input information.
 
 ## Small-sample policy
 
 Start with a baseline and limit the initial predictor count. No random shuffle of quarterly rows. Perform chronological/rolling-origin evaluation. Any imputation or scaling must be fitted only inside each training fold. Do not interpolate targets or fill missing targets. Record feature missingness and source coverage before selecting the modelling subset.
+
+
+## Adopted primary target and code status — 8 November 2026
+
+The adopted primary target is `target_ebitda_margin_pct` = target-quarter EBITDA / target-quarter Revenue from Operations × 100. `target_pat_margin_pct` may be retained as a separate supporting/diagnostic outcome but is not the model target. EBITDAR must not be substituted for EBITDA.
+
+The existing `src/build_master_dataset.py` currently creates PAT-margin labels and is not yet compliant with this adopted EBITDA target schema. It must be revised with tests before it is used to create the active model table. The existing `src/d4_train.py` is the legacy PAT-target D4-v1 implementation; use a separate, explicitly versioned EBITDA experiment and do not overwrite legacy evidence.
