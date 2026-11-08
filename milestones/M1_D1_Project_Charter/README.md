@@ -6,7 +6,7 @@
 Establish the capstone business problem, objective, scope, team responsibilities, assumptions, risks, constraints and delivery plan.
 
 ## Project framing
-The capstone forecasts IndiGo's business profitability, not its share price. The submitted D1 PDF defines next-quarter PAT margin (PAT / Revenue from Operations × 100) as the primary analytical output and EBITDAR margin as a secondary indicator. Any later target change must be logged as a formal scope decision; EBITDA and EBITDAR are different measures.
+The capstone forecasts IndiGo's business profitability, not its share price. The submitted D1 PDF originally proposed next-quarter PAT Margin as the primary analytical output and EBITDAR Margin as a secondary indicator. The team has since adopted next-quarter EBITDA Margin (EBITDA / Revenue from Operations × 100) as the primary target for the project. This scope decision applies to D3–D7 and is recorded in the editable charter and evaluation record. The submitted PDF remains unchanged.
 
 ## Workflow
 1. Define the business question and measurable target.
@@ -26,7 +26,7 @@ The capstone forecasts IndiGo's business profitability, not its share price. The
 No raw analytical workbook is required in M1. Dataset inventory, provenance and quality approval belong to M2.
 
 ## Acceptance / closure
-The D1 PDF and editable charter define the business question, PAT-margin target, secondary EBITDAR indicator, scope, roles, risks and milestone plan. Any future scope change must be recorded explicitly.
+The submitted D1 PDF records the initial PAT-margin proposal. The adopted project target is EBITDA Margin, with the change documented in the editable charter and evaluation record. The business question, scope, roles, risks and milestone plan remain part of the M1 baseline.
 
 
 ## Standard evaluation structure
