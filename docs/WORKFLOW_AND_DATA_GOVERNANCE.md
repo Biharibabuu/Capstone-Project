@@ -116,7 +116,7 @@ For each target quarter:
 1. Set `forecast_as_of_date = quarter_start - 1 day`.
 2. Only use predictor observations whose observation period is earlier than the target quarter.
 3. Also require each predictor's actual publication/availability date to be on or before `forecast_as_of_date`.
-4. Keep target-quarter PAT, revenue and PAT margin as labels only.
+4. Keep target-quarter EBITDA and Revenue from Operations as labels used to calculate EBITDA Margin; keep them out of predictors. PAT Margin may remain a separate reference outcome.
 5. Do not use target-quarter or later financial results as features.
 6. Fit imputation, scaling, feature selection and tuning only within the training portion of each chronological split.
 7. Do not randomly shuffle quarterly observations.
@@ -170,7 +170,7 @@ EDA relationships are descriptive/associational; do not describe them as causal 
 2. Compare parsimonious challengers such as Ridge/Elastic Net; add tree models only if sample size permits.
 3. Use chronological fixed splits for a locked holdout and expanding-window/rolling-origin backtests for robustness.
 4. Compare models on the same eligible quarters.
-5. Report MAE and RMSE in PAT-margin percentage points; add directional measures only if precisely defined.
+5. Report MAE and RMSE in EBITDA-Margin percentage points; add directional measures only if precisely defined.
 6. Inspect errors by regime and exceptional period.
 7. Quantify uncertainty where sample size supports it; define when a forecast should be withheld.
 8. Select the model based on repeatable out-of-sample evidence, stability and usefulness.
@@ -230,3 +230,10 @@ Monitor source/API failures, data freshness, missingness, unexpected value range
 | M4/M5 model freeze | Baseline/challenger runs, rolling-origin results, error analysis, uncertainty and model card | No leakage; same-fold baseline comparison; model selected on out-of-sample evidence |
 | M6 prototype acceptance | API/frontend tests, data-health tests, security checks and demo runbook | Live feature pipeline matches evaluated model and withholds invalid forecasts |
 | M7 final submission | Report, model card, slides, notes, demo and references | All claims trace to repository evidence and limitations are disclosed |
+
+
+## Adopted target scope — 8 November 2026
+
+The primary forecast label for the active project is `target_ebitda_margin_pct`, calculated as target-quarter EBITDA divided by Revenue from Operations × 100. Target-quarter EBITDA and Revenue are label inputs only and must never enter the predictor matrix. PAT fields can be retained for reconciliation or secondary reporting but are not the current model target. The submitted D1 PDF's original PAT proposal is superseded for downstream project work by the scope decision recorded in M1.
+
+**Legacy implementation warning:** the existing `src/build_master_dataset.py` and `src/d4_train.py` currently encode PAT-target fields/logic. Until updated and tested for EBITDA Margin, they are legacy PAT-specific implementations and must not be described as the active EBITDA pipeline.
