@@ -29,7 +29,7 @@ Canonical datasets are indexed in [data/README.md](data/README.md); M2 and M4 ea
 
 **Submitted deliverable:** `IndiGo_Macroeconomic_Profitability_Capstone_M1.pdf` (9 pages; Module 1 Project Charter Foundation; received 8 November 2026).
 
-The D1 charter frames a public-data, company-level one-quarter-ahead profitability study for IndiGo. It defines PAT margin (PAT divided by Revenue from Operations) as the primary analytical output and EBITDAR margin as a secondary operating indicator. It asks whether quarterly financial and macroeconomic information can improve on a simple historical baseline and support low-, base- and high-cost scenario planning. It explicitly excludes route-level confidential profitability data, causal claims, automatic fare decisions and investment recommendations.
+The submitted D1 charter PDF originally proposed PAT margin as the primary analytical output and EBITDAR margin as a secondary operating indicator. The project team subsequently adopted **EBITDA Margin** as the primary modelling target for the capstone. This approved project scope is used in D3, the active M4 modelling work, the model workflow and the application. The original D1 PDF is retained unchanged as the submitted historical document; the target change is recorded in the editable charter and M1 evaluation record.
 
 - [M1 / D1 milestone folder](milestones/M1_D1_Project_Charter/)
 - [M1 PDF deliverable location](milestones/M1_D1_Project_Charter/03_DELIVERABLES/README.md)
@@ -41,18 +41,18 @@ The D1 charter frames a public-data, company-level one-quarter-ahead profitabili
 
 Build an end-to-end forecasting product that combines the historical IndiGo financial and macro/market dataset already assembled for the capstone with selected data refreshed from external web APIs. The live prototype uses Alpha Vantage for USD/INR, OilPriceAPI for Brent, and the official MoSPI eSankhyiki API for monthly CPI and WPI. IndiGo financial results are updated after official quarterly releases. No Bloomberg Terminal session is required to run the live API connectors. A Python data/ML backend exposes forecasts through an API; a single HTML/CSS/JavaScript application lets users inspect inputs, market observations, next-quarter EBITDA-margin forecasts, scenarios, model status and data health.
 
-**The project predicts IndiGo business profitability, not its stock price.** The submitted D1 Project Charter defines next-quarter PAT margin (PAT / Revenue from Operations × 100) as the primary target and EBITDAR margin as a secondary operating indicator. Any later change to EBITDA margin must be recorded as a formal scope decision; EBITDA and EBITDAR are not interchangeable. The model is the core technical deliverable; the HTML application is the user interface, not a substitute for ML experimentation and evaluation.
+**The project predicts IndiGo business profitability, not its stock price.** The adopted primary target is next-quarter EBITDA Margin (%) = EBITDA / Revenue from Operations × 100. The original D1 PDF proposed PAT Margin and listed EBITDAR Margin as a secondary indicator; the project team later approved the switch to EBITDA Margin for consistent alignment with the current D3 EDA and active M4 modelling scope. EBITDA and EBITDAR are not interchangeable. The model is the core technical deliverable; the HTML application is the user interface, not a substitute for ML experimentation and evaluation.
 
 > This is an academic prototype using licensed Bloomberg extracts and aggregate financial/market data, plus public reference sources where used for validation. It is not commissioned by or endorsed by IndiGo and does not reveal unpublished actual results. Forecasts are estimates and must be presented with evaluation results and limitations.
 
 ## Primary business question
 
-Can historical IndiGo financial performance and public/authorized macroeconomic indicators be combined to forecast next-quarter PAT margin more accurately than a simple historical baseline, and how does that forecast change under alternative fuel-price, USD/INR, inflation and demand scenarios?
+Can historical IndiGo financial performance and public/authorized macroeconomic indicators be combined to forecast next-quarter EBITDA Margin more accurately than a simple historical baseline, and how does that forecast change under alternative fuel-price, USD/INR, inflation and demand scenarios?
 
-**D1 charter primary target:**  
-PAT margin (%) = Profit After Tax / Revenue from Operations × 100
+**Adopted project primary target:**  
+EBITDA Margin (%) = EBITDA / Revenue from Operations × 100
 
-**D1 secondary indicator:** EBITDAR margin, using a consistent published definition where comparable.
+**Original D1 proposal:** PAT Margin was proposed as the primary target and EBITDAR Margin as a secondary indicator in the submitted PDF. The project team later adopted EBITDA Margin as the modelling target; see [M1 scope decision](milestones/M1_D1_Project_Charter/EVALUATION_RECORD.md#project-scope-decision-8-november-2026).
 
 **Forecast horizon:** one quarter ahead. The pipeline may refresh the latest valid inputs, but it cannot know an unpublished current-quarter profit.
 
@@ -157,7 +157,7 @@ Every feature must pass the **forecast-date availability rule**. Latest-market r
 |---|---|---|
 | 1 | Scope and feasibility audit | Confirm target, data coverage, source register, repository; decide whether comparable data are sufficient |
 | 2 | Historical data collection | Raw datasets and source register |
-| 3 | Cleaning and alignment | Master dataset, PAT margin and data dictionary |
+| 3 | Cleaning and alignment | Master dataset, EBITDA Margin and data dictionary |
 | 4 | EDA and hypotheses | EDA notebook, insights, unusual-period review and initial feature list |
 | 5 | Baseline | Baseline forecast, chronological evaluation setup, MAE/RMSE |
 | 6 | Candidate ML models | Model comparison and experiment log |
@@ -221,7 +221,7 @@ The upcoming source-mapping step must convert the local workbook sheets into nor
 
 For the current source IDs, file paths, units and known gaps, see [the actual-source register](data/source_register.csv) and [collection tracker](data/collection_tracker.csv). After the import mapping and fiscal-quarter corrections are implemented, run the master builder and review missingness, publication-date eligibility and leakage checks before modelling.
 
-The script creates one row per **target quarter**, with the forecast cutoff on the last day before that quarter begins. It selects only inputs whose observation period is before the target quarter and whose publication date is no later than the cutoff. The target quarter's own revenue, PAT and PAT margin are labels only.
+The script creates one row per **target quarter**, with the forecast cutoff on the last day before that quarter begins. It selects only inputs whose observation period is before the target quarter and whose publication date is no later than the cutoff. The target quarter's own EBITDA and Revenue from Operations are labels used to calculate EBITDA Margin; target-quarter outcomes are never predictors.
 
 The public source templates are headers only. Raw Bloomberg workbooks and working master files are maintained locally in the ignored data folders. The master-data builder and model have not yet been run on a reconciled dataset; do not treat earlier generated quarterly workbooks as training-ready.
 
@@ -243,6 +243,11 @@ Keep licensed Bloomberg exports and data-derived workbook values in authorized l
 ## D3 — Exploratory Data Analysis (reviewed source notebook)
 
 - **Notebook:** [`notebooks/03_eda.ipynb`](notebooks/03_eda.ipynb). The source-only notebook includes pre-specified hypotheses, source and cleaned-data quality checks, distributions, trends, fiscal-quarter segmentation, statistical tests, an insight log and modelling recommendations. Outputs are cleared in the public copy to avoid republishing Bloomberg-derived values and figures.
-- **Review note:** the supplied master workbook's `Financial source` sheet is shifted by two quarters relative to the raw Bloomberg `IS` sheet. The notebook reconstructs quarterly PAT and EBITDA margins from the raw statement, excludes records marked `Est`, and aligns market indicators to Indian fiscal quarters. The separate flat EDA analysis workbook should be rebuilt rather than used as the modelling master.
+- **Review note:** the supplied master workbook's `Financial source` sheet is shifted by two quarters relative to the raw Bloomberg `IS` sheet. The notebook reconstructs quarterly EBITDA Margin from the raw statement (and may retain PAT Margin as a separate reference field), excludes records marked `Est`, and aligns market indicators to Indian fiscal quarters. The separate flat EDA analysis workbook should be rebuilt rather than used as the modelling master.
 - **Next step:** rebuild the final quarterly master and calculation audit from actual raw financials, rerun EDA locally, then start D4 baseline modelling. No forecast model has been trained or validated yet.
 - **Data governance:** raw Bloomberg workbooks, output-rich notebook/HTML exports and derived data tables are not committed to the public repo unless the applicable licence permits redistribution. Local input paths are documented in [`notebooks/README.md`](notebooks/README.md) and [the D3 status note](reports/D3_eda/README.md).
+
+
+## Project target scope decision — 8 November 2026
+
+The project team's adopted primary forecast target is **next-quarter EBITDA Margin (%) = EBITDA / Revenue from Operations × 100**. This scope decision supersedes the initial PAT-margin proposal in the submitted D1 PDF for subsequent data preparation, EDA, model training, model evaluation and application development. The D1 PDF is preserved unchanged as the original Module 1 submission and is not represented as having originally specified EBITDA Margin. EBITDAR is a distinct measure and is not substituted for EBITDA.
