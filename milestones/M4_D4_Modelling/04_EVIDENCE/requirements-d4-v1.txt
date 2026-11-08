@@ -1,0 +1,7 @@
+numpy
+pandas
+openpyxl
+scikit-learn
+statsmodels
+matplotlib
+xgboost  # optional; notebook skips it if unavailable
