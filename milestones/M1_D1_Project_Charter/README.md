@@ -6,7 +6,7 @@
 Establish the capstone business problem, objective, scope, team responsibilities, assumptions, risks, constraints and delivery plan.
 
 ## Project framing
-The capstone forecasts IndiGo's business profitability, not its share price. The active modelling outcome is next-quarter EBITDA margin. The charter baseline, data definition and later milestones should use the same target definition and forecast horizon.
+The capstone forecasts IndiGo's business profitability, not its share price. The submitted D1 PDF defines next-quarter PAT margin (PAT / Revenue from Operations × 100) as the primary analytical output and EBITDAR margin as a secondary indicator. Any later target change must be logged as a formal scope decision; EBITDA and EBITDAR are different measures.
 
 ## Workflow
 1. Define the business question and measurable target.
@@ -16,7 +16,8 @@ The capstone forecasts IndiGo's business profitability, not its share price. The
 5. Review and approve the charter; baseline the milestone plan.
 
 ## Deliverables
-- Project_Charter.md — project scope and baseline.
+- [D1 PDF — IndiGo_Macroeconomic_Profitability_Capstone_M1.pdf](03_DELIVERABLES/README.md) — nine-page submitted Module 1 charter; PDF binary upload to GitHub pending.
+- Project_Charter.md — editable project scope and baseline.
 - MILESTONE_CONTROL.md — purpose, dependencies, outputs and acceptance criteria.
 - DELIVERABLES_CHECKLIST.md — review and closure controls.
 - MILESTONE_MANIFEST.csv — artifact inventory.
@@ -25,7 +26,7 @@ The capstone forecasts IndiGo's business profitability, not its share price. The
 No raw analytical workbook is required in M1. Dataset inventory, provenance and quality approval belong to M2.
 
 ## Acceptance / closure
-The business question, EBITDA-margin target, scope, roles, risks and milestone plan are documented. Any future scope change must be recorded explicitly.
+The D1 PDF and editable charter define the business question, PAT-margin target, secondary EBITDAR indicator, scope, roles, risks and milestone plan. Any future scope change must be recorded explicitly.
 
 
 ## Standard evaluation structure
