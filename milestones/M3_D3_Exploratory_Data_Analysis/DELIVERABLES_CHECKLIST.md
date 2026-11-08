@@ -1,19 +1,21 @@
 # M3 / D3 — Deliverables Checklist
 
-## Inputs and governance
-- [x] EBITDA-only 38-quarter analysis panel committed under data/.
-- [x] Input fields and source lineage documented.
-- [x] M2 source workbook hashes and rights caveats referenced.
+## Notebook and analysis
+- [x] Latest user-supplied executed notebook retained as the only D3 notebook.
+- [x] All 34 notebook cells and 43 saved outputs retained.
+- [x] EBITDA Margin is the sole profitability outcome.
+- [x] Five exploratory hypotheses and corresponding statistical results documented.
+- [x] README, evaluation record, review notes and M4 handoff updated.
 
-## Analysis and review
-- [x] Executed notebook stored in 02_WORKING.
-- [x] Descriptive and data-quality checks included.
-- [x] Five EBITDA hypotheses, charts, statistical tests and insight log included.
-- [x] M4 handoff and limitations documented.
-- [ ] Clean re-execution from a fresh clone and regenerated outputs (recommended verification; preserved outputs are from the uploaded run).
-- [ ] Separate faculty report, if separately required by the rubric.
+## Dataset and reproducibility
+- [x] Previous EDA Analysis Excel workbook removed from M3.
+- [x] Exact notebook input dependency recorded as `EDA ANALYSIS(5).xlsx` / `Sheet1`.
+- [ ] Exact source workbook supplied/approved for a clean rerun.
+- [ ] Reconcile the 2020 Q4 EBITDA Margin discrepancy before substituting any newer quarterly source file.
+- [ ] Clean re-execution from a fresh clone and compare regenerated outputs.
+- [ ] Confirm exact oil benchmark identity and units.
 
 ## Closure
-- [x] README, control record and manifest describe the EBITDA-only scope.
-- [x] Dataset input is committed and linked.
-- [x] D3 administrative handoff recorded as Done.
+- [x] Single canonical notebook path linked in the milestone README and project README.
+- [x] Current EDA results and limitations documented.
+- [ ] Complete clean-run and source-reconciliation evidence before full reproducibility sign-off.

@@ -1,12 +1,11 @@
 file,description,canonical_source,record_status
-README.md,"Milestone overview; current EBITDA Margin scope",milestones/M1_D1_Project_Charter/README.md,Updated
-Project_Charter.md,"Editable charter aligned to EBITDA Margin",docs/Project_Charter.md,Included copy
+README.md,"Milestone overview; EBITDA Margin target",milestones/M1_D1_Project_Charter/README.md,Updated
+Project_Charter.md,"Editable charter aligned to EBITDA Margin",docs/Project_Charter.md,Included
 MILESTONE_CONTROL.md,"Milestone scope inputs outputs and acceptance criteria",MILESTONE_CONTROL.md,Included
-DELIVERABLES_CHECKLIST.md,"Review and closure checklist",DELIVERABLES_CHECKLIST.md,Updated
+DELIVERABLES_CHECKLIST.md,"D1 review and closure checklist",DELIVERABLES_CHECKLIST.md,Updated
 01_INPUTS/README.md,"01_INPUTS folder index",01_INPUTS/README.md,Included
 02_WORKING/README.md,"02_WORKING folder index",02_WORKING/README.md,Included
-03_DELIVERABLES/README.md,"D1 current revised DOCX record and upload status",03_DELIVERABLES/README.md,Updated
+03_DELIVERABLES/README.md,"D1 revised DOCX record; no D1 PDF retained",03_DELIVERABLES/README.md,Updated
 04_EVIDENCE/README.md,"04_EVIDENCE folder index",04_EVIDENCE/README.md,Included
 05_REFERENCES/README.md,"05_REFERENCES folder index",05_REFERENCES/README.md,Included
-IndiGo_Macroeconomic_Profitability_Capstone_M1.docx,"Nine-page revised D1 DOCX; EBITDA Margin is the primary analytical output; SHA-256 d96c5cddecd2cb33e5eaceca61c7387b43468481c1d22d0a68f8a295c0a52e9f","Expected: 03_DELIVERABLES/IndiGo_Macroeconomic_Profitability_Capstone_M1.docx","Received and reviewed locally; GitHub binary upload pending"
-IndiGo_Macroeconomic_Profitability_Capstone_M1.pdf,"Earlier D1 PDF version; superseded by revised EBITDA-focused DOCX","Historical local attachment; not current deliverable","Superseded; do not use as active D1 target definition"
+IndiGo_Macroeconomic_Profitability_Capstone_M1.docx,"Nine-page revised D1 DOCX; EBITDA Margin primary target; SHA-256 d96c5cddecd2cb33e5eaceca61c7387b43468481c1d22d0a68f8a295c0a52e9f","Expected: 03_DELIVERABLES/IndiGo_Macroeconomic_Profitability_Capstone_M1.docx","Received and reviewed locally; GitHub binary upload pending"

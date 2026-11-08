@@ -1,31 +1,39 @@
 # M3 / D3 — EDA Evaluation Record
 
-**Status:** Notebook and matching Excel input uploaded; scope/reviewer approval pending.  
-**Dataset:** [EDA ANALYSIS(4).xlsx](01_INPUTS/EDA%20ANALYSIS%284%29.xlsx), Sheet1.  
+**Status:** Latest executed notebook uploaded; previous EDA workbook removed; clean rerun pending exact source input.  
 **Notebook:** [ANCP_T##_D3_EDA_New_Dataset_EXECUTED.ipynb](02_WORKING/ANCP_T%23%23_D3_EDA_New_Dataset_EXECUTED.ipynb).
 
-## Dataset
-38 quarterly observations, 9 columns including header. The data fields are Year, Quarter (Calendar), PAT Margin, EBITDA Margin, USD/INR quarterly mean, CPI quarterly mean, WPI quarterly mean, daily oil-benchmark quarterly mean and monthly oil-benchmark quarterly mean. SHA-256: `0c2a79065faaee48cec6393f79ff330a98a9eb20c1add3e87e8a45dd7e1c0f46`.
+## Notebook integrity
+The latest notebook contains 34 cells (20 markdown and 14 code), 43 saved outputs and 14 execution counts. The executed outputs remain intact.
 
-The notebook uses 8 fields: Year, Quarter (Calendar), EBITDA Margin, USD/INR, CPI, WPI, daily oil benchmark and monthly oil benchmark. PAT Margin is present in the Excel file but intentionally excluded from this EBITDA-focused notebook.
+## Analysis dataset represented in the executed results
+- 38 quarterly observations, 2017-03-31 through 2026-06-30.
+- Eight selected analysis fields: Year, Quarter (Calendar), EBITDA Margin, USD/INR quarterly mean, CPI quarterly mean, WPI quarterly mean, daily oil-benchmark quarterly mean and monthly oil-benchmark quarterly mean.
+- The notebook reports no missing values in its transformed 10-column analysis panel and zero duplicate Year–Quarter combinations.
+- Descriptive EBITDA Margin statistics: mean 12.306%, median 15.000%, standard deviation 14.255 percentage points, min -36.667%, max 29.933%.
 
-## Notebook integrity and data match
-The executed notebook retains 34 cells, 43 saved outputs and 14 execution counts. The workbook's EBITDA Margin statistics are mean 12.305878%, median 15.000185% and sample standard deviation 14.255359 percentage points. These match the notebook's saved rounded summary (12.306%, 15.000%, 14.255%). The notebook input path and labels have been updated to the committed Excel filename. The notebook was not freshly re-executed after that path change.
+## Exploratory hypothesis results
+| ID | Relationship / test | n | Statistic | p-value |
+|---|---|---:|---:|---:|
+| H1 | EBITDA Margin vs USD/INR (Spearman) | 38 | rho 0.554 | <0.001 |
+| H2 | EBITDA Margin vs monthly oil proxy (Spearman) | 38 | rho 0.264 | 0.109 |
+| H3 | EBITDA Margin vs CPI (Spearman) | 38 | rho -0.087 | 0.605 |
+| H4 | EBITDA Margin vs WPI (Spearman) | 38 | rho -0.450 | 0.005 |
+| H5 | EBITDA Margin across calendar quarters (Kruskal–Wallis) | 38 | — | 0.125 |
 
-## Exploratory results
-- H1 USD/INR: Spearman rho 0.554, p < 0.001, n = 38.
-- H2 monthly oil proxy: rho 0.264, p = 0.109, n = 38.
-- H3 CPI: rho -0.087, p = 0.605, n = 38.
-- H4 WPI: rho -0.450, p = 0.005, n = 38.
-- H5 calendar-quarter difference: Kruskal–Wallis p = 0.125, n = 38.
+H1 and H4 show statistically significant same-period rank associations in this sample. H2 and H3 do not show statistically significant associations, and H5 does not show statistically significant quarter-group differences. These findings are exploratory, not causal, and do not establish next-quarter forecasting performance.
 
-These are exploratory same-period associations, not causal effects or out-of-sample next-quarter prediction evidence. The sample is small and time-dependent.
+## Input-file status and source discrepancy
+The previous standalone `EDA ANALYSIS(4).xlsx` has been removed from the M3 folder as requested. The current notebook references `EDA ANALYSIS(5).xlsx` / `Sheet1`; that exact workbook is not included in GitHub, so clean execution cannot yet be reproduced.
 
-## Project-target alignment
-The adopted project target is EBITDA Margin, and this D3 notebook analyses EBITDA Margin as its primary outcome. PAT Margin appears in the workbook as a separate reference field and is intentionally excluded from the D3 analytical frame. The original D1 PDF proposed PAT Margin, but the team's later scope decision adopted EBITDA Margin for D3–D7. See the M1 evaluation record.
+The available candidate `Final_Quarterly_Data(4).xlsx` was not substituted. In its `Final_Quarterly_Data` sheet, 2020 Q4 EBITDA Margin is -201.391218%, whereas the previous EDA panel reports -20.391218%. This 181 percentage-point discrepancy is material and needs source reconciliation before regenerating results. No value has been silently changed.
 
-## Closure criteria
-1. Clean-run the notebook from M3/02_WORKING using the uploaded workbook in M3/01_INPUTS.
-2. Confirm the oil benchmark definition/units and source lineage.
-3. Confirm the recorded EBITDA Margin scope decision in the capstone review.
-4. Store any separate faculty-ready summary/report in 03_DELIVERABLES and update the manifest.
+## Limitations
+- 38 quarterly observations provide limited statistical power.
+- Quarterly observations may be serially dependent.
+- The oil benchmark identity and units are not fully established.
+- Passenger demand, load factor, yield, passenger count, capacity, fuel consumption and route mix are absent.
+- Same-quarter association is not a one-quarter-ahead forecast test.
+
+## Handoff to M4
+Use EBITDA Margin as the adopted project target. Before modelling, reconcile the 2020 Q4 value, confirm source definitions and publication timing, and build a chronological target-quarter dataset without leakage. Compare candidates to simple historical/seasonal baselines.

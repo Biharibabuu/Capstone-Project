@@ -29,7 +29,7 @@ Canonical datasets are indexed in [data/README.md](data/README.md); M2 and M4 ea
 
 Build an end-to-end forecasting product that combines the historical IndiGo financial and macro/market dataset already assembled for the capstone with selected data refreshed from external web APIs. The live prototype uses Alpha Vantage for USD/INR, OilPriceAPI for Brent, and the official MoSPI eSankhyiki API for monthly CPI and WPI. IndiGo financial results are updated after official quarterly releases. No Bloomberg Terminal session is required to run the live API connectors. A Python data/ML backend exposes forecasts through an API; a single HTML/CSS/JavaScript application lets users inspect inputs, market observations, next-quarter EBITDA-margin forecasts, scenarios, model status and data health.
 
-**The project predicts IndiGo business profitability, not its stock price.** The adopted primary target is next-quarter EBITDA Margin (%) = EBITDA / Revenue from Operations × 100. The original D1 PDF proposed PAT Margin and listed EBITDAR Margin as a secondary indicator; the project team later approved the switch to EBITDA Margin for consistent alignment with the current D3 EDA and active M4 modelling scope. EBITDA and EBITDAR are not interchangeable. The model is the core technical deliverable; the HTML application is the user interface, not a substitute for ML experimentation and evaluation.
+**The project predicts IndiGo business profitability, not its stock price.** The adopted primary target is next-quarter EBITDA Margin (%) = EBITDA / Revenue from Operations × 100. The revised D1 charter establishes EBITDA Margin as the primary analytical output. The older D1 PDF is not retained in the M1 milestone; the current revised DOCX is recorded in M1, with its binary upload status shown in the M1 deliverables index. EBITDA and EBITDAR are not interchangeable. The model is the core technical deliverable; the HTML application is the user interface, not a substitute for ML experimentation and evaluation.
 
 > This is an academic prototype using licensed Bloomberg extracts and aggregate financial/market data, plus public reference sources where used for validation. It is not commissioned by or endorsed by IndiGo and does not reveal unpublished actual results. Forecasts are estimates and must be presented with evaluation results and limitations.
 
@@ -68,7 +68,7 @@ EBITDA Margin (%) = EBITDA / Revenue from Operations × 100
 
 ## Data actually collected to date (Bloomberg Terminal exports)
 
-The latest four workbooks have now been uploaded to this public repository, with the user's confirmation that they have permission to share the Bloomberg-derived data. The original files are preserved unchanged: [raw Bloomberg export](data/raw/CP%284%29.xlsx), [master indicators](data/raw/CP%20Master%20Data%283%29.xlsx), [quarterly derived workbook](data/processed/Final_Quarterly_Data%281%29.xlsx), and [EDA analysis workbook](data/processed/EDA%20ANALYSIS%282%29.xlsx). See the [data package manifest](docs/Data_Package_Manifest.md) for sheet inventory, sizes and SHA-256 checksums.
+Canonical source workbooks and the pinned quarterly data snapshot are indexed in the repository: [raw Bloomberg export](data/raw/CP%284%29.xlsx), [master indicators](data/raw/CP%20Master%20Data%283%29.xlsx), and [D4-v1 quarterly derived workbook](data/processed/Final_Quarterly_Data%281%29.xlsx). The separate EDA Analysis Excel workbook has been removed from M3; the current D3 deliverable is the executed notebook linked below. See the [data package manifest](docs/Data_Package_Manifest.md) for source inventory and version details.
 
 **Primary data provider:** [Bloomberg Terminal](<https://professional.bloomberg.com/products/bloomberg-terminal/>) and [Bloomberg DATA](<https://data.bloomberg.com/>). Bloomberg terminal exports do not provide a public, unauthenticated download URL for each licensed series, so the table records the exact Bloomberg security identifiers and field mnemonics. The public Bloomberg product links are source/access references; they are not direct links to the downloaded workbook. [Bloomberg's company profile for InterGlobe Aviation](<https://www.bloomberg.com/profile/company/INDIGO%3AIN>) identifies the company security. Independent official links in the last column are for cross-checking definitions/results only; they were not the source of the uploaded Bloomberg exports.
 
@@ -188,7 +188,7 @@ See the [D1 charter](docs/Project_Charter.md) and [full plan](docs/Master_Projec
 **Current revised deliverable received:** `IndiGo_Macroeconomic_Profitability_Capstone_M1.docx` (9 pages; received 8 November 2026).  
 **SHA-256:** `d96c5cddecd2cb33e5eaceca61c7387b43468481c1d22d0a68f8a295c0a52e9f`
 
-The revised charter establishes **EBITDA Margin** as the primary analytical output. The project definition, analytics question and data plan are aligned to a one-quarter-ahead EBITDA-margin forecast. The earlier D1 PDF is retained only as historical submission evidence; it is not the current charter for the adopted target.
+The revised charter establishes **EBITDA Margin** as the primary analytical output. The project definition, analytics question and data plan are aligned to a one-quarter-ahead EBITDA-margin forecast. The earlier D1 PDF is not included in the repository. The revised EBITDA-focused DOCX is the current D1 source document; its binary upload remains pending.
 
 - [M1 / D1 milestone folder](milestones/M1_D1_Project_Charter/)
 - [M1 deliverables index](milestones/M1_D1_Project_Charter/03_DELIVERABLES/README.md)
@@ -242,12 +242,15 @@ The D2 audit report and its three-page datasheet document the audit of the Bloom
 Keep licensed Bloomberg exports and data-derived workbook values in authorized local/private storage. The public repository should contain code, schemas, source metadata and documentation only unless the applicable licence explicitly permits redistribution. Do not use the earlier generated master dataset until it has been rebuilt from the raw `IS` sheet.
 
 
-## D3 — Exploratory Data Analysis (reviewed source notebook)
+## D3 — Exploratory Data Analysis (current executed notebook)
 
-- **Notebook:** [`notebooks/03_eda.ipynb`](notebooks/03_eda.ipynb). The source-only notebook includes pre-specified hypotheses, source and cleaned-data quality checks, distributions, trends, fiscal-quarter segmentation, statistical tests, an insight log and modelling recommendations. Outputs are cleared in the public copy to avoid republishing Bloomberg-derived values and figures.
-- **Review note:** the supplied master workbook's `Financial source` sheet is shifted by two quarters relative to the raw Bloomberg `IS` sheet. The notebook reconstructs quarterly EBITDA Margin from the raw statement (and may retain PAT Margin as a separate reference field), excludes records marked `Est`, and aligns market indicators to Indian fiscal quarters. The separate flat EDA analysis workbook should be rebuilt rather than used as the modelling master.
-- **Next step:** rebuild the final quarterly master and calculation audit from actual raw financials, rerun EDA locally, then start D4 baseline modelling. No forecast model has been trained or validated yet.
-- **Data governance:** raw Bloomberg workbooks, output-rich notebook/HTML exports and derived data tables are not committed to the public repo unless the applicable licence permits redistribution. Local input paths are documented in [`notebooks/README.md`](notebooks/README.md) and [the D3 status note](reports/D3_eda/README.md).
+- **Canonical notebook:** [ANCP_T##_D3_EDA_New_Dataset_EXECUTED.ipynb](milestones/M3_D3_Exploratory_Data_Analysis/02_WORKING/ANCP_T%23%23_D3_EDA_New_Dataset_EXECUTED.ipynb). This is the latest executed notebook supplied by the user and the only D3 notebook retained.
+- **Notebook contents:** 34 cells (20 markdown, 14 code), 43 saved outputs and 14 execution counts. The executed outputs are preserved.
+- **Analysis scope:** 38 quarterly observations from 2017-03-31 to 2026-06-30; EBITDA Margin is the sole profitability outcome. Candidate explanatory series are USD/INR, CPI, WPI and daily/monthly oil-benchmark quarterly means.
+- **Descriptive result:** average EBITDA Margin 12.306%, median 15.000%, standard deviation 14.255 percentage points, minimum -36.667% and maximum 29.933%.
+- **Hypothesis results:** USD/INR Spearman rho 0.554 (p < 0.001); monthly oil proxy rho 0.264 (p = 0.109); CPI rho -0.087 (p = 0.605); WPI rho -0.450 (p = 0.005); calendar-quarter Kruskal–Wallis p = 0.125. These are exploratory same-period associations, not causal or forecast-performance results.
+- **Input-file handling:** the separate EDA Analysis Excel workbook has been removed from the M3 folder. The notebook still expects its source workbook `EDA ANALYSIS(5).xlsx` for a clean rerun; that source file is not included in GitHub. The saved notebook outputs remain viewable. Do not substitute `Final_Quarterly_Data(4).xlsx` without reconciliation: its 2020 Q4 EBITDA Margin is -201.391%, materially different from the -20.391% value represented in the previous EDA panel.
+- **Next step:** provide/approve the exact source workbook or reconcile the final quarterly source data; then rerun from a clean clone and refresh the evidence record. Do not use these same-period correlations as next-quarter predictive validation.
 
 
 ## Project target scope decision — 8 November 2026

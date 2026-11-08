@@ -1,30 +1,29 @@
 # M3 / D3 — Review Notes and M4 Handoff
 
-**Canonical input:** [EDA ANALYSIS(4).xlsx](01_INPUTS/EDA%20ANALYSIS%284%29.xlsx)  
-**Canonical notebook:** [Executed D3 EDA](02_WORKING/ANCP_T%23%23_D3_EDA_New_Dataset_EXECUTED.ipynb)
+**Canonical artifact:** [Executed D3 EDA notebook](02_WORKING/ANCP_T%23%23_D3_EDA_New_Dataset_EXECUTED.ipynb).  
+**Standalone EDA Analysis workbook:** removed from the milestone.
 
-## Dataset fields
-The workbook contains 38 quarterly observations with Year, Quarter (Calendar), PAT Margin, EBITDA Margin, quarterly mean USD/INR, CPI, WPI, daily oil-benchmark and monthly oil-benchmark values. The SHA-256 is `0c2a79065faaee48cec6393f79ff330a98a9eb20c1add3e87e8a45dd7e1c0f46`.
+## Dataset represented by the notebook
+The notebook reports 38 quarterly observations from 2017-03-31 to 2026-06-30. It selects EBITDA Margin as the only profitability outcome with USD/INR, CPI, WPI, daily oil-benchmark and monthly oil-benchmark quarterly means as candidate indicators.
 
-The notebook selects EBITDA Margin as the only profitability outcome and excludes PAT Margin from its analytical frame. Its saved summary statistics for EBITDA Margin match the workbook.
+## Principal results
+- Mean EBITDA Margin 12.306%; median 15.000%; standard deviation 14.255 percentage points.
+- H1 USD/INR: Spearman rho 0.554, p < 0.001.
+- H2 monthly oil proxy: rho 0.264, p = 0.109.
+- H3 CPI: rho -0.087, p = 0.605.
+- H4 WPI: rho -0.450, p = 0.005.
+- H5 calendar-quarter Kruskal–Wallis p = 0.125.
 
-## Hypothesis framework
-- H1: USD/INR and EBITDA Margin association.
-- H2: monthly oil-benchmark proxy and EBITDA Margin association.
-- H3: CPI and EBITDA Margin association.
-- H4: WPI and EBITDA Margin association.
-- H5: EBITDA Margin differences across calendar-quarter groups.
+The observed significant USD/INR and WPI relationships are same-period rank associations. They are not causal conclusions and do not establish next-quarter predictive value.
 
-The executed notebook reports five tests. Significant same-period Spearman associations appear for USD/INR (rho 0.554, p < 0.001) and WPI (rho -0.450, p = 0.005); the monthly oil proxy (p = 0.109), CPI (p = 0.605) and calendar-quarter group test (p = 0.125) are not statistically significant in this sample. Treat these as exploratory, not causal or predictive conclusions.
+## Reproducibility and data governance
+The user requested removal of the separate EDA Analysis Excel workbook. The notebook is stored with its saved outputs, but its input code expects `EDA ANALYSIS(5).xlsx`, worksheet `Sheet1`; that exact input is not committed. A clean rerun therefore remains pending.
 
-## Controls and limitations
-1. Confirm EBITDA and Revenue line-item definitions and denominator against underlying company statements.
-2. Exclude estimates/unavailable financial rows from realised outcomes where applicable.
-3. Preserve chronological quarter ordering; use fiscal-quarter keys for modelling if required by the D1 design.
-4. Separate observation dates from actual publication/availability dates.
-5. Dated Brent is a crude benchmark proxy, not Indian ATF or IndiGo's realised fuel price.
-6. No passenger count, load factor, yield, RPK/ASK, capacity or route-mix variables are present in this workbook.
-7. D3 is EBITDA-focused whereas the overall capstone's D1/D4 target remains PAT Margin; obtain explicit scope approval.
+Do not substitute `Final_Quarterly_Data(4).xlsx` without reconciling its 2020 Q4 EBITDA Margin of -201.391218% against the prior EDA panel's -20.391218%. This discrepancy is material; it must be checked against raw quarterly financial source values and the approved EBITDA definition.
 
-## Handoff to M4
-Use the exact input workbook version and its SHA-256 in any downstream experiment manifest. Do not silently substitute a refreshed quarterly dataset. Carry forward the small-sample, feature-availability and target-alignment limitations.
+## M4 modelling controls
+1. Preserve fiscal/quarter chronology and do not bridge missing quarters.
+2. Use only predictors observable by the forecast cut-off.
+3. Keep target-quarter EBITDA and revenue as label inputs, not predictors.
+4. Compare persistence/seasonal-naive baselines with parsimonious challengers using chronological evaluation.
+5. Record the exact approved input version, source hash and transformation lineage.
