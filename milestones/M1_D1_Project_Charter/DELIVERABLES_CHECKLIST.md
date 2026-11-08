@@ -1,14 +1,14 @@
 # M1 / D1 — Deliverables Checklist
 
 - [x] Business problem and decision use defined.
-- [x] Initial D1 PDF reviewed and its PAT-margin proposal recorded accurately.
-- [x] Adopted project target updated to next-quarter EBITDA Margin and documented as a dated scope decision.
+- [x] Revised D1 document received and inspected.
+- [x] EBITDA Margin confirmed as the primary analytical output in the revised D1 DOCX.
 - [x] Scope and out-of-scope boundaries documented.
 - [x] Stakeholders, success measures and assumptions recorded.
 - [x] Project risks and mitigations recorded.
 - [x] Team responsibilities and milestone plan documented.
-- [x] Charter and master plan available in GitHub.
+- [x] Editable charter and milestone README aligned to EBITDA Margin.
+- [ ] Commit the revised D1 DOCX binary into `03_DELIVERABLES`.
+- [ ] Verify the committed DOCX path and SHA-256 from GitHub.
 
-**Status:** Completed. Record any approved scope changes before carrying them into later milestones.
-
-- [x] Editable charter and README aligned to the adopted EBITDA Margin target.
+**Status:** D1 content is aligned and reviewed. Do not mark the revised document as uploaded until the DOCX binary exists at the manifest path.
