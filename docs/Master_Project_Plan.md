@@ -9,13 +9,13 @@
 
 The project began as an IndiGo macroeconomic profitability-forecasting capstone and has been refined into an end-to-end analytics product combining historical company performance with current/latest-available market information.
 
-The project forecasts **IndiGo business profitability, not its stock price**. The primary output remains next-quarter PAT margin. The ML prediction engine is the main technical deliverable. The HTML application is the single user interface; Python handles data preparation, prediction, scenarios and validation.
+The project forecasts **IndiGo business profitability, not its stock price**. The adopted primary output is next-quarter EBITDA Margin (%) = EBITDA / Revenue from Operations × 100. The ML prediction engine is the main technical deliverable. The HTML application is the single user interface; Python handles data preparation, prediction, scenarios and validation.
 
 ## Current implementation status — 28 October 2026
 
 D1 documentation and the D2 audit notes are in the repository. The raw Bloomberg workbook, the market-indicator master workbook, a quarterly output workbook and a D3 EDA HTML export have been received for review, but licensed workbooks and output-rich exports are kept in local/private storage rather than committed to the public repository.
 
-The reviewed D3 source notebook is available at [`notebooks/03_eda.ipynb`](../notebooks/03_eda.ipynb). It reconstructs PAT and EBITDA margins from raw Bloomberg `IS` inputs, excludes rows marked `Est`, uses the project's Indian fiscal-quarter convention (`Q-MAR`) and checks the legacy master sheet against the raw statement. The public notebook has no stored execution outputs.
+The current executed D3 notebook is available at [M3 / 02_WORKING](../milestones/M3_D3_Exploratory_Data_Analysis/02_WORKING/ANCP_T%23%23_D3_EDA_New_Dataset_EXECUTED.ipynb). It reconstructs PAT and EBITDA margins from raw Bloomberg `IS` inputs, excludes rows marked `Est`, uses the project's Indian fiscal-quarter convention (`Q-MAR`) and checks the legacy master sheet against the raw statement. The public notebook has no stored execution outputs.
 
 **Important data-reconciliation gate before D4:**
 - The legacy `Financial source` sheet in the master workbook is shifted by two quarters relative to raw `IS` financial values.
@@ -30,11 +30,11 @@ The reviewed D3 source notebook is available at [`notebooks/03_eda.ipynb`](../no
 
 ## 2. Final project vision
 
-The system will combine historical company financials with Bloomberg USD/INR, CPI, WPI and Dated Brent indicators, transform them into forecasting features, and return a next-quarter PAT-margin forecast with supporting context.
+The system will combine historical company financials with Bloomberg USD/INR, CPI, WPI and Dated Brent indicators, transform them into forecasting features, and return a next-quarter EBITDA-Margin forecast with supporting context.
 
 ### Planned capabilities
 
-- Predict next-quarter PAT margin.
+- Predict next-quarter EBITDA Margin.
 - Use only information available at each forecast date.
 - Refresh forecasts when new valid market information becomes available.
 - Show the input conditions used for the forecast.
@@ -55,17 +55,17 @@ The system will combine historical company financials with Bloomberg USD/INR, CP
 
 Profitability can be affected by financial performance, fuel-price movements, currency movements and inflation. The business need is to translate the latest available information into an evidence-based view of future profitability.
 
-**Problem statement:** Develop and evaluate a machine-learning model that uses historical IndiGo financial performance and Bloomberg-sourced USD/INR, CPI, WPI and Dated Brent indicators to forecast the company's next-quarter PAT margin, and determine whether the selected model improves predictive performance over a simple historical baseline on unseen quarters.
+**Problem statement:** Develop and evaluate a machine-learning model that uses historical IndiGo financial performance and Bloomberg-sourced USD/INR, CPI, WPI and Dated Brent indicators to forecast the company's next-quarter EBITDA Margin, and determine whether the selected model improves predictive performance over a simple historical baseline on unseen quarters.
 
 **Decision-maker:** Business/finance decision-makers, analysts and project stakeholders who need an evidence-based view of future profitability and risk.
 
-**Primary analytics question:** Can historical IndiGo financial performance and Bloomberg USD/INR, CPI, WPI and Dated Brent indicators be combined in a machine-learning model to forecast next-quarter PAT margin?
+**Primary analytics question:** Can historical IndiGo financial performance and Bloomberg USD/INR, CPI, WPI and Dated Brent indicators be combined in a machine-learning model to forecast next-quarter EBITDA Margin?
 
 **Target:**
 
-PAT Margin (%) = Profit After Tax / Revenue from Operations × 100
+EBITDA Margin (%) = EBITDA / Revenue from Operations × 100
 
-PAT margin is the primary output. EBITDA margin is a secondary financial performance indicator, subject to reconciliation of the Bloomberg EBITDA field.
+EBITDA Margin is the primary output. PAT Margin may be retained as a separate financial reference metric; EBITDAR is distinct from EBITDA and must not be substituted.
 
 **Forecast horizon:** One quarter ahead.
 
@@ -99,7 +99,7 @@ PAT margin is the primary output. EBITDA margin is a secondary financial perform
 3. Align indicators to the forecast period.
 4. Generate the feature vector using the same preprocessing as training.
 5. Run the selected model.
-6. Return the PAT-margin forecast and supporting metrics.
+6. Return the EBITDA-Margin forecast and supporting metrics.
 7. Run scenarios where requested.
 8. Store prediction metadata for later comparison with actual results.
 9. Monitor performance and retraining conditions.
@@ -153,7 +153,7 @@ Models will be compared using time-ordered validation and a simple baseline. Com
 - Select the model based on defensible out-of-sample performance and business usefulness.
 - If ML does not outperform the baseline, document the result rather than claiming superiority.
 
-MAE is the average absolute PAT-margin forecast error in percentage points. RMSE penalises larger errors more strongly. Baseline improvement is the evidence that ML adds value beyond the selected simple benchmark.
+MAE is the average absolute EBITDA-Margin forecast error in percentage points. RMSE penalises larger errors more strongly. Baseline improvement is the evidence that ML adds value beyond the selected simple benchmark.
 
 ## 8. Current-market integration
 
@@ -176,7 +176,7 @@ The HTML application is the single user-facing interface. Python remains respons
 |---|---|
 | Overview | Current forecast and model status |
 | Market Inputs | Latest validated variables and timestamps |
-| Profitability Forecast | Next-quarter PAT margin and evaluation-supported reliability information |
+| Profitability Forecast | Next-quarter EBITDA Margin and evaluation-supported reliability information |
 | Drivers | Important inputs associated with the prediction |
 | Scenario Analysis | Alternative Dated Brent, USD/INR, CPI and WPI assumptions within defensible ranges |
 | Historical Performance | Predictions versus actual values when available |
@@ -233,7 +233,7 @@ Confirm the target and one-quarter horizon, audit historical data availability, 
 Collect financial and market data, record each source/date/unit/definition, and preserve raw data unchanged.
 
 ### Week 3 — Data preparation
-Align to fiscal quarters, standardise definitions and units, calculate PAT margin, build the data dictionary and check feature availability at forecast dates.
+Align to fiscal quarters, standardise definitions and units, calculate EBITDA Margin, build the data dictionary and check feature availability at forecast dates.
 
 ### Week 4 — EDA
 Analyse trends and seasonality; examine financial, Brent, USD/INR, CPI and WPI relationships; investigate unusual periods; test hypotheses and freeze the initial predictor list.
@@ -300,7 +300,7 @@ Only vary inputs that the model and data can reasonably support. Keep the scenar
 ## 16. Scope and assumptions
 
 ### In scope
-- Quarterly next-period PAT-margin forecasting.
+- Quarterly next-period EBITDA-Margin forecasting.
 - Historical financial data and selected Bloomberg market/macro indicators.
 - ML comparison and time-based evaluation.
 - Latest-available market-data refresh where reliable.
@@ -353,4 +353,11 @@ Only vary inputs that the model and data can reasonably support. Keep the scenar
 
 ## Final working project statement
 
-This project will develop an integrated, market-sensitive machine-learning system for forecasting IndiGo's next-quarter PAT margin. It will combine historical company financials with Bloomberg USD/INR, CPI, WPI and Dated Brent indicators, evaluate forecasting approaches against a simple baseline using leakage-free time-based validation, and expose the selected model through an HTML application connected to a Python backend. The application will support refreshed forecasts, scenario analysis and monitoring while communicating uncertainty and limitations.
+This project will develop an integrated, market-sensitive machine-learning system for forecasting IndiGo's next-quarter EBITDA Margin. It will combine historical company financials with Bloomberg USD/INR, CPI, WPI and Dated Brent indicators, evaluate forecasting approaches against a simple baseline using leakage-free time-based validation, and expose the selected model through an HTML application connected to a Python backend. The application will support refreshed forecasts, scenario analysis and monitoring while communicating uncertainty and limitations.
+
+
+## Adopted target scope — 8 November 2026
+
+The current capstone target is **next-quarter EBITDA Margin (%) = EBITDA / Revenue from Operations × 100**. The submitted D1 PDF originally proposed PAT Margin and listed EBITDAR Margin as a secondary indicator; the project team subsequently adopted EBITDA Margin for all downstream work. Keep the original D1 PDF unchanged and use the M1 evaluation record as the scope-change log.
+
+**Implementation note:** the existing `src/build_master_dataset.py` and `src/d4_train.py` are earlier PAT-target implementations. They are not the active EBITDA pipeline and must not be used to generate or claim EBITDA results without a separately reviewed update and tests. The existing D4-v1 report/metrics are legacy PAT-margin evidence only. The active M4 experiment must use the D3 EBITDA dataset and record its own target, input hash, splits and results.
