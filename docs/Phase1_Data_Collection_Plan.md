@@ -1,7 +1,7 @@
 # Phase 1 — Data Collection Plan
 
 **Project:** IndiGo Profitability Intelligence System  
-**Primary target:** Next-quarter PAT margin (%)  
+**Adopted primary target:** Next-quarter EBITDA Margin (%) = EBITDA / Revenue from Operations × 100  
 **Team:** Nikhil Raj, Krishan Sharma, K. Shreya  
 **Status (updated 7 November 2026):** The latest CP(6).xlsx and CP Master Data(5).xlsx uploads are byte-identical to the CP raw/master workbooks already stored in GitHub. The latest Final_Quarterly_Data(3).xlsx is a local candidate and has not been uploaded or approved as a replacement for the pinned D4-v1 input. See the workbook source map below. The current flat master is not model-ready: the legacy financial sheet is shifted by two quarters, estimates must be excluded from actual outcomes, fiscal-quarter labels need to follow the Indian fiscal calendar, and the current raw CPI series runs through 2026-09-30; the earlier malformed-date concern was not reproduced in the latest file. No model has been trained.
 
@@ -82,7 +82,7 @@ Use Indian financial-year quarters:
 
 Quarter ends should be 30 June, 30 September, 31 December or 31 March. Quarter labels in the processed dataset use the financial year in which Q1 starts, e.g. FY2024-25_Q1 ends 30 June 2024 and FY2024-25_Q4 ends 31 March 2025.
 
-The master dataset is **target-quarter based**. For a target quarter, set forecast_as_of_date to the final calendar day before that quarter begins. The target is the target quarter's PAT divided by its revenue from operations × 100. Inputs are chosen only from records with an observation period before the target quarter and a publication/effective date no later than forecast_as_of_date.
+The master dataset is **target-quarter based**. For a target quarter, set forecast_as_of_date to the final calendar day before that quarter begins. The target is the target quarter's EBITDA divided by its Revenue from Operations × 100. PAT may be retained as a separate reference outcome, but it is not the adopted model target. Inputs are chosen only from records with an observation period before the target quarter and a publication/effective date no later than forecast_as_of_date.
 
 For the financial predictors, select the most recent earlier quarter whose financial result was already published by the forecast cutoff. Do not automatically use the immediately preceding quarter if its result was still unpublished. For monthly/daily market and operating inputs, select the latest eligible value by observation period subject to publication timing. This can mean inputs have different last-observation dates; retain those dates in the dataset.
 
@@ -90,7 +90,7 @@ For the financial predictors, select the most recent earlier quarter whose finan
 
 The normalized output schema is documented in [Master_Dataset_Schema.md](Master_Dataset_Schema.md). For the current collected sources, the master will need:
 - target-quarter and forecast-cutoff identifiers using the Indian fiscal year;
-- reconciled Revenue, Net Income/PAT and EBITDA with actual publication metadata;
+- reconciled Revenue and EBITDA for the primary EBITDA Margin target, with actual publication metadata; Net Income/PAT may be retained as a separate reference measure;
 - eligible monthly USD/INR and CPI/WPI values;
 - eligible Dated Brent crude observations, kept explicitly separate from Indian ATF;
 - target-quarter financial outcomes as labels only;
@@ -103,8 +103,8 @@ The current flat master must be rebuilt before it is used for EDA or training.
 Required checks:
 1. All dates parse successfully; quarterly end dates are quarter ends.
 2. One financial record per quarter_end; one record per source observation date/month for USD/INR, CPI, WPI and Brent; preserve source grain when daily and monthly Brent both exist.
-3. Required target revenue is numeric and strictly positive; PAT may be negative.
-4. Numeric values must be finite. Keep negative PAT when reported; investigate surprising values rather than deleting them automatically.
+3. Required target Revenue from Operations is numeric and strictly positive; EBITDA Margin may be negative if reported EBITDA is negative. Retain PAT as a separate reference measure only.
+4. Numeric values must be finite. Keep negative EBITDA/PAT values when reported; investigate surprising values rather than deleting them automatically.
 5. Units and reporting basis are consistent, with all conversions documented.
 6. Every input publication/effective timestamp is at or before the forecast cutoff.
 7. Every input observation period is strictly before target_quarter_start.
@@ -192,3 +192,8 @@ Candidate (3) is different from the D4-v1 file and has not been uploaded. Do not
 - [Office of the Economic Adviser WPI Data](https://eaindustry.nic.in/download_data_2223.asp) — WPI cross-check.
 
 The Final Quarterly file is a derived project dataset, not an independent external source. Record the CP source workbook, sheet names, source hash and transformation details in its lineage.
+
+
+## Adopted target update — 8 November 2026
+
+The adopted model target is **next-quarter EBITDA Margin (%) = EBITDA / Revenue from Operations × 100**. The submitted D1 PDF originally proposed PAT Margin, but the project team has superseded that initial proposal for downstream work. PAT can remain in the source dataset as a separate financial reference metric; it is not the primary forecast label. Update the normalized builder and its tests before generating an active EBITDA target-quarter master table: the current `src/build_master_dataset.py` is still PAT-target code and is not ready to produce this target.
