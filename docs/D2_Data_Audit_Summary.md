@@ -3,24 +3,24 @@
 **Version:** `data-v1.0`  
 **Audit access/inspection date:** 23 October 2026  
 **Linked outcomes:** CO2, CO6  
-**Purpose:** Prepare a reproducible quarterly dataset for one-quarter-ahead IndiGo PAT-margin forecasting.
+**Purpose:** Prepare a reproducible quarterly dataset for one-quarter-ahead IndiGo EBITDA-margin forecasting.
 
 ## Dataset snapshot
 
 - **38 actual-quarter entries** were identified in the raw `IS` review, from **2017-03-31 to 2026-06-30**; this is a raw-source count, not a statement that all rows are aligned and eligible for forecasting.
 - **19 analytical fields** were reported in the earlier cleaned-master draft; the column set and data quality must be rechecked after the financial series is rebuilt.
 - **33 rows were previously reported as model-training rows, but this count is not approved for training** because the financial target sheet was found to be shifted by two quarters. Rebuild and rerun all row-count and missingness checks from raw actual financials.
-- Primary outcome: PAT margin (%).
-- Secondary outcome: EBITDA margin (%).
+- Primary outcome: EBITDA margin (%), calculated as EBITDA / Revenue from Operations × 100.
+- Net Income (GAAP) is retained only as a source financial field for reconciliation; it is not a target or predictor in this capstone.
 - Candidate external inputs: USD/INR, CPI inflation, WPI inflation and an oil benchmark proxy.
 
 ## Critical source-alignment finding
 
-The `Financial source` sheet in the supplied `CP Master Data(3).xlsx` is misaligned by two quarters relative to the raw Bloomberg `IS` sheet. Values displayed against dates in the master correspond to raw financial values from two quarters earlier. For example, the master row dated 2017-09-30 carries the PAT-margin value matching raw IS quarter 2017-03-31.
+The `Financial source` sheet in the supplied `CP Master Data(3).xlsx` is misaligned by two quarters relative to the raw Bloomberg `IS` sheet. Values displayed against dates in the master correspond to raw financial values from two quarters earlier. For example, the master row dated 2017-09-30 carries a financial value matching raw IS quarter 2017-03-31; therefore, the legacy financial sheet must not be used to derive the EBITDA-margin target.
 
-**Treatment:** rebuild quarterly financial outcomes from the raw Bloomberg `IS` sheet and recompute PAT margin as Net Income / Revenue × 100 and EBITDA margin as EBITDA / Revenue × 100. Do not use the misaligned `Financial source` sheet for modelling.
+**Treatment:** rebuild quarterly financial outcomes from the raw Bloomberg `IS` sheet and calculate the primary target as EBITDA Margin = EBITDA / Revenue from Operations × 100. Do not use the misaligned `Financial source` sheet for modelling.
 
-The extreme COVID-period negative PAT margin is retained because it is reproducible from the supplied financial inputs and is not demonstrated to be a data-entry error.
+Extreme COVID-period EBITDA-margin observations should be retained when reproducible from supplied financial inputs; flag and assess sensitivity rather than remove them automatically.
 
 ## Data-quality decisions
 
@@ -41,7 +41,7 @@ Bloomberg data are proprietary and subject to the applicable institutional subsc
 
 ## DPDP Act, 2023 and purpose limitation
 
-The reviewed workbooks contain corporate financial and market time series; no direct personal data was identified. Use is limited to forecasting IndiGo quarterly profitability and evaluating model performance. If personal data is added later, minimise it, restrict access, retain it only as necessary, and review the applicable lawful basis and purpose-limitation requirements under the DPDP Act, 2023 and institutional policy.
+The reviewed workbooks contain corporate financial and market time series; no direct personal data was identified. Use is limited to forecasting IndiGo quarterly EBITDA margin and evaluating model performance. If personal data is added later, minimise it, restrict access, retain it only as necessary, and review the applicable lawful basis and purpose-limitation requirements under the DPDP Act, 2023 and institutional policy.
 
 ## Representativeness and bias
 
@@ -54,11 +54,11 @@ The reviewed workbooks contain corporate financial and market time series; no di
 
 | Feature | Logic | Control |
 |---|---|---|
-| `lag1_pat_margin_pct` | PAT margin shifted by one quarter | Uses prior-quarter value only |
-| `lag4_pat_margin_pct` | PAT margin shifted by four quarters | Uses same fiscal quarter in the prior year |
+| `lag1_ebitda_margin_pct` | EBITDA margin shifted by one quarter | Uses prior-quarter value only |
+| `lag4_ebitda_margin_pct` | EBITDA margin shifted by four quarters | Uses same fiscal quarter in the prior year |
 | `usd_inr_avg`, `cpi_avg_pct`, `wpi_avg_pct`, `oil_benchmark_avg_usd` | Mean market value within the forecast-origin quarter | Use only observations available at the forecast cutoff |
 | `usd_inr_qoq_pct`, `oil_qoq_pct`, `cpi_qoq_pct`, `wpi_qoq_pct` | Current-quarter average relative to previous quarter | Require as-of aggregation and release-date checks |
-| `target_next_quarter_pat_margin_pct` | PAT margin shifted one quarter forward | Target only; never include in predictor matrix |
+| `target_next_quarter_ebitda_margin_pct` | EBITDA margin shifted one quarter forward | Primary target only; never include in predictor matrix |
 
 For historical evaluation, simulate the information available at each forecast origin. Do not leak later-published data into predictors.
 
