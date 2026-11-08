@@ -1,6 +1,6 @@
 # M1 / D1 — Project Charter: Evaluation Record
 
-**Status:** Completed  
+**Status:** Completed — D1 PDF received and reviewed; GitHub binary upload pending  
 **Team:** Nikhil Raj, Krishan Sharma and K. Shreya
 
 ## Project definition
@@ -28,3 +28,12 @@ The charter's role split and responsibility matrix are in [Project_Charter.md](P
 - README.md and MILESTONE_MANIFEST.csv — folder guide and file register.
 - Shared integrated plan: [docs/Master_Project_Plan.md](../../docs/Master_Project_Plan.md).
 - [Course and artifact inventory](../ARTIFACT_INVENTORY_2026-11-07.csv) records original charter PDF/DOCX and course-outline DOCX; the editable Markdown charter/plan are canonical in GitHub.
+
+
+## Submitted D1 PDF — received 8 November 2026
+
+The submitted file is `IndiGo_Macroeconomic_Profitability_Capstone_M1.pdf`, a nine-page Module 1 Project Charter Foundation document. Original upload SHA-256: `408f2a67f038013b124c5ef4e9818c3e56b1866dd4601a7eb792797342f02676`.
+
+The PDF frames IndiGo's profitability forecasting problem using public company financial information and macroeconomic indicators. It defines PAT margin (PAT / Revenue from Operations × 100) as the primary one-quarter-ahead target and EBITDAR margin as a secondary indicator. It includes business context, an HBI problem-framing application, a problem statement, decision/analytics questions, four working hypotheses, scope boundaries, initial data plan, modelling approach, stakeholders, feasibility risks and public-data references.
+
+The source PDF has been received and inspected but its binary has not been committed to GitHub through the current write connection. See [M1 deliverables README](03_DELIVERABLES/README.md) for the transparent upload status.
