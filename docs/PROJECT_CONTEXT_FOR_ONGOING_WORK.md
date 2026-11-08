@@ -6,7 +6,7 @@ Use this file as the persistent working brief for future tasks on the IndiGo Pro
 - Project: IndiGo Profitability Intelligence System.
 - Course: PGDM Business Analytics capstone, modules M1–M7 / deliverables D1–D7.
 - Team: Nikhil Raj, Krishan Sharma and K. Shreya.
-- Target: one-quarter-ahead PAT margin, defined as PAT divided by Revenue from Operations × 100.
+- Adopted target: one-quarter-ahead EBITDA Margin, defined as EBITDA divided by Revenue from Operations × 100.
 - Purpose: forecast IndiGo business profitability, not stock price.
 
 ## Current source of truth
@@ -28,7 +28,7 @@ Use this file as the persistent working brief for future tasks on the IndiGo Pro
 - Forecast features must be available by the forecast as-of date. Observation date alone does not establish publication/availability.
 - Label `EUCRBRDT Index` as Dated Brent crude proxy, not Indian ATF.
 - The currently reviewed data do not contain passenger count, passenger load factor, RPK or ASK. Do not say these have been collected.
-- The current financial export establishes EBITDA, not EBITDAR.
+- The current financial export establishes EBITDA, not EBITDAR. EBITDA Margin is the adopted modelling target; do not substitute EBITDAR Margin or PAT Margin.
 - Keep Bloomberg raw or derived data private unless redistribution rights for that exact dataset and output are confirmed.
 - Do not claim an artifact has been uploaded or deployed unless the exact repository path/commit or running test is verified.
 
@@ -60,3 +60,8 @@ For every new user upload, code change, decision, experiment or submission:
 - Keep a chronological work log; do not silently replace earlier decisions or evidence.
 
 When explaining any step, use clear business-school language and explain finance/data terminology in plain language. Prefer evidence tables, explicit decisions and reproducible instructions over unsupported claims.
+
+
+## Adopted target scope (8 November 2026)
+
+The project team's adopted primary modelling target is next-quarter EBITDA Margin (%) = EBITDA / Revenue from Operations × 100. The original D1 PDF retains its initial PAT-margin proposal as historical submission evidence; the subsequent scope decision is recorded in the M1 evaluation record and editable Project Charter. D3 EDA is EBITDA-focused. The current M4 experiment must be independently built for EBITDA Margin; the older D4-v1 code and results are PAT-target legacy evidence and must not be represented as EBITDA performance.
