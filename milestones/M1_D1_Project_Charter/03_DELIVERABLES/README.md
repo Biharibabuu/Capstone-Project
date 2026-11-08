@@ -9,20 +9,20 @@
 **Received:** 8 November 2026  
 **SHA-256 (original uploaded PDF):** `408f2a67f038013b124c5ef4e9818c3e56b1866dd4601a7eb792797342f02676`
 
-The PDF was reviewed. It defines:
-- Primary analytical output: one-quarter-ahead PAT margin = PAT / Revenue from Operations × 100.
-- Secondary indicator: EBITDAR margin, with a consistent published definition.
+### What the submitted PDF originally records
+- Initial primary analytical output: one-quarter-ahead PAT Margin = PAT / Revenue from Operations × 100.
+- Secondary operating indicator: EBITDAR Margin, using a consistent published definition.
 - Business decision: quarterly planning under different macroeconomic conditions.
-- Main drivers to test: aviation fuel prices, USD/INR, inflation and passenger-demand conditions.
-- Required comparison: transparent historical baseline versus parsimonious candidate model, evaluated chronologically.
+- Main drivers to investigate: aviation fuel prices, USD/INR, inflation and passenger-demand conditions.
+- Required comparison: a transparent historical baseline against a parsimonious candidate model, using chronological evaluation.
 - Intended use: scenario planning, budgeting and cost-risk awareness.
-- Boundaries: no route-level confidential profit prediction, no unsupported causal claims, no automatic fare decisions and no investment recommendations.
+- Boundaries: no route-level confidential profit prediction, unsupported causal claims, automatic fare decisions or investment recommendations.
+
+### Adopted project target after scope decision
+The project team has subsequently adopted **next-quarter EBITDA Margin (%) = EBITDA / Revenue from Operations × 100** as the primary target for D3–D7. This scope decision is documented in [M1 Evaluation Record](../EVALUATION_RECORD.md) and the [editable Project Charter](../../../docs/Project_Charter.md).
+
+The submitted PDF remains unchanged as historical evidence of the initial D1 proposal. This record does not claim that the original PDF specified EBITDA Margin. EBITDA Margin and EBITDAR Margin are not interchangeable.
 
 ## GitHub binary-upload status
 
-The original PDF was received and visually checked, but its binary file has **not yet been committed to this repository** because the current GitHub write connection does not provide a binary-file upload operation. Do not treat this README entry as proof that the PDF itself is already in GitHub. The source PDF is available in the current ChatGPT conversation.
-
-## Other D1 artifacts
-- [Editable D1 charter](../../../docs/Project_Charter.md)
-- [M1 evaluation record](../EVALUATION_RECORD.md)
-- [M1 README](../README.md)
+The PDF was received and inspected. Its binary has not yet been committed to this repository through the current GitHub write connection. Do not treat this README entry as proof that the PDF itself is already in GitHub. The original PDF is available in the conversation attachment.
